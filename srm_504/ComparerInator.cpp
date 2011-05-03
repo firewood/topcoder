@@ -1,5 +1,6 @@
 // BEGIN CUT HERE 
 /*
+// SRM 504 Div2 Easy 250
 // PROBLEM STATEMENT
 // Comparer-inator is a very simple language that is specialized in comparisons. It takes an expression and returns the result. There are only two kinds of expressions: a variable name or a tertiary operator inspired by C syntax (which is also used in many languages like Java, C++, and C#). We are interested to use this language to process two vector <int>s, A and B to generate the vector <int> wanted as a result. We have previously found that there are four candidate programs that could be an optimal way to solve the issue we have. Each of the programs takes two arguments a and b.
 
@@ -96,81 +97,90 @@ typedef vector<int>VI;
 class ComparerInator {
 	public:
 	int makeProgram(vector <int> A, vector <int> B, vector <int> wanted) {
-		size_t count = A.size();
-		VI::const_iterator it;
-		size_t x;
-		for (x = 0; x < count; ++x) {
-			if (A[x] != wanted[x]) {
-				break;
+		int length = (int)A.size();
+		VI::const_iterator ia, ib, iw;
+		int count_a = 0, count_b = 0;
+		for (ia = A.begin(), ib = B.begin(), iw = wanted.begin();
+				ia != A.end(); ++ia, ++ib, ++iw) {
+			if (*ia == *iw) {
+				++count_a;
+			}
+			if (*ib == *iw) {
+				++count_b;
 			}
 		}
-		if (x >= count) {
+		if (count_a >= length || count_b >= length) {
 			return 1;
 		}
-		for (x = 0; x < count; ++x) {
-			if (B[x] != wanted[x]) {
-				break;
-			}
-		}
-		if (x >= count) {
-			return 1;
-		}
-		size_t a = 0, b = 0;
-		for (x = 0; x < count; ++x) {
-			if (A[x] < B[x]) {
-				if (A[x] == wanted[x]) {
-					++a;
+
+		count_a = 0, count_b = 0;
+		for (ia = A.begin(), ib = B.begin(), iw = wanted.begin();
+				ia != A.end(); ++ia, ++ib, ++iw) {
+			if (*ia < *ib) {
+				if (*ia == *iw) {
+					++count_a;
+				}
+				if (*ib == *iw) {
+					++count_b;
 				}
 			} else {
-				if (B[x] == wanted[x]) {
-					++b;
+				if (*ib == *iw) {
+					++count_a;
+				}
+				if (*ia == *iw) {
+					++count_b;
 				}
 			}
 		}
-		if (a >= count || b >= count) {
+		if (count_a >= length || count_b >= length) {
 			return 7;
 		}
-		a = 0, b = 0;
-		for (x = 0; x < count; ++x) {
-			if (A[x] < B[x]) {
-				if (B[x] == wanted[x]) {
-					++a;
-				}
-			} else {
-				if (A[x] == wanted[x]) {
-					++b;
-				}
-			}
-		}
-		if (a >= count || b >= count) {
-			return 7;
-		}
+
 		return -1;
 	}
 };
 
 // BEGIN CUT HERE 
-static void Test(int n, const char *seq)
+template <typename T> static T __str_to_val(const char *p)
 {
-	char buffer[1000];
-	strcpy(buffer, seq);
-	vector <int> v;
-	char *p = strtok(buffer, ",");
+	return p;
+}
+template <> static int __str_to_val(const char *p)
+{
+	return atoi(p);
+}
+template <typename T> vector<T> getVector(const char *s)
+{
+	static const int buffer_size = 1024000;
+	static char buffer[buffer_size];
+	strcpy(buffer, s);
+	vector <T> v;
+	char *p = strtok(buffer, " ,");
 	while (p) {
-		int var = atoi(p);
-		if (var) {
-			v.push_back(var);
-		}
-		p = strtok(NULL, ",");
+		v.push_back(__str_to_val<T>(p));
+		p = strtok(NULL, " ,");
 	}
-	ComparerInator ___test;
-	int result = 0;
-//	int result = ___test.test();
-	printf("result: %d\n", result);
+	return v;
 }
 
-int main() {
-	Test(0, "");
+static void Test(const char *A, const char *B, const char *wanted, int expected)
+{
+	vector <int> _a = getVector<int>(A);
+	vector <int> _b = getVector<int>(B);
+	vector <int> _w = getVector<int>(wanted);
+	ComparerInator ___test;
+	int result = ___test.makeProgram(_a, _b, _w);
+	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
+}
+
+int main()
+{
+	Test("1", "2", "2", 1);
+	Test("1,3", "2,1", "2,3", 7);
+	Test("1,3,5", "2,1,7", "2,3,5", -1);
+	Test("1,3,5", "2,1,7", "1,3,5", 1);
+	Test("1,2,3,4,5,6,7,8,9,10,11", "5,4,7,8,3,1,1,2,3,4,6", "1,2,3,4,3,1,1,2,3,4,6", 7);
+	Test("1,5,6,7,8", "1,5,6,7,8", "1,5,6,7,8", 1);
 	return 0;
 }
 // END CUT HERE
