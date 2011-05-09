@@ -154,7 +154,8 @@ class Algrid {
 						return e;
 					}
 				} else {
-					src[dst[x]] = buffer[y + 1][x];
+					size_t index = dst[x];
+					src[index] = buffer[y + 1][x];
 				}
 			}
 
