@@ -122,14 +122,6 @@ class CubeRoll {
 				return 1;
 			}
 
-
-			//??
-			sq = (int)sqrt((double)remain);
-			if (remain == sq * sq) {
-				return 2;
-			}
-
-
 			if ((range % 2) == 1) {
 				// (x + 1)^2 - x^2 = 2x + 1
 				return 2;
@@ -138,7 +130,11 @@ class CubeRoll {
 				// (x + 2)^2 - x-2 = 4x + 4
 				return 2;
 			}
-			return 3;
+
+			// at least 3
+			lower_bound = start - 1;
+			upper_bound = end + 1;
+			range = 3;
 		}
 
 		IntSet f;
