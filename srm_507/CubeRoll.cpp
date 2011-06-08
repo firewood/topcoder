@@ -131,10 +131,11 @@ class CubeRoll {
 				return 2;
 			}
 
-			// at least 3
+			// at most 3
 			lower_bound = start - 1;
 			upper_bound = end + 1;
 			range = 3;
+			// enter the below loop
 		}
 
 		IntSet f;
