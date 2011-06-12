@@ -99,14 +99,16 @@ class DivideAndShift {
 	}
 
 	int getLeast(int N, int M) {
-		if (M <= 1) {
-			return 0;
-		}
 		--M;		// 0-based index
 
-		int result = N;
+		// costs without division
+		int cost = min(M, N - M);
+		if (cost <= 1) {
+			return cost;
+		}
+
 		int d;
-		for (d = 1; d <= N; ++d) {
+		for (d = 2; d <= N; ++d) {
 			int n = N / d;
 			if ((n * d) != N) {
 				continue;
@@ -122,11 +124,11 @@ class DivideAndShift {
 				}
 			}
 
-			int m = M % n;
-			result = min(result, primes + min(m, n - m));
+			int m = M % n;		// new position
+			cost = min(cost, primes + min(m, n - m));
 		}
 
-		return result;
+		return cost;
 	}
 
 	// generate N primes
@@ -179,11 +181,11 @@ static void Test(int N, int M, int expected)
 }
 
 int main() {
-//	Test(56, 14, 3);
-//	Test(49, 5, 2);
-//	Test(256, 7, 6);
-//	Test(6, 1, 0);
-//	Test(77777, 11111, 2);
+	Test(56, 14, 3);
+	Test(49, 5, 2);
+	Test(256, 7, 6);
+	Test(6, 1, 0);
+	Test(77777, 11111, 2);
 	Test(999983, 427, 1);
 	return 0;
 }
