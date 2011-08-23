@@ -77,91 +77,22 @@ Returns: "NO"
 
 using namespace std;
 
-struct P {
-	int x;
-	int y;
-	P(int a, int b) : x(a),y(b) { }
-};
-typedef list<P> PLIST;
 typedef vector<int> VI;
-
-static const int R = 50;
-static const int RR = R * 2;
 
 class MagicalGirlLevelTwoDivTwo {
 	public:
 	string isReachable(vector <int> jumpTypes, int x, int y) {
-		int gx = x + R;
-		int gy = y + R;
-		bool f[256][256] = {0};
-		PLIST L;
-		L.push_back(P(R,R));
-		while (L.size() > 0) {
-			P p = *(L.rbegin());
-			L.pop_back();
-			if (gx == p.x && gy == p.y) {
+		if (((x + y) % 2) == 0) {
+			return "YES";
+		}
+
+		VI::const_iterator it;
+		for (it = jumpTypes.begin(); it != jumpTypes.end(); ++it) {
+			if ((*it % 2) == 0) {
 				return "YES";
 			}
-			int i = p.x;
-			int j = p.y;
-/*
-			if (i < 0 || i >= 200 || j < 0 || j >= 200 || f[i][j]) {
-				continue;
-			}
-*/
-			f[i][j] = true;
-			VI::const_iterator it;
-			for (it = jumpTypes.begin(); it != jumpTypes.end(); ++it) {
-				int d = *it;
-				int dx, dy;
-				{
-					dx = i - 1;
-					if (dx >= 0) {
-						dy = j - d;
-						if (dy >= 0 && !f[dx][dy]) {
-							L.push_back(P(dx, dy));
-						}
-						dy = j + d;
-						if (dy < RR && !f[dx][dy]) {
-							L.push_back(P(dx, dy));
-						}
-						dx = i - d;
-						if (dx >= 0) {
-							dy = j - 1;
-							if (dy >= 0 && !f[dx][dy]) {
-								L.push_back(P(dx, dy));
-							}
-							dy = j + 1;
-							if (dy < RR && !f[dx][dy]) {
-								L.push_back(P(dx, dy));
-							}
-						}
-					}
-					dx = i + 1;
-					if (dx < RR) {
-						dy = j - d;
-						if (dy >= 0 && !f[dx][dy]) {
-							L.push_back(P(dx, dy));
-						}
-						dy = j + d;
-						if (dy < RR && !f[dx][dy]) {
-							L.push_back(P(dx, dy));
-						}
-						dx = i + d;
-						if (dx < RR) {
-							dy = j - 1;
-							if (dy >= 0 && !f[dx][dy]) {
-								L.push_back(P(dx, dy));
-							}
-							dy = j + 1;
-							if (dy < RR && !f[dx][dy]) {
-								L.push_back(P(dx, dy));
-							}
-						}
-					}
-				}
-			}
 		}
+
 		return "NO";
 	}
 };
@@ -198,8 +129,8 @@ static void Test(const char *seq, int x, int y, const char *expected)
 }
 
 int main() {
-//	Test("2", 5, 4, "YES");
-//	Test("3", 5, 4, "NO");
+	Test("2", 5, 4, "YES");
+	Test("3", 5, 4, "NO");
 	Test("21,23,25,27,29", -30, 29, "NO");
 	return 0;
 }
