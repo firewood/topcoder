@@ -45,17 +45,18 @@ template <typename T> vector<T> getVector(const char *s)
 	return v;
 }
 
-static void Test(const char *seq, int expected)
+static void Test(const char *seq, int N, int expected)
 {
 	vector <int> v = getVector<int>(seq);
 	$CLASSNAME$ ___test;
 	int result = 0;
-//	$RC$ result = ___test.$METHODNAME$();
+//	$RC$ result = ___test.$METHODNAME$($METHODPARMS$);
 	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
+//	printf("result: %s, %s\n", strcmp(result.c_str(), expected) == 0 ? "OK" : "FAILED", result.c_str());
 }
 
 int main() {
-	Test("", 0);
+	Test("", 0, 0);
 	return 0;
 }
 // END CUT HERE
