@@ -93,6 +93,41 @@ typedef unsigned long long ULL;
 typedef vector<int> IV;
 
 class FiveHundredEleven {
+#if 1
+	int n;
+	IV cards;
+	int dp[512][64];
+
+	int isWinner(int memory, int played) {
+		if (memory == 511) {
+			return true;
+		}
+		if (played >= n) {
+			return false;
+		}
+		int &result = dp[memory][played];
+		if (result != -1) {
+			return result;
+		}
+		int i;
+		for (i = 0; i < n; ++i) {
+			int newmem = memory | cards[i];
+			if (newmem != memory) {
+				return result = !isWinner(newmem, played + 1);
+			}
+		}
+		return result = !isWinner(memory, played + 1);
+	}
+
+public:
+	string theWinner(vector <int> _cards) {
+		n = _cards.size();
+		cards = _cards;
+		memset(dp, -1, sizeof(dp));
+		return isWinner(0, 0) ? "Fox Ciel" : "Toastman";
+	}
+
+#else
 	bool isWinner(const IV &c, int v, ULL f) {
 		if (f == 0) {
 			return false;
@@ -118,6 +153,7 @@ public:
 		ULL f = (1LL << cards.size()) - 1;
 		return isWinner(cards, 0, f) ? "Fox Ciel" : "Toastman";
 	}
+#endif
 };
 
 // BEGIN CUT HERE
@@ -152,11 +188,11 @@ static void Test(const char *seq, const char *expected)
 }
 
 int main() {
-//	Test("3,5,7,9,510", "Fox Ciel");
-//	Test("0,0,0,0", "Toastman");
-//	Test("511", "Toastman");
-//	Test("5,58,192,256", "Fox Ciel");
-	Test("77,389,61,361,289,255,195,13,485,476,239,317,234,310,372,426,478,29,356,30,60,439,349,261,440,117,459,253,289,495,350,167,115,492,338,394,429,243,177,368,11,282,393,227,405,372,364,56,276,160", "FoxCiel");
+	Test("3,5,7,9,510", "Fox Ciel");
+	Test("0,0,0,0", "Toastman");
+	Test("511", "Toastman");
+	Test("5,58,192,256", "Fox Ciel");
+	Test("77,389,61,361,289,255,195,13,485,476,239,317,234,310,372,426,478,29,356,30,60,439,349,261,440,117,459,253,289,495,350,167,115,492,338,394,429,243,177,368,11,282,393,227,405,372,364,56,276,160", "Fox Ciel");
 	return 0;
 }
 // END CUT HERE
