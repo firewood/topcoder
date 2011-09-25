@@ -102,7 +102,7 @@ class Zoo {
 			}
 		}
 		int shifts = min(a, b) + (a != b);
-		ll result = 1 << shifts;
+		ll result = 1LL << shifts;
 		return result;
 	}
 };
