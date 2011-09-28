@@ -2,12 +2,21 @@
 /*
 // SRM 516 Div2 Hard (1000)
 // PROBLEM STATEMENT
-// Networks are infamous for being unreliable. Data sent over the network may be lost midway or received out of order. For the purpose of this problem, however, we will assume that the data will be received in the correct order but some parts of it may be missing.
+// Networks are infamous for being unreliable. Data sent over the network
+may be lost midway or received out of order. For the purpose of this problem,
+however, we will assume that the data will be received in the correct order
+but some parts of it may be missing.
 
-The original message is a string consisting of distinct letters (lowercase and uppercase letters are considered distinct). This message is sent multiple times, and the received messages are given in the vector <string> messages. Each element of messages will be a subsequence (not necessarily contiguous) of the original message that retains the relative ordering between letters.
+The original message is a string consisting of distinct letters
+(lowercase and uppercase letters are considered distinct).
+This message is sent multiple times, and the received messages are given
+in the vector <string> messages. Each element of messages will be a subsequence
+(not necessarily contiguous) of the original message that retains the relative ordering between letters.
 
 
-Your job is to return the shortest possible original message. The constraints will guarantee that at least one such message exists. If there are multiple such messages, return the lexicographically first one.
+Your job is to return the shortest possible original message.
+The constraints will guarantee that at least one such message exists.
+If there are multiple such messages, return the lexicographically first one.
 
 DEFINITION
 Class:NetworkXMessageRecovery
@@ -19,7 +28,10 @@ Method signature:string recover(vector <string> messages)
 
 NOTES
 -The length of the answer for some cases may exceed 50 characters.
--If two Strings A and B have the same length, then A comes before B lexicographically if it has a smaller character at the first position where the Strings differ. When comparing the characters, refer to the following list of characters in ascending order: 'A', 'B', ..., 'Z', 'a', 'b', ..., 'z'.
+-If two Strings A and B have the same length, then A comes before B lexicographically
+if it has a smaller character at the first position where the Strings differ.
+When comparing the characters, refer to the following list of characters in ascending order:
+'A', 'B', ..., 'Z', 'a', 'b', ..., 'z'.
 
 
 CONSTRAINTS
@@ -80,59 +92,44 @@ Returns: "Aa"
 
 using namespace std;
 
-typedef set<unsigned int> IntSet;
-typedef map<unsigned int, int> IntMap;
-typedef map<unsigned int, IntMap> IMM;
+typedef unsigned int UI;
+typedef set<UI> IntSet;
 
 class NetworkXMessageRecovery {
 	public:
 	string recover(vector <string> messages) {
-		unsigned char _used[256] = {0};	
 		IntSet used;
-		IMM M;
+		IntSet former[128];
 		int i, j, k;
 		for (i = 0; i < (int)messages.size(); ++i) {
 			const string &s = messages[i];
 			int length = s.length();
 			for (j = 0; j < length; ++j) {
-				unsigned char cf = s[j];
-				_used[cf] = 1;
-				used.insert(cf);
-				for (k = j + 1; k < length; ++k) {
-					unsigned char cl = s[k];
-					(M[cf])[cl] = 1;
-					(M[cl])[cf] = -1;
+				used.insert(s[j]);
+				for (k = 0; k < j; ++k) {
+					former[s[j]].insert(s[k]);
 				}
 			}
 		}
 
 		string result;
-		int chars = (int)used.size();
-		while (chars > 0) {
-			int i;
-			for (i = 'A'; i <= 'z'; ++i) {
-				if (!_used[i]) {
-					continue;
-				}
-
-				bool g = true;
-				const IntMap &m = M[i];
-				IntMap::const_iterator it;
-				for (it = m.begin(); it != m.end(); ++it) {
-					if (it->second < 0) {
-						if (_used[it->first]) {
-							g = false;
-							break;
-						}
+		while (used.size() > 0) {
+			IntSet::iterator u;
+			for (u = used.begin(); u != used.end(); ++u) {
+				bool f = true;
+				IntSet::const_iterator it;
+				for (it = former[*u].begin(); it != former[*u].end(); ++it) {
+					if (used.find(*it) != used.end()) {
+						f = false;
+						break;
 					}
 				}
-				if (!g) {
+				if (!f) {
 					continue;
 				}
-				_used[i] = 0;
-				unsigned char C = (unsigned char)i;
-				result += C;
-				--chars;
+				result += (unsigned char)*u;
+				used.erase(u);
+				break;
 			}
 		}
 
