@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-// SRM ??? Div2 
+// SRM ??? Div2 Easy Middle Hard (250 500 1000)
 $PROBLEMDESC$
 #line $NEXTLINENUMBER$ "$FILENAME$"
 */
@@ -9,16 +9,24 @@ $PROBLEMDESC$
 #include <algorithm>
 #include <list>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
-#include <set>
 
 using namespace std;
 
+typedef long long LL;
+typedef vector<int> IntVec;
+typedef vector<string> StrVec;
+
 class $CLASSNAME$ {
-	public:
+
+public:
 	$RC$ $METHODNAME$($METHODPARMS$) {
-		
+		$RC$ result;
+
+
+		return result;
 	}
 };
 
@@ -52,8 +60,17 @@ static void Test(const char *seq, int N, int expected)
 	int result = 0;
 //	$RC$ result = ___test.$METHODNAME$($METHODPARMS$);
 	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
-//	printf("result: %s, %s\n", strcmp(result.c_str(), expected) == 0 ? "OK" : "FAILED", result.c_str());
 }
+
+static void Test(const char *seq, const string &expected)
+{
+	vector <string> v = getVector<string>(seq);
+	$CLASSNAME$ ___test;
+	string result = "";
+//	$RC$ result = ___test.$METHODNAME$($METHODPARMS$);
+	printf("result: %s, %s\n", result == expected ? "OK" : "FAILED", result.c_str());
+}
+
 
 int main() {
 	Test("", 0, 0);
