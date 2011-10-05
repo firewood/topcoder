@@ -95,42 +95,29 @@ class MysteriousRestaurant {
 	public:
 	int maxDays(vector <string> prices, int budget) {
 		int result = 0;
-		int Price[50][50] = {0};
-		int Sum[50][50] = {0};
+		int Total[7][50] = {0};
 		int days = prices.size();
 		int dishes = prices[0].length();
 		int day, dish;
 		for (day = 0; day < days; ++day) {
+			int week = day % 7;
 			const string &s = prices[day];
 			for (dish = 0; dish < dishes; ++dish) {
 				const char *tbl = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 				const char *p = strchr(tbl, s[dish]);
 				if (p) {
-					Price[day][dish] = p - tbl;
+					Total[week][dish] += p - tbl;
 				}
-				int S = 0;
-				int d;
-				for (d = day; d >= 0; d -= 7) {
-					S += Price[d][dish];
+			}
+			int Sum = 0;
+			for (week = 0; week < 7; ++week) {
+				int Min = 999999;
+				for (dish = 0; dish < dishes; ++dish) {
+					Min = min(Min, Total[week][dish]);
 				}
-				Sum[day][dish] = S;
+				Sum += Min;
 			}
-		}
-
-		int Week[7] = {0};
-		for (day = 0; day < days; ++day) {
-			int w = day % 7;
-			int Min = 99999999;
-			for (dish = 0; dish < dishes; ++dish) {
-				Min = min(Min, Sum[day][dish]);
-			}
-			Week[w] = Min;
-
-			int S = 0;
-			for (w = 0; w < 7; ++w) {
-				S += Week[w];
-			}
-			if (S > budget) {
+			if (Sum > budget) {
 				break;
 			}
 			++result;
