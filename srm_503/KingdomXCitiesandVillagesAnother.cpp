@@ -1,5 +1,6 @@
 // BEGIN CUT HERE 
 /*
+// SRM 503 Div2 Hard (900)
 // PROBLEM STATEMENT
 // The Grid Kingdom lies on a plane. There are N cities and M villages in the Grid Kingdom, each is a point on the plane. The i-th city is located at coordinates (cityX[i], cityY[i]) and the i-th village is located at coordinates (villageX[i], villageY[i]). Initially, there are no roads in the kingdom, so no village is initially connected to any city.
 

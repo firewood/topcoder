@@ -1,5 +1,6 @@
 // BEGIN CUT HERE 
 /*
+// SRM 503 Div2 Middle (500)
 // PROBLEM STATEMENT
 // NOTE: This problem statement contains images that may not display properly if viewed outside of the applet.
 

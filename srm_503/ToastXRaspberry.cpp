@@ -1,5 +1,6 @@
 // BEGIN CUT HERE 
 /*
+// SRM 503 Div2 Easy (250)
 // PROBLEM STATEMENT
 // You have some raspberry jam and a slice of plain toast. You're going to create a slice of breathtaking raspberry toast by applying some of the jam to the toast. Each application will apply L layers of raspberry jam, where L is a positive integer (chosen before the application) and L is not greater than upper_limit. A slice of breathtaking raspberry toast is a slice of plain toast that has had exactly layer_count layers of raspberry jam applied. Return the minimum number of applications required to turn a slice of plain toast into a slice of breathtaking raspberry toast.
 

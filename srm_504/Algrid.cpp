@@ -1,5 +1,6 @@
 // BEGIN CUT HERE 
 /*
+// SRM 504 Div2 Hard (1000)
 // PROBLEM STATEMENT
 // Algrid is a program that uses a single grid with cells colored white or black as input and returns a new one as output. The grid has H rows and W columns. The topmost row is row 0, the bottommost row is row H-1, the leftmost column is column 0 and the rightmost column is column W-1. The cell at row i, column j can be denoted as (i,j). The program works by evaluating pairs of contiguous cells and making decisions depending on their contents. The following pseudo-code describes how the program works:
 
