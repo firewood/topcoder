@@ -38,7 +38,7 @@ Small
 Large
 
 1 <= C <= 100
-1 <= A <= B <= 1012
+1 <= A <= B <= 10^12
 B <= A + 1000000
 2 <= P <= B
 
@@ -71,7 +71,6 @@ Case #2: 7
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include <queue>
 #include <set>
 #include <vector>
 
@@ -83,6 +82,7 @@ typedef unsigned long long ULL;
 typedef vector<int> IntVector;
 
 
+// union find木
 struct UnionFind {
   vector<int> data;
   UnionFind(int size) : data(size, -1) { }
@@ -113,7 +113,7 @@ class GCJ {
 
 public:
 	GCJ(FILE *source) : m_Source(source) {
-		gen_prime(MAX_N + 1, m_Primes);
+		gen_prime(MAX_N, m_Primes);
 	}
 	~GCJ() { }
 
@@ -145,12 +145,13 @@ private:
 				continue;
 			}
 			ULL r = A % (ULL)p;
-			int x = (p - (int)r) % p;
+			int x = (p - (int)r) % p;		// 区間における端数
 			for (j = x + p; j < Size; j += p) {
 				uf.unionSet(x, j);
 			}
 		}
 
+		// 根となっている数(＝集合の数)を調べる
 		int result = 0;
 		for (i = 0; i < Size; ++i) {
 			if (uf.root(i) == i) {
@@ -162,6 +163,7 @@ private:
 		return true;
 	}
 
+	// N以下の素数を生成する
 	static void gen_prime(int N, IntVector &v) {
 		v.push_back(2), v.push_back(3);
 		for (int n = 5; n <= N; n += 2) {
