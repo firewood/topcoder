@@ -3,10 +3,9 @@
 // SRM 517 Div2 Easy (250)
 // PROBLEM STATEMENT
 // There is a HxW rectangular board divided into 1x1 cells. Initially each cell is colored White.
-Fox Ciel wants to change the color of certain cells on the board.
-You are given a vector <string> board consisting of characters 'B' and 'W'.
-If the j-th character of the i-th element of board is 'B', she must change the color of cell (i, j) to Black,
-otherwise this cell must remain White.
+Fox Ciel wants to change the color of certain cells on the board. You are given a vector <string> board
+consisting of characters 'B' and 'W'. If the j-th character of the i-th element of board is 'B',
+she must change the color of cell (i, j) to Black, otherwise this cell must remain White.
 
 
 Fox Ciel can perform the following operation:
@@ -14,8 +13,8 @@ Fox Ciel can perform the following operation:
 
 1. Choose one row or one column.
 
-2. Paint the row or the column she chose in step 1 with Black.
-The color of all cells in the row or the column becomes Black.
+2. Paint the row or the column she chose in step 1 with Black. The color of all cells in the row
+   or the column becomes Black.
 
 
 Return the minimal number of operations required to change the color to board.
@@ -47,7 +46,7 @@ EXAMPLES
 
 Returns: 3
 
-Paint?row?1?(0-indexed),?column?1?and?column?3.
+Paint row 1 (0-indexed), column 1 and column 3.
 
 1)
 {"BBBB",
@@ -56,7 +55,7 @@ Paint?row?1?(0-indexed),?column?1?and?column?3.
 
 Returns: 3
 
-Paint?all?rows.
+Paint all rows.
 
 2)
 {"BBBBB",
@@ -70,7 +69,7 @@ Paint?all?rows.
 
 Returns: 5
 
-Paint?all?columns.
+Paint all columns.
 
 3)
 {"WW",
@@ -94,18 +93,25 @@ Returns: 9
 #line 89 "MonochromaticBoard.cpp"
 */
 // END CUT HERE
-#include <math.h>
+#include <cmath>
 #include <algorithm>
 #include <list>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
-#include <set>
+#include <iostream>
+#include <sstream>
 
 using namespace std;
 
+typedef long long LL;
+typedef vector<int> IntVec;
+typedef vector<string> StrVec;
+
 class MonochromaticBoard {
-	public:
+
+public:
 	int theMin(vector <string> board) {
 		if (board.size() < 1) {
 			return 0;
@@ -139,6 +145,7 @@ class MonochromaticBoard {
 		}
 
 		if (!has_white) {
+			// paint all rows
 			return min(Width, Height);
 		}
 
@@ -157,10 +164,6 @@ class MonochromaticBoard {
 template <typename T> static T __str_to_val(const char *p)
 {
 	return p;
-}
-template <> static int __str_to_val(const char *p)
-{
-	return atoi(p);
 }
 template <typename T> vector<T> getVector(const char *s)
 {

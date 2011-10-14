@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-// SRM 517 Div2 Middle (500)
+// SRM 517 Div2 Medium (500)
 // PROBLEM STATEMENT
 // Toastwoman wants to be a magical girl. As training, she wants to make a ball that contains an integer target.
 
@@ -31,7 +31,7 @@ Method signature:string thePossible(int N, int target)
 
 NOTES
 -A positive integer x is called a composite number if it has at least one divisor other than 1 and x.
-For example, 4 and 6 are composite numbers, while 1 and 5 are not composite numbers.
+ For example, 4 and 6 are composite numbers, while 1 and 5 are not composite numbers.
 
 
 CONSTRAINTS
@@ -47,7 +47,7 @@ EXAMPLES
 
 Returns: "Yes"
 
-If?she?smashes?517,?it?breaks?into?11?and?47.
+If she smashes 517, it breaks into 11 and 47.
 
 1)
 8
@@ -55,7 +55,7 @@ If?she?smashes?517,?it?breaks?into?11?and?47.
 
 Returns: "Yes"
 
-If?she?smashes?8,?it?breaks?into?2?and?4.
+If she smashes 8, it breaks into 2 and 4.
 
 2)
 12
@@ -63,7 +63,7 @@ If?she?smashes?8,?it?breaks?into?2?and?4.
 
 Returns: "No"
 
-If?she?smashes?12?and?it?breaks?into?3?and?4,?she?can't?make?6.
+If she smashes 12 and it breaks into 3 and 4, she can't make 6.
 
 3)
 5
