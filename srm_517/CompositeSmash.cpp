@@ -9,7 +9,7 @@ Initially she has a ball that contains an integer N.
 She can smash a ball that contains a composite number (see notes for definition) and break it into two balls.
 Each new ball will also contain an integer.
 If she smashes a ball that contains a composite number x and it breaks into two balls that contain y and z,
-it satisfies y &ge 2, z &ge 2 and yz = x.
+it satisfies y >= 2, z >= 2 and yz = x.
 For example, if she smashes a ball that contains 12, it breaks into 2 and 6 or 3 and 4.
 Toastwoman can control the ball she smashes, but she can't control the numbers in the two new balls
 when there are multiple pairs of (y, z) that satisfy the above conditions.
