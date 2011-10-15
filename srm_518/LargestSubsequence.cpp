@@ -1,11 +1,11 @@
 // BEGIN CUT HERE
 /*
-// SRM 518 Div2 Middle (500)
+// SRM 518 Div2 Medium (500)
 // PROBLEM STATEMENT
 // 
 For strings x and y, we say y is a subsequence of x if y can be obtained from x by erasing some
 (possibly all or none) of the letters in x. For example, "tpcdr" is a subsequence of "topcoder",
-while "rt" is not. 
+while "rt" is not.
 
 Given a string s, return the lexicographically largest subsequence of s. 
 
@@ -45,7 +45,7 @@ So return "tt".
 
 Returns: "a"
 
-There are only two subsequences, "" and "a". 
+There are only two subsequences, "" and "a".
 
 2)
 "example"
@@ -73,9 +73,6 @@ Returns: "zyog"
 #include <set>
 
 using namespace std;
-
-typedef set<string> StringSet;
-typedef map<string, string> StringMap;
 
 class LargestSubsequence {
 	public:
