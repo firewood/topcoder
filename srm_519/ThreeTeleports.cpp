@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-// SRM 519 Div2 Middle (600)
+// SRM 519 Div2 Medium (600)
 // PROBLEM STATEMENT
 // You are a frog. You live on an infinite lattice of grid points.
 For each pair of integers x, y there is a grid point with coordinates (x,y).
