@@ -1,45 +1,15 @@
 // BEGIN CUT HERE 
 /*
 // SRM 503 Div2 Easy (250)
-// PROBLEM STATEMENT
-// You have some raspberry jam and a slice of plain toast. You're going to create a slice of breathtaking raspberry toast by applying some of the jam to the toast. Each application will apply L layers of raspberry jam, where L is a positive integer (chosen before the application) and L is not greater than upper_limit. A slice of breathtaking raspberry toast is a slice of plain toast that has had exactly layer_count layers of raspberry jam applied. Return the minimum number of applications required to turn a slice of plain toast into a slice of breathtaking raspberry toast.
 
-DEFINITION
-Class:ToastXRaspberry
-Method:apply
-Parameters:int, int
-Returns:int
-Method signature:int apply(int upper_limit, int layer_count)
+問題
+  トーストに何種類かのジャムを塗る
+  1回塗るごとに 1～upper_limit 層塗ることができる
+  layer_count 塗るのに何回必要か
 
-
-CONSTRAINTS
--upper_limit will be between 1 and 100, inclusive.
--layer_count will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-13
-
-Returns: 4
-
-One?possible?way?is?to?apply?4,?4,?3,?then?2?layers?of?jam.
-
-1)
-8
-5
-
-Returns: 1
-
-A?single?application?is?sufficient.
-
-2)
-73
-265
-
-Returns: 4
+制約条件
+  upper_limit 1-100
+  layer_count 1-1000
 
 */
 // END CUT HERE
@@ -57,17 +27,23 @@ class ToastXRaspberry {
 };
 
 // BEGIN CUT HERE 
-static void Test(int u, int l)
+static void Test(int u, int l, int expected)
 {
 	ToastXRaspberry ___test;
 	int result = ___test.apply(u, l);
-	printf("result: %d\n", result);
+	printf("result: %s, returned %d, expected %d\n", result == expected ? "OK" : "FAILED", result, expected);
 }
 
 int main() {
-	Test(4, 13);
-	Test(8, 5);
-	Test(73, 265);
+	// example 0
+	Test(4, 13, 4);
+
+	// example 1
+	Test(8, 5, 1);
+
+	// example 2
+	Test(73, 265, 4);
+
 	return 0;
 }
 // END CUT HERE

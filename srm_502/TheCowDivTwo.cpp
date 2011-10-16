@@ -1,71 +1,15 @@
 // BEGIN CUT HERE
 /*
 // SRM 502 Div2 Hard (1000)
-// PROBLEM STATEMENT
-// Farmer John had N cows numbered 0 to N-1. One day he saw K cows running away from his farm.
-Fox Brus computed the sum of the numbers of the escaped cows.
-She only told John that the sum was divisible by N.
 
+問題
+  0 から N-1 までの番号がついたN匹がいて、K匹逃げた。
+  牛の番号の合計値が N で割り切れるとき、牛の番号の組み合わせの数を求める。
 
-Your task is to help John by counting the number of possible sets of escaped cows.
-This number may be very big, so return it modulo 1,000,000,007.
-
-DEFINITION
-Class:TheCowDivTwo
-Method:find
-Parameters:int, int
-Returns:int
-Method signature:int find(int N, int K)
-
-
-CONSTRAINTS
--N will be between 1 and 1,000, inclusive.
--K will be between 1 and 47, inclusive.
--K will be less than or equal to N.
-
-
-EXAMPLES
-
-0)
-7
-4
-
-Returns: 5
-
-7 cows are numbered 0 to 6 and 4 of them run away.
-Possible sets of escaped cows are {0, 1, 2, 4}, {0, 3, 5, 6}, {1, 2, 5, 6}, {1, 3, 4, 6}, {2, 3, 4, 5}.
-
-1)
-1
-1
-
-Returns: 1
-
-
-
-2)
-58
-4
-
-Returns: 7322
-
-
-
-3)
-502
-7
-
-Returns: 704466492
-
-
-
-4)
-1000
-47
-
-Returns: 219736903
-
-
+制約条件
+  1 <= N <= 1000
+  1 <= K <= 47
+  K <= N
 
 #line 67 "TheCowDivTwo.cpp"
 */
@@ -95,7 +39,7 @@ public:
 			memcpy(prev, dp, sizeof(dp));
 			for (j = 1; j <= K; ++j) {
 				for (k = 0; k < N; ++k) {
-					// j�C�����ė]�肪k
+					// j匹つかって余りがk
 					dp[j][k] += prev[j - 1][(k - i + N) % N];
 					dp[j][k] %= M;
 				}
@@ -137,11 +81,21 @@ static void Test(int N, int K, int expected)
 }
 
 int main() {
+	// example 0
 	Test(7, 4, 5);
+
+	// example 1
 	Test(1, 1, 1);
+
+	// example 2
 	Test(58, 4, 7322);
+
+	// example 3
 	Test(502, 7, 704466492);
+
+	// example 4
 	Test(1000, 47, 219736903);
+
 	return 0;
 }
 // END CUT HERE

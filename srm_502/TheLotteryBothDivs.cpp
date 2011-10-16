@@ -1,77 +1,14 @@
 // BEGIN CUT HERE
 /*
 // SRM 502 Div2 Medium (500)
-// PROBLEM STATEMENT
-// Farmer John wants to buy a lottery ticket. Before he buys a ticket,
-Fox Brus decided to calculate the probability that John will get a prize.
 
+問題
+  000000000 から 999999999 までの 1000000000 種類のくじがある
+  当たりの下n桁を保持する配列 goodSuffixes から、当たる確率を求める
 
-There are 1,000,000,000 types of lottery tickets.
-They are numbered "000000000" to "999999999" (they may have leading zeroes).
-Each type of ticket has an equal probability of being bought by John.
-You are given a vector <string> goodSuffixes.
-If the number written on John's ticket has at least one element of goodSuffixes as a suffix,
-he will get a prize.
-
-
-Return the probability that John will get a prize.
-
-DEFINITION
-Class:TheLotteryBothDivs
-Method:find
-Parameters:vector <string>
-Returns:double
-Method signature:double find(vector <string> goodSuffixes)
-
-
-NOTES
--The returned value must have an absolute or relative error less than 1e-9.
--A suffix of a string is obtained by removing zero or more contiguous characters
- from the beginning of the string.
-
-
-CONSTRAINTS
--goodSuffixes will contain between 1 and 50 elements, inclusive.
--Each element of goodSuffixes will contain between 1 and 9 characters, inclusive.
--Each character in goodSuffixes will be a digit ('0'-'9').
-
-
-EXAMPLES
-
-0)
-{"4"}
-
-Returns: 0.1
-
-John will get a prize if the last digit is '4'. It happens with probability 0.1.
-
-1)
-{"4", "7"}
-
-Returns: 0.2
-
-
-
-2)
-{"47", "47"}
-
-Returns: 0.01
-
-goodSuffixes may contain duplicate elements.
-
-3)
-{"47", "58", "4747", "502"}
-
-Returns: 0.021
-
-
-
-4)
-{"8542861", "1954", "6", "523", "000000000", "5426", "8"}
-
-Returns: 0.201100101
-
-
+制約条件
+  誤差1e-9未満
+  goodSuffixes(1-9桁の数字文字列)[1-50]
 
 #line 70 "TheLotteryBothDivs.cpp"
 */
@@ -98,6 +35,7 @@ public:
 		StringSet S;
 		int i;
 		for (i = 0; i < (int)goodSuffixes.size(); ++i) {
+			// 接頭辞にして格納する
 			reverse(goodSuffixes[i].begin(), goodSuffixes[i].end());
 			S.insert(goodSuffixes[i]);
 		}
@@ -106,8 +44,11 @@ public:
 		for (it = S.begin(); it != S.end(); ++it) {
 			const string &s = *it;
 			if (!prev.empty() && strncmp(prev.c_str(), s.c_str(), prev.length()) == 0) {
+				// 接頭辞が一致したら、当選確率にはすでに含まれているので無視する
+				// prevは最も短いものを保持したままとする
 				continue;
 			}
+			// 当選確率 = 0.1^当選末尾桁数
 			result += pow(0.1, (double)s.length());
 			prev = s;
 		}
@@ -148,11 +89,21 @@ static void Test(const char *seq, double expected)
 
 
 int main() {
+	// example 0
 	Test("4", 0.1);
+
+	// example 1
 	Test("4 7", 0.2);
+
+	// example 2
 	Test("47 47", 0.01);
+
+	// example 3
 	Test("47 58 4747 502", 0.021);
+
+	// example 4
 	Test("8542861 1954 6 523 000000000 5426 8", 0.201100101);
+
 	return 0;
 }
 // END CUT HERE
