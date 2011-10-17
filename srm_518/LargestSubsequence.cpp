@@ -1,65 +1,10 @@
 // BEGIN CUT HERE
 /*
 // SRM 518 Div2 Medium (500)
-// PROBLEM STATEMENT
-// 
-For strings x and y, we say y is a subsequence of x if y can be obtained from x by erasing some
-(possibly all or none) of the letters in x. For example, "tpcdr" is a subsequence of "topcoder",
-while "rt" is not.
 
-Given a string s, return the lexicographically largest subsequence of s. 
+問題
 
-
-DEFINITION
-Class:LargestSubsequence
-Method:getLargest
-Parameters:string
-Returns:string
-Method signature:string getLargest(string s)
-
-
-NOTES
--For strings x and y, x is said to be lexicographically larger than y
- if y is a prefix of x or y has a smaller character than x at the first position where they differ.
- Order of characters is defined as the order of ASCII codes: 'a' < 'b' < ... < 'z'. 
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive. 
--Each character in s will be a lowercase letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"test"
-
-Returns: "tt"
-
-All subsequences listed in lexicographical order are "" (empty string),
-"e", "es", "est", "et", "s", "st", "t", "te", "tes", "test", "tet", "ts", "tst" and "tt".
-So return "tt".
-
-1)
-"a"
-
-Returns: "a"
-
-There are only two subsequences, "" and "a".
-
-2)
-"example"
-
-Returns: "xple"
-
-
-
-3)
-"aquickbrownfoxjumpsoverthelazydog"
-
-Returns: "zyog"
-
-
+文字列 s の部分文字列のうち、辞書順最大のものを求める。
 
 #line 59 "LargestSubsequence.cpp"
 */
@@ -132,10 +77,18 @@ static void Test(const char *seq, const char *expected)
 }
 
 int main() {
+	// example 0
 	Test("test", "tt");
+
+	// example 1
 	Test("a", "a");
+
+	// example 2
 	Test("example", "xple");
+
+	// example 3
 	Test("aquickbrownfoxjumpsoverthelazydog", "zyog");
+
 	return 0;
 }
 // END CUT HERE

@@ -1,59 +1,9 @@
 // BEGIN CUT HERE
 /*
 // SRM 518 Div2 Easy (250)
-// PROBLEM STATEMENT
-// 
-You are given a string s.  Return the shortest string which contains s as a contiguous substring twice.
 
-Note that two occurrences of s may overlap. For example, "ababa" contains "aba" twice.
-
-
-DEFINITION
-Class:TwiceString
-Method:getShortest
-Parameters:string
-Returns:string
-Method signature:string getShortest(string s)
-
-
-NOTES
--The shortest string which contains s as a contiguous substring twice is always unique.
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive. 
--Each character in s will be a lowercase letter ('a'-'z').  
-
-
-EXAMPLES
-
-0)
-"aba"
-
-Returns: "ababa"
-
-This is the example shown in the problem statement. 
-
-1)
-"xxxxx"
-
-Returns: "xxxxxx"
-
-
-
-2)
-"topcoder"
-
-Returns: "topcodertopcoder"
-
-
-
-3)
-"abracadabra"
-
-Returns: "abracadabracadabra"
-
-
+問題
+  文字列 s を2回含む最小限の長さの文字列を求める。
 
 #line 59 "TwiceString.cpp"
 */
@@ -115,10 +65,18 @@ static void Test(const char *seq, const char *expected)
 }
 
 int main() {
+	// example 0
 	Test("aba", "ababa");
+
+	// example 1
 	Test("xxxxx", "xxxxxx");
+
+	// example 2
 	Test("topcoder", "topcodertopcoder");
+
+	// example 3
 	Test("abracadabra", "abracadabracadabra");
+
 	return 0;
 }
 // END CUT HERE
