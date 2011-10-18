@@ -1,67 +1,10 @@
 // BEGIN CUT HERE
 /*
 // SRM 519 Div2 Easy (250)
-// PROBLEM STATEMENT
-// This week there will be an important meeting of your entire department.
-You clearly remember your boss telling you about it.
-The only thing you forgot is the day of the week when the meeting will take place.
 
-You asked six of your colleagues about the meeting. None of them knew the day when it will take place,
-but each of them remembered one day when it will not take place.
-The days they remembered were distinct. For a clever programmer like you,
-this was enough to determine the day of the meeting.
+問題
 
-You are given a vector <string> notOnThisDay containing six weekdays when the meeting will not take place.
-Return the weekday of the meeting.
-
-DEFINITION
-Class:WhichDay
-Method:getDay
-Parameters:vector <string>
-Returns:string
-Method signature:string getDay(vector <string> notOnThisDay)
-
-
-NOTES
--There are seven weekdays.
- Their names are: "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday".
-
-
-CONSTRAINTS
--notOnThisDay will contain exactly 6 elements.
--Each element of notOnThisDay will be a name of a weekday (in the exact form specified in the Note above).
--No two elements of notOnThisDay will be equal.
-
-
-EXAMPLES
-
-0)
-{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"}
-
-Returns: "Saturday"
-
-
-
-1)
-{"Sunday", "Monday", "Tuesday", "Wednesday", "Friday", "Thursday"}
-
-Returns: "Saturday"
-
-
-
-2)
-{"Sunday", "Monday", "Tuesday", "Thursday", "Friday", "Saturday"}
-
-Returns: "Wednesday"
-
-
-
-3)
-{"Sunday", "Friday", "Tuesday", "Wednesday", "Monday", "Saturday"}
-
-Returns: "Thursday"
-
-
+6つの曜日が与えられるので、残った1つを答える。
 
 #line 60 "WhichDay.cpp"
 */
@@ -136,10 +79,18 @@ static void Test(const char *seq, const string &expected)
 }
 
 int main() {
+	// example 0
 	Test("Sunday Monday Tuesday Wednesday Thursday Friday", "Saturday");
+
+	// example 1
 	Test("Sunday Monday Tuesday Wednesday Friday Thursday", "Saturday");
+
+	// example 2
 	Test("Sunday Monday Tuesday Thursday Friday Saturday", "Wednesday");
+
+	// example 3
 	Test("Sunday Friday Tuesday Wednesday Monday Saturday", "Thursday");
+
 	return 0;
 }
 // END CUT HERE
