@@ -1,126 +1,70 @@
 // BEGIN CUT HERE
 /*
 // SRM 520 Div2 Hard (1000)
-// PROBLEM STATEMENT
-// Mr. Dengklek introduced you to an online programming contest called SRM (Special Round Match)!
 
-You are now in the system test phase of the contest. There were N coders in the contest. There were 3 problems in the contest. The system has tested all submitted solutions in the contest. For each submitted solution, there are 3 possible outcomes: 'passed', 'failed', and 'challenged'.
+問題
 
-The contest has a division summary containing a scoreboard of all coders in the contest. For each coder, the scoreboard shows the outcome of the submitted solution of each problem, or an 'X' if the coder didn't submit a solution to the problem. The coders in the scoreboard are sorted in descending order of the number of passed solutions. If there is a tie, then they are sorted in ascending order of the number of challenged solutions. If there is still a tie, the scoreboard may show them in arbitrary order.
-
-Unfortunately, you lose your internet connection in this system test phase. So, you ask your friend how the scoreboard is currently like. However, your friend only tells you the solutions submitted by each coder. This is given in description. The j-th character of the i-th element of description will be 'Y' if the i-th coder submitted a solution to the j-th problem, or 'N' otherwise. description describes the scoreboard from top to bottom, i.e., description[0] describes the coder in the first position, description[1] (if any) describes the coder in the second position, and so on.
-
-Return the number of different possible scoreboards that match your friend's description, modulo 1,000,000,007.
-
-DEFINITION
-Class:SRMSystemTestPhase
-Method:countWays
-Parameters:vector <string>
-Returns:int
-Method signature:int countWays(vector <string> description)
-
-
-CONSTRAINTS
--description will contain between 1 and 50 elements, inclusive.
--Each element of description will contain exactly 3 characters.
--Each character in description will be 'Y' or 'N'.
-
-
-EXAMPLES
-
-0)
-{"YYY"}
-
-Returns: 27
-
-There are 3 possible outcomes for each solution, so there are 3^3 = 27 different possible scoreboards.
-
-1)
-{"YNN",
- "NYN"}
-
-Returns: 6
-
-Here are the 6 different scoreboards:
-
-
-+----------------------------------+----------------------------------+
-| passed     X          X          | passed     X          X          |
-| X          passed     X          | X          failed     X          |
-+----------------------------------+----------------------------------+
-| passed     X          X          | failed     X          X          |
-| X          challenged X          | X          failed     X          |
-+----------------------------------+----------------------------------+
-| failed     X          X          | challenged X          X          |
-| X          challenged X          | X          challenged X          |
-+----------------------------------+----------------------------------+
-
-
-2)
-{"YNN",
- "NNN",
- "NNY"}
-
-Returns: 4
-
-Here are the 4 different scoreboards:
-
-
-+----------------------------------+----------------------------------+
-| passed     X          X          | passed     X          X          |
-| X          X          X          | X          X          X          |
-| X          X          failed     | X          X          challenged |
-+----------------------------------+----------------------------------+
-| failed     X          X          | failed     X          X          |
-| X          X          X          | X          X          X          |
-| X          X          failed     | X          X          challenged |
-+----------------------------------+----------------------------------+
-
-
-3)
-{"NNN",
- "NNN"}
-
-Returns: 1
-
-
-
-4)
-{"YYY",
- "YNY",
- "NYY",
- "YYN",
- "YYY",
- "YNN"}
-
-Returns: 15176
-
-
+SRMのテストフェーズになった。
+解いたかどうかの結果が description[i] で与えられる。
+description は順位毎になっている。
+各 description[i] の要素は、解いた Y または解いていない N のいずれかである。
+解いた場合の結果は、passed か failed か challenged のいずれかである。
+順位の優先度は passed が多い順である。
+passed が同じ場合は challenged が少ない順である。
+スコアボードが何通りあるか答える。
 
 #line 101 "SRMSystemTestPhase.cpp"
 */
 // END CUT HERE
 #include <math.h>
 #include <algorithm>
-#include <list>
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-typedef long long LL;
-typedef vector<int> IntVec;
-typedef vector<string> StrVec;
-
 class SRMSystemTestPhase {
 
 public:
 	int countWays(vector <string> description) {
+		const int M = 1000000007;
+		enum { FAILED, CHALLENGED, PASSED };
+		int N = description.size();
+		int dp[50][13] = {0};
+		int i, j;
+		for (i = N - 1; i >= 0; --i) {
+			const string &d = description[i];
+			int st[3];
+			for (st[0] = 0; st[0] < 3; ++st[0]) {
+				if (st[0] > 0 && d[0] != 'Y') continue;
+				for (st[1] = 0; st[1] < 3; ++st[1]) {
+					if (st[1] > 0 && d[1] != 'Y') continue;
+					for (st[2] = 0; st[2] < 3; ++st[2]) {
+						if (st[2] > 0 && d[2] != 'Y') continue;
+
+						int score = 3;
+						for (j = 0; j < 3; ++j) {
+							score += (st[j] == CHALLENGED ? -1 : 0);
+							score += (st[j] == PASSED ? 3 : 0);
+						}
+						if (i == (N - 1)) {
+							dp[i][score] += 1;
+						} else {
+							for (j = 0; j <= score; ++j) {
+								dp[i][score] += dp[i + 1][j];
+								dp[i][score] %= M;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		int result = 0;
-
-
+		for (j = 0; j <= 12; ++j) {
+			result += dp[0][j];
+			result %= M;
+		}
 		return result;
 	}
 };
