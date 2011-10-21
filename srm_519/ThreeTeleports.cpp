@@ -17,35 +17,85 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <sstream>
 
 using namespace std;
 typedef long long LL;
 typedef pair<LL, LL> P;
 typedef vector<P> PVec;
 typedef map<P, P> PPMap;
+typedef map<P, LL> PLLMap;
 typedef vector<LL> LLV;
+
+#define INF 10000000000
 
 
 class ThreeTeleports {
-	P Me;
-	P Home;
-	PVec pv1;
-	PVec pv2;
-	LLV GoalCost;
 	static LL ll_abs(LL n) {
 		return n >= 0 ? n : -n;
 	}
-	static LL Cost(const P &s, const P &d) {
+	static LL Distance(const P &s, const P &d) {
 		return ll_abs(s.first - d.first) + ll_abs(s.second - d.second);
 	}
 
 public:
 	int shortestDistance(int xMe, int yMe, int xHome, int yHome, vector <string> teleports) {
-		Me = P(xMe, yMe);
-		Home = P(xHome, yHome);
-		pv1.clear();
-		pv2.clear();
-		GoalCost.clear();
+#if 1
+		PVec points;
+		points.push_back(P(xMe, yMe));
+		points.push_back(P(xHome, yHome));
+		PPMap warp;
+		int i;
+		for (i = 0; i < (int)teleports.size(); ++i) {
+			istringstream s(teleports[i]);
+			P p1, p2;
+			s >> p1.first >> p1.second >> p2.first >> p2.second;
+			points.push_back(p1);
+			points.push_back(p2);
+			warp[p1] = p2;
+			warp[p2] = p1;
+		}
+		LLV Done(points.size());
+
+		PLLMap Costs;
+		LL total = 0;
+		int min_index = 0;
+		while (min_index != 1) {
+			Done[min_index] = 1;
+			P Last = points[min_index];
+			LL min_cost = INF;
+			for (i = 1; i < (int)points.size(); ++i) {
+				if (Done[i]) {
+					continue;
+				}
+				LL prev = Costs[points[i]];
+				LL d = Distance(Last, points[i]);
+				PPMap::const_iterator it = warp.find(points[i]);
+				if (it != warp.end()) {
+					LL w = 10 + Distance(Last, it->second);
+					d = min(d, w);
+				}
+				LL cost = total + d;
+				if (!prev || cost < prev) {
+					Costs[points[i]] = cost;
+				} else {
+					cost = prev;
+				}
+				if (cost < min_cost) {
+					min_index = i;
+					min_cost = cost;
+				}
+			}
+			total = min_cost;
+		}
+
+		return (int)total;
+#else
+		P Me(xMe, yMe);
+		P Home(xHome, yHome);
+		PVec pv1, pv2;
+		LLV GoalCost;
+
 		int i, j;
 		for (i = 0; i < (int)teleports.size(); ++i) {
 			int x1, y1, x2, y2;
@@ -55,18 +105,11 @@ public:
 			pv1.push_back(P(x1, y1));
 			pv2.push_back(P(x2, y2));
 			// teleport + walk to goal
-			GoalCost.push_back(10 + Cost(*pv2.rbegin(), Home));
+			GoalCost.push_back(10 + Distance(*pv2.rbegin(), Home));
 			pv1.push_back(P(x2, y2));
 			pv2.push_back(P(x1, y1));
-			GoalCost.push_back(10 + Cost(*pv2.rbegin(), Home));
+			GoalCost.push_back(10 + Distance(*pv2.rbegin(), Home));
 		}
-
-		LL Min = Cost(Me, Home);
-/*
-		for (i = 0; (int)i < pv1.size(); ++i) {
-			Min = min(Min, dfs(i));
-		}
-*/
 
 		bool f = true;
 		while (f) {
@@ -77,7 +120,7 @@ public:
 						continue;
 					}
 					// teleport + walk to anther spot + teleport
-					LL cost = 10 + Cost(pv2[i], pv1[j]) + GoalCost[j];
+					LL cost = 10 + Distance(pv2[i], pv1[j]) + GoalCost[j];
 					if (cost < GoalCost[i]) {
 						f = true;
 						GoalCost[i] = cost;
@@ -86,11 +129,12 @@ public:
 			}
 		}
 
+		LL Min = Distance(Me, Home);
 		for (i = 0; i < (int)pv1.size(); ++i) {
-			Min = min(Min, Cost(Me, pv1[i]) + GoalCost[i]);
+			Min = min(Min, Distance(Me, pv1[i]) + GoalCost[i]);
 		}
-
 		return (int)Min;
+#endif
 	}
 };
 
@@ -144,6 +188,8 @@ int main() {
 
 	// example 5
 	Test(0,0,1000000000,1000000000,"0 1 0 999999999,1 1000000000 999999999 0,1000000000 1 1000000000 999999999", 36);
+
+	Test(0,0,0,10000,"1 1 10 1,11 1 21 1,22 1 32 1", 10000);
 
 	return 0;
 }
