@@ -2,11 +2,11 @@
 /*
 // SRM 521 Div2 Easy (250)
 
-���
+問題
 
-R��G�̂ǂ��炩�œh��ꂽ�p�l����1��ɕ���ł���B
-R��G�ɁA�܂��́AG��R�ɓh�鑀��ɂ��AG�̉E����R���Ȃ���Ԃɂ������B
-R��G�ɁA�܂���G��R�ɂ��鑀��̍ŏ��񐔂����߂�B
+RとGのどちらかで塗られたパネルが1列に並んでいる。
+RをGに、または、GをRに塗る操作により、Gの右側にRがない状態にしたい。
+RをGに、またはGをRにする操作の最小回数を求める。
 
 #line 67 "RedAndGreen.cpp"
 */
