@@ -36,6 +36,7 @@ public:
 			const string &d = description[i];
 			int st[3];
 			for (st[0] = 0; st[0] < 3; ++st[0]) {
+				// 解いていない場合はFAILED扱い
 				if (st[0] > 0 && d[0] != 'Y') continue;
 				for (st[1] = 0; st[1] < 3; ++st[1]) {
 					if (st[1] > 0 && d[1] != 'Y') continue;
@@ -44,12 +45,16 @@ public:
 
 						int score = 3;
 						for (j = 0; j < 3; ++j) {
+							// challengedは-1
 							score += (st[j] == CHALLENGED ? -1 : 0);
+							// 解いたら+3
 							score += (st[j] == PASSED ? 3 : 0);
 						}
 						if (i == (N - 1)) {
+							// 最下位
 							dp[i][score] += 1;
 						} else {
+							// ひとつ下の順位の同じか少ないスコア
 							for (j = 0; j <= score; ++j) {
 								dp[i][score] += dp[i + 1][j];
 								dp[i][score] %= M;

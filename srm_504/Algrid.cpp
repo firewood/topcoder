@@ -1,97 +1,12 @@
 // BEGIN CUT HERE 
 /*
 // SRM 504 Div2 Hard (1000)
-// PROBLEM STATEMENT
-// Algrid is a program that uses a single grid with cells colored white or black as input and returns a new one as output. The grid has H rows and W columns. The topmost row is row 0, the bottommost row is row H-1, the leftmost column is column 0 and the rightmost column is column W-1. The cell at row i, column j can be denoted as (i,j). The program works by evaluating pairs of contiguous cells and making decisions depending on their contents. The following pseudo-code describes how the program works:
 
+問題
 
-For i = 0 to H-2:
-    For j = 0 to W-2:
-        //Get the current colors of cells (i,j) and (i,j+1)
-        A = Color(i,j) , B = Color(i,j+1)
-
-        If (A,B) == (White, White) Then:
-             Do nothing.
-        EndIf
-        If (A,B) == (Black, White) Then: 
-             Repaint cells (i+1,j) and (i+1,j+1) Black.
-        EndIf
-        If (A,B) == (White, Black) Then:
-             Repaint cells (i+1,j) and (i+1,j+1) White.
-        EndIf
-        if (A,B) == (Black, Black) Then:
-             Swap the colors in cells (i+1,j) and (i+1,j+1).
-        EndIf
-    EndFor
-EndFor
-
-
-You will be given a possible output for the program as a vector <string> output. The j-th character in the i-th element of output represents the color of cell (i,j) where 'W' represents white and 'B' represents black. Find an input grid that would yield output as a result. If there is more than one possible result, find the lexicographically smallest one. Return the found grid as a vector <string> following the same format as the input. If there are no grids that would generate the wanted output, return an empty vector <string> instead.
-
-DEFINITION
-Class:Algrid
-Method:makeProgram
-Parameters:vector <string>
-Returns:vector <string>
-Method signature:vector <string> makeProgram(vector <string> output)
-
-
-NOTES
--To compare two vector <string>s A and B, find the smallest index i such that A[i] and B[i] differ. If A[i] is lexicographically smaller than B[i], we say that A is lexicographically smaller than B, and vice versa.
--To compare two strings C and D, find the smallest index i such that the characters C[i] and D[i] differ. If C[i] is smaller in ASCII ordering than D[i], we say that C is lexicographically smaller than D, and vice versa.
-
-
-CONSTRAINTS
--output will contain between 2 and 16 elements, inclusive.
--Each element of output will contain between 2 and 16 characters, inclusive.
--All elements of output will have the same length.
--Each element of output will only contain 'W' or 'B' characters.
-
-
-EXAMPLES
-
-0)
-{"WWWWWWW",
- "WWWWWWB",
- "BBBBBWW"}
-
-Returns: {"WWWWWWW", "WWWWWWB", "BBBBBBB" }
-
-The following is another input grid that would yield the same output but is not the wanted result as it is not the lexicographically smallest:
-
-WWWWWWW
-WWWWWWB
-BBBBBWB
-
-
-1)
-{"BBBBB",
- "WBWBW"}
-
-Returns: {"BBBBB", "WWBWB" }
-
-
-
-2)
-{"BBBB",
- "BBBB",
- "BBWB",
- "WWBB",
- "BWBB"}
-
-Returns: { }
-
-There is no possible input that would generate this output.
-
-3)
-{"WWBBBBW",
- "BWBBWBB",
- "BWBBWBW",
- "BWWBWBB"}
-
-Returns: {"WWBBBBW", "BBBBBWB", "BBBBBBB", "BBBWBBB" }
-
-
+白と黒どちらかのグリッドからなる行がある。
+特定のルールにより、ひとつ上の行の内容に従い、下の行を塗り替える。
+塗られた結果から、元々の内容を求める。
 
 */
 // END CUT HERE
@@ -191,9 +106,16 @@ static void Test(const char *seq)
 }
 
 int main() {
+	// example 0
 	Test("WWWWWWW WWWWWWB BBBBBWW");	// Returns: {"WWWWWWW", "WWWWWWB", "BBBBBBB" }
+
+	// example 1
 	Test("BBBBB WBWBW");	// Returns: {"BBBBB", "WWBWB" }
+
+	// example 2
 	Test("BBBB BBBB BBWB WWBB BWBB");	// Returns: { }
+
+	// example 3
 	Test("WWBBBBW BWBBWBB BWBBWBW BWWBWBB");	// Returns: {"WWBBBBW", "BBBBBWB", "BBBBBBB", "BBBWBBB" }
 
 	return 0;
