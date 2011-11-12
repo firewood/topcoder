@@ -1,75 +1,13 @@
 // BEGIN CUT HERE
 /*
 // SRM 516 Div2 Easy (250)
-// PROBLEM STATEMENT
-// Toastman has sent Fox Ciel a message consisting entirely of lowercase 'o' and 'x' letters.
-This message has the interesting property that for any even-length contiguous substring of this message,
-the number of 'o's will equal the number of 'x's.
 
+問題
 
-Unfortunately due to the nature of the network, some of the letters in the message can become corrupted.
-You are given a string message, each character of which is 'o', 'x', or '?'.
-'o' or 'x' denotes that the letter in the message is not corrupted and is equal to the corresponding letter.
-A '?' denotes that the letter at that position is corrupted and might have been either 'o' or 'x'.
-
-
-Your job is to replace each of the '?' characters in the input by either 'o' or 'x' such that
-the resulting message has the interesting property described above, and return that corrected message.
-It is guaranteed that there will be exactly one such message for the given input.
-
-DEFINITION
-Class:NetworkXZeroOne
-Method:reconstruct
-Parameters:string
-Returns:string
-Method signature:string reconstruct(string message)
-
-
-CONSTRAINTS
--message will contain between 2 and 50 characters, inclusive.
--Each character in message will be lowercase 'o', lowercase 'x', or '?'.
--There will be exactly one possible corrected message which has the interesting property described in the problem statement.
-
-
-EXAMPLES
-
-0)
-"x?x?"
-
-Returns: "xoxo"
-
-Consider the entire message, which is a contiguous substring of the input message of length 4, which is even.
-It has two 'x's, so it follows that the other two '?' characters must be both 'o'.
-
-1)
-"?xo?"
-
-Returns: "oxox"
-
-Consider the first two characters of message. Since it's a contiguous substring
-of the input message and has a length of 2, which is even,
-and since it already contains one 'x', the first '?' must be 'o'.
-Then, by considering the entire message as a contiguous substring of length 4, the last character must be 'x'.
-
-2)
-"xo"
-
-Returns: "xo"
-
-Sometimes?the?message?is?not?corrupted.
-
-3)
-"o??x??o"
-
-Returns: "oxoxoxo"
-
-
-
-4)
-"???????x"
-
-Returns: "oxoxoxox"
-
+文字'o'か'x'からなる文字列messageをネットワーク上に送信した。
+messageの任意の偶数の長さの部分文字列の'o'と'x'の個数は等しい。
+ネットワークの障害により、いくつかの文字が'?'に化けた。
+元の文字列を求めよ。
 
 
 #line 65 "NetworkXZeroOne.cpp"
@@ -132,17 +70,29 @@ template <typename T> vector<T> getVector(const char *s)
 	return v;
 }
 
-static void Test(const char *seq, int expected)
+static void Test(const char *seq, const string &expected)
 {
-	vector <int> v = getVector<int>(seq);
 	NetworkXZeroOne ___test;
-	int result = 0;
-//	string result = ___test.reconstruct();
-	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
+	string result = ___test.reconstruct(seq);
+	printf("result: %s, returned %s, expected %s\n", result == expected ? "OK" : "FAILED", result.c_str(), expected.c_str());
 }
 
 int main() {
-	Test("", 0);
+	// example 0
+	Test("x?x?", "xoxo");
+
+	// example 1
+	Test("?xo?", "oxox");
+
+	// example 2
+	Test("xo", "xo");
+
+	// example 3
+	Test("o??x??o", "oxoxoxo");
+
+	// example 4
+	Test("???????x", "oxoxoxox");
+
 	return 0;
 }
 // END CUT HERE
