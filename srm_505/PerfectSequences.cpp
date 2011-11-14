@@ -2,9 +2,9 @@
 /*
 // SRM 505 Div2 Medium
 
-���
+問題
 
-1�ύX���邱�ƂŘa�Ɛς���v���鐔��ɂȂ邩�ǂ����𓚂���
+1つ変更することで和と積が一致する数列になるかどうかを答える
 
 */
 #line 71 "PerfectSequences.cpp"
