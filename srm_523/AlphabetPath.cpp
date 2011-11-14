@@ -1,93 +1,11 @@
 // BEGIN CUT HERE
 /*
-// SRM 500 Div2 Easy (250)
-// PROBLEM STATEMENT
-// You are given a 2-dimensional matrix of characters represented by the vector <string> letterMaze. The i-th character of the j-th element of letterMaze  represents the character at row i and column j. Each of the 26 letters from 'A' to 'Z' appears exactly once in letterMaze, the remaining characters are periods ('.').
+// SRM 523 Div2 Easy (250)
 
-An alphabet path is a sequence of 26 elements of the matrix such that:
+ñ‚ëË
 
-The first element contains the letter 'A'.
-The first element and the second element are (horizontally or vertically) adjacent.
-The second element contains the letter 'B'.
-The second element and the third element are (horizontally or vertically) adjacent.
-...
-The 25-th element and the 26-th element are (horizontally or vertically) adjacent.
-The last, 26-th element contains the letter 'Z'.
-
-Given letterMaze return string "YES" if the alphabet path exists in the matrix and "NO" otherwise.
-
-DEFINITION
-Class:AlphabetPath
-Method:doesItExist
-Parameters:vector <string>
-Returns:string
-Method signature:string doesItExist(vector <string> letterMaze)
-
-
-NOTES
--Formally, elements (x1,y1) and (x2,y2) are horizontally or vertically adjacent if and only if abs(x1 - x2) + abs(x2 - y2) = 1. 
-
-
-CONSTRAINTS
--letterMaze will contain between 1 and 50 elements, inclusive.
--Each element of letterMaze will contain between 1 and 50 characters, inclusive.
--All the elements of letterMaze will contain the same number of characters.
--Each element of letterMaze will only contain uppercase letters ('A'-'Z') and periods ('.').
--Each uppercase letter from 'A' to 'Z' will appear exactly once in letterMaze.
-
-
-EXAMPLES
-
-0)
-{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"}
-
-Returns: "YES"
-
-Simply go from left to right.
-
-1)
-{"ADEHI..Z",
- "BCFGJK.Y",
- ".PONML.X",
- ".QRSTUVW"}
-
-
-Returns: "YES"
-
-
-
-2)
-{"ACBDEFGHIJKLMNOPQRSTUVWXYZ"}
-
-Returns: "NO"
-
-
-
-3)
-{"ABC.......",
- "...DEFGHIJ",
- "TSRQPONMLK",
- "UVWXYZ...."}
-
-Returns: "NO"
-
-The cells marked with C and D are not adjacent, it is impossible to make an alphabet path in this case.
-
-4)
-{"..............",
- "..............",
- "..............",
- "...DEFGHIJK...",
- "...C......L...",
- "...B......M...",
- "...A......N...",
- "..........O...",
- "..ZY..TSRQP...",
- "...XWVU.......",
- ".............."}
-
-Returns: "YES"
-
+AÇ©ÇÁZÇ‹Ç≈Ç™1ï∂éöÇ∏Ç¬èëÇ©ÇÍÇΩñ¿òHÇ™Ç†ÇÈÅB
+AÇ©ÇÁZÇ‹Ç≈ÇΩÇ«ÇÍÇÈÇ©Ç«Ç§Ç©ÇãÅÇﬂÇÈÅB
 
 
 #line 94 "AlphabetPath.cpp"
@@ -117,8 +35,8 @@ public:
 		int x = 0, y = 0;
 		int i, j;
 		while (c <= 'Z') {
-			for (i = 0; i < letterMaze.size(); ++i) {
-				for (j = 0; j < letterMaze[i].length(); ++j) {
+			for (i = 0; i < (int)letterMaze.size(); ++i) {
+				for (j = 0; j < (int)letterMaze[i].length(); ++j) {
 					if (c == letterMaze[i][j]) {
 						if (c == 'A') {
 							++c;
@@ -179,7 +97,6 @@ next:
 // BEGIN CUT HERE
 int main() {
 	AlphabetPath ___test;
-	___test.run_test(0);
 	___test.run_test(-1);
 	return 0;
 }
