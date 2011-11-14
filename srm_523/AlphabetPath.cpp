@@ -2,10 +2,10 @@
 /*
 // SRM 523 Div2 Easy (250)
 
-���
+問題
 
-A����Z�܂ł�1�����������ꂽ���H������B
-A����Z�܂ł��ǂ�邩�ǂ��������߂�B
+AからZまでが1文字ずつ書かれた迷路がある。
+AからZまでたどれるかどうかを求める。
 
 
 #line 94 "AlphabetPath.cpp"
