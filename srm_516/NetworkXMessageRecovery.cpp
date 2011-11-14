@@ -1,82 +1,12 @@
 // BEGIN CUT HERE
 /*
 // SRM 516 Div2 Hard (1000)
-// PROBLEM STATEMENT
-// Networks are infamous for being unreliable. Data sent over the network
-may be lost midway or received out of order. For the purpose of this problem,
-however, we will assume that the data will be received in the correct order
-but some parts of it may be missing.
 
-The original message is a string consisting of distinct letters
-(lowercase and uppercase letters are considered distinct).
-This message is sent multiple times, and the received messages are given
-in the vector <string> messages. Each element of messages will be a subsequence
-(not necessarily contiguous) of the original message that retains the relative ordering between letters.
+問題
 
-
-Your job is to return the shortest possible original message.
-The constraints will guarantee that at least one such message exists.
-If there are multiple such messages, return the lexicographically first one.
-
-DEFINITION
-Class:NetworkXMessageRecovery
-Method:recover
-Parameters:vector <string>
-Returns:string
-Method signature:string recover(vector <string> messages)
-
-
-NOTES
--The length of the answer for some cases may exceed 50 characters.
--If two Strings A and B have the same length, then A comes before B lexicographically
-if it has a smaller character at the first position where the Strings differ.
-When comparing the characters, refer to the following list of characters in ascending order:
-'A', 'B', ..., 'Z', 'a', 'b', ..., 'z'.
-
-
-CONSTRAINTS
--messages will contain between 1 and 50 elements, inclusive.
--Each element of messages will contain between 1 and 50 characters, inclusive.
--messages will contain only the characters 'a'-'z' and 'A'-'Z'.
--For each i, all characters in messages[i] will be distinct.
--There will exist at least one string such that each element of messages is a subsequence of this string.
-
-
-EXAMPLES
-
-0)
-{"acd", "bce"}
-
-Returns: "abcde"
-
-The only possible original strings of length 5 are:
-
-"abcde"
-"abced"
-"bacde"
-"baced"
-
-The?lexicographically?smallest?of?them?is?"abcde".
-
-1)
-{"ed", "dc", "cb", "ba"}
-
-Returns: "edcba"
-
-
-
-2)
-{"Fox", "Ciel", "FoxCiel"}
-
-Returns: "FoxCiel"
-
-
-
-3)
-{"a", "A"}
-
-Returns: "Aa"
-
+破損した部分文字列から、元の文字列を求める。
+それぞれの文字は1回しか出現しない。
+複数の候補がある場合は辞書順。
 
 
 #line 71 "NetworkXMessageRecovery.cpp"
@@ -169,10 +99,18 @@ static void Test(const char *seq, const char *expected)
 }
 
 int main() {
+	// example 0
 	Test("acd bce", "abcde");
+
+	// example 1
 	Test("ed dc cb ba", "edcba");
+
+	// example 2
 	Test("Fox Ciel FoxCiel", "FoxCiel");
+
+	// example 3
 	Test("a A", "Aa");
+
 	return 0;
 }
 // END CUT HERE

@@ -1,59 +1,12 @@
 // BEGIN CUT HERE
 /*
 // SRM 504.5 Div2 Easy (250)
-// PROBLEM STATEMENT
-// John has recently won a jackpot, but he doesn't need the money. He decided to share it with his friends instead. He knows how much money each of his friends has, and he will use this information to perform the distribution. While he still has money left, he will repeat the following steps:
 
-Choose the poorest friend. If there are multiple poorest friends, choose one of them randomly.
-Give 1 dollar to the chosen friend.
+問題
 
-You are given an int jackpot, the number of dollars John has won, and a vector <int> money, where the i-th element is the number of dollars currently owned by the i-th friend. Return a vector <int> containing the same number of elements as money. The return value must contain the number of dollars owned by each friend after John has performed the above distribution, sorted in non-decreasing order.
+整数の配列と、jackpot jが与えられる。
+一番低い値のところにjを1ずつ分配した結果の配列を求める。
 
-DEFINITION
-Class:TheJackpotDivTwo
-Method:find
-Parameters:vector <int>, int
-Returns:vector <int>
-Method signature:vector <int> find(vector <int> money, int jackpot)
-
-
-CONSTRAINTS
--money will contain between 1 and 47 elements, inclusive.
--Each element of money will be between 1 and 1,000,000, inclusive.
--jackpot will be between 1 and 1,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1, 2, 3, 4}
-2
-
-Returns: {2, 3, 3, 4 }
-
-First, John will give one dollar to the first friend. Then he will give another dollar to the first or the second friend.
-
-1)
-{4, 7}
-1
-
-Returns: {5, 7 }
-
-Just?one?action?here.
-
-2)
-{1}
-100
-
-Returns: {101 }
-
-Just one friend here.
-
-3)
-{21, 85, 6, 54, 70, 100, 91, 60, 71}
-15
-
-Returns: {21, 21, 54, 60, 70, 71, 85, 91, 100 }
 
 */
 #line 59 "TheJackpotDivTwo.cpp"
@@ -121,12 +74,12 @@ template <typename T> vector<T> getVector(const char *s)
 	return v;
 }
 
-static void Test(int j, const char *seq, const char *expected)
+static void Test(const char *seq, int jackpot, const char *expected)
 {
 	vector <int> v = getVector<int>(seq);
 	TheJackpotDivTwo ___test;
 //	int result = 0;
-	vector <int> result = ___test.find(v, j);
+	vector <int> result = ___test.find(v, jackpot);
 //	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
 	string s;
 	char buffer[256];
@@ -142,11 +95,20 @@ static void Test(int j, const char *seq, const char *expected)
 }
 
 int main() {
-//	Test(2, "1,2,3,4", "2,3,3,4");
-//	Test(1, "4,7", "5,7");
-//	Test(100, "1", "101");
-	Test(15, "21, 85, 6, 54, 70, 100, 91, 60, 71","21,21,54,60,70,71,85,91,100");
-	Test(100000, "1,2", "50001,50002");
+	// example 0
+	Test("1,2,3,4", 2, "2,3,3,4");
+
+	// example 1
+	Test("4,7", 1, "5,7");
+
+	// example 2
+	Test("1", 100, "101");
+
+	// example 3
+	Test("21,85,6,54,70,100,91,60,71", 15, "21,21,54,60,70,71,85,91,100");
+
+
+	Test("1,2", 100000, "50001,50002");
 	return 0;
 }
 // END CUT HERE

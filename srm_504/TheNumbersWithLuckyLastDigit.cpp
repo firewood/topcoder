@@ -1,55 +1,13 @@
 // BEGIN CUT HERE
 /*
 // SRM 504.5 Div2 Middle (500)
-// PROBLEM STATEMENT
-// 
-John believes that the digits 4 and 7 are lucky, and all other digits are unlucky.
-A positive integer is called a lucky number if its last digit is lucky.
-For example, 4, 14 and 207 are lucky numbers, while 40, 741 and 3 are not lucky numbers.
-John would like to represent the int n as a sum of only lucky numbers, and he would like to do this using the minimal possible number of summands.
-Return the number of summands in the representation, or -1 if it is impossible to achieve the goal.
 
+問題
 
+下1桁が4か7がラッキーナンバー。
+ある数値がラッキーナンバーの和で表せるならその回数を返す。
+無理なら-1を返す。
 
-DEFINITION
-Class:TheNumbersWithLuckyLastDigit
-Method:find
-Parameters:int
-Returns:int
-Method signature:int find(int n)
-
-
-CONSTRAINTS
--n will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-99
-
-Returns: 4
-
-One?of?the?possible?representations?is?99=14+24+27+34.
-
-1)
-11
-
-Returns: 2
-
-11=4+7.
-
-2)
-13
-
-Returns: -1
-
-It is impossible to achieve the goal.
-
-3)
-1234567
-
-Returns: 1
 
 */
 #line 55 "TheNumbersWithLuckyLastDigit.cpp"
@@ -191,16 +149,26 @@ template <typename T> vector<T> getVector(const char *s)
 	return v;
 }
 
-static void Test(const char *seq, int expected)
+static void Test(int n, int expected)
 {
-	vector <int> v = getVector<int>(seq);
 	TheNumbersWithLuckyLastDigit ___test;
-//	int result = 0;
-//	int result = ___test.find();
-//	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
+	int result = ___test.find(n);
+	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
 }
 
 int main() {
+	// example 0
+	Test(99, 4);
+
+	// example 1
+	Test(11, 2);
+
+	// example 2
+	Test(13, -1);
+
+	// example 3
+	Test(1234567, 1);
+
 	return 0;
 }
 // END CUT HERE
