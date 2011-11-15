@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-// SRM 502 Div2 Easy 250
+// SRM 502 Div2 Easy (250)
 
 問題
   二人はプログラミングコンテストに参加している
