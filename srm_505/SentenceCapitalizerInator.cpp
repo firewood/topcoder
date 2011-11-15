@@ -1,6 +1,6 @@
 // BEGIN CUT HERE 
 /*
-// SRM 505 Div2 Easy
+// SRM 505 Div2 Easy (250)
 
 問題
 
