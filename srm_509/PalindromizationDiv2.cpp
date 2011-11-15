@@ -1,61 +1,11 @@
 // BEGIN CUT HERE
 /*
 // SRM 509 Div2 Easy (250)
-// PROBLEM STATEMENT
-// Little Arthur loves numbers, especially palindromic ones. A palindromic string is a string that reads the same both forwards and backwards. A palindromic number is a non-negative integer such that its decimal representation (without insignificant leading zeros) is a palindromic string. For example, 12321, 101, 9, and 0 are palindromic numbers but 2011, 509, and 40 are not.
 
-Arthur has a number X and he would like to palindromize it. Palindromization of a number means adding or subtracting some value to obtain a palindromic number. For example, one possible way to palindromize number 25 is adding 8 resulting in number 33, which is palindromic.
+問題
 
-Unfortunately Arthur cannot palindromize numbers for free. The cost of palindromization in dollars is equal to the value added or subtracted. In the previous example Arthur would have to pay 8 dollars.
-
-Of course Arthur would like to palindromize X spending the least amount of money. Given X return the minimum amount of money Arthur needs.
-
-DEFINITION
-Class:PalindromizationDiv2
-Method:getMinimumCost
-Parameters:int
-Returns:int
-Method signature:int getMinimumCost(int X)
-
-
-CONSTRAINTS
--X will be between 0 and 100000 (10^5), inclusive.
-
-
-EXAMPLES
-
-0)
-25
-
-Returns: 3
-
-In the problem statement it is shown that adding 8 to 25 results in a palindromic number 33. However, this is not the cheapest way to palindromize 25. Arthur can subtract 3 to obtain a number 22 which is also palindromic.
-
-1)
-12321
-
-Returns: 0
-
-Already a palindromic number.
-
-2)
-40
-
-Returns: 4
-
-
-
-3)
-2011
-
-Returns: 9
-
-
-
-4)
-0
-
-Returns: 0
+0から100000までの数が与えられる。
+加算または減算で、左右対称にするための最小コストを求める。
 
 
 #line 63 "PalindromizationDiv2.cpp"
@@ -119,12 +69,10 @@ template <typename T> vector<T> getVector(const char *s)
 	return v;
 }
 
-static void Test(const char *seq, int expected)
+static void Test(int n, int expected)
 {
-	vector <int> v = getVector<int>(seq);
 	PalindromizationDiv2 ___test;
-	int result = 0;
-//	int result = ___test.getMinimumCost();
+	int result = ___test.getMinimumCost(n);
 	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
 }
 
@@ -144,6 +92,22 @@ int main() {
 	Test_isPalindromic(12011);
 	Test_isPalindromic(12021);
 	Test_isPalindromic(12022);
+
+	// example 0
+	Test(25, 3);
+
+	// example 1
+	Test(12321, 0);
+
+	// example 2
+	Test(40, 4);
+
+	// example 3
+	Test(2011, 9);
+
+	// example 4
+	Test(0, 0);
+
 	return 0;
 }
 // END CUT HERE
