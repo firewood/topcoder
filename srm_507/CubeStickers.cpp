@@ -1,63 +1,10 @@
 // BEGIN CUT HERE
 /*
-// SRM 507 Div2 Middle (500)
-// PROBLEM STATEMENT
-// NOTE: This problem statement contains images that may not display properly if viewed outside of the applet.
-Fox Ciel has a cube and some colored stickers.  You are given a vector <string> sticker, where the i-th element is the color of the i-th sticker.  Ciel wants to choose six of these stickers and apply one on each of the cube's faces.  Each pair of adjacent faces must have different colors.  Two faces are considered adjacent if they share an edge.
+// SRM 507 Div2 Medium (500)
 
-If this is possible, return "YES", otherwise, return "NO" (all quotes for clarity).
+ñ‚ëË
 
-
-DEFINITION
-Class:CubeStickers
-Method:isPossible
-Parameters:vector <string>
-Returns:string
-Method signature:string isPossible(vector <string> sticker)
-
-
-CONSTRAINTS
--sticker will contain between 6 and 50 elements, inclusive.
--Each element of sticker will contain between 1 and 10 lowercase letters ('a'-'z'), inclusive.
-
-
-EXAMPLES
-
-0)
-{"cyan","magenta","yellow","purple","black","white","purple"}
-
-Returns: "YES"
-
-One of the possible ways is shown in the following picture:
-
-
-
-1)
-{"blue","blue","blue","blue","blue","blue","blue","blue","blue","blue"}
-
-Returns: "NO"
-
-
-
-2)
-{"red","yellow","blue","red","yellow","blue","red","yellow","blue"}
-
-Returns: "YES"
-
-
-
-3)
-{"purple","orange","orange","purple","black","orange","purple"}
-
-Returns: "NO"
-
-
-
-4)
-{"white","gray","green","blue","yellow","red","target","admin"}
-
-Returns: "YES"
-
+òZñ ëÃÇÅAêFÇ™ó◊ÇËçáÇÌÇ»Ç¢ÇÊÇ§Ç…ìhÇÍÇÈÇ©Ç«Ç§Ç©ÇìöÇ¶ÇÈ
 
 
 #line 64 "CubeStickers.cpp"
@@ -137,11 +84,21 @@ static void Test(const char *seq, const char *expected)
 }
 
 int main() {
-//	Test("cyan magenta yellow purple black white purple", "YES");
-	Test("A A B B C C", "YES");
-	Test("A A B B C C", "YES");
-	Test("R Y B R Y B", "YES");
-	Test("P O O P B O P", "NO");
+	// example 0
+	Test("cyan,magenta,yellow,purple,black,white,purple", "YES");
+
+	// example 1
+	Test("blue,blue,blue,blue,blue,blue,blue,blue,blue,blue", "NO");
+
+	// example 2
+	Test("red,yellow,blue,red,yellow,blue,red,yellow,blue", "YES");
+
+	// example 3
+	Test("purple,orange,orange,purple,black,orange,purple", "NO");
+
+	// example 4
+	Test("white,gray,green,blue,yellow,red,target,admin", "YES");
+
 	return 0;
 }
 // END CUT HERE
