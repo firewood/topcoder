@@ -1,62 +1,10 @@
 // BEGIN CUT HERE
 /*
 // SRM 507 Div2 Easy (250)
-// PROBLEM STATEMENT
-// NOTE: This problem statement contains images that may not display properly if viewed outside of the applet.
-Fox Ciel is observing the behavior of ants. She has a cube whose vertices are indexed from 0 to 7 as follows.
 
-You are given a vector <int> pos containing the initial locations of the ants.  The i-th element of pos is the index of the vertex where the i-th ant is located.  In an attempt to observe their moves, Ciel puts honey on the 0-th vertex.  The ants notice it immediately and start moving toward the honey.  In a single turn, each ant will either move to an adjacent vertex along an edge of the cube or stay in its current vertex.  All moves in a turn happen simultaneously, and at all times, it is legal for multiple ants to be at the same location of the cube.
+問題
 
-Ciel observes the ants until they all move to the 0-th vertex.  In order to determine how clever they were, she wants to know the minimal number of turns that were required for this to happen.  Return this minimal number.
-
-
-DEFINITION
-Class:CubeAnts
-Method:getMinimumSteps
-Parameters:vector <int>
-Returns:int
-Method signature:int getMinimumSteps(vector <int> pos)
-
-
-CONSTRAINTS
--pos will contain between 1 and 50 elements, inclusive.
--Each element of pos will be between 0 and 7, inclusive.
-
-
-EXAMPLES
-
-0)
-{0,1,1}
-
-Returns: 1
-
-
-
-1)
-{5,4}
-
-Returns: 2
-
-
-
-2)
-{0}
-
-Returns: 0
-
-There is only one ant, and it is already on the 0-th vertex, so the minimum number of turns required is 0.
-
-3)
-{6,1,6}
-
-Returns: 3
-
-
-
-4)
-{7,7,3,3,7,7,3,3}
-
-Returns: 2
+全ての蟻が蜂蜜を置いた頂点に集まるまでの時間を求める。
 
 
 #line 64 "CubeAnts.cpp"
@@ -109,13 +57,26 @@ static void Test(const char *seq, int expected)
 {
 	vector <int> v = getVector<int>(seq);
 	CubeAnts ___test;
-	int result = 0;
-//	int result = ___test.getMinimumSteps();
+	int result = ___test.getMinimumSteps(v);
 	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
 }
 
 int main() {
-	Test("", 0);
+	// example 0
+	Test("0,1,1", 1);
+
+	// example 1
+	Test("5,4", 2);
+
+	// example 2
+	Test("0", 0);
+
+	// example 3
+	Test("6,1,6", 3);
+
+	// example 4
+	Test("7,7,3,3,7,7,3,3", 2);
+
 	return 0;
 }
 // END CUT HERE
