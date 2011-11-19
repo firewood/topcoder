@@ -1,72 +1,15 @@
 // BEGIN CUT HERE
 /*
-// SRM 511 Div2 Middle (500)
-// PROBLEM STATEMENT
-// There are N animals numbered 0 to N-1 in a zoo. Each animal is a rabbit or a cat.
-Their heights are pairwise distinct.
+// SRM 511 Div2 Medium (500)
 
+問題
 
-Fox Jiro can't distinguish between rabbits and cats, so he asked the following question to each animal:
-"How many animals of the same kind as you are taller than you?"
-Each rabbit tells the number of rabbits taller than him, and each cat tells the number of cats taller than her.
-The differences of heights are slight, so Fox Jiro can't tell which animals are taller than other animals.
-However, each animal is able to determine which animals are taller that him and which ones are shorter.
-
-
-The answer given by the i-th animal is answers[i]. Given these numbers,
-return the number of configurations resulting in exactly those numbers, assuming everyone tells the truth.
-Two configurations are different if there exists an i such that the i-th animal is a rabbit in one configuration
-and cat in the other configuration.
-
-
-DEFINITION
-Class:Zoo
-Method:theCount
-Parameters:vector <int>
-Returns:long long
-Method signature:long long theCount(vector <int> answers)
-
-
-CONSTRAINTS
--answers will contain between 1 and 40 elements, inclusive.
--Each element of answers will be between 0 and 40, inclusive.
-
-
-EXAMPLES
-
-0)
-{0, 1, 2, 3, 4}
-
-Returns: 2
-
-There are two possible configurations: all animals are rabbits or all animals are cats.
-
-1)
-{5, 8}
-
-Returns: 0
-
-There are only two animals. These animals are definitely lying.
-
-2)
-{0, 0, 0, 0, 0, 0}
-
-Returns: 0
-
-
-
-3)
-{1, 0, 2, 0, 1}
-
-Returns: 8
-
-
-
-4)
-{1, 0, 1}
-
-Returns: 0
-
+N匹の動物がいて0からN-1までの番号が振られている。
+動物は兎または猫のいずれかである。
+それぞれの動物の背丈は全て異なる。
+それぞれの動物に「自分と同じ種類で、自分より背が高いのは何匹か」と聞いた。
+答えの配列には、背丈の回答のみが含まれており、種類は不明である。
+動物の種類の組み合わせが何通りあるか求める。
 
 
 #line 65 "Zoo.cpp"
@@ -139,12 +82,23 @@ static void Test(const char *seq, long long expected)
 }
 
 int main() {
+	// example 0
 	Test("0,1,2,3,4", 2);
+
+	// example 1
 	Test("5,8", 0);
+
+	// example 2
 	Test("0,0,0,0,0,0", 0);
+
+	// example 3
 	Test("1,0,2,0,1", 8);
+
+	// example 4
 	Test("1,0,1", 0);
+
 	Test("1,0,0,1", 4);
+
 	return 0;
 }
 // END CUT HERE

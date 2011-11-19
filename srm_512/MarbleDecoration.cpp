@@ -1,81 +1,13 @@
 // BEGIN CUT HERE
 /*
 // SRM 512 Div2 Easy (256)
-// PROBLEM STATEMENT
-// Ash is a marble collector and he likes to create various ornaments using his marbles.
 
-One day, Elsh asks him to create a simple decoration for her desk. She wants a sequence of marbles consisting of at most two different colors. To make the sequence look interesting, each pair of adjacent marbles must have different colors.
+問題
 
-Currently, Ash has R red marbles, G green marbles, and B blue marbles. Elsh wants that the resulting sequence is as long as possible. Return this maximum length.
-
-DEFINITION
-Class:MarbleDecoration
-Method:maxLength
-Parameters:int, int, int
-Returns:int
-Method signature:int maxLength(int R, int G, int B)
-
-
-CONSTRAINTS
--R will be between 0 and 50, inclusive.
--G will be between 0 and 50, inclusive.
--B will be between 0 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-0
-0
-0
-
-Returns: 0
-
-Ash currently doesn't have any marbles at all.
-
-1)
-3
-0
-0
-
-Returns: 1
-
-The only valid sequence is (red).
-
-2)
-5
-1
-2
-
-Returns: 5
-
-One possible sequence is (red, blue, red, blue, red).
-
-3)
-7
-7
-4
-
-Returns: 14
-
-
-
-4)
-2
-3
-5
-
-Returns: 7
-
-
-
-5)
-13
-13
-13
-
-Returns: 26
-
+3色のビーズがある。
+異なる2色を使ってアクセサリを作る。
+色は2色のみで交互に使用しなければならない。
+最大の長さを求める。
 
 
 #line 82 "MarbleDecoration.cpp"
@@ -132,17 +64,32 @@ template <typename T> vector<T> getVector(const char *s)
 	return v;
 }
 
-static void Test(const char *seq, int expected)
+static void Test(int R, int G, int B, int expected)
 {
-	vector <int> v = getVector<int>(seq);
 	MarbleDecoration ___test;
-	int result = 0;
-//	int result = ___test.maxLength();
+	int result = ___test.maxLength(R, G, B);
 	printf("result: %s, %d\n", result == expected ? "OK" : "FAILED", result);
 }
 
 int main() {
-	Test("", 0);
+	// example 0
+	Test(0, 0, 0, 0);
+
+	// example 1
+	Test(3, 0, 0, 1);
+
+	// example 2
+	Test(5, 1, 2, 5);
+
+	// example 3
+	Test(7, 7, 4, 14);
+
+	// example 4
+	Test(2, 3, 5, 7);
+
+	// example 5
+	Test(13, 13, 13, 26);
+
 	return 0;
 }
 // END CUT HERE

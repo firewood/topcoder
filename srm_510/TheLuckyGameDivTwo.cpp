@@ -1,81 +1,17 @@
 // BEGIN CUT HERE
 /*
-// SRM 510 Div2 Middle (500)
-// PROBLEM STATEMENT
-// 
-John and Brus believe that the digits 4 and 7 are lucky and all others are not.
-According to them, a lucky number is a number that contains only lucky digits in its decimal representation.
+// SRM 510 Div2 Medium (500)
 
-	
+問題
 
-John and Brus play the following game.
-Initially, there is an interval of integers between a and b, inclusive.
-Then, John choose a subinterval of the initial interval that contains exactly jLen numbers.
-Finally, Brus chooses a subinterval of John's subinterval that contains exactly bLen numbers.
-The outcome of the game is the total number of lucky numbers in Brus's subinterval.
+4と7がラッキーである。
+4と7だけでできた数値をラッキーナンバーとする。
+John と Brus がaからbまでの数値でゲームをする。
+まず John が連続するjLen個の数値を選ぶ。
+次に Brus が、そのjLen個の数値からbLen個の数値を選ぶ。
+Brus が選んだ数値の中のラッキーナンバーの個数がゲームの得点となる。
+最大化戦略での得点を求める。
 
-
-
-John follows the optimal strategy that maximizes the outcome.
-Brus follows the optimal strategy that minimizes the outcome.
-Return the outcome of the game.
-
-
-
-DEFINITION
-Class:TheLuckyGameDivTwo
-Method:find
-Parameters:int, int, int, int
-Returns:int
-Method signature:int find(int a, int b, int jLen, int bLen)
-
-
-CONSTRAINTS
--a will be between 1 and 4747, inclusive.
--b will be between a and 4747, inclusive.
--jLen will be between 1 and b-a+1, inclusive.
--bLen will be between 1 and jLen, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-10
-2
-1
-
-Returns: 0
-
-John will choose a subinterval containing two consecutive numbers. Then Brus will choose a subinterval containing just one of these two numbers. Since no two lucky numbers are consecutive, Brus will always be able to choose a subinterval containing no lucky numbers, so the outcome is 0.
-
-1)
-1
-100
-100
-100
-
-Returns: 6
-
-Here, John and Brus have no choice. The outcome of the game is the number of lucky numbers between 1 and 100, inclusive.
-
-2)
-4
-8
-3
-2
-
-Returns: 1
-
-John can choose one of the intervals [4; 6], [5; 7] or [6; 8]. In the first two cases Brus can choose a subinterval that contains no lucky numbers. However, in the last case, Brus will have to choose a subinterval that contains the lucky number 7. Therefore it is optimal for John to choose [6; 8], and the outcome is 1.
-
-3)
-1
-100
-75
-50
-
-Returns: 2
 
 #line 81 "TheLuckyGameDivTwo.cpp"
 */
@@ -141,10 +77,18 @@ static void Test(int a, int b, int jLen, int bLen, int expected)
 }
 
 int main() {
+	// example 0
 	Test(1, 10, 2, 1, 0);
+
+	// example 1
 	Test(1, 100, 100, 100, 6);
+
+	// example 2
 	Test(4,8,3,2,1);
+
+	// example 3
 	Test(1,100,75,50,2);
+
 	return 0;
 }
 // END CUT HERE

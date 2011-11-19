@@ -1,67 +1,12 @@
 // BEGIN CUT HERE
 /*
-// SRM 514 Div2 Middle (500)
-// PROBLEM STATEMENT
-// Magical Girls are girls who have magical powers. They fight against evil witches to protect the Earth.
+// SRM 514 Div2 Medium (500)
 
-You, one of the Magical Girls, are at point (0, 0) of the plane. You find another Magical Girl at (x, y) and she seems to be injured. So you decide to go to point (x, y) to help her.
+問題
 
-You can move only by n-knight jump. For a positive integer n, the n-knight jump is 8 types of moves. You can go from (0, 0) to (n, 1), (n, -1), (-n, 1), (-n, -1), (1, n), (-1, n), (1, -n) or (-1, -n) by using n-knight jump once.
-
-You are given a vector <int> jumpTypes containing the valid n-knight jumps you can perform. You can only use an n-knight jump if jumpTypes contains n. Return "YES" if you can reach (x, y) with the n-knight jumps of given numbers. Otherwise return "NO" (all quotes for clarity). You can use each n-knight jump as many times as you want.
-
-
-DEFINITION
-Class:MagicalGirlLevelTwoDivTwo
-Method:isReachable
-Parameters:vector <int>, int, int
-Returns:string
-Method signature:string isReachable(vector <int> jumpTypes, int x, int y)
-
-
-CONSTRAINTS
--jumpTypes will contain between 1 and 10 elements, inclusive.
--Each element of jumpTypes will be between 1 and 30, inclusive.
--All elements of jumpTypes will be distinct.
--x and y will each be between -30 and 30, inclusive.
-
-
-EXAMPLES
-
-0)
-{2}
-5
-4
-
-Returns: "YES"
-
-(0,?0)?->?(2,?1)?->?(4,?2)?->?(5,?4).
-
-1)
-{3}
-5
-4
-
-Returns: "NO"
-
-
-
-2)
-{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
--30
-27
-
-Returns: "YES"
-
-
-
-3)
-{29}
-29
-0
-
-Returns: "NO"
-
+魔法少女が座標 (0, 0) にいる。
+魔法少女は (0, 0) から、(±n, ±1) または (±1, ±n) だけ移動できる。
+座標 (x, y) に到達可能かどうかを求める。
 
 
 #line 68 "MagicalGirlLevelTwoDivTwo.cpp"
@@ -129,9 +74,20 @@ static void Test(const char *seq, int x, int y, const char *expected)
 }
 
 int main() {
+	// example 0
 	Test("2", 5, 4, "YES");
+
+	// example 1
 	Test("3", 5, 4, "NO");
+
+	// example 2
+	Test("1,2,3,4,5,6,7,8,9,10", -30, 27, "YES");
+
+	// example 3
+	Test("29", 29, 0, "NO");
+
 	Test("21,23,25,27,29", -30, 29, "NO");
+
 	return 0;
 }
 // END CUT HERE
