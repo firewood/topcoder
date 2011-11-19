@@ -1,75 +1,12 @@
 // BEGIN CUT HERE
 /*
-// SRM 515 Div2 Middle (500)
-// PROBLEM STATEMENT
-// Lecette has a clock with an hour hand and a minute hand. 
-The hour hand makes a full rotation in 12 hours, and the minute hand makes a full rotation in one hour. 
-Both hands move smoothly, at constant speeds. 
-The clock has a scale marked in 30 degree increments, and both hands point to the same mark at 00:00. 
+// SRM 515 Div2 Medium (500)
 
-Lecette wants to know what time it is, but the clock is rotated, so she can't tell where the top of the clock is. 
-She measured the angles of hands from a certain mark, clockwise: 
-hourHand and minuteHand (both in degrees). 
-Return the earliest possible time that is consistent with these measurements. 
-Format the return value as a string of the form "HH:MM" (quotes for clarity). 
-Lecette might have measured the angles incorrectly. 
-If there is no corresponding time, return an empty string instead. 
+問題
 
-
-DEFINITION
-Class:RotatedClock
-Method:getEarliest
-Parameters:int, int
-Returns:string
-Method signature:string getEarliest(int hourHand, int minuteHand)
-
-
-CONSTRAINTS
--hourHand and minuteHand will each be between 0 and 359, inclusive. 
-
-
-EXAMPLES
-
-0)
-70
-300
-
-Returns: "08:20"
-
-This is how the clock were positioned when Lecette made her measurements: 
-
-
-
-In order to show a valid time, the clock needs to be turned upside down: 
-
-
-
-
-1)
-90
-120
-
-Returns: "11:00"
-
-2)
-240
-36
-
-Returns: ""
-
-3)
-19
-19
-
-Returns: ""
-
-4)
-1
-12
-
-Returns: "00:02"
-
-The time when the coding phase started. 
+時計の短針の角度 hourHand と長針の角度 minuteHand が与えられる。
+短針のマークが真上になっているが、12時のマークとは限らない。
+短針と長針が正しい時刻を示しているなら、そのうちの最も早い時刻を返す。
 
 
 #line 76 "RotatedClock.cpp"
@@ -142,11 +79,21 @@ static void Test(int h, int m, const char *expected)
 }
 
 int main() {
+	// example 0
 	Test(70, 300, "08:20");
+
+	// example 1
 	Test(90, 120, "11:00");
+
+	// example 2
 	Test(240, 36, "");
+
+	// example 3
 	Test(19, 19, "");
+
+	// example 4
 	Test(1, 12, "00:02");
+
 	return 0;
 }
 // END CUT HERE
