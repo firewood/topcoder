@@ -1,108 +1,13 @@
 // BEGIN CUT HERE
 /*
 // SRM 525 Div2 Easy (250)
-// PROBLEM STATEMENT
-// Fox Ciel is going to take a path to meet her friends. The path is tiled with 1x1 square tiles. It is N tiles long and 2 tiles wide. If we imagine that the path is going from the left to the right, we can view it as a rectangle with 2 rows and N columns of tiles.
-The rows of the path are numbered 0 to 1 from top to bottom, and the columns of the path are numbered 0 to N-1 from left to right. Ciel starts at the tile in row 0, column 0. She has to reach the tile in row 0, column N-1.
 
-In each step, Ciel can move to an adjacent tile. Two tiles are adjacent if they share at least one point (a side or a corner).
+問題
 
-Because it rained yesterday, some tiles are covered by puddles of water. Ciel will not step on these tiles. You are given a vector <string> road. The j-th character of i-th element is 'W' if a tile at i-th row of j-th column is covered by  water, and '.' otherwise.
-
-Return the string "YES" if she can move to her destination without entering a tile which is filled with water. Otherwise, return "NO".
-
-DEFINITION
-Class:RainyRoad
-Method:isReachable
-Parameters:vector <string>
-Returns:string
-Method signature:string isReachable(vector <string> road)
-
-
-NOTES
--The constraints guarantee that the starting tile and the destination tile are never covered by water.
-
-
-CONSTRAINTS
--road will contain exactly 2 elements.
--Each elements of road will contain between 2 and 50 characters, inclusive.
--All elements of road will contain the same number of characters.
--Each character of road will be either '.' or 'W'.
--The first character and the last character of 0-th element of road will be '.'.
-
-
-EXAMPLES
-
-0)
-{".W.."
-,"...."}
-
-Returns: "YES"
-
-One of the possible ways is as follows. Here, 'F' is the tile occupied by Fox Ciel.
-
-"FW.."
-"...." 
-
-".W.."
-"F..." 
-
-".W.."
-".F.."
-
-".W.."
-"..F."
-
-".W.F"
-"...."
-
-
-1)
-{".W.."
-,"..W."}
-
-Returns: "YES"
-
-
-
-2)
-{".W..W.."
-,"...WWW."}
-
-Returns: "NO"
-
-
-
-3)
-{".."
-,"WW"}
-
-Returns: "YES"
-
-
-
-4)
-{".WWWW."
-,"WWWWWW"}
-
-Returns: "NO"
-
-
-
-5)
-{".W.W.W."
-,"W.W.W.W"}
-
-Returns: "YES"
-
-
-
-6)
-{".............................................W."
-,".............................................W."}
-
-Returns: "NO"
-
+幅2の道路がある。
+道路には水溜りがあり通れない。
+辺または頂点経由では移動できる。
+水溜りを迂回してゴールできるか、また、ゴールしたときの最小手数を答える。
 
 
 #line 109 "RainyRoad.cpp"
