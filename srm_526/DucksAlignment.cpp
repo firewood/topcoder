@@ -1,104 +1,14 @@
 // BEGIN CUT HERE
 /*
 // SRM 526 Div1 Easy (250)
-// PROBLEM STATEMENT
-// Mr. Dengklek has a rectangular farm conveniently divided into a grid of unit squares.
-At this moment, each unit square contains at most one duck. Moreover, each row and column
-of the farm also contains at most one duck. You are given a vector <string> grid.
-The j-th character of the i-th element of grid will be 'o' if there is exactly one duck
-in square (i, j), i.e., row i column j, or '.' if there is no duck in that square. 
 
-Today, Mr. Dengklek wants to align the ducks so that the ducks form a contiguous line.
-More precisely, assume that there are N ducks on the farm. After the alignment,
-the ducks must either occupy N contiguous squares in some row or N contiguous squares
-in some column. To accomplish that, he will move the ducks one at a time.
-To move a duck in square (a, b) to another empty square (c, d), he needs |a-c| + |b-d| seconds,
-where |x| denotes the absolute value of x. Mr. Dengklek can always move any duck
-to any empty square he desires - the other ducks are not obstacles.
+問題
 
-Return the minimum time in seconds Mr. Dengklek needs to align the ducks.
-Note that restrictions imposed on the initial placement of ducks guarantee
-that a proper alignment is always possible.
+升目状の盤面にアヒルが何匹かいる。
+位置はばらばらで、列または行に最大でも1匹しかいない。
+水平または垂直に、連続するように並べたい。
+1回に1マスずつ動かすとして、最小の手数を求める。
 
-DEFINITION
-Class:DucksAlignment
-Method:minimumTime
-Parameters:vector <string>
-Returns:int
-Method signature:int minimumTime(vector <string> grid)
-
-
-CONSTRAINTS
--grid will contain between 1 and 50 elements, inclusive.
--Each element of grid will contain between 1 and 50 characters, inclusive.
--All elements of grid will contain the same number of characters.
--Each character of grid will be either 'o' or '.'.
--Each row in grid will contain at most one character 'o'.
--Each column in grid will contain at most one character 'o'.
--grid will contain at least one character 'o'.
-
-
-EXAMPLES
-
-0)
-{".o",
- "o."}
-
-Returns: 1
-
-Move either duck to an adjacent empty square.
-
-1)
-{".o...",
- "..o..",
- "....o"}
-
-Returns: 3
-
-One of the solutions is: move the the duck in the first row one square to the right, and then move the duck in the last row two squares to the left.
-
-2)
-{"o..........",
- "..o........",
- ".......o...",
- "...........",
- "...........",
- "...........",
- "........o..",
- "..........."}
-
-Returns: 16
-
-Align all ducks in the second row.
-
-3)
-{".........",
- "....o....",
- "........."}
-
-Returns: 0
-
-
-
-4)
-{"...o..........................",
- "............................o.",
- ".o............................",
- "............o.................",
- ".................o............",
- "......................o.......",
- "......o.......................",
- "....o.........................",
- "...............o..............",
- ".......................o......",
- "...........................o..",
- ".......o......................"}
-
-Returns: 99
-
-
-
-#line 90 "DucksAlignment.cpp"
 */
 // END CUT HERE
 #ifndef _USE_MATH_DEFINES
@@ -270,7 +180,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	DucksAlignment ___test;
-	___test.run_test(1);
 	___test.run_test(-1);
 	return 0;
 }
