@@ -32,15 +32,17 @@ class Mosquitoes {
 
 public:
 	int getMaximum(vector <int> xInit, vector <int> v, int R) {
-		const double e = 1.0e-9;
-		int result = 1;
+		const double e = 1.0e-9;		// 許容誤差
+		int result = 1;		// 少なくとも1匹は必ず巻き込める
 		int a, b, c;
+		// aとbの全部の組み合わせ (2回ずつ)
 		for (a = 0; a < (int)v.size(); ++a) {
 			for (b = 0; b < (int)v.size(); ++b) {
-				if (a == b) continue;
+				if (a == b) continue;		// 異なる2匹
+				// (Xb + Vb*t) - (Xa + Va*t) == 2*R) を変形
 				double d = xInit[b] - xInit[a] - 2*R;
 				double t = d / (v[a] - v[b]);
-				if (t < 0) continue;
+				if (t < 0) continue;		// 2Rにならない
 				double st = xInit[a] + v[a]*t -e;
 				double ed = xInit[b] + v[b]*t +e;
 				int cnt = 0;
@@ -49,7 +51,7 @@ public:
 						++cnt;
 					} else {
 						double p = xInit[c] + v[c]*t;
-						cnt += (st <= p && p <= ed);
+						cnt += (st <= p && p <= ed);	// 爆風範囲内?
 					}
 				}
 				result = max(result, cnt);
@@ -155,8 +157,7 @@ public:
 // BEGIN CUT HERE
 int main() {
 	Mosquitoes ___test;
-	___test.run_test(5);
-//	___test.run_test(-1);
+	___test.run_test(-1);
 	return 0;
 }
 // END CUT HERE
