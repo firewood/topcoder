@@ -1,94 +1,12 @@
 // BEGIN CUT HERE
 /*
 // SRM 528 Div2 Hard (1000)
-// PROBLEM STATEMENT
-// One day, Fox Ciel got surprised because there were many mosquitoes in her garden.
-She decided to kill as many mosquitoes as possible by detonating a single bomb at a suitable place and time.
 
+問題
 
+位置と速度が異なる蚊がN匹いる。
+半径Rで炸裂する爆弾があるとき、殺せる蚊の最大匹数を求める。
 
-Ciel's garden can be seen as an infinitely long straight line. Mosquitoes are points, each moving with some constant velocity.
-You are given vector <int>s xInit and v of equal length N. For each i between 0 and N-1, inclusive, there is a mosquito with current position xInit[i] and constant velocity v[i].
-
-
-
-The current positions all correspond to a moment at time t=0. A mosquito that starts at the position X and has velocity V will be at the position X+Vt at time t. For example, a mosquito with velocity 0 stays at the same position forever, and two mosquitoes with velocities -1 and 1 are flying in opposite directions.
-
-
-
-You are also given an int R: the radius of Ciel's bomb.
-If a bomb is detonated at the position x at time t, it kills all mosquitoes that are at positions between x-R and x+R, inclusive, at that time.
-The position of the bomb and the time of detonation do not have to be integers.
-Ciel can detonate the bomb at any nonnegative time t (including t=0).
-Your method must return the maximum number of mosquitoes she can kill by a single detonation.
-
-DEFINITION
-Class:Mosquitoes
-Method:getMaximum
-Parameters:vector <int>, vector <int>, int
-Returns:int
-Method signature:int getMaximum(vector <int> xInit, vector <int> v, int R)
-
-
-CONSTRAINTS
--xInit will contain between 1 and 50 elements, inclusive.
--xInit and v will contain the same number of elements.
--Each element of xInit will be between -100 and 100, inclusive.
--Each element of v will be between -100 and 100, inclusive.
--All elements in v will be pairwise distinct.
--R will be between 1 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{1, -1}
-{1, -1}
-10
-
-Returns: 2
-
-There are many ways how to kill both mosquitoes. For example, she can detonate the bomb at time t=0 at position 0.
-
-1)
-{100, -100}
-{1, -1}
-10
-
-Returns: 1
-
-In this case, Ciel can only kill one mosquito.
-Note that the two mosquitoes are flying away from each other.
-
-2)
-{0, -1, 10, -11, 99, -99}
-{1, -1, -3, 3, 47, -47}
-3
-
-Returns: 4
-
-In this case, an optimal solution is to detonate the bomb at position -0.5 at the time t=2.5.
-Mosquitoes 0, 1, 2, and 3 will be killed by the bomb.
-
-3)
-{5}
-{2}
-8
-
-Returns: 1
-
-
-
-4)
-{12,34,56,78,90}
-{-1,2,-3,4,-5}
-6
-
-Returns: 3
-
-
-
-#line 92 "Mosquitoes.cpp"
 */
 // END CUT HERE
 #ifndef _USE_MATH_DEFINES
