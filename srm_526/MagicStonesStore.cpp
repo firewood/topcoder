@@ -1,69 +1,12 @@
 // BEGIN CUT HERE
 /*
 // SRM 526.5 Div2 Easy (250)
-// PROBLEM STATEMENT
-// Today is the Christmas Eve. People around the world celebrate this 
-holiday. The following story takes place in the land of reindeer, where Santa Claus resides.
 
-The currency in the land of reindeer are magic stones. Santa's reindeer have 2n magic stones
-(i.e., an even number of them). They want to divide the stones into two piggy banks.
-Santa's reindeer are very fond of primes, therefore they want each piggy bank
-to contain a prime number of magic stones.
+問題
 
-You are given an int n. If it is possible to divide 2n magic stones into two piggy banks,
-each containing a prime number of stones, return "YES", otherwise return "NO" (quotes for clarity).
+2n個の石がある。
+2つの素数の和で表せるかどうかを求める。
 
-DEFINITION
-Class:MagicStonesStore
-Method:ableToDivide
-Parameters:int
-Returns:string
-Method signature:string ableToDivide(int n)
-
-
-NOTES
--A positive integer is prime if and only if it has exactly two positive integer divisors.
- The first few prime numbers are 2, 3, 5, 7, 11, ...
--The number zero is not a prime number, hence you are not allowed to leave any piggy bank empty.
-
-
-CONSTRAINTS
--n will be between 1 and 1,000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-
-Returns: "NO"
-
-As n=1, we are dividing 2 magic stones into two piggy banks.
-In this case is impossible to have a prime number of stones in each piggy bank.
-
-1)
-2
-
-Returns: "YES"
-
-The only valid way of dividing the stones in this case is to put 2 magic stones
-into each of the piggy banks.
-
-2)
-3
-
-Returns: "YES"
-
-Now the only way is to put 3 magic stones into each of the piggy banks.
-
-3)
-5
-
-Returns: "YES"
-
-For 2n=10 stones we have two valid ways of dividing them: either as 5 + 5 or as 7 + 3.
-
-#line 64 "MagicStonesStore.cpp"
 */
 // END CUT HERE
 #ifndef _USE_MATH_DEFINES
