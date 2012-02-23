@@ -2,72 +2,11 @@
 /*
 // SRM 532 Div2 Easy (250)
 
-// PROBLEM STATEMENT
-// Mr. Dengklek lives in the Kingdom of Ducks, where humans and ducks
-live together in peace and harmony. The ducks are numbered
-by distinct positive integers from A to B, inclusive, where A <= B.
+–â‘è
 
-Last night, Mr. Dengklek could not sleep, so he tried to count all the ducks
-in the kingdom. (It is known that counting ducks can help people to fall asleep.)
-When counting the ducks, Mr. Dengklek walked across an imaginary meadow and
-whenever he saw a new duck, he called out its number. He only called out actual
-duck numbers, i.e., numbers from A to B. He never called the same number twice.
-The numbers he called out are not necessarily in the numeric order.
-
-You are given a vector <int> ducks. The elements of ducks are the numbers
-Mr. Dengklek called out when counting the ducks last night. It is possible that
-he missed some of the ducks. Obviously, the number of ducks he missed depends on
-the values A and B. The values of A and B are unknown to you. Compute and return
-the smallest possible number of ducks Mr. Dengklek might have missed.
-
-DEFINITION
-Class:DengklekTryingToSleep
-Method:minDucks
-Parameters:vector <int>
-Returns:int
-Method signature:int minDucks(vector <int> ducks)
-
-
-CONSTRAINTS
--ducks will contain between 1 and 50 elements, inclusive.
--Each element of ducks will be between 1 and 100, inclusive.
--All element of ducks will be distinct.
-
-
-EXAMPLES
-
-0)
-{5, 3, 2}
-
-Returns: 1
-
-If A=2 and B=5, the only duck Mr. Dengklek missed is the duck number 4.
-
-1)
-{58}
-
-Returns: 0
-
-If A=B=58, Mr. Dengklek did not miss any ducks.
-
-2)
-{9, 3, 6, 4}
-
-Returns: 3
-
-In this case, the smallest possible number of missed ducks is 3: the ducks with numbers 5, 7, and 8.
-
-3)
-{7, 4, 77, 47, 74, 44}
-
-Returns: 68
-
-
-
-4)
-{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
-Returns: 0
+ƒAƒqƒ‹‚ÉA‚©‚çB‚Ü‚Å‚Ì”Ô†‚ª‚Â‚¢‚Ä‚¢‚éB
+ŒÄ‚ñ‚¾”Ô†‚ª”z—ñ‚Å—^‚¦‚ç‚ê‚éB
+ŒÄ‚ñ‚Å‚¢‚È‚¢ƒAƒqƒ‹‚ª‰½•C‚©‚ğ‹‚ß‚éB
 
 */
 // END CUT HERE
