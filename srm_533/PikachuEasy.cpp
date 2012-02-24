@@ -2,81 +2,9 @@
 /*
 // SRM 533 Div2 Easy (250)
 
-// PROBLEM STATEMENT
-// Pikachu is a well-known character in the Pokemon anime series.
-Pikachu can speak, but only 3 syllables: "pi", "ka", and "chu".
-Therefore Pikachu can only pronounce strings that can be created
-as a concatenation of one or more syllables he can pronounce.
-For example, he can pronounce the words "pikapi" and "pikachu".
-
-You are given a string word.
-Your task is to check whether Pikachu can pronounce the string.
-If the string can be produced by concatenating copies of the strings
-"pi", "ka", and "chu", return "YES" (quotes for clarity). Otherwise,
-return "NO".
-
-DEFINITION
-Class:PikachuEasy
-Method:check
-Parameters:string
-Returns:string
-Method signature:string check(string word)
-
-
-CONSTRAINTS
--word will contain between 1 and 50 characters, inclusive.
--Each character of word will be a lowercase letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"pikapi"
-
-Returns: "YES"
-
-"pikapi" = "pi" + "ka" + "pi", so Pikachu can say it.
-
-1)
-"pipikachu"
-
-Returns: "YES"
-
-This time we have "pipikachu" = "pi" + "pi" + "ka" + "chu",
-so Pikachu can say it as well.
-
-2)
-"pikaqiu"
-
-Returns: "NO"
-
-Pikachu can't say "pikaqiu" since 'q' does not appear in "pi", "ka", or "chu".
-
-3)
-"topcoder"
-
-Returns: "NO"
-
-
-
-4)
-"piika"
-
-Returns: "NO"
-
-
-
-5)
-"chupikachupipichu"
-
-Returns: "YES"
-
-
-
-6)
-"pikapipachu"
-
-Returns: "NO"
+問題
+ぴかちゅーは ぴ か ちゅー しかしゃべれない。
+与えられた文字列がぴかちゅーが発音できるかどうか求める。
 
 */
 // END CUT HERE
