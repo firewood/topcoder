@@ -2,88 +2,10 @@
 /*
 // SRM 513 Div2 Hard (1000)
 
-// PROBLEM STATEMENT
-// Manao has a board filled with digits represented as vector <string> board.
-The j-th character of the i-th element of board represents the digit
-written in cell in row i, column j of the board. The rows are numbered from
-top to bottom and the columns are numbered from left to right.
-
-Manao is going to cut it into several non-overlapping fragments. Each of the
-fragments will be a horizontal or vertical strip containing 1 or more elements.
-A strip of length N can be interpreted as an N-digit number in base 10 by
-concatenating the digits on the strip in order. The horizontal strips are read
-from left to right and the vertical strips are read from top to bottom.
-The picture below shows a possible cutting of a 4x4 board:
-
-4937
-2591
-3846
-9150
-
-The sum of the numbers on the fragments in this picture is
-493 + 7160 + 23 + 58 + 9 + 45 + 91 = 7879.
-
-Manao wants to cut the board in such a way that the sum of the numbers on the
-resulting fragments is the maximum possible. Compute and return this sum.
-
-DEFINITION
-Class:CutTheNumbers
-Method:maximumSum
-Parameters:vector <string>
-Returns:int
-Method signature:int maximumSum(vector <string> board)
-
-
-NOTES
--The numbers on the cut strips are allowed to have leading zeros. See example #2 for details.
-
-
-CONSTRAINTS
--board will contain between 1 and 4 elements, inclusive.
--board[0] will be between 1 and 4 characters long, inclusive.
--Each element of board will be of the same length as board[0].
--Each character in board will be a decimal digit ('0'-'9').
-
-
-EXAMPLES
-
-0)
-{"123",
- "312"}
-
-Returns: 435
-
-Manao can cut out both rows in whole, obtaining 123 + 312 = 435. He also could
-cut the columns one by one for a total of 66, or cut the first column and
-the residual rows one by one, obtaining 13 + 23 + 12 = 48, or even cut out
-single elements, but would not get a better sum.
-
-
-1)
-{"99",
- "11"}
-
-Returns: 182
-
-It's better to cut out the whole columns.
-
-
-2)
-{"001",
- "010",
- "111",
- "100"}
-
-Returns: 1131
-
-The numbers on the strips may have leading zeros. Cutting the columns in whole,
-Manao obtains 0011 + 0110 + 1010 = 1131.
-
-
-3)
-{"8"}
-
-Returns: 8
+問題
+最大で4x4の各マスに数値が書かれている。
+任意の場所の数値を左から右または上から下に読むように分割する。
+分割した数の合計の最大値を求める。
 
 */
 // END CUT HERE
