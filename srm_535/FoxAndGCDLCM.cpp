@@ -21,48 +21,33 @@ GとLを満たす数AとBの和の最小値を求める。
 using namespace std;
 
 typedef long long LL;
-typedef vector<int> IntVec;
-typedef vector<LL> LLVec;
-typedef vector<string> StrVec;
-typedef set<int> IntSet;
-typedef set<LL> LLSet;
-typedef set<string> StrSet;
-typedef set<int, int> IntMap;
-typedef set<LL, LL> LLMap;
-typedef set<string, string> StrMap;
 
 class FoxAndGCDLCM {
 
 	static LL gcd(LL a, LL b) {
-		while (true) {
-			a = a % b;
-			if (a == 0) return b;
-			b = b % a;
-			if (b == 0) return a;
+		while (b) {
+			LL c = a % b;
+			a = b, b = c;
 		}
+		return a;
     }
 
 public:
 	long long get(long long G, long long L) {
-		if (G < 1 || L < 1 || (L < G) || (L % G)) {
-			return -1;
-		}
-		LL M = L / G;
-		LL Max = (LL)sqrt((double)M) + 1;
-		bool f = false;
-		LL res = M+1;
-		LL i;
-		for (i = 1; i <= Max; ++i) {
-			if ((M % i) == 0) {
-				LL j = M / i;
-				if (gcd(i, j) == 1) {
-					f = true;
-					res = min(res, i + j);
+		LL i, res = -1;
+		if (G > 0 && L > 0 && (L % G) == 0) {
+			LL M = L / G;
+			for (i = (LL)sqrt((double)M); ; --i) {
+				if ((M % i) == 0) {
+					LL j = M / i;
+					if (gcd(i, j) == 1) {
+						res = G * (i + j);
+						break;
+					}
 				}
 			}
 		}
-		res *= G;
-		return f ? res : -1;
+		return res;
 	}
 
 	
