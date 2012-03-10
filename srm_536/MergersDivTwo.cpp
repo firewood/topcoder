@@ -1,96 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 536 Div2 Hard (1000)
 
-// PROBLEM STATEMENT
-// Warning: This problem statement contains superscripts and/or subscripts.
-It may not display properly outside of the applet.
-
-The candy industry is going through a hard time in Byteland. Some of the
-biggest companies in the business have decided to perform a series of mergers
-so as to become one company in the end. Due to the depression, each merger
-should join at least k companies at once. Surprisingly, empirical studies
-conducted by the economists of Byteland have shown that the revenue of
-a company that is created by simultainously merging m (m >= k) companies
-with revenues equal to r0, r1, ..., rm - 1 is equal to the average of these
-revenues, that is (r0 + r1 + ... + rm - 1) / m.
-
-You are given a vector <int> revenues. The revenue of the i-th of the companies
-that want to merge is equal to revenues[i]. Return the maximum possible revenue
-of the final company that can be created in any series of mergers that joins
-all the companies.
-
-DEFINITION
-Class:MergersDivTwo
-Method:findMaximum
-Parameters:vector <int>, int
-Returns:double
-Method signature:double findMaximum(vector <int> revenues, int k)
-
-
-NOTES
--The returned value must have an absolute or relative error less than 10-9.
--Please note that the revenue of a company may be negative; this means that
- the company is actually losing money.
--It is always possible to merge all companies into a single one: for example,
- by merging all of them in a single step.
-
-
-CONSTRAINTS
--revenues will contain between 2 and 50 elements, inclusive.
--Each element of revenues will be between -1,000 and 1,000, inclusive.
--k will be between 2 and the number of elements in revenues, inclusive.
-
-
-EXAMPLES
-
-0)
-{5, -7, 3}
-2
-
-Returns: 1.5
-
-The optimal way is to first merge companies 1 and 2, obtaining a company
-with total revenue -2, and then merge that company with company 0.
-
-
-1)
-{5, -7, 3}
-3
-
-Returns: 0.3333333333333333
-
-The respective revenues are the same as in the previous example, but because
-k = 3, we have to merge all companies at once.
-
-
-2)
-{1, 2, 2, 3, -10, 7}
-3
-
-Returns: 2.9166666666666665
-
-The solution is to first merge companies 0, 1, 2 and 4, and then merge the
-resulting company with companies 3 and 5.
-
-
-3)
-{-100, -100, -100, -100, -100, 100}
-4
-
-Returns: -66.66666666666667
-
-Note that we can't merge less than six companies in the first step, because
-otherwise we would be left with only two or three companies and we would be
-unable to finish the merging process.
-
-
-4)
-{869, 857, -938, -290, 79, -901, 32, -907, 256, -167, 510, -965, -826, 808, 890,
- -233, -881, 255, -709, 506, 334, -184, 726, -406, 204, -912, 325, -445, 440, -368}
-7
-
-Returns: 706.0369290573373
+問題
+いくつかの会社があり、それぞれの利益が配列で与えられる。
+会社を合併すると、新会社の利益は、各社の利益の総和÷社数となる。
+合併には少なくともk社必要で、最終的には1社になる。
+最終的にできる会社の利益の最大値を求める。
 
 */
 // END CUT HERE
