@@ -39,7 +39,9 @@ public:
 		double Max[64];
 		int i, j;
 		f[0] = 1;
-		Max[0] = revenues[0];
+		for (i = 0; i < n; ++i) {
+			Max[i] = revenues[0];
+		}
 		for (i = 0; i <= n-k; ++i) {
 			if (f[i]) {
 				for (j = k; j < 2*k && i+j <= n; ++j) {
@@ -180,6 +182,16 @@ public:
 			int Arr0[] = {5, -7, 3};
 			int Arg1 = 3;
 			double Arg2 = 0.3333333333333333;
+
+			vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+			verify_case(n, Arg2, findMaximum(Arg0, Arg1));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			int Arr0[] = {5, -7, 3};
+			int Arg1 = 2;
+			double Arg2 = 1.5;
 
 			vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
 			verify_case(n, Arg2, findMaximum(Arg0, Arg1));
