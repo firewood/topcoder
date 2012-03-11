@@ -29,6 +29,32 @@ using namespace std;
 const double Min = -999999999;
 
 class MergersDivTwo {
+#if 1
+
+public:
+	double findMaximum(vector <int> revenues, int k) {
+		sort(revenues.begin(), revenues.end());
+		int n = revenues.size();
+		int f[64] = {0};
+		double Max[64];
+		int i, j;
+		f[0] = 1;
+		Max[0] = revenues[0];
+		for (i = 0; i <= n-k; ++i) {
+			if (f[i]) {
+				for (j = k; j < 2*k && i+j <= n; ++j) {
+					double sum = Max[i];
+					sum += accumulate(revenues.begin() + i + 1, revenues.begin() + i + j, 0);
+					f[i+j-1] = 1;
+					Max[i+j-1] = max(Max[i+j-1], sum/j);
+				}
+			}
+		}
+		return Max[n-1];
+	}
+
+#else
+
 	int n;
 	int k;
 	double sum[64];
@@ -69,6 +95,8 @@ public:
 		}
 		return res;
 	}
+
+#endif
 
 // BEGIN CUT HERE
 private:
