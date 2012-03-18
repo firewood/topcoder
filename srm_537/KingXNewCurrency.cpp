@@ -1,6 +1,6 @@
 ﻿// BEGIN CUT HERE
 /*
-// SRM 537 Div1 Easy (250)
+// SRM 537 Div1 Easy (275)
 
 問題
 アヒルの国の通貨は価値Aと価値Bの二種類ある。
@@ -20,13 +20,6 @@
 #include <sstream>
 
 using namespace std;
-
-typedef long long LL;
-typedef vector<int> IntVec;
-typedef vector<LL> LLVec;
-typedef vector<string> StrVec;
-typedef set<int> IntSet;
-typedef set<LL> LLSet;
 
 class KingXNewCurrency {
 
