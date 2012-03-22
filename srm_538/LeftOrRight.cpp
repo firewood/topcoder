@@ -26,30 +26,28 @@ class LeftOrRight {
 
 public:
 	int maxDistance(string program) {
-		int res = 0;
-		int R[64] = {0};
-		int L[64] = {0};
+		int L = 0, R = 0;
 		int i;
-		int rm = 0, lm = 0;
+		int Max = 0;
 		for (i = 0; i < (int)program.length(); ++i) {
 			switch (program[i]) {
-			case 'R':
-				R[i+1] = R[i] - 1;
-				L[i+1] = L[i] - 1;
-				break;
 			case 'L':
-				R[i+1] = R[i] + 1;
-				L[i+1] = L[i] + 1;
+				--R;
+				--L;
+				break;
+			case 'R':
+				++R;
+				++L;
 				break;
 			default:
-				R[i+1] = R[i] - 1;
-				L[i+1] = L[i] + 1;
+				--L;
+				++R;
 				break;
 			}
-			rm = min(rm, R[i+1]);
-			lm = max(lm, L[i+1]);
+			Max = max(Max, -L);
+			Max = max(Max, R);
 		}
-		return max(-rm, lm);
+		return Max;
 	}
 
 // BEGIN CUT HERE
