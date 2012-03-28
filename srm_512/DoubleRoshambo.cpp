@@ -1,85 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 512 Div2 Hard (1024)
 
-// PROBLEM STATEMENT
-// Ash and Elsh invented a new variant of the game Rock-Paper-Scissors called
-DoubleRoshambo. In the normal game, each of the two players change their
-right hand into one of these gestures: rock, paper, or scissors.
-Rock beats scissors; scissors beat paper; paper beats rock. For example,
-if Ash plays rock and Elsh plays paper, then Elsh wins.
-
-In DoubleRoshambo, each player uses both hands. Each hand may play different
-gestures. A player scores:
-
-2 points, if his right hand beats his opponent's right hand, and his left
-hand beats his opponent's left hand.
-1 point, if his right hand beats his opponent's right hand, and his left
-hand plays the same gesture as his opponent's left hand.
-0 points, in all other cases.
-
-Ash and Elsh played DoubleRoshambo several rounds. You are given
-two vector <string>s A and E, representing the gestures that Ash and Elsh
-played, respectively. Each element of A and E will contain two characters.
-The first character is for their left hand and the second character is for
-their right hand. For each hand, the character will be one of 'R', 'P', or 'S',
-representing rock, paper, or scissors, respectively.
-
-However, the gestures are given in no specific order. Return the maximum
-points Ash could have possibly scored.
-
-DEFINITION
-Class:DoubleRoshambo
-Method:maxScore
-Parameters:vector <string>, vector <string>
-Returns:int
-Method signature:int maxScore(vector <string> A, vector <string> E)
-
-
-CONSTRAINTS
--A and E will both contain the same number of elements, between 1 and 50, inclusive.
--Each element of both A and E will contain exactly 2 characters.
--Each character in both A and E will be one of 'R', 'P', or 'S'.
-
-
-EXAMPLES
-
-0)
-{"RR"}
-{"SS"}
-
-Returns: 2
-
-They played one round. Ash played RR while Elsh played SS, so Ash scored 2 points.
-
-
-1)
-{"SR", "PP"}
-{"PR", "RS"}
-
-Returns: 1
-
-They might have played like this:
-
-Ash played SR and Elsh played RS, so Ash scored 0 points.
-Ash played PP and Elsh played PR, so Ash scored 1 point.
-
-
-In total, Ash scored 1 point.
-
-
-2)
-{"PP", "PP", "PP", "PP"}
-{"RR", "PR", "SS", "SP"}
-
-Returns: 3
-
-
-3)
-{"PS", "RS", "PP", "SP", "RR", "SS", "SP"}
-{"RP", "SP", "RR", "SR", "RS", "SP", "SS"}
-
-Returns: 10
+問題
+AshとElshがダブルじゃんけんをする。
+ダブルじゃんけんでは右手と左手の両方でじゃんけんをする。
+右手も左手も勝った場合は2点、右手が勝って左手があいこなら1点、その他は0点である。
+順不同でAshとElshの手が与えられるとき、手を並べ替えて、Ashの最高得点を求める。
 
 */
 // END CUT HERE
