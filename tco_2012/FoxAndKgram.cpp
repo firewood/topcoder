@@ -1,92 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // TCO12 Round 1B Easy (250)
 
-// PROBLEM STATEMENT
-// Fox Ciel has some pencils.
-Before she'll start writing her homework, she wants to place them into
-a mystic pattern for fun.
-Different pencils she has may have different lengths.
-You are given a vector <int> len. For each i, the length of i-th pencil is len[i]
-
-The pattern she wants to create is called a k-gram.
-A k-gram is a pattern consisting of k rows, each of length k.
-There are only two types of valid rows:
-
-Yang: A row containing a single pencil of length k.
-Yin: A row containing two pencils such that the sum of their lengths is (k-1).
-The pencils will be separated by a space of length 1.
-
-Compute and return the largest positive integer k such that Fox Ciel
-can use some of her pencils to form a k-gram.
-If she is unable to form any k-grams, return 0 instead.
-
-
-DEFINITION
-Class:FoxAndKgram
-Method:maxK
-Parameters:vector <int>
-Returns:int
-Method signature:int maxK(vector <int> len)
-
-
-CONSTRAINTS
--len will contain between 1 and 50 elements, inclusive.
--Each element in len will be between 1 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,1,1,1,3}
-
-Returns: 3
-
-All pencils can be used to form a 3-gram. One valid 3-gram follows:
-
-- -
----
-- -
-
-
-1)
-{2,2,1,3,5,5,5}
-
-Returns: 5
-
-One of the valid 5-grams:
-
------
--- --
-- ---
------
------
-
-
-2)
-{1}
-
-Returns: 1
-
-
-3)
-{2,2,2,2,2,2,2,2,2,2}
-
-Returns: 5
-
-
-4)
-{1,2,3,1,2,4,2,3,1}
-
-Returns: 4
-
-Note that it is not necessary to use all of the pencils.
-
-
-5)
-{2,3,5,7,11,13,17,19,23,29}
-
-Returns: 0
+問題
+何本かの鉛筆がある。
+1本が長さk、または、2本でk-1の長さとなる鉛筆をk段並べたものをk-gramと呼ぶ。
+与えられた鉛筆の組み合わせで可能な最大のk-gramを求める。
 
 */
 // END CUT HERE

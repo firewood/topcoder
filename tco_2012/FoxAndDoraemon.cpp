@@ -1,113 +1,15 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // TCO12 Round 1B Medium (500)
 
-// PROBLEM STATEMENT
-// Fox Ciel has lots of homework to do.
-The homework consists of some mutually independent tasks. Different
-tasks may take different amounts of time to complete.
-You are given a vector <int> workCost. For each i, the i-th task
-takes workCost[i] seconds to complete.
-She would like to attend a party and meet her friends, thus she wants
-to finish all tasks as quickly as possible.
-
-The main problem is that all foxes, including Ciel, really hate doing homework.
-Each fox is only willing to do one of the tasks.
-Luckily, Doraemon, a robotic cat from the 22nd century, gave Fox Ciel a split hammer:
-a magic gadget which can split any fox into two foxes.
-
-You are given an int splitCost.
-Using the split hammer on a fox is instantaneous.
-Once a hammer is used on a fox, the fox starts to split.
-After splitCost seconds she will turn into two foxes -- the original fox and
-another completely new fox.
-While a fox is splitting, it is not allowed to use the hammer on her again.
-
-The work on a task cannot be interrupted: once a fox starts working on a task,
-she must finish it.
-It is not allowed for multiple foxes to cooperate on the same task.
-A fox cannot work on a task while she is being split using the hammer.
-It is possible to split the same fox multiple times.
-It is possible to split a fox both before and after she solves one of the tasks.
-
-Compute and return the smallest amount of time in which the foxes can solve all the tasks.
-
-
-DEFINITION
-Class:FoxAndDoraemon
-Method:minTime
-Parameters:vector <int>, int
-Returns:int
-Method signature:int minTime(vector <int> workCost, int splitCost)
-
-
-CONSTRAINTS
--workCost will contain between 1 and 50 elements, inclusive.
--Each element in workCost will be between 1 and 3,600, inclusive.
--splitCost will be between 1 and 3,600, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,2}
-1000
-
-Returns: 1002
-
-Fox Ciel is only willing to do one task. She is given two tasks, therefore she must split once. 
-The optimal strategy is to use the split hammer immediately.
-After 1000 seconds we have two foxes. 
-Each of them will do one of the tasks in parallel.
-
-
-1)
-{3,6,9,12}
-1000
-
-Returns: 2012
-
-
-2)
-{1000,100,10,1}
-1
-
-Returns: 1001
-
-One optimal solution:
-
-We start with a single fox A.
-Immediatelly, we use the split hammer.
-In 1 second we will have foxes A and B.
-Fox A will start working on task 0.
-At the same time, fox B will start working on task 1.
-Fox B will be done 101 seconds from the start.
-As she already solved a task, we need more foxes to do tasks 2 and 3.
-Therefore we use the split hammer on B.
-At 102 seconds from the start we will get a new fox C and let her solve task 2.
-We use the split hammer on B again.
-At 103 seconds from the start we will get a new fox D and let her solve task 3.
-
-
-3)
-{1712,1911,1703,1610,1697,1612}
-100
-
-Returns: 2012
-
-
-4)
-{3000,3000,3000,3000,3000,3000,3000,3000,3000,3000}
-3000
-
-Returns: 15000
-
-
-5)
-{58}
-3600
-
-Returns: 58
+問題
+のび太くんは夏休みの宿題がたまっているが、一つこなすのがやっとである。
+そんなのび太くんにドラえもんが分裂ハンマーを出してくれた。
+分裂ハンマーを使うとのび太くんは二人になる。
+それぞれののび太くんは最大でも一つしか宿題をこなさないが、
+分裂したのび太くんも分裂ハンマーを使うことができる。
+分裂ハンマーの準備時間と宿題の処理時間が与えられる。
+宿題が終わる最短時間を求める。
 
 */
 // END CUT HERE
