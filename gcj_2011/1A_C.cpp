@@ -156,12 +156,12 @@ ostream &operator <<(ostream &s, const Card &c) {
 	return s << c.c << "," << c.s << "," << c.t;
 }
 
-int sum_c0(const CardQueue &c0, int turns) {
-	CardQueue q = c0;
+// pass by value
+int sum_c0(CardQueue c0, int turns) {
 	int score = 0;
-	while (--turns >= 0 && !q.empty()) {
-		score += q.top().s;
-		q.pop();
+	while (--turns >= 0 && !c0.empty()) {
+		score += c0.top().s;
+		c0.pop();
 	}
 	return score;
 }
