@@ -1,74 +1,13 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 541 Div2 Easy (250)
 
-// PROBLEM STATEMENT
-// 
-Consider the following function:
-f(X) = Waai + X + Akari + X + Daisuki
-Here, X is a string and + denotes string concatenation.
-Waai, Akari and Daisuki are constant non-empty strings.
-
-You are given a string S.
-Compute and return the number of different tuples (Waai,Akari,Daisuki,X) such that f(X) equals S.
-
-
-DEFINITION
-Class:AkariDaisukiDiv2
-Method:countTuples
-Parameters:string
-Returns:int
-Method signature:int countTuples(string S)
-
-
-NOTES
--Two tuples (A,B,C,D) and (E,F,G,H) are considered equal if and only if A=E, B=F, C=G, and D=H.
-
-
-CONSTRAINTS
--S will contain between 1 and 50 characters, inclusive.
--Each character of S will be a lowercase letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"topcoderdivtwo"
-
-Returns: 2
-
-The possible tuples of (Waai, Akari, Daisuki, X) are the following ones:
-
-("t", "pc", "derdivtwo", "o")
-("topco", "er", "ivtwo", "d")
-
-("topc", "derdivtw", "", "o") is not allowed since Daisuki is empty.
-
-
-1)
-"foxciel"
-
-Returns: 0
-
-The answer can be zero.
-
-
-2)
-"magicalgirl"
-
-Returns: 4
-
-
-3)
-"waaiusushioakariusushiodaisuki"
-
-Returns: 75
-
-
-4)
-"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-
-Returns: 8924
+問題
+以下のような形式に文字列を分解するあかり関数f(X)を考える。
+「わーい ○○ あかり ○○ 大好き」
+ここで「わーい」「○○」「あかり」「大好き」は、それぞれ1文字以上の文字列である。
+「○○」には同じ文字列が入る。
+与えられた文字列に対して、あかり関数を満たすのは何通りか求める。
 
 */
 // END CUT HERE
