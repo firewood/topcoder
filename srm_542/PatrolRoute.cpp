@@ -1,93 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 542 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// There are exactly X*Y places in the Planar Kingdom: For each pair of integers
-(x, y) such that 0 <= x < X and 0 <= y < Y there is a place with coordinates (x, y).
-When a citizen of the kingdom wants to move from (x1, y1) to (x2, y2), the required
-time is |x1 - x2| + |y1 - y2| (where |t| denotes the absolute value of t).
-
-In order to improve stability in the kingdom, the police wants to introduce a
-specific patrol route. The route will contain exactly three places A, B, and C.
-A policeman will visit these three places and verify that everything is as it should be.
-The three places that determine a valid route must satisfy the following criteria::
-
-x-coordinates of A, B and C are pairwise distinct.
-y-coordinates of A, B and C are pairwise distinct.
-Let T be the total time required to follow along the route: first from A to B, then
-from B to C and finally from C back to A. T must be between minT and maxT, inclusive.
-
-You are given the ints X, Y, minT, and maxT. Return the number of different
-patrol routes that satisfy these criteria, modulo 1,000,000,007. Two routes are
-considered to be different if there is a place that belongs to one of them, but
-does not belong to the other one.
-
-DEFINITION
-Class:PatrolRoute
-Method:countRoutes
-Parameters:int, int, int, int
-Returns:int
-Method signature:int countRoutes(int X, int Y, int minT, int maxT)
-
-
-CONSTRAINTS
--X and Y will each be between 3 and 4,000, inclusive.
--minT will be between 1 and 20,000, inclusive.
--maxT will be between minT and 20,000, inclusive.
-
-
-EXAMPLES
-
-0)
-3
-3
-1
-20000
-
-Returns: 6
-
-The time requirement is very flexible in this case. There are 6 patrol routes where both x and y coordinates of places are pairwise distinct.
-
-
-1)
-3
-3
-4
-7
-
-Returns: 0
-
-The time of 7 is too small for any patrol route.
-
-
-2)
-4
-6
-9
-12
-
-Returns: 264
-
-
-3)
-7
-5
-13
-18
-
-Returns: 1212
-
-
-4)
-4000
-4000
-4000
-14000
-
-Returns: 859690013
-
-Don't forget about the modulo!
+問題
+X*Yの大きさの空間がある。
+x座標とy座標がそれぞれ異なる任意の3点を選ぶ。
+それらをユークリッド距離が最短かつループするように結ぶ。
+最短距離minTと最大距離maxTが与えられるとき、3点の選び方が何通りあるか求める。
 
 */
 // END CUT HERE

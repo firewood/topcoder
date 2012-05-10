@@ -1,107 +1,15 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 542 Div2 Easy (250)
 
-// PROBLEM STATEMENT
-// N rabbits (numbered 0 through N - 1) are going to work together at the new TopCoder office in Rabbitland. 
-
-Each pair of rabbits will make a certain profit when they work together. 
-The efficiency of the group of rabbits is defined as follows: 
-Let P be the sum of profits from all pairs of rabbits, and Q be the number of pairs of rabbits. 
-Then the efficiency is the real number P / Q. 
-
-You are given a vector <string> profit, 
-the j-th character of the i-th element of which represents the profit from the fact that rabbits i and j work together. 
-The characters '0', '1', ..., '9' represent the values 0, 1, ..., 9, respectively. 
-Compute and return the efficiency of this TopCoder office. 
-
-
-DEFINITION
-Class:WorkingRabbits
-Method:getEfficiency
-Parameters:vector <string>
-Returns:double
-Method signature:double getEfficiency(vector <string> profit)
-
-
-NOTES
--The returned value must have an absolute or relative error less than 1e-9. 
-
-
-CONSTRAINTS
--profit will contain between 2 and 50 elements, inclusive. 
--Each element of profit will contain exactly N characters, where N is the number of elements in profit. 
--Each character in each element of profit will be a digit ('0' - '9'). 
--For each index i and j, the i-th character of the j-th element of profit will be equal to the j-th character of the i-th element of profit. 
--For each index i, the i-th character of the i-th element of profit will be '0'. 
-
-
-EXAMPLES
-
-0)
-{ "071", 
-  "702", 
-  "120" }
-
-
-Returns: 3.3333333333333335
-
-There are three pairs of rabbits: 
-
-	rabbit 0 and rabbit 1 (profit 7)
-	rabbit 0 and rabbit 2 (profit 1)
-	rabbit 1 and rabbit 2 (profit 2)
-
-So P = 7 + 1 + 2, Q = 3, and the efficiency is P / Q = 10/3. 
-
-
-1)
-{ "00", 
-  "00" }
-
-
-Returns: 0.0
-
-
-2)
-{ "0999", 
-  "9099", 
-  "9909", 
-  "9990" }
-
-Returns: 9.0
-
-
-3)
-{ "013040", 
-  "100010", 
-  "300060", 
-  "000008", 
-  "416000", 
-  "000800" }
-
-Returns: 1.5333333333333334
-
-
-4)
-{ "06390061", 
-  "60960062", 
-  "39090270", 
-  "96900262", 
-  "00000212", 
-  "00222026", 
-  "66761201", 
-  "12022610" }
-
-Returns: 3.2142857142857144
+問題
+N匹のうさぎがいる。
+うさぎの生産性は、別のうさぎとの仕事の総和の平均である。
+全うさぎの個々の仕事量が与えられる。
+うさぎの生産性を求める。
 
 */
 // END CUT HERE
-#include <cmath>
-#include <algorithm>
-#include <list>
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 #include <iostream>
