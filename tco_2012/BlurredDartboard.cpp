@@ -1,86 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // TCO 2012 R2B Easy (300)
 
-// PROBLEM STATEMENT
-Wojtek and Tomek are playing darts. Unfortunately the dartboard is blurred
-and Wojtek can't read some of the numbers written on it. On the other hand,
-Tomek remembers the numbers written on the dartboard.
-
-The dartboard is divided into N parts. Wojtek knows that for each integer x
-between 1 and N, inclusive, there is exactly one part that is worth x points.
-You are given a vector <int> points containing N integers. If points[i] is
-positive, the i-th part is worth points[i] points. If points[i] is zero,
-he can't read the number that indicates the point value of the i-th part.
-
-Wojtek and Tomek will play the following game. First, Wojtek throws K darts.
-Wojtek is perfectly skilled at darts, so he will certainly hit the parts he
-wants to hit. He is allowed to hit the same part with multiple darts. After
-Wojtek throws all the darts, Tomek calculates Wojtek's total score. The total
-score is simply the sum of the points hit by each of the darts. (Note that
-each part of the dartboard may be counted multiple times if Wojtek hits it
-with multiple darts.) If the total score is at least P points, Wojtek wins.
-Otherwise, Tomek wins.
-
-You are given the vector <int> points and the int P. Return the smallest K
-such that Wojtek is guaranteed to win the game if he follows the optimal
-strategy when throwing the darts.
-
-DEFINITION
-Class:BlurredDartboard
-Method:minThrows
-Parameters:vector <int>, int
-Returns:int
-Method signature:int minThrows(vector <int> points, int P)
-
-
-CONSTRAINTS
--points will contain between 1 and 50 elements, inclusive.
--Each element of points will be between 0 and N, inclusive, where N is the
- number of elements in points.
--Each of the integers from 1 to N, inclusive, will appear at most once in points.
--P will be between 1 and 1,000,000,000 (109), inclusive.
-
-
-EXAMPLES
-
-0)
-{0, 3, 4, 0, 0}
-8
-
-Returns: 2
-
-Wojtek should hit part 2 twice. He will get 8 points.
-
-
-1)
-{0, 0, 0, 0, 0}
-15
-
-Returns: 5
-
-Wojtek should hit each part exactly once. He doesn't know the point values, but the total score will be always 15.
-
-
-2)
-{4, 7, 8, 1, 3, 2, 6, 5}
-2012
-
-Returns: 252
-
-
-3)
-{0, 0, 5, 0, 0, 0, 1, 3, 0, 0}
-2012
-
-Returns: 307
-
-
-4)
-{0, 2, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 6, 0, 0, 0, 4, 0, 0, 0}
-1000000000
-
-Returns: 84656087
+問題
+N分割されていて、それぞれ1～N点のダーツ盤がある。
+一部の文字盤は汚れていて数値が読めない。
+正確にどれでも当てられるとして、最低P点以上にできる回数を求める。
 
 */
 // END CUT HERE
