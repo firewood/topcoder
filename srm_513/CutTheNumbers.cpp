@@ -25,13 +25,13 @@ using namespace std;
 typedef vector<string> StrVec;
 
 class CutTheNumbers {
-	static int find_first_set_bit(unsigned int b) {
+	static int find_first_set_bit_32(unsigned int b) {
 #ifdef __GNUC__
 		return __builtin_ctz(b);	// undefined for zero
 #elif _MSC_VER >= 1400
 		unsigned long r; _BitScanForward(&r, b); return r;
 #else
-		unsigned int i = 0; while ((1<<i) & b) ++i; return i;
+		unsigned int i = 0; while (!((1<<i) & b)) ++i; return i;
 #endif
 	}
 
@@ -46,7 +46,7 @@ class CutTheNumbers {
 			res = 0;
 
 			// find position
-			int pos = find_first_set_bit(b);
+			int pos = find_first_set_bit_32(b);
 			int x = pos & 3;
 			int y = pos / 4;
 
