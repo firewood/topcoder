@@ -31,7 +31,7 @@ class StrIIRec {
 	int MaxChar;
 	char work[32];
 
-	int calc() {
+	int eval() {
 		int c = 0;
 		int i, j;
 		for (i = 0; i < N; ++i) {
@@ -42,75 +42,71 @@ class StrIIRec {
 		return c;
 	}
 
-	string solve(int fixed_length) {
-		char fixed_chars[128] = {};
-		int i, j, k, l;
+	// fill remainder with largest sequences
+	int fill(int fixed_length) {
+		int i, j;
+		char used[128] = {};
 		for (i = 0; i < fixed_length; ++i) {
-			fixed_chars[work[i]] = 1;
+			used[work[i]] = 1;
 		}
 		for (i = fixed_length; i < N; ++i) {
-			for (j = 'a'; j <= MaxChar; ++j) {
-				if (fixed_chars[j]) {
-					continue;
-				}
-				char used[128];
-				memcpy(used, fixed_chars, sizeof(used));
-				work[i] = j;
-				used[j] = 1;
-				for (k = i+1; k < N; ++k) {
-					for (l = MaxChar; l >= 'a'; --l) {
-						if (!used[l]) {
-							break;
-						}
-					}
-					work[k] = l;
-					used[l] = 1;
-				}
-				int c = calc();
-				if (c == MinInv) {
-					return work;
-				}
-				if (c >= MinInv) {
+			for (j = MaxChar; j >= 'a'; --j) {
+				if (!used[j]) {
 					break;
 				}
 			}
-			fixed_chars[j] = 1;
+			work[i] = j;
+			used[j] = 1;
 		}
-		return work;
+		return eval();
 	}
 
 public:
 	string recovstr(int n, int minInv, string minStr) {
+
 		N = n;
 		MinInv = minInv;
 		MaxChar = 'a' + n - 1;
 		memset(work, 0, sizeof(work));
 		strcpy(work, minStr.c_str());
 		int MinLen = minStr.length();
-		int i, j, k, l;
+		int i, j, score;
 		for (i = MinLen; i > 0; --i) {
 			for (j = minStr[i-1]; j <= MaxChar; ++j) {
 				work[i-1] = j;
-				char used[128] = {};
-				for (l = 0; l < i; ++l) {
-					used[work[l]] = 1;
+				score = fill(i);
+				if (score < minInv) {
+					continue;
 				}
-				for (k = i; k < n; ++k) {
-					for (l = MaxChar; l >= 'a'; --l) {
-						if (!used[l]) {
-							break;
-						}
-					}
-					work[k] = l;
-					used[l] = 1;
-				}
-				int c = calc();
-				if (c == minInv) {
+				if (score == minInv) {
 					return work;
 				}
-				if (c >= minInv) {
-					return solve(i);
+				// Because the score is greater than minInv, the answer
+				// must be found with current prefix.
+				// And, current string may be lexicographically greater
+				// than the answer.
+				char used[128] = {};
+				for (j = 0; j < i; ++j) {
+					used[work[j]] = 1;
 				}
+				for (; i < N; ++i) {
+					for (j = 'a'; j <= MaxChar; ++j) {
+						if (used[j]) {
+							continue;
+						}
+						work[i] = j;
+						used[j] = 1;
+						score = fill(i+1);
+						if (score == minInv) {
+							return work;
+						}
+						if (score >= minInv) {
+							break;
+						}
+						used[j] = 0;
+					}
+				}
+				return work;
 			}
 		}
 		return "";
