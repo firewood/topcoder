@@ -1,111 +1,13 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 514 Div2 Hard (1000)
 
-// PROBLEM STATEMENT
-// Magical Girls are girls who have magical powers. They fight against
-evil witches to protect the Earth.
-
-You, one of the Magical Girls, are now fighting against an evil witch.
-You want to use ultimate magic to defeat the witch. To use ultimate magic
-you have to chant a magical spell. The spell is determined with a sequence A.
-
-A is the sequence of strings which is determined with a sequence first.
-Each element of first is a string which contains only '0' and '1'. Let K
-be the number of elements in first. Each element of A is defined as follows:
-
-for all i, 0 <= i < K, A[i] = first[i].
-Otherwise, A[i] = A[i-1] + A[i-K-1] + A[i-2K-1] + ... (while i-m*K-1 is not
-less than 0). Here operator '+' denotes concatenation of strings.
-
-You are given three integers n, lo and hi. Let S be the substring of A[n]
-from lo to hi, inclusive. That is, S = A[n][lo..hi] where both lo and hi are
-0-based indices into A[n]. The spell you have to chant is S and the power
-of the magic is equal to the number of '1's in S. Return the power of the
-ultimate magic.
-
-
-DEFINITION
-Class:MagicalGirlLevelThreeDivTwo
-Method:theCount
-Parameters:vector <string>, int, long long, long long
-Returns:int
-Method signature:int theCount(vector <string> first, int n, long long lo, long long hi)
-
-
-CONSTRAINTS
--first will contain between 1 and 50 elements, inclusive.
--Each element of first will contain between 1 and 50 characters, inclusive.
--Each element of first will consist of '0' (zero) and '1' (one).
--n will be between 0 and 100, inclusive.
--hi will be between 0 and min{1,000,000,000,000,000 (10^15), (length of A[n])-1}, inclusive.
--lo will be between 0 and hi, inclusive.
--hi-lo will be at most 1,000.
-
-
-EXAMPLES
-
-0)
-{"101", "01"}
-4
-2
-5
-
-Returns: 2
-
-A[2] = "01", A[3] = "01101", A[4] = "0110101"
-S = A[4][2..5] = "1010"
-
-
-1)
-{"01", "10"}
-5
-4
-5
-
-Returns: 1
-
-A[2] = "10", A[3] = "1001", A[4] = "100110", A[5] = "1001101001"
-S = A[5][4..5] = "10"
-
-
-2)
-{"1", "11", "111"}
-46
-10000
-11000
-
-Returns: 1001
-
-
-3)
-{"0", "00", "000"}
-46
-10000
-11000
-
-Returns: 0
-
-
-4)
-{"00110110101101001111101101001011010011111011010010"}
-100
-999999999999915
-1000000000000000
-
-Returns: 50
-
-
-5)
-{"10000", "011011001011000001101000010100000111000110110", 
-"000001010001011000001101110", "100100000110100001010000", 
-"011011010", "01100000010101101110000011100011001000",
-"0001010", "010011000", "000101001", "00", "1"}
-91
-123456
-123654
-
-Returns: 76
+問題
+-魔法少女が、悪い魔女を倒すために応用呪文を唱えようとしている
+-応用呪文はK個の基本呪文の組み合わせからなる
+-応用呪文A[i]は、A[i-1] + A[i-K-1] + A[i-2*K-1] + ...という和である
+-呪文の強さは、呪文を唱える範囲のビットが立っている数の和である
+-応用呪文A[n][lo..hi]の強さSを求める
 
 */
 // END CUT HERE
