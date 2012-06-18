@@ -1,100 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 546 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// 
-Let X be a nonnegative integer.
-The Kleofas tail of X is an infinite sequence of nonnegative integers, defined as follows:
-
-
-The first element is X.
-After an even element Y, the next element of the sequence is Y/2.
-After an odd element Z, the next element of the sequence is Z-1.
-
-
-For example, the Kleofas tail of 60 starts as follows: 60, 30, 15, 14, 7, 6, ...
-
-
-You are given long longs K, A, and B.
-Return the number of integers X between A and B, inclusive, such that the Kleofas tail of X contains at least one occurrence of K.
-
-
-DEFINITION
-Class:KleofasTail
-Method:countGoodSequences
-Parameters:long long, long long, long long
-Returns:long long
-Method signature:long long countGoodSequences(long long K, long long A, long long B)
-
-
-NOTES
--Zero is an even number.
-
-
-CONSTRAINTS
--K will be between 0 and 10^18, inclusive.
--A will be between 0 and 10^18, inclusive.
--B will be between 0 and 10^18, inclusive.
--A will be less than or equal to B.
-
-
-EXAMPLES
-
-0)
-3
-4
-8
-
-Returns: 2
-
-The value 3 occurs in the Kleofas tail of 6 and also in the Kleofas tail of 7.
-
-
-1)
-1
-23457
-123456
-
-Returns: 100000
-
-For each X between 23457 and 123456, inclusive, the Kleofas tail of X contains the value 1.
-
-
-2)
-1234567890123456
-10
-1000000
-
-Returns: 0
-
-Each Kleofas tail is a nonincreasing sequence.
-
-
-3)
-0
-0
-2
-
-Returns: 3
-
-
-4)
-2
-3
-3
-
-Returns: 1
-
-The Kleofas tail of 3 is 3, 2, 1, 0, 0, 0, ...
-
-
-5)
-13
-12345
-67890123
-
-Returns: 8387584
+問題
+ある数値を、偶数なら1/2、奇数なら-1していく。
+範囲AからBまでの数Xについてその操作を行う。
+一度でも数Kが出現するXの総数を求める。
 
 */
 // END CUT HERE
