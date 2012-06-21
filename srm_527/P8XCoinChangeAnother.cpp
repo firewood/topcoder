@@ -1,84 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 527 Div2 Hard (950)
 
-// PROBLEM STATEMENT
-// The Exponential kingdom has N types of coins. For each i from 0 to N-1,
-inclusive, there is a coin type worth 2^i (two to the power of i).
-For example, if N=3  then the coin values would be 2^0, 2^1, and 2^2.
-
-You are given the int N and two long longs coins_sum and coins_count.
-Your task is to find a set of coins with two properties: First, it must
-contain exactly coins_count coins. Second, the sum of coins it contains
-must be exactly equal to coins_sum. Your method must return the solution
-as a vector<long long> containing exactly N elements. The i-th element of
-the return value must be the number of coins worth 2^i in your set.
-If there are multiple solutions, return the lexicographically smallest one.
-If there is no set that satisfies both properties, return an empty
-vector<long long> instead.
-
-
-DEFINITION
-Class:P8XCoinChangeAnother
-Method:solve
-Parameters:int, long long, long long
-Returns:vector<long long>
-Method signature:vector<long long> solve(int N, long long coins_sum, long long coins_count)
-
-
-NOTES
--Given two different vector<long long>s A and B of equal length, let i be
- the smallest index such that A[i] and B[i] differ. If A[i] &lt B[i],
- we say that A is lexicographically smaller than B, and vice versa.
-
-
-CONSTRAINTS
--N will be between 1 and 60, inclusive.
--coins_sum and coins_count will each be between 1 and 10^18, inclusive.
-
-
-EXAMPLES
-
-0)
-2
-4
-3
-
-Returns: {2, 1 }
-
-We have N=2, which means that we can use coins worth 2^0 and coins worth 2^1.
-We are looking for a set of 3 coins worth 4 in total. There is a unique solution:
-use 2 coins worth 2^0 and 1 coin worth 2^1.
-
-
-1)
-3
-6
-3
-
-Returns: {0, 3, 0 }
-
-We have N=3, which means that we can use coins worth 2^0, 2^1, and 2^2.
-We are looking for a set of 3 coins worth 6 in total. There are two possible
-solutions: 2 coins of type 0 and 1 coin of type 2, or 3 coins of type 1.
-Since the latter is lexicographically smaller than the former, your method
-should return the latter.
-
-
-2)
-2
-8
-1
-
-Returns: { }
-
-
-3)
-1
-10000000000
-10000000000
-
-Returns: {10000000000 }
+問題
+貨幣価値が2の累乗になっているN種類の硬貨がある。
+ちょうどcoins_count枚の硬貨で、合計をcoins_sumをにしたい。
+辞書順最小の組み合わせを求める。
 
 */
 // END CUT HERE
@@ -94,9 +21,7 @@ Returns: {10000000000 }
 using namespace std;
 
 typedef long long LL;
-typedef vector<int> IntVec;
 typedef vector<LL> LLVec;
-typedef vector<string> StrVec;
 
 class P8XCoinChangeAnother {
 
