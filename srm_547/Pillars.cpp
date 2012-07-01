@@ -1,77 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 547 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// On a horizontal line, there are two vertical pillars.
-The distance between their bottoms is w.
-The height of the first pillar is an integer, chosen uniformly at random
-in the range 1 through x, inclusive.
-The height of the second pillar is an integer, chosen uniformly at random
-in the range 1 through y, inclusive.
-The tops of both pillars will be connected by a straight piece of rope.
-
-You are given the ints w, x, and y.
-Compute and return the expected length of the rope.
-
-
-DEFINITION
-Class:Pillars
-Method:getExpectedLength
-Parameters:int, int, int
-Returns:double
-Method signature:double getExpectedLength(int w, int x, int y)
-
-
-NOTES
--Your return value must have a relative or an absolute error of less than 1e-9.
--In this task, the expected rope length can be computed as the average rope length over all possible cases.
-
-
-CONSTRAINTS
--w will be between 1 and 1000, inclusive.
--x will be between 1 and 100,000, inclusive.
--y will be between 1 and 100,000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-1
-1
-
-Returns: 1.0
-
-The rope always has a length of 1.
-
-
-1)
-1
-5
-1
-
-Returns: 2.387132965131785
-
-There are 5 possible (equiprobable) cases in which the length of the rope is
-1, sqrt(2), sqrt(5), sqrt(10) and sqrt(17). The correct answer is the
-arithmetic average of these 5 numbers.
-
-
-2)
-2
-3
-15
-
-Returns: 6.737191281760445
-
-
-3)
-10
-15
-23
-
-Returns: 12.988608956320535
+問題
+-2本の柱があり、柱間の距離はwである。
+-それぞれの柱の高さは、1からx、および、1からyのいずれかである。
+-柱の上端をまっすぐなロープで結ぶとき、ロープの長さの期待値を求める。
 
 */
 // END CUT HERE
