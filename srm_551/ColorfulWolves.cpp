@@ -1,6 +1,6 @@
 ﻿// BEGIN CUT HERE
 /*
-// SRM 551 Div1 Medium (500)
+// SRM 551 Div1 Medium (450)
 
 問題
 毎晩色が変化する狼がいる。
