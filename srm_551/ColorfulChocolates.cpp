@@ -1,84 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 551 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// Beaver Bindu has some chocolates arranged in a row.
-The wrapping of each chocolate has a single color.
-Multiple chocolates can share the same color.
-In this problem, each of the possible colors is represented by an uppercase letter.
-You are given a string chocolates.
-For each i, the i-th chocolate (0-based index) in the row has the color chocolates[i].
-
-The spread of a row of chocolates is the maximum number of adjacent chocolates
-that all share the same color.
-Formally, the spread can be defined as the maximum value of (j-i+1),
-where i <= j and all the chocolates in the positions between i and j,
-inclusive, have the same color.
-
-You are also given an int maxSwaps.
-Bindu can swap any two adjacent chocolates.
-She has decided to make at most maxSwaps such swaps.
-
-Return the maximum spread she can obtain.
-
-DEFINITION
-Class:ColorfulChocolates
-Method:maximumSpread
-Parameters:string, int
-Returns:int
-Method signature:int maximumSpread(string chocolates, int maxSwaps)
-
-CONSTRAINTS
--chocolates will contain between 1 and 50 characters, inclusive.
--Each character in chocolates will be an uppercase letter ('A'-'Z').
--maxSwaps will be between 1 and 2500, inclusive.
-
-
-EXAMPLES
-
-0)
-"ABCDCBC"
-1
-
-Returns: 2
-
-One optimal solution is to swap chocolates at positions 2 and 3, obtaining
-the row "ABDCCBC", which has spread 2.
-
-
-1)
-"ABCDCBC"
-2
-
-Returns: 3
-
-The only optimal solution is to produce the row "ABDCCCB".
-
-
-2)
-"ABBABABBA"
-3
-
-Returns: 4
-
-The row "ABBBBAABA" can be produced with 3 swaps.
-
-
-3)
-"ABBABABBA"
-4
-
-Returns: 5
-
-An optimal solution is to produce the row "AABBBBBAA".
-
-
-4)
-"QASOKZNHWNFODOQNHGQKGLIHTPJUVGKLHFZTGPDCEKSJYIWFOO"
-77
-
-Returns: 5
+問題
+何色かのチョコレートが横一列に並んでいる。
+交換して同じ色ができるだけ連続で並べたい。
+交換回数が与えられる。最大の連続数を求める。
 
 */
 // END CUT HERE
