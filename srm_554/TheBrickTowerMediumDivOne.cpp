@@ -114,6 +114,7 @@ public:
 				int cost = max(y.back().first, x[j].first);
 				if (cost < mincost) {
 					i = j;
+					mincost = cost;
 				}
 			}
 			y.push_back(x[i]);
@@ -181,10 +182,19 @@ public:
 		n++;
 
 
-		// test_case_3
 		if ((Case == -1) || (Case == n)){
 			int Arr0[] = {1};
 			int Arr1[] = {0};
+
+			vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
+			verify_case(n, Arg1, find(Arg0));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			int Arr0[] = {5,3,4,7,1,2,6};
+			int Arr1[] = {0,1,4,5,2,6,3};
 
 			vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
