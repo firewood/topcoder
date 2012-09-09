@@ -1,103 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 555 Div1 Medium (500)
 
-// PROBLEM STATEMENT
-// Fox Jiro has a rectangular grid with H rows and W columns
-(i.e., the grid has H*W cells in total).
-Initially, each cell in the grid contained the character '0'.
-
-A row flip is an operation in which Jiro picks a row of the grid, and
-in that row he changes all '0's to '1's and vice versa.
-Similarly, a column flip is an operation in which Jiro does the same to a column of the grid.
-Jiro took the grid that contained '0's everywhere.
-He performed a row flip Rcount times, and then a column flip Ccount times.
-(It is possible that Jiro flipped the same row or column multiple times.)
-At the end, Jiro noticed that there are exactly S '1's in the grid.
-
-You are given the ints H, W, Rcount, Ccount, and S.
-We are interested in the number of different ways in which Jiro could have
-flipped the rows and columns of the grid.
-Two ways of flipping are considered different if there is a row or a column
-that was flipped a different number of times.
-(That is, the order in which the rows and columns are flipped does not matter.)
-Return the number of different ways of flipping that match the given situation,
-modulo 555,555,555.
-
-
-DEFINITION
-Class:XorBoard
-Method:count
-Parameters:int, int, int, int, int
-Returns:int
-Method signature:int count(int H, int W, int Rcount, int Ccount, int S)
-
-
-CONSTRAINTS
--H will be between 1 and 1,555, inclusive.
--W will be between 1 and 1,555, inclusive.
--Rcount will be between 0 and 1,555, inclusive.
--Ccount will be between 0 and 1,555, inclusive.
--S will be between 0 and H*W, inclusive.
-
-
-EXAMPLES
-
-0)
-2
-2
-2
-2
-4
-
-Returns: 4
-
-In two of the four ways, Jiro flips each row once, and then the same column twice.
-In the other two ways he first flips the same row twice, and then each column once.
-
-
-1)
-2
-2
-0
-0
-1
-
-Returns: 0
-
-Without any flips, all cells still contain '0's, so S=1 is impossible.
-
-
-2)
-10
-20
-50
-40
-200
-
-Returns: 333759825
-
-Rcount and Ccount may be greater than H and W.
-
-
-3)
-1200
-1000
-800
-600
-4000
-
-Returns: 96859710
-
-
-4)
-555
-555
-555
-555
-5550
-
-Returns: 549361755
+問題
+0か1の状態を持つH×Wのセルがある。
+行または列の反転操作の回数と、1の個数Sが与えられる。
+何通りの操作があるか求める。
 
 */
 // END CUT HERE
@@ -150,7 +58,6 @@ public:
 		}
 		return res;
 	}
-
 
 // BEGIN CUT HERE
 private:
@@ -236,7 +143,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	XorBoard ___test;
-	___test.run_test(0);
 	___test.run_test(-1);
 	return 0;
 }

@@ -1,85 +1,10 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 555 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// We are in a distant future.
-After the downfall of mankind, the Earth is now ruled by fairies.
-The "Turing game Online" website is hot among fairies right now.
-On this website, everyone can play the programming puzzle "Turing game".
-
-Fairies love powers of 5, that is, the numbers 1, 5, 25, 125, 625, and so on.
-In the Turing game, the player is given a string of bits (zeros and ones).
-The ideal situation is when the string is represents a power of 5 in binary, with no leading zeros.
-If that is not the case, the fairy player tries to cut the given string into pieces, each piece being a binary representation of a power of 5, with no leading zeros.
-Of course, it may be the case that even this is impossible.
-In that case, the fairy player becomes depressed, and bad things happen when a fairy gets depressed.
-You, as one of the surviving humans, are in charge of checking the bit strings to prevent the bad things from happening.
-
-You are given a string S that consists of characters '0' and '1' only.
-S represents the string given to a player of the Turing game.
-Return the smallest positive integer K such that it is possible to cut S into K pieces, each of them being a power of 5.
-If there is no such K, return -1 instead.
-
-
-DEFINITION
-Class:CuttingBitString
-Method:getmin
-Parameters:string
-Returns:int
-Method signature:int getmin(string S)
-
-
-CONSTRAINTS
--S will contain between 1 and 50 characters, inclusive.
--Each character in S will be either '0' or '1'.
-
-
-EXAMPLES
-
-0)
-"101101101"
-
-Returns: 3
-
-We can split the given string into three "101"s.
-Note that "101" is 5 in binary.
-
-
-1)
-"1111101"
-
-Returns: 1
-
-"1111101" is 5^3.
-
-
-2)
-"00000"
-
-Returns: -1
-
-0 is not a power of 5.
-
-
-3)
-"110011011"
-
-Returns: 3
-
-Split it into "11001", "101" and "1".
-
-
-4)
-"1000101011"
-
-Returns: -1
-
-
-5)
-"111011100110101100101110111"
-
-Returns: 5
+問題
+ビット列が文字列で与えられる。
+5のべき乗のビット列文字列に分割したとき、何個になるかを求める。
 
 */
 // END CUT HERE
@@ -215,7 +140,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	CuttingBitString ___test;
-	___test.run_test(0);
 	___test.run_test(-1);
 	return 0;
 }
