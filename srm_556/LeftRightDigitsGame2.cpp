@@ -1,96 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 556 Div1 Medium (500)
 
-// PROBLEM STATEMENT
-// You are playing a solitaire game called Left-Right Digits Game.
-This game uses a deck of N cards. Each card has a single digit written on it.
-These digits are given as characters in the string digits. More precisely,
-the i-th character of digits is the digit written on the i-th card
-from the top of the deck (both indices are 0-based).
-
-The game is played as follows. First, you place the topmost card
-(whose digit is the 0-th character of digits) on the table. Then,
-you pick the cards one-by-one from the top of the deck. For each card,
-you have to place it either to the left or to the right of all cards
-that are already on the table.
-
-After all of the cards have been placed on the table, they now form an N-digit number.
-You are given a string lowerBound that represents an N-digit number.
-The primary goal of the game is to arrange the cards in such a way that
-the number X shown on the cards will be greater than or equal to lowerBound.
-If there are multiple ways to satisfy the primary goal, you want to make
-the number X as small as possible.
-
-Return the smallest possible value of X you can achieve, as a string
-containing N digits. If it is impossible to achieve a number which is
-greater than or equal to lowerBound, return an empty string instead.
-
-
-DEFINITION
-Class:LeftRightDigitsGame2
-Method:minNumber
-Parameters:string, string
-Returns:string
-Method signature:string minNumber(string digits, string lowerBound)
-
-
-NOTES
--lowerBound has no leading zeros. This means that any valid number X should
- also have no leading zeros (since otherwise it will be smaller than lowerBound).
-
-
-CONSTRAINTS
--digits will contain between 1 and 50 characters, inclusive.
--Each character of digits will be between '0' and '9', inclusive.
--lowerBound will contain the same number of characters as digits.
--Each character of lowerBound will be between '0' and '9', inclusive.
--The first character of lowerBound will not be '0'.
-
-
-EXAMPLES
-
-0)
-"565"
-"556"
-
-Returns: "556"
-
-You can achieve exactly 556. The solution is as follows:
-
-Place the first card on the table.
-Place the second card to the right of all cards on the table.
-Place the last card to the left of all cards on the table.
-
-
-1)
-"565"
-"566"
-
-Returns: "655"
-
-
-2)
-"565"
-"656"
-
-Returns: ""
-
-The largest number you can achieve is 655, but it is still less than 656.
-
-
-3)
-"9876543210"
-"5565565565"
-
-Returns: "5678943210"
-
-
-4)
-"8016352"
-"1000000"
-
-Returns: "1086352"
+問題
+N枚のカードが積まれている。
+上から1枚ずつ取り、左か右に並べてN桁の数を作る。
+生成可能な数のうち、lowerBound以上で最小の数値を求める。
 
 */
 // END CUT HERE
@@ -122,19 +37,12 @@ public:
 		int sz = (int)digits.length();
 		int i, eqlen, pos;
 		for (eqlen = 0; eqlen <= sz; ++eqlen) {
-			StrVec dp(sz);
-			for (pos = 0; pos < sz; ++pos) {
-				if (pos < eqlen && digits[0] == lowerBound[pos] ||
-						pos == eqlen && digits[0] > lowerBound[pos] ||
-						pos > eqlen) {
-					dp[pos] = string(1, digits[0]);
-				}
-			}
-			for (i = 1; i < sz; ++i) {
+			StrVec dp(sz+1);
+			for (i = 0; i < sz; ++i) {
 				StrVec prev = dp;
 				dp = StrVec(sz);
 				for (pos = 0; pos < (sz-i); ++pos) {
-					if (!prev[pos+1].empty()) {
+					if (!i || !prev[pos+1].empty()) {
 						if (pos < eqlen && digits[i] == lowerBound[pos] ||
 								pos == eqlen && digits[i] > lowerBound[pos] ||
 								pos > eqlen) {
