@@ -1,77 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 560 Div2 Easy (250)
 
-// PROBLEM STATEMENT
-// 
-Jakub is trying out a one-dimensional keyboard.
-It consists of a single row of keys. 
-The distance between any two adjacent keys is 1.
-Each key contains a distinct letter of the English alphabet.
-Jakub uses only one finger to type on the keyboard.
-He wonders what is the smallest total distance he will have to move his finger while typing a given word.
-
-For example, if the keyboard's only row is "qwertyuiop", and Jakub wants to type the word "potter", he will have to move his finger from 'p' to 'o' (distance 1), from 'o' to 't' (distance 4), from 't' to 't' (distance 0), from 't' to 'e' (distance 2) and from 'e' to 'r' (distance 1), for a total distance of 1 + 4 + 0 + 2 + 1 = 8.
-
-You are given a string keyboard and a string word, describing the keyboard and the word Jakub wants to write. Return the minimum distance he will have to move his finger in order to type the word on the keyboard.
-
-
-DEFINITION
-Class:TypingDistance
-Method:minDistance
-Parameters:string, string
-Returns:int
-Method signature:int minDistance(string keyboard, string word)
-
-
-NOTES
--When moving the finger from the i-th key to the j-th key, the distance covered by the move can be computed as |i-j|, that is, the positive difference between i and j.
-
-
-CONSTRAINTS
--keyboard will contain between 1 and 26 characters, inclusive.
--Each character in keyboard will be a different lowercase letter of the English alphabet ('a'-'z').
--word will contain between 1 and 50 characters, inclusive.
--Each character in word will be present in keyboard.
-
-
-EXAMPLES
-
-0)
-"qwertyuiop"
-"potter"
-
-Returns: 8
-
-The example from the problem statement.
-
-
-1)
-"tc"
-"tctcttccctccccttc"
-
-Returns: 9
-
-
-2)
-"a"
-"aaaaaaaaaaa"
-
-Returns: 0
-
-
-3)
-"kwadrutove"
-"rowerowe"
-
-Returns: 39
-
-
-4)
-"qwertyuiopasdfghjklzxcvbnm"
-"topcodersingleroundmatchgoodluckhavefun"
-
-Returns: 322
+問題
+-指1本でキーボードを打つ
+-キーボードの配列が与えられる
+-指の移動距離を求める
 
 */
 // END CUT HERE
