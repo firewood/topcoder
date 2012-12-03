@@ -1,121 +1,17 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 562 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// Cucumber Boy likes drawing pictures.  Today, he plans to draw a picture using a very simple graphics editor.
-
-The editor has the following functions:
-
-The canvas is an infinite two-dimensional grid of pixels.
-There are only four colors: red, green, blue, and transparent. These are denoted 'R', 'G', 'B', and '.' (a period), respectively.
-The editor has a clipboard that contains a rectangular picture.
-The editor can take the picture in the clipboard and paste it onto any corresponding rectangle of the canvas. The user just has to select the pixel of the canvas where the upper left corner of the clipboard will be pasted.
-When pasting the picture, the red, green, and blue pixels of the picture in the clipboard will overwrite their corresponding pixels on the canvas. The pixels that are transparent in the clipboard picture do not change the canvas.
-
-At this moment, all pixels on the infinite canvas are transparent.  Cucumber Boy has already stored a picture in the clipboard.  You are given this picture as a vector <string> clipboard.
-
-Cucumber Boy now wants to paste the clipboard picture onto the canvas exactly T times in a row.  For each i, when pasting the clipboard for the i-th time, he will choose the pixel (i,i) as the upper left corner of the pasted picture.
-
-You are given the vector <string> clipboard and the int T.  Return a vector<long long> containing exactly three elements: the number of red, green, and blue pixels on the canvas after all the pasting is finished.
-
-
-DEFINITION
-Class:PastingPaintingDivOne
-Method:countColors
-Parameters:vector <string>, int
-Returns:vector<long long>
-Method signature:vector<long long> countColors(vector <string> clipboard, int T)
-
-
-CONSTRAINTS
--clipboard will contain between 1 and 50 elements, inclusive.
--Each element of clipboard will contain between 1 and 50 characters, inclusive.
--Each element of clipboard will contain the same number of characters.
--Each character of each element of clipboard will be one of 'R', 'G', 'B', and '.'.
--T will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{
-"..G",
-"R..",
-"BG."
-}
-3
-
-Returns: {3, 4, 3 }
-
-
-1)
-{
-"R...",
-"....",
-"....",
-"...R"
-}
-2
-
-Returns: {4, 0, 0 }
-
-
-2)
-{"RGB"}
-100000
-
-Returns: {100000, 100000, 100000 }
-
-
-3)
-{"."}
-1000000000
-
-Returns: {0, 0, 0 }
-
-
-4)
-{
-"RB.",
-".G."
-}
-
-100
-
-Returns: {100, 1, 100 }
-
-
-5)
-{
-"..........G..........",
-".........G.G.........",
-"........G...G........",
-".......G.....G.......",
-"......G..B.B..G......",
-".....G...B.B...G.....",
-"....G...........G....",
-"...G...R.....R...G...",
-"..G.....RRRRRR....G..",
-".G..........RR.....G.",
-"GGGGGGGGGGGGGGGGGGGGG"
-}
-1000000000
-
-Returns: {2000000018, 17000000048, 2000000005 }
-
-Note that the answers may overflow a 32-bit integer variable.
-
-
-This is the image of clipboard in this example.
+問題
+きゅうり君は絵を描くのが大好きである。
+クリップボードにRGBの点で描かれた絵が格納されている。
+絵を横1縦1ピクセルずつずらしてキャンバスに貼り付ける。
+絵の点がある部分は上書きされ、ない部分はそのままである。
+T回ペーストしたときのRGBの点の総数を求める。
 
 */
 // END CUT HERE
-#include <cmath>
 #include <algorithm>
-#include <list>
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 #include <iostream>
