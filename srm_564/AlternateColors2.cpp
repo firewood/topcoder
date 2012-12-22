@@ -1,85 +1,11 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 // SRM 564 Div1 Medium (500)
 
-// PROBLEM STATEMENT
-// Bob is playing with his ball destroyer robot. Initially, Bob had r red balls, g green balls and b blue balls. The robot repeated the following 3-step program until there were no balls left:
-
-If there is at least one red ball available, destroy one red ball.
-If there is at least one green ball available, destroy one green ball.
-If there is at least one blue ball available, destroy one blue ball.
-
-Bob forgot how many balls of each color he initially had. He only remembers that there were n balls in total and that the k-th (1-based index) ball that was destroyed was red. Return the total number of different initial settings that match that description. Formally, return the number of different tuples (r, g, b) such that r + g + b = n and the k-th ball that was destroyed was red.
-
-
-DEFINITION
-Class:AlternateColors2
-Method:countWays
-Parameters:int, int
-Returns:long long
-Method signature:long long countWays(int n, int k)
-
-
-NOTES
--It follows from the constraints that the return value will always fit into a long long.
-
-
-CONSTRAINTS
--n will be between 1 and 100000, inclusive.
--k will be between 1 and n, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-1
-
-Returns: 1
-
-There was only one ball. This ball was necessarily the first ball destroyed. Therefore, it had to be red.
-
-
-1)
-3
-3
-
-Returns: 3
-
-There are three cases in which the third ball to be destroyed is red:
-r = 3, b = 0, g = 0.
-r = 2, b = 1, g = 0.
-r = 2, b = 0, g = 1.
-
-
-2)
-6
-4
-
-Returns: 9
-
-
-3)
-6
-1
-
-Returns: 21
-
-
-4)
-1000
-2
-
-Returns: 1
-
-In order for the second destroyed ball to be red, there would have to be zero balls of the other colors.
-
-
-5)
-100000
-100000
-
-Returns: 1666700000
+問題
+R、G、Bの三色のボールが、合計N個かある
+ボールをR、G、Bの順番で破壊するロボットがいる
+K番目のボールはRであるとき、ボールの個数の組み合わせの総数を求める
 
 */
 // END CUT HERE
