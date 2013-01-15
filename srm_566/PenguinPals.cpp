@@ -1,101 +1,14 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 566 Div2 Medium (500)
 
-// PROBLEM STATEMENT
-// 
-Penguin Pals is a match making service that matches penguins to new friends, using the following procedure:
-
-Each penguin is asked a single question: "Do you prefer the color blue, or the color red?"
-All penguins are arranged so that they stand on a circle, equally spaced. 
-The organizers draw some straight lines, connecting some pairs of penguins. Each penguin may only be connected to at most one other penguin. Two penguins cannot be connected if they prefer a different color.
-Each penguin who is connected to some other penguin follows the line to find their match.
-
-
-
-
-The only problem with the above system was that it allowed penguins to collide if two lines crossed each other.
-Therefore, a new additional rule was adopted: no two lines may cross.
-Penguin Pals now has some penguins arranged on a circle (after step 2 of the above procedure).
-They need to know the maximum number of pairs of penguins they can create.
-
-
-
-You are given a string colors whose i-th character represents the prefered color of the i-th penguin (0-based index) in the circular arrangement. The i-th character is 'R' if the i-th penguin prefers red and 'B' if the i-th penguin prefers blue. Return the maximum number of matched pairs that can be formed.
-
-
-DEFINITION
-Class:PenguinPals
-Method:findMaximumMatching
-Parameters:string
-Returns:int
-Method signature:int findMaximumMatching(string colors)
-
-
-CONSTRAINTS
--colors will contain between 1 and 50 characters, inclusive.
--Each character of colors will be either 'R' or 'B'.
-
-
-EXAMPLES
-
-0)
-"RRBRBRBB"
-
-Returns: 3
-
-In this picture the penguins have been colored in their preferred color. 
-
-
-
-1)
-"RRRR"
-
-Returns: 2
-
-
-
-2)
-"BBBBB"
-
-Returns: 2
-
-
-
-3)
-"RBRBRBRBR"
-
-Returns: 4
-
-
-
-4)
-"RRRBRBRBRBRB"
-
-Returns: 5
-
-
-
-5)
-"R"
-
-Returns: 0
-
-
-
-6)
-"RBRRBBRB"
-
-Returns: 3
-
-
-
-7)
-"RBRBBRBRB"
-
-Returns: 4
-
-
+問題
+-ペンギンのマッチングサービス
+-青か赤のどちらが好きか聞く
+-円状に並ぶ
+-同じ色同士を直線で結ぶ
+-最大のペア数を求める
+-直線は交差してはならない
 
 */
 // END CUT HERE
