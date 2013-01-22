@@ -1,66 +1,10 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 567 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Consider the function SSR (Squared Sum of square Roots) defined on two positive integer parameters:
-SSR(A, B) = (sqrt(A)+sqrt(B))^2. We are interested in the cases when the value of the function is also an integer.
-
-Given ints N and M, return the number of ordered pairs (A, B) such that 1 <= A <= N, 1 <= B <= M and SSR(A, B) is an integer.
-
-
-DEFINITION
-Class:TheSquareRootDilemma
-Method:countPairs
-Parameters:int, int
-Returns:int
-Method signature:int countPairs(int N, int M)
-
-
-NOTES
--The answer to the problem is guaranteed to fit into signed 32-bit integer type under the given constraints.
-
-
-CONSTRAINTS
--N will be between 1 and 77,777, inclusive.
--M will be between 1 and 77,777, inclusive.
-
-
-EXAMPLES
-
-0)
-2
-2
-
-Returns: 2
-
-Out of the four possible pairs (A, B), only two yield an integer result: SSR(1, 1) = 4 and SSR(2, 2) = 8.
-On the other hand, SSR(1, 2) = SSR(2, 1) = 3+2*sqrt(2), which is not an integer.
-
-
-1)
-10
-1
-
-Returns: 3
-
-SSR(1, 1), SSR(4, 1) and SSR(9, 1) are integers.
-
-
-2)
-3
-8
-
-Returns: 5
-
-The valid pairs are (1, 1), (1, 4), (2, 2), (2, 8) and (3, 3).
-
-
-3)
-100
-100
-
-Returns: 310
+問題
+-整数AとBが与えられる
+-(sqrt(A)+sqrt(B))^2が整数になる組み合わせの総数を求める
 
 */
 // END CUT HERE

@@ -1,78 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 567 Div1 Medium (500)
 
-// PROBLEM STATEMENT
-// Manao has invented a new unusual two-player game which he calls the String Game.
-The game is played on a set of strings of the same length comprised of lowercase English letters.
-
-In the beginning, the first player chooses a string X from the set and permutes its characters in any way he wants.
-He also chooses a permutation of the English alphabet.
-After that, the second player may permute the characters in each of the strings in the set, except for X.
-Now X is lexicographically compared to each of the other strings in the set using the permuted English alphabet.
-If X is strictly smaller than each of the other strings, the first player wins. Otherwise, the second player does.
-
-In order to compare two different strings A and B, first it is necessary to find the first position at which these strings differ.
-Let the characters at this position in A and B be a and b.
-If a stands earlier than b in the permuted alphabet, then A is lexicographically smaller than B, otherwise B is lexicographically smaller than A.
-For example, with alphabet {b, a, c, d, ..., z}, the string "aba" is lexicographically smaller than the string "aab" because 'b' stands earlier than 'a' in the alphabet.
-
-You are given a vector <string> S, the set of strings on which the String Game is played.
-Determine all strings which, when chosen by the first player, allow him to win if both he and his opponent play optimally.
-That is, the first player always permutes the string X and the alphabet optimally, and then the second player permutes all the other strings optimally.
-Return a vector <int> containing the sorted list of all 0-based indices of all such strings.
-
-
-DEFINITION
-Class:StringGame
-Method:getWinningStrings
-Parameters:vector <string>
-Returns:vector <int>
-Method signature:vector <int> getWinningStrings(vector <string> S)
-
-
-NOTES
--The return value may sometimes be an empty vector <int>.
-
-
-CONSTRAINTS
--S will contain between 2 and 50 elements, inclusive.
--Each element of S will be between 1 and 50 characters long, inclusive.
--All elements of S will be of equal length.
--Each element of S will consist of lowercase letters ('a'-'z') only.
--The elements of S will be distinct.
-
-
-EXAMPLES
-
-0)
-{"a", "b", "c", "d"}
-
-Returns: {0, 1, 2, 3 }
-
-For each of the given strings, Manao can choose the alphabet which begins with the string's only character and his string will be lexicographically smallest.
-
-
-1)
-{"aabbcc", "aaabbb", "aaaccc"}
-
-Returns: {1, 2 }
-
-Manao can win if he chooses the string "aaabbb" or "aaaccc". For "aaabbb", he can choose permutation of the alphabet {b, a, c, ..., z} and make his string "bbbaaa". For "aaaccc", the permutation can be {c, a, b, d, ..., z} and the string itself can be "cccaaa". In both cases, regardless of which permutations the opponent chooses, the two other strings will always be lexicographically larger than Manao's string.
-
-
-2)
-{"ab", "ba"}
-
-Returns: { }
-
-Note that the first player's string should be strictly smaller than the opponent's strings.
-
-
-3)
-{"xaocxsss", "oooxsoas", "xaooosss", "xaocssss", "coxaosxx"}
-
-Returns: {1, 3, 4 }
+問題
+-文字列の集合Sが与えられる
+-最初のプレイヤーがSから文字列をひとつ選び、並び替えてXとする
+-最初のプレイヤーがアルファベットの並び順を選ぶ
+-XとS内の全ての文字列を並べ替えた文字列のうち、Xが単独の辞書順最小にできるかどうかを求める
 
 */
 // END CUT HERE
