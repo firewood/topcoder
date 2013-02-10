@@ -1,93 +1,15 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 569 Div1 Medium (500)
 
-PROBLEM STATEMENT
-A long time ago in a galaxy far, far away the Jedi Academy conducted a test
-to detect children with high Force sensitivy which would then be trained to become Jedi.
-The test was conducted in the Jedi Temple which had several floors.
-For each i, students[i] children have initially gathered at floor i (0-based).
-A Jedi could only manage to cope with at most K children located at the same floor.
-So, if there were between K+1 and 2K children at a floor, two Jedi would be required there;
-if there were between 2K+1 and 3K children, three Jedi were neccessary and so on.
-
-To minimize the number of Jedi needed to supervise the test, it was decided to relocate some children.
-However, to avoid the mess, each child was only allowed to be relocated by at most one floor,
-i.e. he or she could stay on the same floor, go one floor down or go one floor up.
-Note that it is not possible to go a floor down from the first floor or a floor up from the last floor.
-
-Determine and return the minimum number of Jedi supervisors needed after the relocation.
-
-
-DEFINITION
-Class:TheJediTest
-Method:minimumSupervisors
-Parameters:vector <int>, int
-Returns:int
-Method signature:int minimumSupervisors(vector <int> students, int K)
-
-
-CONSTRAINTS
--students will contain between 1 and 20 elements, inclusive.
--Each element of students will be between 0 and 100,000,000, inclusive.
--K will be between 1 and 100,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{3, 6, 3}
-4
-
-Returns: 3
-
-If the children stay the way they are, 4 Jedi will be required.
-A possible solution with only 3 observers needed is to send all the children to floor 1.
-Another optimal solution is to send one child from floor 1 to floor 0 and the others to floor 2.
-
-
-1)
-{1, 1, 1, 1}
-4
-
-Returns: 2
-
-A single observer can watch four children. However, to gather at the same floor,
-at least one child would have to move more than one floor away from his or her initial location.
-
-
-2)
-{0, 0, 0, 0}
-12345
-
-Returns: 0
-
-For the Jedi Academy, a bad day it was.
-
-
-3)
-{15, 0, 13, 4, 29, 6, 2}
-7
-
-Returns: 10
-
-An optimal solution is to gather the children from floor 0 and floor 2 at floor 1,
-move the children from floor 3 and one child from floor 5 to floor 4 and move the children from the last floor 6 down to floor 5. The quantities of students at each floor will be {0, 28, 0, 0, 34, 7, 0}.
-
-
-4)
-{1284912, 1009228, 9289247, 2157, 2518, 52781, 2, 2818, 68}
-114
-
-Returns: 102138
+問題
+何階建てかの建物に、ジェダイの素質を持った子供がいる。
+ジェダイの騎士は最大K人まで面倒を見ることができる。
+子供は上下に1階だけ移動できる。
+必要なジェダイの騎士の数を求める。
 
 */
 // END CUT HERE
-#include <cmath>
-#include <algorithm>
-#include <list>
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 #include <iostream>
