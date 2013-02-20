@@ -117,12 +117,36 @@ public:
 				y *= (T/4);
 			}
 		}
-		return max(x,-x)+max(y,-y);
+		return abs(x) + abs(y);
 	}
 
+	long long getdist_affine_trans(int T, vector <int> a) {
+		int sz = (int)a.size();
+		int d = 0;
+		int aa[] = {1, 0,-1, 0};
+		int bb[] = {0,-1, 0, 1};
+		int cc[] = {0, 1, 0,-1};
+		int dd[] = {1, 0,-1, 0};
+		LL i, j, x = 0, y = 0;
+		for (j = 0; j < sz; ++j) {
+			x += aa[d] * a[j];
+			y += bb[d] * a[j];
+			d = (d + a[j]) % 4;
+		}
+		int e = d;
+		LL tx = x;
+		LL ty = y;
+		for (i = 2; i <= T; ++i) {
+			LL p = aa[d] * x + bb[d] * y + tx;
+			LL q = cc[d] * x + dd[d] * y + ty;
+			d = (d + e) % 4;
+			x = p;
+			y = q;
+		}
+		return abs(x) + abs(y);
+	}
 
-
-	long long getdist2(int T, vector <int> a) {
+	long long getdist_ref(int T, vector <int> a) {
 		int sz = (int)a.size();
 		int c = 0;
 		int dx[] = {1,0,-1,0};
@@ -135,9 +159,7 @@ public:
 				c = (c + a[j]) % 4;
 			}
 		}
-		if (x<0)x=-x;
-		if (y<0)y=-y;
-		return x+y;
+		return abs(x) + abs(y);
 	}
 
 
@@ -171,7 +193,7 @@ public:
 			long long Arg2 = 2LL;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
-			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist2(Arg0, Arg1));
+			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist_ref(Arg0, Arg1));
 		}
 		n++;
 
@@ -182,7 +204,7 @@ public:
 			long long Arg2 = 0LL;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
-			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist2(Arg0, Arg1));
+			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist_ref(Arg0, Arg1));
 		}
 		n++;
 
@@ -193,7 +215,7 @@ public:
 			long long Arg2 = 10LL;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
-			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist2(Arg0, Arg1));
+			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist_ref(Arg0, Arg1));
 		}
 		n++;
 
@@ -205,7 +227,7 @@ public:
 			long long Arg2 = 100000000000LL;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
-			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist2(Arg0, Arg1));
+			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist_ref(Arg0, Arg1));
 		}
 		n++;
 */
@@ -217,7 +239,7 @@ public:
 			long long Arg2 = 4112LL;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
-			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist2(Arg0, Arg1));
+			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist_ref(Arg0, Arg1));
 		}
 		n++;
 
@@ -229,7 +251,7 @@ public:
 			long long Arg2 = 9LL;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
-			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist2(Arg0, Arg1));
+			verify_case(n, Arg2, getdist(Arg0, Arg1), getdist_ref(Arg0, Arg1));
 		}
 		n++;
 
