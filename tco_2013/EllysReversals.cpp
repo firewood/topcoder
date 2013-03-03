@@ -1,95 +1,13 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 TCO13 Round 1B Hard (1000)
 
-PROBLEM STATEMENT
-Elly has a list of several distinct strings given in the vector <string> words.
-She can apply the following operation as many times as she wants (including zero times):
-
-Choose one of the words and call it S.
-Choose an even number k between 2 and |S|, inclusive,
-where |S| is the length of S (thus, chose a prefix with even length).
-Reverse the order of the first k characters of S
-(thus, reverse the chosen prefix without the rest of the word).
-
-For example, if she has the word "topcoder", she can reverse its first 2, 4, 6, or all 8 characters.
-If she chooses to reverse its first 4 characters, the change will be: "topcoder" -> "cpotoder".
-If at a later time she decides to chose the same string and reverse all of its characters
-(which is also a valid prefix with even length), she would get "cpotoder"->"redotopc".
-
-After performing some operations two strings might become equal.
-If that happens, Elly crosses them out and continues playing her game with the remaining strings only,
-i.e. they "disappear" from the list.
-The girl wonders what is the minimal number of strings she can end up with.
-
-For example, suppose she has the strings {"esprit", "god", "redotopc", "odcpoter", "dog"}.
-The word "redotopc" can be converted to "topcoder" by first reversing all 8 characters and then reversing the first 4.
-The word "odcpoter" can also be converted to "topcoder" by performing "odcpoter" -> "docpoter" -> "topcoder".
-At that point the words become equal and disappear, leaving Elly only with {"esprit", "god", "dog"}.
-This is where she gets stuck: The words "god" and "dog" cannot become equal,
-because she can only reverse prefixes with even length. Thus, the minimal number of words she can get is 3.
-
-Given her initial strings in vector <string> words,
-return an int indicating the minimal number of strings she can be left with.
-
-
-DEFINITION
-Class:EllysReversals
-Method:getMin
-Parameters:vector <string>
-Returns:int
-Method signature:int getMin(vector <string> words)
-
-
-CONSTRAINTS
--words will contain between 1 and 50 elements, inclusive.
--Each element of words will contain between 1 and 50 characters, inclusive.
--Each element of words will consist only of lowercase letters of the English alphabet ('a'-'z').
--All elements of words will be distinct.
-
-
-EXAMPLES
-
-0)
-{"esprit", "god", "redotopc", "odcpoter", "dog"}
-
-Returns: 3
-
-The example from the problem statement.
-
-
-1)
-{"no", "zaphod", "just", "very", "improbable"}
-
-Returns: 5
-
-It is possible that she cannot get rid of any of the words.
-
-
-2)
-{"rats", "live", "stressed", "to", "act", "as", "star", "desserts", "of", "evil", "cat", "sa", "fo", "ot"}
-
-Returns: 0
-
-It is possible that she ends up with zero words.
-
-
-3)
-{"topcoder", "redocpot", "doretopc", "cpotdoer", "harlemshake"}
-
-Returns: 1
-
-Sometimes it is possible to match different words when using a different sequence of operations.
-
-
-4)
-{"iprlzgukfggzg", "bmhxvjbrtkbxy", "khapjiabbny", "nqlwgmcyvdikt",
- "nxromtvtpug", "leealcapovm", "ushnxwjczczbmd", "bwhykzupcux",
- "xrlboyuwlnsp", "bbjoketeheezfs", "dxfztrldomjqkv", "dkbktqdtgfujcut",
- "zfybzyuxgpnt", "ffmsldrdftode", "vopuufksxd", "pqhbsiujwda",
- "yhwbkzupcux", "hkbabnapjiy", "zqsqefrrzehtxn", "yovinyguyudmv"}
-
-Returns: 16
+問題
+-いくつかの英数字からなる単語のリストがある
+-任意の単語Sと、Sの長さを超えない偶数kを選ぶ
+-Sの1番目からk番目までの文字列を反転する
+-その結果ほかの単語と一致した場合は、その単語をリストから取り除く
+-最終的に残る単語の数を求める
 
 */
 // END CUT HERE
