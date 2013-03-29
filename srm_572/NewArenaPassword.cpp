@@ -1,94 +1,21 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 572 Div1 Easy (250)
 
-// PROBLEM STATEMENT
-// You are a huge fan of an online programming contest called SRM (Special Round Match). To participate in an SRM contest, you must first download an applet called Arena, log in to the Arena by entering your username and password, and start competing.
-
-Recently, to avoid hackers' attacks on the Arena, SRM imposes a new rule for the users' passwords. From now on, the first K characters of each user's password must match its last K characters. In this way, if someone enters a password with different first and last K characters repeatedly, it can be considered an attack from hackers.
-
-However, you love your old password and do not want to change many characters from it. You are given a string oldPassword representing your old password, and an int K. Return the minimum number of characters of oldPassword that must be changed so that the string containing the first K characters of oldPassword is equal to the string containing the last K characters of oldPassword.
-
-DEFINITION
-Class:NewArenaPassword
-Method:minChange
-Parameters:string, int
-Returns:int
-Method signature:int minChange(string oldPassword, int K)
-
-
-CONSTRAINTS
--oldPassword will contain between 1 and 50 characters, inclusive.
--Each character of oldPassword will be a lowercase letter 'a' - 'z'.
--K will be between 1 and the number of characters of oldPassword, inclusive.
-
-
-EXAMPLES
-
-0)
-"topcoderopen"
-5
-
-Returns: 3
-
-A possible solution is changing your password into "topcndetopcn". To do this, you must change the 4th, 7th, and 10th characters (0-based) of "topcoderopen".
-
-1)
-"puyopuyo"
-4
-
-Returns: 0
-
-Your old password already satisfies the new rule.
-
-2)
-"loool"
-3
-
-Returns: 1
-
-The first and the last K characters can overlap. In this case, the only optimal solution is to change your password into "lolol".
-
-3)
-"arena"
-5
-
-Returns: 0
-
-
-
-4)
-"amavckdkz"
-7
-
-Returns: 5
-
-
+問題
+-新しいパスワードルールでは、先頭のK文字と末尾のK文字が一致する必要がある。
+-古いパスワードが与えられる。
+-ルールに適合するために変更しなければならない文字数を求める。
 
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
-#include <map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
 
 using namespace std;
-
-typedef long long LL;
-typedef pair<int, int> II;
-typedef vector<int> IntVec;
-typedef vector<LL> LLVec;
-typedef vector<II> IIVec;
-typedef vector<string> StrVec;
-typedef set<int> IntSet;
-typedef set<LL> LLSet;
-typedef set<II> IISet;
-typedef set<string> StrSet;
 
 class NewArenaPassword {
 public:
