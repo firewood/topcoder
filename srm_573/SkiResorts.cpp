@@ -1,90 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 573 Div1 Medium (450)
 
-PROBLEM STATEMENT
-Fox Ciel is the owner of a ski resort. The ski resort has N places numbered 0 through N-1.
-There are some bidirectional roads between pairs of places. You are given a vector <string> roads.
-If the j-th character of the i-th element of roads is 'Y', there is a bidirectional road that connects place i and place j.
-If it is 'N', there's no road between them. You are also given a vector <int> altitude.
-The i-th element of altitude is the altitude of the place i.
-
-You can go directly from the place i to the place j by skiing if there is a bidirectional road
-between them and the altitude of the place i is higher than or equal to the altitude of the place j.
-Ciel wants to reconstruct the ski resort so that place N-1 is reachable (not necessarily directly) from place 0 by skiing.
-In the reconstruction, Ciel can change the altitude of some places.
-The cost of changing the altitude of a place from x to y is |x - y| units of money, where || denotes the absolute value.
-
-Return the minimal cost required for the reconstruction.
-If it is impossible to reach place N-1 from place 0 even after the reconstruction, return -1.
-
-
-DEFINITION
-Class:SkiResorts
-Method:minCost
-Parameters:vector <string>, vector <int>
-Returns:long long
-Method signature:long long minCost(vector <string> road, vector <int> altitude)
-
-
-CONSTRAINTS
--road will contain between 2 and 50 elements, inclusive.
--Each element of road will contain exactly N characters, where N is the number of elements of road.
--Each character in road will be either 'Y' or 'N'.
--For each valid i, the i-th character of the i-th element of road will be 'N'.
--For each valid pair (i, j), the i-th character of the j-th element of road and the j-th character of the i-th element of road will be equal.
--altitude will contain exactly N elements.
--Each element of altitude will be between 0 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{"NYN",
- "YNY",
- "NYN"}
-{30, 20, 10}
-
-Returns: 0
-
-It is possible to reach place 2 from place 0 even without the reconstruction by following the path (place 0) -> (place 1) -> (place 2).
-
-
-1)
-{"NY",
- "YN"}
-{10, 20}
-
-Returns: 10
-
-For example, Ciel can change the altitude of both places to 15. The cost is |10 - 15| + |20 - 15| = 10.
-
-
-2)
-{"NYN",
- "YNN",
- "NNN"}
-{573, 573, 573}
-
-Returns: -1
-
-Place 2 is not reachable from place 0.
-
-
-3)
-{"NNYNNYYYNN",
- "NNNNYNYNNN",
- "YNNNNYYNNN",
- "NNNNNNYNYY",
- "NYNNNNNNYY",
- "YNYNNNNYNN",
- "YYYYNNNYNN",
- "YNNNNYYNNN",
- "NNNYYNNNNN",
- "NNNYYNNNNN"}
-{7, 4, 13, 2, 8, 1, 8, 15, 5, 15}
-
-Returns: 12
+問題
+-スキーリゾートに場所0から場所N-1までのN個の場所がある
+-同じ高さか、より低い場所へのみ移動できる
+-任意の場所を工事して高さを変更できる
+-場所0からスタートして場所N-1に行けるようにするための最小のコストを求める
 
 */
 // END CUT HERE
