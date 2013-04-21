@@ -18,35 +18,30 @@ TCO 2013 Round 2A Easy (300)
 
 using namespace std;
 
-struct StringPair {
-	string first;
-	string second;
-	StringPair() { }
-	StringPair(string f, string s) : first(f), second(s) { }
-	bool operator < (const StringPair &s) const {
-		return first + second < s.first + s.second;
-	}
-};
-
 class TheLargestString {
 
 public:
 	string find(string s, string t) {
+		string ans;
 		int sz = (int)s.length();
-		StringPair dp[51][51];
-		StringPair ans;
+		pair<string, string> dp[51][51];
 		int i, j, k;
 		for (i = 0; i < sz; ++i) {
-			StringPair x(s.substr(i, 1), t.substr(i, 1));
-			dp[1][i] = x;
 			for (j = 0; j <= i; ++j) {
-				for (k = 0; k < i; ++k) {
-					dp[j+1][i] = max(dp[j+1][i], StringPair(dp[j][k].first + x.first, dp[j][k].second + x.second));
+				string c = dp[j+1][i+1].first + dp[j+1][i+1].second;
+				for (k = 0; k <= i; ++k) {
+					string a = dp[j][k].first + s[i];
+					string b = dp[j][k].second + t[i];
+					if ((a + b) > c) {
+						c = a + b;
+						dp[j+1][i+1].first = a;
+						dp[j+1][i+1].second = b;
+					}
 				}
-				ans = max(ans, dp[j+1][i]);
+				ans = max(ans, c);
 			}
 		}
-		return ans.first + ans.second;
+		return ans;
 	}
 
 // BEGIN CUT HERE
