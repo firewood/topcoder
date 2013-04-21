@@ -1,75 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 
 /*
 TCO 2013 Round 2A Easy (300)
 
-PROBLEM STATEMENT
-John has two strings s and t of equal length.
-He can choose a set of positions (possibly empty) and erase characters at these positions in both s and t.
-Then he writes down the concatenation of what remained of the strings:
-first the letters we kept from s, in their original order, then the letters we kept from t, again in their original order.
-
-Return the lexicographically largest string John can get at the end.
-
-
-DEFINITION
-Class:TheLargestString
-Method:find
-Parameters:string, string
-Returns:string
-Method signature:string find(string s, string t)
-
-
-NOTES
--String A is lexicographically smaller than string B if either A is a proper prefix of B,
- or if there is an integer i such that the first i characters of A match the first i characters of B,
- and character i+1 of A is smaller than character i+1 of B.
-
-
-CONSTRAINTS
--s will contain between 1 and 47 characters, inclusive.
--s and t will contain the same number of characters.
--s will contain only lowercase English characters ('a'-'z').
--t will contain only lowercase English characters ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"ab"
-"zy"
-
-Returns: "by"
-
-There are four options here:
-
-Do not erase anything. The resulting string would be "abzy".
-Erase both first characters. The resulting string would be "by".
-Erase both last characters. The resulting string would be "az".
-Erase all characters. The resulting string would be empty.
-
-Among all possible results "by" is the lexicographically largest one.
-
-
-1)
-"abacaba"
-"zzzaaaa"
-
-Returns: "cbaaaa"
-
-
-2)
-"x"
-"x"
-
-Returns: "xx"
-
-
-3)
-"abbabbabbababaaaabbababab"
-"bababbaabbbababbbbababaab"
-
-Returns: "bbbbbbbbbbbbbbbbbbaaab"
+問題
+-2つの文字列sとtが与えられる
+-sとt両方の同じ位置の文字を消去できる
+-sとtを連結したもののうち辞書順最大のものを求める
 
 */
 // END CUT HERE
