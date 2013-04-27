@@ -1,90 +1,12 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 TCO 2013 Round 2B Easy (250)
 
-PROBLEM STATEMENT
-There is an infinitely long straight road.
-Fox Ciel is going to plant trees of three kinds: apple trees, kiwi trees, and grape trees.
-There will be infinitely many trees of each kind.
-Trees of each kind will be placed along the entire road in regular intervals.
-
-More precisely, you are given ints apple, kiwi, and grape with the following meaning:
-The distance between any two consecutive apple trees must be apple, the distance between any two consecutive kiwi trees must be kiwi,
-and the distance between any two consecutive grape trees must be grape.
-
-Ciel can only plant the trees at integer coordinates, but she gets to choose those coordinates as long as the above conditions are satisfied.
-In other words, Ciel gets to choose three integers x, y, and z such that:
-
-She plants apple trees at coordinates ..., x - 2 * apple, x - apple, x, x + apple, x + 2 * apple, ...
-She plants kiwi trees at coordinates ..., y - 2 * kiwi, y - kiwi, y, y + kiwi, y + 2 * kiwi, ...
-She plants grape trees at coordinates ..., z - 2 * grape, z - grape, z, z + grape, z + 2 * grape, ...
-
-Ciel wants to maximize the distance between two closest trees (of any kind).
-Return this distance.
-
-
-DEFINITION
-Class:FruitTrees
-Method:maxDist
-Parameters:int, int, int
-Returns:int
-Method signature:int maxDist(int apple, int kiwi, int grape)
-
-
-CONSTRAINTS
--apple will be between 1 and 2,000, inclusive.
--kiwi will be between 1 and 2,000, inclusive.
--grape will be between 1 and 2,000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-5
-8
-
-Returns: 0
-
-Apple trees will be planted at all integer coordinates, so at least two trees will be planted where a kiwi tree is planted.
-
-
-1)
-3
-3
-6
-
-Returns: 1
-
-One of the optimal solutions is as follows:
-
-Plant apple trees at ..., -5, -2, 1, 4, ...
-Plant kiwi trees at ..., -4, -1, 2, 5, ...
-Plant grape trees at ..., -9, -3, 3, 9, ...
-
-
-2)
-40
-30
-20
-
-Returns: 5
-
-
-3)
-899
-1073
-1147
-
-Returns: 14
-
-
-4)
-2000
-2000
-2000
-
-Returns: 666
+問題
+-一直線な道路に3種類の木を植える
+-種類ごとに植える間隔が指定される
+-異なる種類の間隔が大きくなるように植えていく
+-間隔の最大値を求める
 
 */
 // END CUT HERE
