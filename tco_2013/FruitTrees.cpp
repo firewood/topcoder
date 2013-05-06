@@ -140,6 +140,18 @@ public:
 		}
 		n++;
 
+
+		if ((Case == -1) || (Case == n)){
+			int Arg0 = 5*7*11;
+			int Arg1 = 5*7*13;
+			int Arg2 = 7*11*13*17;
+			int Arg3 = 17;
+
+			verify_case(n, Arg3, maxDist(Arg0, Arg1, Arg2));
+		}
+		n++;
+
+
 	}
 
 // END CUT HERE
