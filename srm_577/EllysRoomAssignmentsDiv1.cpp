@@ -21,14 +21,10 @@ using namespace std;
 class EllysRoomAssignmentsDiv1 {
 public:
 	double getAverage(vector <string> ratings) {
-
 		int v[1000];
-		int i, j, k;
+		int i, j;
 		int sz = 0;
-		string s;
-		for (i = 0; i < (int)ratings.size(); ++i) {
-			s += ratings[i];
-		}
+		string s = accumulate(ratings.begin(), ratings.end(), string());
 		stringstream ss(s);
 		while (ss >> i) {
 			v[sz++] = i;
@@ -37,23 +33,20 @@ public:
 		sort(v, v + sz, greater<int>());
 		int epos = (int)(find(v, v + sz, elly) - v);
 
-		double ans = 0;
+		double sum = 0;
 		int R = (sz + 20 - 1) / 20;
-		k = 0;
-		for (i = 0; i < sz; i += R) {
-			j = min(R, sz - i);
-			double avg = (double)accumulate(v+i, v+i+j, 0) / (double)j;
-			if (epos >= i && epos < (i+R)) {
+		for (i = 0; i < 20; ++i) {
+			j = min(R, sz - i*R);
+			if (j <= 0) break;
+			double avg = (double)accumulate(v+i*R, v+i*R+j, 0) / (double)j;
+			if (epos >= i*R && epos < ((i+1)*R)) {
 				avg = elly;
 			} else if (j < R) {
-				return (((ans + avg) * j) / (k+1) + (ans * (R-j)) / k) / R;
+				return ((((sum + avg) * j) / (i+1)) + (sum * (R-j)) / i) / R;
 			}
-			ans += avg;
-			++k;
+			sum += avg;
 		}
-		ans /= k;
-
-		return ans;
+		return sum / i;
 	}
 
 // BEGIN CUT HERE
