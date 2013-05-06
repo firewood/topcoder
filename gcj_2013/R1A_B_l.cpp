@@ -35,9 +35,9 @@ LL solve(LL E, LL R, int N, IIQueue &q)
 		for (i = a.second - 1; i >= 0 && g >= 0; --i, g -= R) {
 			minimum[i] = max(minimum[i], g);
 		}
-		g = E - R;
-		for (i = a.second + 1; i < N && g >= 0; ++i, g -= R) {
-			maximum[i] = min(maximum[i], E - g);
+		g = minimum[a.second] + R;
+		for (i = a.second + 1; i < N && g < E; ++i, g += R) {
+			maximum[i] = min(maximum[i], g);
 		}
 		ans += a.first * gain;
 	}
