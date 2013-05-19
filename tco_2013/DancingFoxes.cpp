@@ -1,119 +1,17 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 TCO13 Algorithm Round2C Easy (250)
 
-PROBLEM STATEMENT
-Fox Ciel and Fox Jiro both went to spend an evening in the dancing room.
-Together, there are N foxes in the room.
-The foxes are numbered 0 through N-1.
-In particular, Ciel is fox 0 and Jiro is fox 1.
-
-You are given a vector <string> friendship that describes the initial friendship between the foxes in the room.
-More precisely, friendship contains N elements with N characters each.
-Character j of element i of friendship is 'Y' if foxes i and j are friends at the beginning of the evening, and 'N' otherwise.
-Note that friendship is symmetric: whenever X is a friend of Y, Y is a friend of X.
-
-During the evening, multiple songs will be played in succession.
-During each song, some pairs of foxes will be dancing together.
-Foxes are not allowed to change partners during the dance.
-Thus in each dance each fox either dances with a single partner, or sits the dance out.
-
-Foxes are not allowed to form the pairs for a dance arbitrarily.
-It is only allowed for two foxes to dance together if they are friends, or if they have a common friend who can introduce them.
-That is, if foxes A and B are not friends at the moment, they can only dance together if there is a fox C such that A and B are both friends with C.
-After two foxes dance together, they become friends.
-
-Fox Ciel wants to become friends with Fox Jiro.
-Return the smallest number of dances in which this can be achieved (assuming that all other foxes cooperate and form pairs for the dances optimally).
-If it's impossible to make Ciel and Jiro friends, return -1 instead.
-
-
-DEFINITION
-Class:DancingFoxes
-Method:minimalDays
-Parameters:vector <string>
-Returns:int
-Method signature:int minimalDays(vector <string> friendship)
-
-
-NOTES
--Gender does not matter for the foxes when choosing their dance partners.
-
-
-CONSTRAINTS
--N will be between 2 and 50, inclusive.
--friendship will contain exactly N elements.
--Each element of friendship will contain exactly N characters.
--Each character in friendship will be 'Y' or 'N'.
--For each i, friendship[i][i] = 'N'.
--For each i and j, friendship[i][j] = friendship[j][i].
-
-
-EXAMPLES
-
-0)
-{"NNY",
- "NNY",
- "YYN"}
-
-Returns: 1
-
-There are 3 foxes. Ciel and Jiro are not friends, but they are both friends with fox 2. Thus, they may dance together in the first dance and become friends.
-
-
-1)
-{"NNNNN",
- "NNYYY",
- "NYNYY",
- "NYYNY",
- "NYYYN"}
-
-Returns: -1
-
-Ciel does not know any other fox at the dance, so she cannot dance with anybody.
-
-
-2)
-{"NNYYNN",
- "NNNNYY",
- "YNNNYN",
- "YNNNNY",
- "NYYNNN",
- "NYNYNN"}
-
-Returns: 2
-
-
-3)
-{"NNYNNNNYN",
- "NNNNYNYNN",
- "YNNYNYNNN",
- "NNYNYNYYN",
- "NYNYNNNNY",
- "NNYNNNYNN",
- "NYNYNYNNN",
- "YNNYNNNNY",
- "NNNNYNNYN"}
-
-Returns: 3
-
-
-4)
-{"NY",
- "YN"}
-
-Returns: 0
-
-Ciel and Jiro are already friends in the beginning, no dances are needed. In such a case, the correct return value is 0.
+問題
+-N人でダンスをする
+-共通の友達同士でダンスをすると友達になれる
+-友達かどうかが与えられる
+-CielとJiroが友達になるための最小のダンスの回数を求める
 
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
-#include <map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
