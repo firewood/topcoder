@@ -1,0 +1,210 @@
+// Microsoft Visual C++ で生成されたリソース スクリプトです。
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE 2 リソースから生成されました。
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#include ""res\\CirclesSeparationVis.rc2""  // Microsoft Visual C++ 以外で編集されたリソース\r\n"
+    "#include ""l.JPN\\afxres.rc""  	// 標準コンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// アイコン
+//
+
+// アプリケーションのアイコンをすべてのシステム上で維持するために、最も小さい
+// ID 値のアイコンが最初に配置されます。
+IDR_MAINFRAME           ICON         "res\\CirclesSeparationVis.ico"
+
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE 17, 1
+#pragma code_page(932)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// ダイアログ
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "バージョン情報 CirclesSeparationVis"
+FONT 9, "MS UI Gothic"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "CirclesSeparationVis, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2013",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_CIRCLESSEPARATIONVIS_DIALOG DIALOGEX 0, 0, 646, 680
+STYLE DS_SHELLFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION
+ | DS_MODALFRAME
+ | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "CirclesSeparationVis"
+FONT 9, "MS UI Gothic"
+BEGIN
+    PUSHBUTTON      "キャンセル",IDCANCEL,7,507,50,14
+    PUSHBUTTON      "Button1",IDC_BUTTON1,7,7,50,14
+    PUSHBUTTON      "Button2",IDC_BUTTON2,7,32,50,14
+    PUSHBUTTON      "Button3",IDC_BUTTON3,7,57,50,14
+    PUSHBUTTON      "Button4",IDC_BUTTON4,7,82,50,14
+    PUSHBUTTON      "Button5",IDC_BUTTON5,7,107,50,14
+    PUSHBUTTON      "Button6",IDC_BUTTON6,7,132,50,14
+    PUSHBUTTON      "Button7",IDC_BUTTON7,7,157,50,14
+    PUSHBUTTON      "Button8",IDC_BUTTON8,7,182,50,14
+    PUSHBUTTON      "Button9",IDC_BUTTON9,7,207,50,14
+    PUSHBUTTON      "Button10",IDC_BUTTON10,7,232,50,14
+    PUSHBUTTON      "Button11",IDC_BUTTON11,7,257,50,14
+    PUSHBUTTON      "Button12",IDC_BUTTON12,7,282,50,14
+    PUSHBUTTON      "Button13",IDC_BUTTON13,7,307,50,14
+    PUSHBUTTON      "Button14",IDC_BUTTON14,7,332,50,14
+    PUSHBUTTON      "Button15",IDC_BUTTON15,7,357,50,14
+    PUSHBUTTON      "Button16",IDC_BUTTON16,7,382,50,14
+    PUSHBUTTON      "Button17",IDC_BUTTON17,7,407,50,14
+    PUSHBUTTON      "Button18",IDC_BUTTON18,7,432,50,14
+    PUSHBUTTON      "Button19",IDC_BUTTON19,7,457,50,14
+    PUSHBUTTON      "Button20",IDC_BUTTON20,7,482,50,14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// バージョン
+//
+
+VS_VERSION_INFO     VERSIONINFO
+  FILEVERSION       1,0,0,1
+  PRODUCTVERSION    1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+        BLOCK "041103a4"
+		BEGIN
+            VALUE "CompanyName", "TODO: <会社名>"
+            VALUE "FileDescription", "TODO: <ファイルの説明>"
+			VALUE "FileVersion",     "1.0.0.1"
+			VALUE "InternalName",    "CirclesSeparationVis.exe"
+            VALUE "LegalCopyright", "TODO: (C) <会社名>.  All rights reserved."
+			VALUE "OriginalFilename","CirclesSeparationVis.exe"
+            VALUE "ProductName", "TODO: <製品名>"
+			VALUE "ProductVersion",  "1.0.0.1"
+		END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x0411, 932
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_CIRCLESSEPARATIONVIS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 639
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 673
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// ストリング テーブル
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "バージョン情報 CirclesSeparationVis(&A)..."
+END
+
+
+#endif
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE 3 リソースから生成されました。
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE 17, 1
+#pragma code_page(932)
+#include "res\\CirclesSeparationVis.rc2"  // Microsoft Visual C++ 以外で編集されたリソース
+#include "l.JPN\\afxres.rc"  	// 標準コンポーネント
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // APSTUDIO_INVOKED でない場合
+
