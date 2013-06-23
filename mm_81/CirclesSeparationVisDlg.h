@@ -3,10 +3,10 @@
 
 #include "CirclesSeparation.h"
 
-#define LEFT_X -1.70
-#define RIGHT_X 1.70
-#define TOP_Y 1.70
-#define BOTTOM_Y -1.70
+#define LEFT_X -1.50
+#define RIGHT_X 1.50
+#define TOP_Y 1.50
+#define BOTTOM_Y -1.50
 #define LEFT_OFFSET 120
 #define TOP_OFFSET 12
 #define DRAW_WIDTH 1000

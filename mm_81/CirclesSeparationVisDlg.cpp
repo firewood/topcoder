@@ -165,9 +165,9 @@ void CCirclesSeparationVisDlg::OnPaint()
 		mem.FillSolidRect(0,0,DRAW_WIDTH,DRAW_HEIGHT,RGB(128,128,128));
 
 		LOGFONT font = {};
-		font.lfHeight = 12;
+		font.lfHeight = 20;
 		font.lfCharSet = ANSI_CHARSET;
-		_tcscpy(font.lfFaceName, _T("Terminal"));
+		_tcscpy(font.lfFaceName, _T("Arial"));
 		CFont Font;
 		Font.CreateFontIndirect(&font);
 		mem.SelectObject(Font);
