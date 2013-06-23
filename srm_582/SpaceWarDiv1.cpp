@@ -2,97 +2,12 @@
 /*
 SRM 582 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Magical Girls are girls who have magical powers.
-They fight against evil to protect the Earth.
-Cosmic enemies have just attacked the Earth, and the Magical Girls are going to fight them.
-
-You are given a vector <int> magicalGirlStrength that describes the Magical Girls:
-for each i, magicalGirlStrength[i] is the strength of one of the girls.
-You are also given a vector <int> enemyStrength and a vector<long long> enemyCount that describe their enemies:
-for each i, there are enemyCount[i] enemies that each have strength enemyStrength[i].
-
-Each Magical Girl will always fight one enemy at a time.
-A Magical Girl will defeat her enemy if her strength is greater than or equal to the strength of that enemy.
-
-At the beginning of the fight the fatigue of each Magical Girl is 0.
-Each time a Magical Girl defeats an enemy, her fatigue increases by 1.
-
-The Magical Girls want to defeat all the enemies.
-That is, each of the enemies must be defeated by one of the Magical Girls.
-Additionally, the Magical Girls want to minimize the maximum fatigue among them.
-
-If it is impossible to defeat all of the enemies, return -1.
-Otherwise, return the smallest F with the following property:
-the Magical Girls can defeat all enemies in such a way that at the end the fatigue of each girl is at most F.
-
-DEFINITION
-Class:SpaceWarDiv1
-Method:minimalFatigue
-Parameters:vector <int>, vector <int>, vector<long long>
-Returns:long long
-Method signature:long long minimalFatigue(vector <int> magicalGirlStrength, vector <int> enemyStrength, vector<long long> enemyCount)
-
-
-NOTES
--The elements of enemyStrength are not necessarily pairwise distinct.
-
-
-CONSTRAINTS
--magicalGirlStrength will contain between 1 and 50 elements, inclusive.
--Each element of magicalGirlStrength will be between 1 and 10,000, inclusive.
--enemyStrength and enemyCount will each contain between 1 and 50 elements, inclusive.
--enemyStrength and enemyCount will contain the same number of elements.
--Each element of enemyStrength will be between 1 and 10,000, inclusive.
--Each element of enemyCount will be between 1 and 100,000,000,000,000 (10^14), inclusive.
-
-
-EXAMPLES
-
-0)
-{2, 3, 5}
-{1, 3, 4}
-{2, 9, 4}
-
-Returns: 7
-
-There are 3 Magical Girls, their strength are 2, 3, and 5.
-There are 3 kinds of enemies: 2 enemies with strength 1 each, 9 enemies with strength 3 each, and 4 enemies with strength 4 each.
-This is one of the ways how to minimize the maximal fatigue:
-
-Magical girl 0 defeats 2 enemies with strength 1.
-Magical girl 1 defeats 7 enemies with strength 3.
-Magical girl 2 defeats 2 enemies with strength 3 and 4 enemies with strength 4.
-
-
-1)
-{2, 3, 5}
-{1, 1, 2}
-{2, 9, 4}
-
-Returns: 5
-
-Each of the Magical Girls can defeat any of the enemies. The optimal strategy is that each girl should defeat 5 of the enemies.
-
-
-2)
-{14, 6, 22}
-{8, 33}
-{9, 1}
-
-Returns: -1
-
-None of the magical girls can defeat the enemy with strength 33.
-
-
-3)
-{869, 249, 599, 144, 929, 748, 665, 37, 313, 99, 33, 437, 308, 137, 665, 834, 955, 958, 613, 417}
-{789, 57, 684, 741, 128, 794, 542, 367, 937, 739, 568, 872, 127, 261, 103, 763, 864, 360, 618, 307}
-{20626770196420, 45538527263992, 52807114957507, 17931716090785, 65032910980630, 88711853198687, 26353250637092,
- 61272534748707, 89294362230771, 52058590967576, 60568594469453, 23772707032338, 43019142889727, 39566072849912,
- 78870845257173, 68135668032761, 36844201017584, 10133804676521, 6275847412927, 37492167783296}
-
-Returns: 75030497287405
+問題
+-何人かの魔法少女と、それぞれの強さが与えられる
+-何種類かのエイリアンと、その強さと数が与えられる
+-魔法少女は、自分の強さ以下の敵は倒せる
+-敵を1匹倒すごとに魔法少女の疲労が1増える
+-疲労の最大値を最小化せよ
 
 */
 // END CUT HERE
