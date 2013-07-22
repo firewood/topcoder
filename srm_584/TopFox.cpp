@@ -2,80 +2,10 @@
 /*
 SRM 584 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Fox Ciel is planning to register on TopFox. Her family name is familyName and her given name is givenName.
-
-She will choose a TopFox handle according to the following rule.
-Let s be a non-empty prefix of her family name and let t be a non-empty prefix of her given name.
-Now Fox Ciel may choose the concatenation of s and t as her handle.
-
-For example, suppose Fox Ciel's family name is "fox" and her given name is "ciel".
-She may choose the handle "foxciel", "fc", or "foxc". She may not choose "ox", "ciel", or "jiro".
-
-You are told Fox Ciel's family name and given name. Return the number of possible handles Fox Ciel may choose.
-
-
-DEFINITION
-Class:TopFox
-Method:possibleHandles
-Parameters:string, string
-Returns:int
-Method signature:int possibleHandles(string familyName, string givenName)
-
-
-CONSTRAINTS
--familyName will contain between 2 and 10 characters, inclusive.
--Each character in familyName will be a lowercase English letter, i.e., 'a'-'z'.
--givenName will contain between 2 and 10 characters, inclusive.
--Each character in givenName will be a lowercase English letter, i.e., 'a'-'z'.
-
-
-EXAMPLES
-
-0)
-"ab"
-"cd"
-
-Returns: 4
-
-There are 4 possible handles: "a" + "c" = "ac", "a" + "cd" = "acd", "ab" + "c" = "abc" and "ab" + "cd" = "abcd".
-
-
-1)
-"abb"
-"bbc"
-
-Returns: 7
-
-There are 7 possible handles: "ab", "abb", "abbc", "abbb", "abbbc", "abbbb", "abbbbc".
-
-
-2)
-"fox"
-"ciel"
-
-Returns: 12
-
-
-3)
-"abbbb"
-"bbbbbbbc"
-
-Returns: 16
-
-
-4)
-"abxy"
-"xyxyxc"
-
-Returns: 21
-
-
-5)
-"ababababab"
-"bababababa"
-
-Returns: 68
+問題
+-TopFoxに参加するためにハンドルネームを決めたい
+-姓と名のそれぞれ先頭から1文字以上取って連結する
+-何通り作れるか求める
 
 */
 // END CUT HERE
