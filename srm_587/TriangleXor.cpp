@@ -2,85 +2,9 @@
 /*
 SRM 587 Div1 Medium (550)
 
-PROBLEM STATEMENT
-
-You are given an int W.
-There is a rectangle in the XY-plane with corners at (0, 0), (0, 1), (W, 0), and (W, 1).
-Let T[x] be the triangle with vertices at (0, 1), (W, 1) and (x, 0).
-(All points that lie inside the triangle are a part of T[x] as well.)
-
-The objective in this problem is to calculate the area of the region (T[0] xor T[1] xor ... xor T[W]).
-(See Notes for a formal definition.)
-The figures below show the region (T[0] xor T[1] xor ... xor T[W]) for W=1,2,3,4,5,6.
-
-Return the integer part of the area of the region.
-
-
-DEFINITION
-Class:TriangleXor
-Method:theArea
-Parameters:int
-Returns:int
-Method signature:int theArea(int W)
-
-
-NOTES
--For sets of points A and B in the XY-plane, the set (A xor B) is defined as the set of all points that lie in exactly one of the sets A and B (i.e., points that belong to the union of A and B but don't belong to their intersection).
--If the exact area is A, the correct return value is floor(A), not round(A). In words: you should return the largest integer that is less than or equal to the exact area.
--The format of the return value was chosen to help you in case of small precision errors. The constraints guarantee that computing the correct area with absolute error less than 0.01 is sufficient to determine the correct return value. The author's solution is significantly more precise than that.
-
-
-CONSTRAINTS
--W will be between 1 and 70,000, inclusive.
--The difference between the exact area of the region and the nearest integer will be greater than 0.01.
-
-
-EXAMPLES
-
-0)
-1
-
-Returns: 0
-
-The exact area is 0.5.
-
-
-1)
-2
-
-Returns: 1
-
-The area is approximately 1.33333.
-
-
-2)
-3
-
-Returns: 1
-
-The exact area is 1.35.
-
-
-3)
-4
-
-Returns: 2
-
-The area is approximately 2.62857. Note that the correct answer is 2, not 3.
-
-
-4)
-5
-
-Returns: 2
-
-The area is approximately 2.13294.
-
-
-5)
-12345
-
-Returns: 4629
+問題
+-高さ1、幅Wの長方形に三角形をXORで塗っていく
+-面積の整数部分を求める
 
 */
 // END CUT HERE
