@@ -2,89 +2,9 @@
 /*
 SRM 590 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Fox Ciel is playing a game with some chess pawns and a strip of paper.
-The strip of paper is divided into a row of cells.
-Each cell can contain at most one pawn.
-The white pawns will be denoted 'R', because they are only allowed to move to the right.
-The black pawns will be denoted 'L', because they are only allowed to move to the left.
-
-
-You are given a string begin that describes the current state of the strip: 'R' and 'L' are cells with corresponding pawns, and '.' are empty cells.
-
-
-You are now allowed to make some moves (as many as you wish, possibly zero).
-In each move you may either take a 'R' pawn and move it one cell to the right, or take a 'L' pawn and move it one cell to the left.
-Of course, both types of moves are only valid if the destination cell is currently empty.
-Pawns are not allowed to move out of bounds.
-
-
-You are also given a string target that represents the desired state of the strip.
-If it is possible to reach target from begin by making some valid moves, return "Possible" (quotes for clarity), otherwise return "Impossible".
-
-DEFINITION
-Class:FoxAndChess
-Method:ableToMove
-Parameters:string, string
-Returns:string
-Method signature:string ableToMove(string begin, string target)
-
-
-CONSTRAINTS
--begin will contain between 1 and 50 elements, inclusive.
--begin and target will contain the same number of elements.
--Each character in begin and target will be one of '.', 'L' and 'R'.
-
-
-EXAMPLES
-
-0)
-"R..."
-"..R."
-
-Returns: "Possible"
-
-You have to move the only pawn to the right twice.
-
-1)
-"..R."
-"R..."
-
-Returns: "Impossible"
-
-Here target cannot be reached because the only pawn is only allowed to move to the right.
-
-2)
-".L.R.R."
-"L...R.R"
-
-Returns: "Possible"
-
-
-
-3)
-".L.R."
-".R.L."
-
-Returns: "Impossible"
-
-
-
-4)
-"LRLLRLRLLRLLRLRLRL"
-"LRLLRLRLLRLLRLRLRL"
-
-Returns: "Possible"
-
-
-
-5)
-"L"
-"."
-
-Returns: "Impossible"
-
-
+問題
+-横一列に右向きまたは左向きのポーンが配置されている
+-beginからtargetの状態に遷移可能かどうかを求める
 
 */
 // END CUT HERE

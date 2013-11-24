@@ -2,193 +2,9 @@
 /*
 SRM 590 Div2 Medium (500)
 
-// PROBLEM STATEMENT
-// Fox Ciel is teaching her friend Jiro to play Go.
-Ciel has just placed some white and some black tokens onto a board.
-She now wants Jiro to find the best possible move.
-(This is defined more precisely below.)
-
-
-You are given a vector <string> board.
-Character j of element i of board represents the cell (i,j) of the board:
-'o' is a cell with a white token, 'x' a cell with a black token, and '.' is an empty cell.
-At least one cell on the board will be empty.
-
-
-Jiro's move will consist of adding a single black token to the board.
-The token must be placed onto an empty cell.
-Once Jiro places the token, some white tokens will be removed from the board according to the rules described in the next paragraphs.
-
-
-The white tokens on the board can be divided into connected components using the following rules:
-If two white tokens lie in cells that share an edge, they belong to the same component.
-Being in the same component is transitive: if X lies in the same component as Y and Y lies in the same component as Z, then X lies in the same component as Z.
-
-
-Each component of white tokens is processed separately.
-For each component of white tokens we check whether it is adjacent to an empty cell.
-(That is, whether there are two cells that share an edge such that one of them is empty and the other contains a white token from the component we are processing.)
-If there is such an empty cell, the component is safe and its tokens remain on the board.
-If there is no such empty cell, the component is killed and all its tokens are removed from the board.
-
-
-Jiro's score is the total number of white tokens removed from the board after he makes his move.
-Return the maximal score he can get for the given board.
-
-
-DEFINITION
-Class:FoxAndGo
-Method:maxKill
-Parameters:vector <string>
-Returns:int
-Method signature:int maxKill(vector <string> board)
-
-
-NOTES
--The position described by board does not have to be a valid Go position. In particular, there can already be components of white tokens that have no adjacent empty cell.
--Please ignore official Go rules. The rules described in the problem statement are slightly different. For example, in this problem the black tokens cannot be killed, and it is allowed to place the black token into any empty cell.
-
-
-CONSTRAINTS
--n will be between 2 and 19, inclusive.
--board will contain exactly n elements.
--Each element in board will contain exactly n characters.
--Each character in board will be 'o', 'x' or '.'.
--There will be at least one '.' in board.
-
-
-EXAMPLES
-
-0)
-{".....",
- "..x..",
- ".xox.",
- ".....",
- "....."}
-
-
-Returns: 1
-
-To kill the only white token, Jiro must place his black token into the cell (3,2). (Both indices are 0-based.)
-
-1)
-{"ooooo",
- "xxxxo",
- "xxxx.",
- "xxxx.",
- "ooooo"}
-
-
-Returns: 6
-
-By placing the token to the cell (2,4) Jiro kills 6 white tokens. The other possible move only kills 5 tokens.
-
-2)
-{".xoxo",
- "ooxox",
- "oooxx",
- "xoxox",
- "oxoox"}
-
-
-Returns: 13
-
-There is only one possible move. After Jiro makes it, all the white tokens are killed.
-
-3)
-{".......",
- ".......",
- ".......",
- "xxxx...",
- "ooox...",
- "ooox...",
- "ooox..."}
-
-
-Returns: 9
-
-Regardless of where Jiro moves, the 9 white tokens in the lower left corner will be killed.
-
-4)
-{".......",
- ".xxxxx.",
- ".xooox.",
- ".xo.ox.",
- ".xooox.",
- ".xxxxx.",
- "......."}
-
-
-Returns: 8
-
-
-
-5)
-{"o.xox.o",
- "..xox..",
- "xxxoxxx",
- "ooo.ooo",
- "xxxoxxx",
- "..xox..",
- "o.xox.o"}
-
-
-Returns: 12
-
-
-
-6)
-{".......",
- "..xx...",
- ".xooox.",
- ".oxxox.",
- ".oxxxo.",
- "...oo..",
- "......."}
-
-Returns: 4
-
-
-
-7)
-{".ox....",
- "xxox...",
- "..xoox.",
- "..xoox.",
- "...xx..",
- ".......",
- "......."}
- 
-
-Returns: 5
-
-
-
-8)
-{"...................",
- "...................",
- "...o..........o....",
- "................x..",
- "...............x...",
- "...................",
- "...................",
- "...................",
- "...................",
- "...................",
- "...................",
- "...................",
- "...................",
- "...................",
- "................o..",
- "..x................",
- "...............x...",
- "...................",
- "..................."}
-
-
-Returns: 0
-
-
+問題
+-碁盤がある
+-黒を1手打ったとき、白が取れる最大の個数を求める
 
 */
 // END CUT HERE
@@ -196,6 +12,7 @@ Returns: 0
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <string.h>
 
 using namespace std;
 
@@ -203,6 +20,7 @@ class FoxAndGo {
 
 	int N;
 	vector <string> b;
+	int v[64][64];
 
 	int dfs(int x, int y) {
 		const int dx[] = {-1,1,0,0};
@@ -214,17 +32,15 @@ class FoxAndGo {
 			return 0;
 		}
 		if (b[y][x] == '.') {
-			return -1;
+			return -10000;
 		}
-		b[y][x] = 'x';
+		if (v[y][x]) {
+			return 0;
+		}
+		v[y][x] = 1;
 		int sum = 1;
 		for (int i = 0; i < 4; ++i) {
-			int r = dfs(x + dx[i], y + dy[i]);
-			if (r < 0) {
-				b[y][x] = '.';
-				return -1;
-			}
-			sum += r;
+			sum += dfs(x + dx[i], y + dy[i]);
 		}
 		return sum;
 	}
@@ -239,12 +55,10 @@ public:
 					int sum = 0;
 					b = board;
 					b[i][j] = 'x';
+					memset(v, 0, sizeof(v));
 					for (int y = 0; y < N; ++y) {
 						for (int x = 0; x < N; ++x) {
-							int r = dfs(x, y);
-							if (r > 0) {
-								sum += r;
-							}
+							sum += max(0, dfs(x, y));
 						}
 					}
 					ans = max(ans, sum);
