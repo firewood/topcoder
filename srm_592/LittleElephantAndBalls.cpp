@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-SRM 592 Div1 Easy (250)
+SRM 592 Div1 Easy (300)
 
 問題
 -RGB三種類のボールがある
