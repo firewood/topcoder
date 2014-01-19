@@ -2,74 +2,11 @@
 /*
 SRM 593 Div1 Easy (250)
 
-PROBLEM STATEMENT
-The pony Applejack has an N by N hexagonal board. The following picture shows the hexagonal board when N = 1, 2, 3, and 4.
-
-She wants to color some cells of the board. You are given a vector <string> board. If the j-th character of the i-th element of board is 'X', she wants to color the cell (i, j). If she colors two cells that share an edge, she must use different colors for those cells. Return the minimal number of colors she needs.
-
-
-DEFINITION
-Class:HexagonalBoard
-Method:minColors
-Parameters:vector <string>
-Returns:int
-Method signature:int minColors(vector <string> board)
-
-
-CONSTRAINTS
--board will contain between 1 and 50 elements, inclusive.
--Each element of board will contain exactly N characters, where N is the number of elements in board.
--Each character in board will be either 'X' or '-'.
-
-
-EXAMPLES
-
-0)
-{"---",
- "---",
- "---"}
- 
-
-Returns: 0
-
-She won't color any cells, so she won't need any colors.
-
-
-1)
-{"-X--",
- "---X",
- "----",
- "-X--"}
-
-Returns: 1
-
-She can color all cells with the same color.
-
-
-2)
-{"XXXX",
- "---X",
- "---X",
- "---X"}
-
-Returns: 2
-
-For example, she can color cells in the following way:
-
-Color cells (0, 0), (0, 2), (1, 3), and (3, 3) red.
-Color cells (0, 1), (0, 3), and (2, 3) blue.
-
-
-3)
-{"XX-XX--"
-,"-XX-XXX"
-,"X-XX--X"
-,"X--X-X-"
-,"XX-X-XX"
-,"-X-XX-X"
-,"-XX-XX-"}
-
-Returns: 3
+問題
+-ヘックスの升目のボードがある
+-Xの印がついているところに色を塗る
+-隣接していれば違う色を塗る
+-最低何色必要か求める
 
 */
 // END CUT HERE
