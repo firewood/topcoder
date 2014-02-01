@@ -2,87 +2,12 @@
 /*
 SRM 594 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Fox Ciel found two astronomical records.
-They both describe the same solar system.
-Each planet in the system can be characterized by two parameters each being a positive number: planet's size and the distance at which it orbits the sun.
-All orbital distances are pairwise distinct, but sizes of some planets may be the same.
-
-The first record is a vector <int> A with x elements.
-These elements give the relative sizes of some x planets in the solar system.
-Formally, the sizes of those planets have the ratio A[0] : A[1] : ... : A[x-1].
-The planets described by A are ordered by their distance from the sun.
-(That is, earlier elements of A correspond to planets that are closer to the sun.)
-
-The second record is a vector <int> B with y elements.
-These elements give the relative sizes of some y planets in the solar system.
-Formally, the sizes of those planets have the ratio B[0] : B[1] : ... : B[y-1].
-The planets described by B are ordered by their distance from the sun.
-
-Note that the planets considered by a record do not have to be consecutive.
-For example, if a solar system contains the planets P, Q, R, S, T, and U, it is possible that the first record compares P, R, and S, and the second record compares Q, R, T, and U.
-
-We assume that both records are correct.
-Return the smallest possible total number of planets in the solar system.
-
-
-DEFINITION
-Class:AstronomicalRecords
-Method:minimalPlanets
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int minimalPlanets(vector <int> A, vector <int> B)
-
-
-CONSTRAINTS
--A will contain between 2 and 50 elements, inclusive.
--B will contain between 2 and 50 elements, inclusive.
--Each element in A will be between 1 and 1,000,000,000, inclusive.
--Each element in B will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,2,1,2,1}
-{2,1,2,1,2}
-
-Returns: 6
-
-There have to be at least 5 planets, because each record compares 5 of them.
-There cannot be exactly 5 planets, because the first one would have to be both smaller than and larger than the second one.
-(Their ratio would have to be both 1:2 and 2:1, which is impossible.)
-There can be exactly 6 planets with relative sizes 1,2,1,2,1,2.
-
-
-1)
-{1,2,3,4}
-{2,4,6,8}
-
-Returns: 4
-
-There can be only 4 planets because 1:2:3:4 = 2:4:6:8.
-
-
-2)
-{2,3,2,3,2,3,2}
-{600,700,600,700,600,700,600}
-
-Returns: 10
-
-
-3)
-{1,2,3,4,5,6,7,8,9}
-{6,7,8,9,10,11,12}
-
-Returns: 12
-
-
-4)
-{100000000,200000000}
-{200000000,100000000}
-
-Returns: 3
+問題
+-惑星系に関する記録がAとBの二つある
+-各要素は太陽からの距離順に並んでおり、数値が相対的な大きさを表す
+-AとBは同じ惑星系の記録だが、倍率は異なる可能性がある
+-全ての惑星が記録されているとは限らない
+-少なくともいくつの惑星があるか求める
 
 */
 // END CUT HERE
