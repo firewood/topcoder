@@ -2,78 +2,10 @@
 /*
 SRM 597 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Little Elephant from the Zoo of Lviv likes strings.
-
-You are given a string A and a string B of the same length.
-In one turn Little Elephant can choose any character of A and move it to the beginning of the string (i.e., before the first character of A).
-Return the minimal number of turns needed to transform A into B. If it's impossible, return -1 instead.
-
-
-DEFINITION
-Class:LittleElephantAndString
-Method:getNumber
-Parameters:string, string
-Returns:int
-Method signature:int getNumber(string A, string B)
-
-
-CONSTRAINTS
--A will contain between 1 and 50 characters, inclusive.
--B will contain between 1 and 50 characters, inclusive.
--A and B will be of the same length.
--A and B will consist of uppercase letters ('A'-'Z') only.
-
-
-EXAMPLES
-
-0)
-"ABC"
-"CBA"
-
-Returns: 2
-
-The optimal solution is to make two turns.
-On the first turn, choose character 'B' and obtain string "BAC".
-On the second turn, choose character 'C' and obtain "CBA".
-
-
-1)
-"A"
-"B"
-
-Returns: -1
-
-In this case, it's impossible to transform A into B.
-
-
-2)
-"AAABBB"
-"BBBAAA"
-
-Returns: 3
-
-
-3)
-"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-"ZYXWVUTSRQPONMLKJIHGFEDCBA"
-
-Returns: 25
-
-
-4)
-"A"
-"A"
-
-Returns: 0
-
-
-5)
-"DCABA"
-"DACBA"
-
-Returns: 2
+問題
+-同じ長さの文字列AとBがある
+-Aの任意の文字を先頭に移動できる
+-AとBを等しくするための手数を求める(不可能なら-1)
 
 */
 // END CUT HERE
