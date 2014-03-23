@@ -2,87 +2,11 @@
 /*
 SRM 601 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-It's winter time!
-You have some candies arranged in a row and now you want to choose some of them and give them to your friend.
-
-You are given a vector <int> type.
-Each candy has a type, which is some positive integer.
-For each i, type[i] represents the type of i-th candy.
-You want to choose some non-empty subset of candies with the following property:
-if the number of candies you choose is K, their types must be precisely all the numbers from 1 to K, inclusive.
-Return the number of different ways to do that.
-(Two ways are considered different if there exists some candy that is chosen in only one of them.)
-
-
-DEFINITION
-Class:WinterAndCandies
-Method:getNumber
-Parameters:vector <int>
-Returns:int
-Method signature:int getNumber(vector <int> type)
-
-
-NOTES
--The answer will always fit in a signed 32-bit integer.
-
-
-CONSTRAINTS
--type will contain between 1 and 50 elements, inclusive.
--Each element of type will be between 1 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-{1, 3, 2}
-
-Returns: 3
-
-There are 7 possible non-empty subsets in this case:
-
-(1)
-
-(3)
-
-(2)
-
-(1, 3)
-
-(1, 2)
-
-(3, 2)
-
-(1, 3, 2)
-
-Out of them, only first, fifth and seventh are valid. Thus, the answer is 3.
-
-
-1)
-{1, 1, 2}
-
-Returns: 4
-
-Note that the chosen subset can never contain two elements with the same type.
-
-
-2)
-{1, 3, 2, 5, 7, 4, 5, 4}
-
-Returns: 9
-
-
-3)
-{1, 1, 2, 2, 3, 3, 4, 4, 5, 5}
-
-Returns: 62
-
-
-4)
-{2}
-
-Returns: 0
+問題
+-何種類かのキャンディーがある
+-キャンディーの種類は正の整数
+-K個取り出す
+-1からKまでの種類が揃うのは何通りか求める
 
 */
 // END CUT HERE

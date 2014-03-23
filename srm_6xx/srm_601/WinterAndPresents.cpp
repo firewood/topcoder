@@ -2,83 +2,10 @@
 /*
 SRM 601 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-It's winter time!
-You need to prepare a Christmas gift for your friend.
-
-You have several bags arranged in a row.
-The bags only contain apples and oranges.
-You are given an vector <int> apple and an vector <int> orange.
-For each i, the i-th element of apple represents the number of apples in the i-th bag, and the i-th element of orange represents the number of oranges in the i-th bag.
-
-You will choose the gift using the following procedure:
-First, you will choose any positive integer X such that there are at least X pieces of fruit in each bag.
-Then, you will take exactly X pieces of fruit out of each bag, and combine all the fruit into one present.
-Return the number of different gifts that may be produced by following the given procedure.
-(Two gifts are considered different if they contain a different number of apples or a different number of oranges.)
-
-
-DEFINITION
-Class:WinterAndPresents
-Method:getNumber
-Parameters:vector <int>, vector <int>
-Returns:long long
-Method signature:long long getNumber(vector <int> apple, vector <int> orange)
-
-
-CONSTRAINTS
--apple will contain between 1 and 50 elements, inclusive.
--orange will contain between 1 and 50 elements, inclusive.
--apple and orange will contain the same number of elements.
--Each element of apple and orange will be between 0 and 1,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1}
-{1}
-
-Returns: 3
-
-Three different presents are possible in this case: 
-
-0 apples and 1 orange
-
-1 apple and 0 oranges
-
-1 apple and 1 orange
-
-
-1)
-{1, 2, 0, 3}
-{4, 5, 0, 6}
-
-Returns: 0
-
-As there is an empty bag, there is no way to choose the present.
-
-
-2)
-{2, 2, 2}
-{2, 2, 2}
-
-Returns: 16
-
-
-3)
-{7, 4, 5}
-{1, 10, 2}
-
-Returns: 46
-
-
-4)
-{1000000}
-{1000000}
-
-Returns: 1000002000000
+問題
+-りんごとみかんが入っている袋がいくつかある
+-それぞれの袋からX個取り出す
+-りんごとみかんの数の組み合わせが何通り可能かを求める
 
 */
 // END CUT HERE
