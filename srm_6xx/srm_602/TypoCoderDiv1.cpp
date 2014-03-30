@@ -2,104 +2,14 @@
 /*
 SRM 602 Div1 Easy (250)
 
-PROBLEM STATEMENT
-TypoCoder is a programming contest like TopCoder.
-TypoCoder also has a rating system.
-There are two types of coders in TypoCoder: brown coders and ciel coders.
-A brown coder is a coder whose rating is greater than or equal to 2200.
-A ciel coder is a coder whose rating is less than 2200.
-
-Cat Lower competes in TypoCoder.
-He is currently a ciel coder.
-His rating at the end of the current year is X.
-
-Next year there will be some contests.
-In each of those contests, Cat Lower can either try his best or lose on purpose.
-For each i, the i-th contest (0-based index) has weight D[i].
-If Cat Lower tries his best in the i-th contest, his rating will increase by D[i].
-If he decides to lose on purpose instead, his rating will decrease by D[i], but not below zero.
-Formally, his rating will decrease by min(D[i],his rating before the contest).
-
-Cat Lower loves being a ciel coder.
-Therefore, he must never be a brown coder twice in a row.
-That is, whenever Cat Lower becomes a brown coder, he must be ciel again after the next contest (if there are any contests left).
-
-TypoCoder awards "Chameleon coder of the year" to the coder whose color changed the most times during the year.
-
-You are given the vector <int> D and the int X.
-Return the maximal number of color changes Cat Lower can have next year.
-
-
-DEFINITION
-Class:TypoCoderDiv1
-Method:getmax
-Parameters:vector <int>, int
-Returns:int
-Method signature:int getmax(vector <int> D, int X)
-
-
-CONSTRAINTS
--D will contain between 1 and 50 elements, inclusive.
--Each element of D will be between 0 and 1,000,000,000 (10^9), inclusive.
--X will be between 0 and 2199, inclusive.
-
-
-EXAMPLES
-
-0)
-{100,200,100,1,1}
-2000
-
-Returns: 3
-
-When he increase at the second, the third and the last competition and decrease at the first and the fourth competition, he can change the color 3 times and this is the maximal.
-
-1)
-{0,0,0,0,0}
-2199
-
-Returns: 0
-
-He cannot be a brown coder in this case.
-
-
-2)
-{90000,80000,70000,60000,50000,40000,30000,20000,10000}
-0
-
-Returns: 1
-
-Note that Cat Lower always has at least one valid strategy: if he decides to lose in all contests, he will remain ciel forever.
-In this test case, the optimal strategy for him is to lose in the first eight contests and then to win in the last one.
-Note that before the last contest his rating will be 0.
-
-
-3)
-{1000000000,1000000000,10000,100000,2202,1}
-1000
-
-Returns: 4
-
-
-4)
-{2048,1024,5012,256,128,64,32,16,8,4,2,1,0}
-2199
-
-Returns: 0
-
-
-5)
-{61,666,512,229,618,419,757,217,458,883,23,932,547,679,565,767,513,798,870,31,379,294,929,892,173,127,796,353,913,115,802,803,948,592,959,127,501,319,140,694,851,189,924,590,790,3,669,541,342,272}
-1223
-
-Returns: 29
-
-
-6)
-{34,64,43,14,58,30,2,16,90,58,35,55,46,24,14,73,96,13,9,42,64,36,89,42,42,64,52,68,53,76,52,54,23,88,32,52,28,96,70,32,26,3,23,78,47,23,54,30,86,32}
-1328
-
-Returns: 20
+問題
+-LowerはTypoCoderに参加している
+-レーティング2200未満が水色、2200以上が茶色である
+-一回の増減が配列Dで与えられる
+-増えるか減るかのどちらかを選べる
+-0未満にはならない
+-2回連続で茶色になりたくない
+-レーティングの変化回数の最大値を求める
 
 */
 // END CUT HERE
