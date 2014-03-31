@@ -2,85 +2,13 @@
 /*
 SRM 603 Div1 Easy (250)
 
-PROBLEM STATEMENT
-MaxMinTreeGame is a game for two players.
-The game is played on a tree.
-The tree has N nodes, labeled 0 through N-1.
-Each node of the tree also has an integer cost.
-
-The players take alternating turns.
-In her turn, the current player starts by choosing one edge of the tree and erasing it.
-This necessarily divides the tree into two components.
-The current player then decides which of the components to keep, and erases the other component completely.
-
-The game ends when there is only one node left.
-The cost of that node is the result of the game.
-The first player (i.e., the one that starts the game) wants to maximize the result.
-Naturally, the second player's goal is to minimize the result.
-
-You are given a vector <int> edges that describes the structure of the tree.
-For each i between 0 and N-2, inclusive, the tree contains an edge between the vertices i+1 and edges[i].
-You are also given a vector <int> costs.
-For each i between 0 and N-1, inclusive, the cost of vertex i is costs[i].
-
-Return the result of the game, assuming that both players play optimally.
-
-
-DEFINITION
-Class:MaxMinTreeGame
-Method:findend
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int findend(vector <int> edges, vector <int> costs)
-
-
-CONSTRAINTS
--The number of nodes in the tree N will be between 2 and 50, inclusive.
--edges will contain exactly N-1 elements.
--For each i, edges[i] will be between 0 and i, inclusive.
--costs will contain exactly N elements.
--Each element of costs will be between 0 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{0}
-{4,6}
-
-Returns: 6
-
-There is only one edge in this tree and the first player will choose it. After that she will keep the component containing the node with cost 6.
-
-
-1)
-{0,1}
-{4,6,5}
-
-Returns: 5
-
-One of the optimal moves for the first player is to remove the edge between nodes 0 and 1 and to keep the component containing nodes 1 and 2. The second player will then remove the remaining edge and keep the node with cost 5.
-
-
-2)
-{0,1,2,3}
-{0,1,0,1,0}
-
-Returns: 0
-
-
-3)
-{0,0,0}
-{5,1,2,3}
-
-Returns: 3
-
-
-4)
-{0,0}
-{3,2,5}
-
-Returns: 5
+問題
+-頂点と辺からなる木が与えられる
+-それぞれの頂点には点数がある
+-2人のプレーヤーが交互に辺を一つ選び除去する
+-分離された一方を残し、もう一方を消す
+-残りが頂点一つになったとき、その頂点の点数がスコアとなる
+-先手が点数を最大化、後手が点数を最小化しようとするとき、先手の点数の最大値を求める
 
 */
 // END CUT HERE
