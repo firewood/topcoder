@@ -87,6 +87,12 @@ using namespace std;
 class MiddleCode {
 public:
 	string encode(string s) {
+		for (char c:s) {
+
+		}
+
+
+
 		string t;
 		while (!s.empty()) {
 			int len = (int)s.length();
