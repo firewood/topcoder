@@ -2,78 +2,11 @@
 /*
 SRM 605 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Alien Fred wants to destroy the Earth.
-But before he does that, he wants to eat some hamburgers.
-
-You are given two vector <int>s: type and taste.
-They describe all hamburgers available in the shop he found.
-Each hamburger has a type (some positive integer) and a taste (some, possibly negative, integer).
-For each i, type[i] represents the type of i-th hamburger (0-based index), and taste[i] represents the taste of i-th hamburger.
-It is possible that different hamburgers have the same type but a different taste.
-
-Fred wants to eat some subset of those hamburgers (possibly none or all of them).
-Eating the chosen hamburgers will give him some amount of joy.
-This amount can be computed as Y * A, where Y is the number of different types of hamburgers eaten, and A is their total taste.
-
-Return the largest possible amount of joy he can get.
-
-
-DEFINITION
-Class:AlienAndHamburgers
-Method:getNumber
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int getNumber(vector <int> type, vector <int> taste)
-
-
-CONSTRAINTS
--type will contain between 1 and 50 elements, inclusive.
--type and taste will contain the same number of elements.
--Each element of type will be between 1 and 100, inclusive.
--Each element of taste will be between -100,000 and 100,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1, 2}
-{4, 7}
-
-Returns: 22
-
-In this case, the best choice is to choose both hamburgers. The number of different types is 2, and the total taste is 11. Thus, the answer is 2*11 = 22.
-
-
-1)
-{1, 1}
-{-1, -1}
-
-Returns: 0
-
-Note that sometimes the best choice is not to eat any hamburgers. In such a case the amount of joy is 0.
-
-
-2)
-{1, 2, 3}
-{7, 4, -1}
-
-Returns: 30
-
-
-3)
-{1, 2, 3, 2, 3, 1, 3, 2, 3, 1, 1, 1}
-{1, 7, -2, 3, -4, -1, 3, 1, 3, -5, -1, 0}
-
-Returns: 54
-
-
-4)
-{30, 20, 10}
-{100000, -100000, 100000}
-
-Returns: 400000
+問題
+-エイリアンのFredは地球を滅ぼす前にハンバーガーを食べておくことにした
+-種類と味の配列が与えられる
+-満足度は種類の数×味の合計である
+-満足度の最大値を求める
 
 */
 // END CUT HERE
