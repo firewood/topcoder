@@ -2,66 +2,10 @@
 /*
 SRM 609 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Magical Girl Illy uses "magical strings" to cast spells.
-For her, a string X is magical if and only if there exists a non-negative integer k such that X is composed of k consecutive '>' characters followed by k consecutive '<' characters.
-Note that the empty string is also magical (for k=0).
-
-Once Illy picked up a string S.
-Each character of S was either '<' or '>'.
-Illy can change S by removing some of its characters.
-(The characters she does not remove will remain in their original order.)
-Illy wants to change S into a magical string by removing as few of its characters as possible.
-
-You are given the string S.
-Compute and return the length of the magical string Illy will obtain from S.
-
-
-DEFINITION
-Class:MagicalStringDiv1
-Method:getLongest
-Parameters:string
-Returns:int
-Method signature:int getLongest(string S)
-
-
-CONSTRAINTS
--S will contain between 1 and 50 characters, inclusive.
--Each character of S will be '<' or '>'.
-
-
-EXAMPLES
-
-0)
-"<><><<>"
-
-Returns: 4
-
-The longest magical string Illy can produce is ">><<".
-Its length is 4.
-To change S into ">><<", Illy must remove the characters at 0-based indices 0, 2, and 6.
-
-
-1)
-">>><<<"
-
-Returns: 6
-
-S is already a magical string. Therefore Illy doesn't have to remove any character.
-
-
-2)
-"<<<>>>"
-
-Returns: 0
-
-Illy has to remove all characters of S.
-
-
-3)
-"<<<<><>>><>>><>><>><>>><<<<>><>>>>><<>>>>><><<<<>>"
-
-Returns: 24
+問題
+-'<'と'>'だけからなる文字列がある
+-何文字か削除して、連続するk個の'>'と連続するk個の'<'だけからなる文字列にしたい
+-得られる最大の長さを求める
 
 */
 // END CUT HERE
