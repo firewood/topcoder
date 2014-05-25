@@ -2,83 +2,11 @@
 /*
 SRM 618 Div1 Easy (250)
 
-
-PROBLEM STATEMENT
-A directed acyclic graph is a family graph if the following constraints are all satisfied:
-
-The nodes of the graph are numbered 0 through N-1, for some positive N.
-Each node is either male or female.
-Each node either has no parents, or it has precisely two parents. (A parent of the node x is a node y such that there is an edge from y to x.)
-If a node has parents, their numbers are strictly smaller than the number of the node.
-If a node has parents, one of them must be male and the other female.
-
-You are given two vector <int>s parent1 and parent2 with N elements each.
-These describe one directed graph that resembles a family graph:
-For each i, node i has either two parents (in which case parent1[i] and parent2[i] are their numbers, and both of them are smaller than i), or it has no parents (in which case parent1[i] and parent2[i] are both -1).
-
-Return "Possible" (quotes for clarity) if the given graph can be a family graph, and "Impossible" otherwise.
-
-
-DEFINITION
-Class:Family
-Method:isFamily
-Parameters:vector <int>, vector <int>
-Returns:string
-Method signature:string isFamily(vector <int> parent1, vector <int> parent2)
-
-
-CONSTRAINTS
--parent1 will contain between 1 and 100 elements, inclusive.
--parent1 and parent2 will contain the same number of elements.
--For each i, the i-th element (0-based) of parent1 will be between -1 and i-1, inclusive.
--For each i, the i-th element (0-based) of parent2 will be between -1 and i-1, inclusive.
--For each i, the i-th element of parent1 will be -1 if and only if the i-th element of parent2 is -1.
--For each i, if the i-th element of parent1 is not -1, then the i-th element of parent1 and the i-th element of parent2 will be different.
-
-
-EXAMPLES
-
-0)
-{-1,-1,0}
-{-1,-1,1}
-
-Returns: "Possible"
-
-The parents of node 2 are nodes 0 and 1. Nodes 0 and 1 have no parents.
-
-
-1)
-{-1,-1,-1,-1,-1}
-{-1,-1,-1,-1,-1}
-
-Returns: "Possible"
-
-Nobody has any parents.
-
-
-2)
-{-1,-1,0,0,1}
-{-1,-1,1,2,2}
-
-Returns: "Impossible"
-
-Given that 0 and 1 have a child, their genders must be different. Given that 0 and 2 have a child, their genders must be different, too. Then, 1 and 2 must have the same gender, hence they cannot have a child together. Therefore, this cannot be a valid family graph.
-
-
-3)
-{-1,-1,-1,-1,1,-1,0,5,6,-1,0,3,8,6}
-
-{-1,-1,-1,-1,3,-1,4,6,5,-1,5,4,6,1}
-
-
-Returns: "Possible"
-
-
-4)
-{-1,-1,-1,2,2,-1,5,6,4,6,2,1,8,0,2,4,6,9,-1,16,-1,11}
-{-1,-1,-1,1,0,-1,1,4,2,0,4,8,2,3,0,5,14,14,-1,7,-1,13}
-
-Returns: "Impossible"
+問題
+-簡易版の家系図がある
+-配列parent1とparent2があり、親のindexが入っている
+-親は片方が男で片方が女である
+-可能な組み合わせかどうかを求める
 
 */
 // END CUT HERE
@@ -228,12 +156,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	Family ___test;
-	___test.run_test(0);
-//	___test.run_test(1);
-//	___test.run_test(2);
-//	___test.run_test(3);
-//	___test.run_test(4);
-//	___test.run_test(5);
 	___test.run_test(-1);
 }
 // END CUT HERE
