@@ -2,98 +2,10 @@
 /*
 SRM 620 Div1 Easy (250)
 
-PROBLEM STATEMENT
-In this problem we consider ordered pairs of positive integers. Given such a pair, you can now make zero or more steps.
-In each step, you can change your pair into a new pair of integers by adding one of them to the other.
-That is, if your current pair is (x, y), then your next pair will be either (x+y, y), or (x, x+y).
-
-For example, you can start with (1, 2), change it to (3, 2), change that to (3, 5), and then change that again to (3, 8).
-
-You are given four ints: a, b, c, and d.
-We are looking for a pair (x, y) such that:
-
-It is possible to start with (x, y) and end with (a, b).
-It is also possible to start with the same (x, y) and end with (c, d).
-
-The number of steps needed to reach (a, b) may be different from the number of steps needed to reach (c, d).
-
-If there is at least one such pair (x, y), return the largest possible value of x+y.
-Otherwise, return -1.
-
-
-DEFINITION
-Class:PairGame
-Method:maxSum
-Parameters:int, int, int, int
-Returns:int
-Method signature:int maxSum(int a, int b, int c, int d)
-
-
-CONSTRAINTS
--a will be between 1 and 1,000,000, inclusive.
--b will be between 1 and 1,000,000, inclusive.
--c will be between 1 and 1,000,000, inclusive.
--d will be between 1 and 1,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-2
-2
-1
-
-Returns: 2
-
-We have (1,1) -> (1,2) and (1,1) -> (2,1).
-
-
-1)
-15
-4
-10
-7
-
-Returns: 7
-
-Now we have (3,4) -> (7,4) -> (11,4) -> (15,4) and (3,4) -> (3,7) -> (10,7).
-
-
-2)
-1
-1
-10
-10
-
-Returns: -1
-
-
-3)
-1000
-1001
-2000
-2001
-
-Returns: 1001
-
-
-4)
-10944
-17928
-7704
-21888
-
-Returns: 144
-
-
-5)
-1
-1
-1
-1
-
-Returns: 2
+問題
+-1以上の二つの整数のペアx,yがある
+-次のターンで(x+y,y)か(x,x+y)のどちらかにできる
+-(x,y)からはじめて(a,b)と(c,d)のどちらにでも到達できる数のうちx+yの最大値を求める
 
 */
 // END CUT HERE
