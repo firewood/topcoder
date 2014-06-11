@@ -1,60 +1,15 @@
 // BEGIN CUT HERE
 /*
-TCO 2014 Round 2A Easy (250)
+SRM 621 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You have 16 bricks. Each brick has the shape of a rectangular box. You are given a vector <int> height. For each i, one of your bricks has dimensions 1 x 1 x height[i].
-
-You also have an opaque table. You are going to place your 16 bricks onto the table in a specific way. You are not allowed to rotate the bricks while placing them: the dimension given in height must always be vertical. On the table, there is a 4 x 4 grid of squares. You have to place exactly one of your bricks onto each of the squares.
-
-After you place all the bricks, we will look at the solid formed by them. We are interested in the visible surface area of the solid. Note that the bottom sides of your bricks are not a part of the visible surface, as they stand on the table. Also, adjacent bricks always touch each other and the parts where they touch are not visible.
-
-Different arrangements of bricks may lead to different visible surfaces. Return the largest possible visible surface area.
-
-
-DEFINITION
-Class:SixteenBricks
-Method:maximumSurface
-Parameters:vector <int>
-Returns:int
-Method signature:int maximumSurface(vector <int> height)
-
-
-CONSTRAINTS
--height will contain exactly 16 elements.
--Each element of height will be between 1 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-
-Returns: 32
-
-All your bricks look the same.
-The only solid you can construct is a 1 x 4 x 4 box.
-The bottom side of the box is not visible, the other five sides are.
-The total visible surface area is 4*4 + 4*(1*4) = 32.
-
-
-1)
-{1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2}
-
-Returns: 64
-
-In order to maximize the visible surface area, you should produce a configuration in which no two bricks with height 2 share a common face.
-
-
-2)
-{77, 78, 58, 34, 30, 20, 8, 71, 37, 74, 21, 45, 39, 16, 4, 59}
-
-Returns: 1798
+問題
+-16個の積み木がある
+-それぞれの大きさは1×1×Hである
+-4×4のグリッド状かつ縦に並べたとき、最大の表面積を求める
 
 */
 // END CUT HERE
 #include <algorithm>
-#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -132,8 +87,7 @@ public:
 
 		// test_case_2
 		if ((Case == -1) || (Case == n)){
-			int Arr0[] = {77, 78, 58, 34, 30, 20, 8, 71, 37, 74, 21, 45, 39, 16, 4, 59}
-;
+			int Arr0[] = {77, 78, 58, 34, 30, 20, 8, 71, 37, 74, 21, 45, 39, 16, 4, 59};
 			int Arg1 = 1798;
 
 			vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
