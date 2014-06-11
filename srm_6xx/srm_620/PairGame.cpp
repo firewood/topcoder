@@ -24,7 +24,7 @@ public:
 			if (a == c && b == d) {
 				return a + b;
 			}
-			if (a + b >= c + d) {
+			if (a > c || b > d) {
 				if (a > b){
 					a -= b;
 				} else {
