@@ -2,106 +2,11 @@
 /*
 SRM 623 Div1 Easy (300)
 
-PROBLEM STATEMENT
-A square board is divided into N rows by N columns of unit square cells.
-Some cells of the board are empty.
-Each of the other cells contains either an apple or a pear.
-You are given the current state of the board as a vector <string> board.
-In board, the character '.' denotes an empty cell, 'A' denotes an apple, and 'P' denotes a pear.
-
-You are allowed to perform at most K moves.
-In each move, you can pick up one fruit (an apple or a pear) and place it onto any empty cell.
-(The new cell doesn't have to be adjacent to the old one.)
-Note that you cannot remove fruit from the board, you are only allowed to move it onto different cells.
-
-A rectangular section of the board is called uniform if each cell in the rectangle contains an apple. After you are done moving the fruit, you want to have a uniform rectangle that is as large as possible somewhere on the board.
-Return the largest possible area of such a rectangle. If there are no apples, return 0.
-
-
-DEFINITION
-Class:UniformBoard
-Method:getBoard
-Parameters:vector <string>, int
-Returns:int
-Method signature:int getBoard(vector <string> board, int K)
-
-
-CONSTRAINTS
--N will be between 1 and 20, inclusive.
--board will contain exactly N elements.
--Each element of board will contain exactly N characters.
--Each character in board will be '.', 'A', or 'P'.
--K will be between 0 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-{"AP",
- ".A"}
-0
-
-Returns: 1
-
-You cannot move anything.
-The largest uniform rectangle on the board is a 1x1 rectangle that consists of a single cell with an apple.
-
-
-1)
-{"AP",
- ".A"}
-1
-
-Returns: 2
-
-You are allowed to make one move.
-You can move one of the apples onto the currently empty cell, thus creating a 1x2 rectangle of apples.
-
-
-2)
-{"PPP",
- "APA",
- "A.P"}
-2
-
-Returns: 3
-
-In two moves you can create a 1x3 rectangle of apples.
-
-
-3)
-{"AAA",
- "PPP",
- "AAA"}
-10
-
-Returns: 3
-
-You are allowed to make at most 10 moves.
-However, you cannot make any moves because there are no empty cells.
-
-
-4)
-{"."}
-1000
-
-Returns: 0
-
-
-5)
-{"PPAAPA..AP",
- "PPA.APAP..",
- "..P.AA.PPP",
- "P.P..APAA.",
- "P.P..P.APA",
- "PPA..AP.AA",
- "APP..AAPAA",
- "P.P.AP...P",
- ".P.A.PAPPA",
- "..PAPAP..P"}
-10
-
-Returns: 15
+問題
+-N×Nの升目がある
+-それぞれの升目は空きか、りんごか梨が入っている
+-1手で、任意の果物を別の空きに移動することができる
+-最大K手移動できるとき、りんごのみからなる長方形の最大の面積を求める
 
 */
 // END CUT HERE
