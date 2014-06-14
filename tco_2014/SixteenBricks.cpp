@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-SRM 621 Div1 Easy (250)
+TCO 2014 Round 2A Easy (250)
 
 問題
 -16個の積み木がある
