@@ -2,96 +2,12 @@
 /*
 SRM 622 Div1 Easy (250)
 
-PROBLEM STATEMENT
-In the Republic of Nlogonia there are N cities.
-For convenience, the cities are numbered 0 through N-1.
-For each two different cities i and j, there is a direct one-way road from i to j.
-You are given the lengths of those roads as a vector <string> dist with N elements, each with N characters.
-For each i and j, the character dist[i][j] represents the length of the road from i to j.
-
-The lengths of roads are integers between 1 and 9, inclusive, and they are represented by digits '1' through '9'.
-That is, for distinct i and j, dist[i][j] will be between '1' and '9'.
-For each i, dist[i][i] will be '0'.
-Note that the roads from i to j and from j to i may have different lengths.
-
-Every year on Algorithms Day (the most important holiday in Nlogonia) people travel between the cities.
-More precisely, for each pair of distinct cities i and j, one full bus of people travels from i to j.
-Each of those buses drives along a shortest path from its origin to its destination.
-If there are multiple shortest paths, the bus driver picks one of them arbitrarily.
-
-The roads in Nlogonia are currently limited.
-You are given an int T with the following meaning: 
-each of the current roads is only safe if it is guaranteed that there will be strictly fewer than T buses driving along the road.
-In other words, a road is unsafe if it is possible that T or more buses will use it.
-The government wants to rebuild all unsafe roads before the next Algorithms Day.
-Return the sum of lengths of all unsafe roads.
-
-
-DEFINITION
-Class:BuildingRoutes
-Method:build
-Parameters:vector <string>, int
-Returns:int
-Method signature:int build(vector <string> dist, int T)
-
-
-CONSTRAINTS
--N will be between 2 and 50, inclusive.
--dist will contain exactly N elements.
--Each element of dist will contain exactly N characters.
--For each i, dist[i][i] will be '0'.
--For each pair of distinct i and j, dist[i][j] will be between '1' and '9', inclusive.
--T will be between 1 and 2500, inclusive.
-
-
-EXAMPLES
-
-0)
-{"011",
- "101",
- "110"}
-1
-
-Returns: 6
-
-As T=1, a road is unsafe as soon as it is possible that a bus will use it. 
-Each of the six roads in this test case belongs to some shortest path, hence each of them is unsafe
-
-
-1)
-{"033",
- "309",
- "390"}
-1
-
-Returns: 12
-
-The roads 1->2 and 2->1 (the two roads of length 9) will not be used by any bus.
-Only the four remaining roads are unsafe in this case.
-
-
-2)
-{"0123",
- "1023",
- "1203",
- "1230"}
-2
-
-Returns: 5
-
-
-3)
-{"05789654",
- "10347583",
- "65085479",
- "55602398",
- "76590934",
- "57939045",
- "12345608",
- "68647640"}
-3
-
-Returns: 40
+問題
+-N個の都市があり、それぞれの都市間経路の距離が与えられる
+-ある日、それぞれの都市から、別の全てのそれぞれの都市へ一斉にバスが走る
+-バスは最短経路のどれかを通る
+-バスが最大T台以上通る可能性がある経路は危険
+-危険な経路の合計の長さを求める
 
 */
 // END CUT HERE
