@@ -2,69 +2,12 @@
 /*
 SRM 602 Div2 Easy (250)
 
-PROBLEM STATEMENT
-TypoCoder is a programming contest like TopCoder.
-TypoCoder also has a rating system.
-There are two types of coders in TypoCoder: brown coders and ciel coders.
-A brown coder is a coder whose rating is greater than or equal to 1200.
-A ciel coder is a coder whose rating is less than 1200.
-
-Whenever a new contestant joins TypoCoder, their rating is 500.
-Cat Lower joined TypoCoder and then competed in some contests.
-You are given a vector <int> rating.
-For each i (0-based index), rating[i] is Cat Lower's rating after he competed in (i+1) contests.
-
-Return the number of times Cat Lower changed his color (i.e., changed from being a ciel coder to being a brown coder or back).
-
-DEFINITION
-Class:TypoCoderDiv2
-Method:count
-Parameters:vector <int>
-Returns:int
-Method signature:int count(vector <int> rating)
-
-
-CONSTRAINTS
--rating will contain between 1 and 50 elements, inclusive.
--Each element of rating will be between 0 and 4000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1000,1200,1199}
-
-Returns: 2
-
-After the first contest Cat Lower was still a ciel coder. After the second contest his new rating was 1200 which made him a brown coder. (This was the first color change.) After the third contest his new rating was 1199 which made him a ciel coder again. (This was the second color change.)
-
-
-1)
-{1500,2200,900,3000}
-
-Returns: 3
-
-The color changed after the first, the third and the fourth competition.
-
-
-2)
-{600,700,800,900,1000,1100,1199}
-
-Returns: 0
-
-Cat Lower wasn't a brown coder at any time in this case.
-
-
-3)
-{0,4000,0,4000,4000,0,0}
-
-Returns: 4
-
-
-4)
-{575,1090,3271,2496,859,2708,3774,2796,1616,2552,3783,2435,1111,526,562}
-
-Returns: 4
+問題
+-TypoCoder
+-1200以上が茶色コーダー
+-1200未満は水色コーダー
+-レーティングの変化が与えられる
+-色が変わった回数を求める
 
 */
 // END CUT HERE
