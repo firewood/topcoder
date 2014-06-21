@@ -2,63 +2,12 @@
 /*
 SRM 605 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-Alien Fred wants to destroy the Earth, but he forgot the password that activates the planet destroyer.
-You are given a string S.
-Fred remembers that the correct password can be obtained from S by erasing exactly one character.
-Return the number of different passwords Fred needs to try.
-
-
-DEFINITION
-Class:AlienAndPassword
-Method:getNumber
-Parameters:string
-Returns:int
-Method signature:int getNumber(string S)
-
-
-CONSTRAINTS
--S will contain between 1 and 50 characters, inclusive.
--Each character in S will be an uppercase English letter ('A'-'Z').
-
-
-EXAMPLES
-
-0)
-"A"
-
-Returns: 1
-
-In this case, the only password Fred needs to try is an empty string.
-
-
-1)
-"ABA"
-
-Returns: 3
-
-The following three passwords are possible in this case: "BA", "AA", "AB".
-
-
-2)
-"AABACCCCABAA"
-
-Returns: 7
-
-
-3)
-"AGAAGAHHHHFTQLLAPUURQQRRRUFJJSBSZVJZZZ"
-
-Returns: 26
-
-
-4)
-"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-
-Returns: 1
-
-Regardless of which character we erase, we will always obtain the same string. Thus there is only one possible password: the string that consists of 49 'Z's.
+問題
+-エイリアンのフレッドは地球を破壊しようとしている
+-しかし惑星破壊装置を起動するパスワードを忘れてしまった
+-文字列Sが与えられる
+-Sから1文字削除すると正しいパスワードになる
+-異なるパスワードが何通り生成できるか求める
 
 */
 // END CUT HERE
