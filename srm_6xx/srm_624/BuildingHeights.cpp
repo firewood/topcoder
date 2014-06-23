@@ -27,7 +27,7 @@ public:
 	int minimum(vector <int> heights) {
 		int N = (int)heights.size();
 		sort(heights.begin(), heights.end());
-		int sum[4000] = {};
+		int sum[4001] = {};
 		for (int i = 0; i < N; ++i) {
 			sum[i + 1] = sum[i] + heights[i];
 		}
