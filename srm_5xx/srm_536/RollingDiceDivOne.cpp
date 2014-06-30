@@ -9,11 +9,8 @@ N個のサイコロがある。
 
 */
 // END CUT HERE
-#include <cmath>
 #include <algorithm>
-#include <list>
-#include <map>
-#include <set>
+#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -27,41 +24,13 @@ class RollingDiceDivOne {
 
 public:
 	long long mostLikely(vector <int> dice) {
-		int dices = dice.size();
-		int i;
-#if 1
+		size_t N = dice.size();
 		sort(dice.begin(), dice.end());
-		LL sum = 0;
-		for (i = 0; i < (dices-1); ++i) {
-			sum += dice[i];
-		}
-		double p = 0;
-		for (i = 0; i < dices; ++i) {
-			p += (dice[i]+1.0);
-		}
-		LL res = min(sum + 1, (LL)(p/2.0));
-#else
-		int nop = 0;
-		double p = 0;
-		for (i = 0; i < (int)dice.size(); ++i) {
-			if (dice[i] == 1) {
-				++nop;
-				--dices;
-			} else {
-				p += (dice[i] + 1.0) / 2.0;
-			}
-		}
-		if (dices <= 1) {
-			p = 1;
-		}
-		p += nop;
-
-		LL res = (LL)p;
-#endif
-		return res;
+		LL a = accumulate(dice.begin(), dice.begin() + N - 1, 0LL);
+		LL b = a + dice.back() + N;
+		return min(a + 1, b / 2);
 	}
 
-	
 // BEGIN CUT HERE
 private:
 	template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
