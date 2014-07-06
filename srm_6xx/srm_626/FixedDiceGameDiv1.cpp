@@ -2,93 +2,12 @@
 /*
 SRM 626 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Alice and Bob are playing a game.
-Alice rolls a identical b-sided dice.
-Bob rolls c identical d-sided dice.
-The sides of an n-sided die have numbers 1 through n written on them.
-
-A player's score is the sum of the numbers they rolled on their dice.
-The player with a strictly higher score wins.
-It is possible that neither player wins.
-
-You are given the ints a, b, c, and d.
-The players already rolled their dice.
-If it's not possible for Alice to win, return -1.
-Otherwise, assume that you don't know what numbers Alice and Bob rolled, but that you know that Alice won the game.
-Return the expected value of Alice's score (given the above assumption).
-
-
-DEFINITION
-Class:FixedDiceGameDiv1
-Method:getExpectation
-Parameters:int, int, int, int
-Returns:double
-Method signature:double getExpectation(int a, int b, int c, int d)
-
-
-NOTES
--Your return value must have an absolute or relative error smaller than 1e-3. 
-
-
-CONSTRAINTS
--a, b, c, d will each be between 1 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-2
-1
-5
-
-Returns: 2.0
-
-The only way Alice can win is if she rolls a 2. Thus, if we know Alice wins, we know she rolled a 2. 
-
-
-1)
-3
-1
-1
-3
-
-Returns: 3.0
-
-Alice will always roll a 3. 
-
-
-2)
-1
-5
-1
-1
-
-Returns: 3.4999999999999996
-
-Alice will not win if she rolls a 1. Thus, if we know she wins, her expected score is (2+3+4+5)/4=7/2.
-
-
-3)
-2
-6
-50
-30
-
-Returns: -1.0
-
-No matter what Alice rolls, she will lose. 
-
-
-4)
-50
-11
-50
-50
-
-Returns: 369.8865999182022
+問題
+-Aliceはa個のb面ダイスを振る
+-Bobはc個のd面ダイスを振る
+-n面ダイスは1からnの値を持つ
+-出目の合計の多いほうが勝ち
+-Aliceが勝つときの期待値を求める
 
 */
 // END CUT HERE
