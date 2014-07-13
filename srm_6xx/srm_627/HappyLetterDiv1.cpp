@@ -2,86 +2,10 @@
 /*
 SRM 627 Div1 Easy (250)
 
-PROBLEM STATEMENT
-The Happy Letter game is played as follows:
-At the beginning, several players enter the field.
-Each player has a lowercase English letter on their back.
-The game is played in turns.
-In each turn, you select two players with different letters, and both selected players leave the field.
-The game ends once it is impossible to take another turn.
-
-If there are some players left in the field at the end of the game, they must all have the same letter.
-That letter is called the winning letter.
-If there are no players left in the field at the end of the game, there is no winning letter.
-
-You are given a string letters.
-The characters in letters are the characters carried by the players at the beginning of the game.
-Return a string with all possible winning letters.
-The letters in the returned string must be sorted in increasing order.
-
-
-DEFINITION
-Class:HappyLetterDiv1
-Method:getHappyLetters
-Parameters:string
-Returns:string
-Method signature:string getHappyLetters(string letters)
-
-
-NOTES
--If there's no happy letter, return the empty string.
-
-
-CONSTRAINTS
--letters will contain between 1 and 50 elements.
--Each element of letters will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"aabbacccc"
-
-Returns: "abc"
-
-Each of the three letters can be the winning letter.
-Here is one possibility how 'a' can be the winning letter:
-Let's number the players 0 through 8 in the order in which they appear in the input.
-We can then play the game as follows:
-
-Send away players 1 ('a') and 8 ('c').
-Send away players 2 ('b') and 6 ('c').
-Send away players 7 ('c') and 0 ('a').
-Send away players 5 ('c') and 3 ('b').
-The only player left is player 4 ('a'), hence 'a' is the winning letter.
-
-
-1)
-"aaaaaaaccdd"
-
-Returns: "a"
-
-Only letter 'a' can win.
-
-
-2)
-"ddabccadb"
-
-Returns: "abcd"
-
-
-3)
-"aaabbb"
-
-Returns: ""
-
-No letter can win.
-
-
-4)
-"rdokcogscosn"
-
-Returns: "cos"
+問題
+-文字列が与えられる
+-2つの異なる文字を取り除いていく
+-最終的に残る可能性のある全ての文字を結合した文字列を求める
 
 */
 // END CUT HERE
