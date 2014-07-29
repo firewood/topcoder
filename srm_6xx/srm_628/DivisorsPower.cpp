@@ -2,75 +2,11 @@
 /*
 SRM 628 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Halina is a young mathematician.
-Recently she has been studying an interesting function h that operates on positive integers.
-
-Let d(n) be the number of distinct positive divisors of n.
-The function h is then defined as follows: for each n we have h(n) = n^d(n).
-In words, h(n) is defined as n to the power of d(n).
-
-For example, d(6)=4 because 6 is divisible by 1, 2, 3, and 6.
-Then, h(6) = 6^4 = 1296.
-
-Halina already knows how to compute her function h.
-Now she would like to compute the inverse function.
-Help her!
-
-You are given a long long n.
-Return the smallest x such that h(x) = n.
-If there is no such x, return -1 instead.
-
-DEFINITION
-Class:DivisorsPower
-Method:findArgument
-Parameters:long long
-Returns:long long
-Method signature:long long findArgument(long long n)
-
-
-CONSTRAINTS
--n will be between 2 and 10^18, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-
-Returns: 2
-
-d(2) = 2, h(2) = 4
-
-
-1)
-10
-
-Returns: -1
-
-There is no x satisfying h(x) = 10.
-
-
-2)
-64
-
-Returns: 4
-
-d(4) = 3, h(4) = 64
-
-
-3)
-10000
-
-Returns: 10
-
-d(10) = 4, h(10) = 10000
-
-
-4)
-2498388559757689
-
-Returns: 49983883
+問題
+-数Nの約数の総数をd(N)とする
+-Nのd(N)乗をh(N)とする
+-数nが与えられる
+-h(x) = nとなるxの最小値を求める
 
 */
 // END CUT HERE
