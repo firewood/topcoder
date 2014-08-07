@@ -2,108 +2,12 @@
 /*
 SRM 627 Div1 Medium (500)
 
-PROBLEM STATEMENT
-You are given a connected undirected graph with N vertices.
-The vertices are numbered 0 through N-1.
-The graph is special: the number of edges is exactly equal to the number of vertices.
-You are given the description of the graph as three vector <int>s: A, B, and V.
-Each of these vector <int>s has N elements.
-For each valid i, there's an edge between vertices A[i] and B[i].
-There are no self-loops and no duplicate edges.
-For each valid i, we associate the value V[i] with the vertex i.
-
-We will be interested in some simple paths in this graph.
-A simple path is a sequence of vertices such that no vertex is used twice, and each pair of consecutive vertices is connected by an edge.
-For any simple path, we can write down a sequence of integers: the values associated with the vertices on the path, in order of appearance.
-We will call such a sequence the value list of the given simple path.
-
-An inversion in a sequence S is a pair of valid indices (i,j) into the sequence S such that i < j but S[i] > S[j].
-For example, the sequence S = {10, 30, 20, 20} has two inversions: (1,2) and (1,3).
-(The indices are 0-based.)
-
-You are given a graph G in the format described above, and an int K.
-In the graph G, consider all simple paths with K or more vertices.
-If there is no such simple path, return -1.
-Otherwise, return the smallest number of inversions in the value list of such path.
-
-
-DEFINITION
-Class:GraphInversions
-Method:getMinimumInversions
-Parameters:vector <int>, vector <int>, vector <int>, int
-Returns:int
-Method signature:int getMinimumInversions(vector <int> A, vector <int> B, vector <int> V, int K)
-
-
-CONSTRAINTS
--N will be between 3 and 1000, inclusive.
--A, B, and V will each have N elements.
--Each element of A and B will be between 0 and N-1, inclusive.
--For all valid i, A[i] will not be equal to B[i]. (I.e., there are no self loops.)
--No two edges will connect the same pair of vertices.
--The graph described by A and B will be connected.
--Each element of V will be between 1 and 1000, inclusive.
--K will be between 1 and N, inclusive.
-
-
-EXAMPLES
-
-0)
-{0,1,2}
-{1,2,0}
-{40,50,60}
-3
-
-Returns: 0
-
-The best path is the path {0, 1, 2}. Its value list is the sequence {40, 50, 60}, and there are 0 inversions in this sequence.
-
-
-1)
-{0,1,2,3}
-{1,2,3,0}
-{60,40,50,30}
-3
-
-Returns: 1
-
-As K=3, we are interested in simple paths of lengths 3 or more.
-There are no simple paths of length 4 or more in this graph.
-Each simple path of length 3 gives us at least one inversion.
-The path {3, 2, 1} is an example of an optimal path.
-Its value list is {30, 50, 40}.
-There is 1 inversion: the 50 occurring before the 40.
-
-
-2)
-{0,1,2,3,0}
-{1,2,3,0,4}
-{10,10,10,5,5}
-5
-
-Returns: 1
-
-Two or more nodes can have the same associated value.
-
-
-3)
-{0,1,2,3,0,2}
-{1,2,3,0,4,5}
-{10,2,5,3,7,1}
-6
-
-Returns: -1
-
-There are no simple paths with length 6.
-
-
-4)
-{5,7,7,5,5,7,6,4}
-{2,0,2,0,1,4,7,3}
-{15,10,5,30,22,10,5,2}
-6
-
-Returns: 3
+問題
+-N個の頂点とN本の辺が与えられる
+-グラフには自己ループはなく、連結である
+-それぞれの頂点は値を持つ
+-異なる頂点をK個以上通るパスについて、通った順に値を並べる
+-それらのパスのうち、転倒数の総数の最小値を求める
 
 */
 // END CUT HERE
