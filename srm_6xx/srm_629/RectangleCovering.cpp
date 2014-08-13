@@ -2,92 +2,12 @@
 /*
 SRM 629 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-There is a rectangular hole in the ground.
-You are given the dimensions of this rectangle: ints holeH and holeW.
-
-You have a collection of rectangular boards.
-You are given their dimensions as two vector <int>s: boardH and boardW.
-For each valid i, you have a rectangular board with dimensions boardH[i] and boardW[i].
-You would like to cover the hole completely, using as few of these boards as possible.
-
-There are some rules you must follow when covering the hole:
-
-The boards may overlap arbitrarily.
-Together, the boards must cover the entire hole.
-You may rotate each board, but you must place it so that the sides of the board are parallel to the sides of the hole.
-All corners of each board must be strictly outside the hole. (That is, they are not allowed to lie on the boundary of the hole, either.)
-
-If you can cover the hole using the boards you have, return the smallest number of boards that is sufficient to cover the hole. Otherwise, return -1.
-
-
-DEFINITION
-Class:RectangleCovering
-Method:minimumNumber
-Parameters:int, int, vector <int>, vector <int>
-Returns:int
-Method signature:int minimumNumber(int holeH, int holeW, vector <int> boardH, vector <int> boardW)
-
-
-CONSTRAINTS
--holeH and holeW will be between 1 and 1,000,000,000, inclusive.
--boardH and boardW will contain between 1 and 50 elements, inclusive.
--boardH and boardW will contain the same number of elements.
--Each element of boardH and boardW will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-5
-5
-{8,8,8}
-{2,3,4}
-
-Returns: 2
-
-You cannot cover this hole completely by using a single board. You can cover it by taking any two boards and placing them side by side.
-
-
-1)
-10
-10
-{6,6,6,6}
-{6,6,6,6}
-
-Returns: -1
-
-These four boards cannot be used to cover the hole. This is because of the rule that all board corners must be outside the hole.
-
-
-2)
-5
-5
-{5}
-{5}
-
-Returns: -1
-
-The corners of a board are not allowed to be on the boundary of the hole.
-
-
-3)
-3
-5
-{6}
-{4}
-
-Returns: 1
-
-
-4)
-10000
-5000
-{12345,12343,12323,12424,1515,6666,6789,1424,11111,25}
-{1442,2448,42,1818,3535,3333,3456,7890,1,52}
-
-Returns: 3
+問題
+-地面に四角形の穴が開いている
+-何枚かの四角形の板があり、それぞれの大きさが与えられる
+-地面の穴を完全に覆いたい
+-ただし板の四隅が穴の外側になるように置くこと
+-最低何枚必要か求める
 
 */
 // END CUT HERE
