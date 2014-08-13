@@ -58,20 +58,27 @@ class GraphInversions {
 	BIT bit;
 
 	int dfs(int c, int k) {
+		int iv = bit.sum(1000) - bit.sum(vertex[c]);
 		if (k <= 1) {
-			return bit.sum(vertex[c]);
+			return iv;
 		}
-		int res = 1e6;
+
 		visited[c] = 1;
-		bit.add(vertex[c]+1, 1);
-		for (int v : edge[c]) {
-			if (!visited[v]) {
-				res = min(res, dfs(v, k - 1));
+		bit.add(vertex[c], 1);
+
+		int res = 1 << 30;
+
+		if (k > 1) {
+			for (int v : edge[c]) {
+				if (!visited[v]) {
+					res = min(res, iv + dfs(v, k - 1));
+				}
 			}
 		}
-		bit.add(vertex[c]+1, -1);
+
+		bit.add(vertex[c], -1);
 		visited[c] = 0;
-		return res + bit.sum(vertex[c]);
+		return res;
 	}
 
 public:
@@ -87,7 +94,7 @@ public:
 		int ans = 1e6;
 		for (int i = 0; i < n; ++i) {
 			memset(visited, 0, sizeof(visited));
-			bit.init(1024);
+			bit.init(1001);
 			ans = min(ans, dfs(i, K));
 		}
 		return (ans < 1e6) ? ans : -1;
