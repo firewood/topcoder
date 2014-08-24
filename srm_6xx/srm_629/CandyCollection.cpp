@@ -2,109 +2,13 @@
 /*
 SRM 629 Div1 Medium (500)
 
-PROBLEM STATEMENT
-
-Alice likes eating candies.
-Her favorite type of candy are the Surprise Candies.
-Surprise Candies come in N different flavors and in N different shapes.
-You know the following facts about the shapes and flavors of Surprise Candies:
-
-The shapes are numbered 0 through N-1.
-The flavors are numbered 0 through N-1.
-You can tell the shape of a candy before buying it. (Thus, you can do stuff like "buy exactly 47 candies of shape 3".)
-You can only tell the flavor of a candy when eating it. (Thus, you do not know the flavor when you are buying the candy.)
-For each shape of Surprise Candies, there are exactly two flavors that can have that shape.
-For each flavor of Surprise Candies, there are exactly two shapes that can have that flavor.
-
-In Alice's street there is a store that sells Surprise Candies.
-Alice knows the exact inventory of this store.
-You are given this information in vector <int>s Type1, Number1, Type2, and Number2.
-Each of these vector <int>s has exactly N elements.
-For each i, their elements at index i correspond to the shape number i, as follows:
-
-The store contains exactly Number1[i] candies with shape i and flavor Type1[i].
-The store contains exactly Number2[i] candies with shape i and flavor Type2[i].
-
-Alice wants to eat candies of all N flavors today.
-However, she is lazy to go to the store, so she sent Kirito to do the shopping for her.
-Kirito must buy a set of candies that is guaranteed to contain all N flavors.
-Return the smallest number of candies Kirito may buy.
-
-
-DEFINITION
-Class:CandyCollection
-Method:solve
-Parameters:vector <int>, vector <int>, vector <int>, vector <int>
-Returns:int
-Method signature:int solve(vector <int> Type1, vector <int> Number1, vector <int> Type2, vector <int> Number2)
-
-
-CONSTRAINTS
--N will between 1 and 1000, inclusive.
--Type1, Number1, Type2, Number2 will each contain exactly N elements.
--For each i, Type1[i] and Types2[i] will be different.
--Each element of Type1 and Type2 will be between 0 and N-1, inclusive.
--Each element of Number1 and Number2 will be between 1 and 1000, inclusive.
--Each of the values 0 through N-1 will appear exactly twice in Type1 and Type2 together.
-
-
-EXAMPLES
-
-0)
-{0,0}
-{1,1}
-{1,1}
-{1,1}
-
-Returns: 2
-
-In this test case we have N=2.
-Thus, there are two shapes and two flavors.
-The store has exactly one candy for each combination (shape,flavor).
-Kirito can simply buy two candies with the same shape, their flavors must be different.
-
-
-1)
-{0,0}
-{2,5}
-{1,1}
-{2,5}
-
-Returns: 3
-
-In this test case we have N=2 again, but now the supply of candies in the store is larger.
-There are 2+2 = 4 candies of shape 0, and 5+5 = 10 candies of shape 1.
-The optimal strategy for Kirito is to buy 3 candies of shape 0.
-Both flavors have to be present in those three candies.
-
-
-2)
-{0,0,2,3}
-{1,1,2,2}
-{1,1,3,2}
-{1,1,2,2}
-
-Returns: 5
-
-One optimal solution is to buy two candies of shape 0 and three candies of shape 2.
-
-
-3)
-{0,1,2,3}
-{5,5,10,13}
-{1,2,3,0}
-{8,8,10,15}
-
-Returns: 20
-
-
-4)
-{12,9,0,16,9,18,12,3,6,0,8,2,10,6,5,2,14,10,5,13}
-{895,704,812,323,334,674,665,142,712,254,869,548,645,663,758,38,860,724,742,530}
-{1,4,7,11,15,8,18,13,17,17,19,14,7,11,4,1,15,19,3,16}
-{779,317,36,191,843,289,107,41,943,265,649,447,806,891,730,371,351,7,102,394}
-
-Returns: 5101
+問題
+-形がN種類の飴がある
+-それぞれの形で2種類の味がある
+-味は全部でN種類
+-それぞれの種類で、それぞれの味の在庫の数が与えられる
+-買うときには形しか指定することができない
+-全ての種類の味の飴を集めるのに買う必要のある個数を求める
 
 */
 // END CUT HERE
