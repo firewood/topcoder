@@ -2,88 +2,11 @@
 /*
 SRM 631 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Cat Taro and Fox Jiro work with a square grid with N rows and N columns (N is even).
-Each cell of the grid is painted either black or white.
-You are given a vector <string> grid which represents the current state of the grid.
-Each element of grid represents one row of the grid.
-In grid, the character 'W' represents a white cell, and the character 'B' represents a black cell. 
-
-Taro works with the rows of the grid.
-He will take zero or more turns. In each turn he can choose any row of the grid and perform one of the following operations:
-
-Paint all black cells of the row white.
-Paint all white cells of the row black.
-
-Jiro works with the columns of the grid.
-He thinks that a column is bad if there are more than N/2 consecutive cells of the same color in the column.
-He is happy only if there are no bad columns in the grid.
-
-Return the minimum number of turns that Taro must perform in order to make Jiro happy.
-
-
-DEFINITION
-Class:TaroJiroGrid
-Method:getNumber
-Parameters:vector <string>
-Returns:int
-Method signature:int getNumber(vector <string> grid)
-
-
-CONSTRAINTS
--N will be between 2 and 50, inclusive.
--N will be even.
--grid will contain exactly N elements.
--Each element of grid will contain exactly N characters.
--Each character in grid will be 'W' or 'B'.
-
-
-EXAMPLES
-
-0)
-{"WB",
- "BB"}
-
-Returns: 1
-
-Initially, Jiro is not happy because all cells of the column 1 (0-based index) are black. In one operation, Taro can paint the first row white. After the operation, Jiro will be happy about the grid. Thus, the answer is 1.
-
-
-1)
-{"WB",
- "WW"}
-
-Returns: 1
-
-
-2)
-{"WB",
- "WB"}
-
-Returns: 2
-
-In this case, Taro should paint the first row white, and the second one black (or vice versa). Note that it is not possible to make Jiro happy in fewer than two operations.
-
-
-3)
-{"WBBW",
- "WBWB",
- "WWBB",
- "BWWW"}
-
-Returns: 2
-
-
-4)
-{"WBBWBB",
- "BBWBBW",
- "WWBWBW",
- "BWWBBB",
- "WBWBBW",
- "WWWBWB"}
-
-Returns: 1
+問題
+-N×Nの升目があり、それぞれの升目は黒か白である
+-1回の操作で、1行全部を白に塗るか、または全部を黒に塗ることができる
+-それぞれの列について、N/2個より多くの連続する升目がないようにしたい
+-最小の操作回数を求める
 
 */
 // END CUT HERE
