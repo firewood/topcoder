@@ -2,88 +2,9 @@
 /*
 SRM 631 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-Cat Taro has a square grid with N rows and N columns.
-Each cell of the grid is painted either black or white.
-You are given a vector <string> grid which represents the current state of the grid.
-Each element of grid represents one row of the grid.
-In grid, the character 'W' represents a white cell, and the character 'B' represents a black cell. 
-
-Taro wants to choose a set of consecutive cells that are in the same column and are painted in the same color.
-Return the largest number of cells he can choose.
-
-
-DEFINITION
-Class:TaroGrid
-Method:getNumber
-Parameters:vector <string>
-Returns:int
-Method signature:int getNumber(vector <string> grid)
-
-
-CONSTRAINTS
--N will be between 1 and 50, inclusive.
--grid will contain exactly N elements.
--Each element of grid will contain exactly N characters.
--Each character in grid will be 'W' or 'B'.
-
-
-EXAMPLES
-
-0)
-{"W"}
-
-Returns: 1
-
-
-1)
-{"WB",
- "BW"}
-
-Returns: 1
-
-
-2)
-{"BWW",
- "BBB",
- "BWB"}
-
-Returns: 3
-
-He can choose the entire leftmost column (i.e., character 0 of each element of grid).
-
-
-3)
-{"BWBW",
- "BBWB",
- "WWWB",
- "BWWW"}
-
-Returns: 3
-
-
-4)
-{"BWB",
- "BBW",
- "BWB"}
-
-Returns: 3
-
-
-5)
-{"BBWWBBWW",
- "BBWWBBWW",
- "WWBBWWBB",
- "WWBBWWBB",
- "BBWWBBWW",
- "BBWWBBWW",
- "WWBBWWBB",
- "WWBBWWBB"}
-
-Returns: 2
-
-Note that the chosen cells must be consecutive.
+問題
+-黒か白に塗られた升目がある
+-縦に同じ色が連続する最大の個数を求める
 
 */
 // END CUT HERE
