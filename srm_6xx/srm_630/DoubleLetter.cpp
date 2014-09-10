@@ -2,91 +2,14 @@
 /*
 SRM 630 Div2 Easy (250)
 
-PROBLEM STATEMENT
-You are given a string S.
-You can modify this string by repeating the following process:
-
-Find the leftmost occurrence of two consecutive letters in S that are the same.
-If you found a pair of identical letters in the first step, delete those two letters from S.
-
-For example, if S="aabccb", you can proceed as follows:
-
-Find and erase "aa", producing the string "bccb".
-Find and erase "cc", producing the string "bb".
-Find and erase "bb", producing the empty string.
-
-For S="axxyybac" you can do at most two steps, erasing "xx" first and "yy" next. Once you obtain the string "abac", you are done. Note that you cannot erase the two "a"s because they are not consecutive.
-
-You want to change S into an empty string by repeating the operation described above.
-Return "Possible" if you can do that, and "Impossible" otherwise.
-
-DEFINITION
-Class:DoubleLetter
-Method:ableToSolve
-Parameters:string
-Returns:string
-Method signature:string ableToSolve(string S)
-
-
-CONSTRAINTS
--S will contain between 1 and 50 characters.
--Each character in S will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"aabccb"
-
-Returns: "Possible"
-
-
-1)
-"aabccbb"
-
-Returns: "Impossible"
-
-The process will terminate with a single 'b'.
-
-
-2)
-"abcddcba"
-
-Returns: "Possible"
-
-"abcddcba" -> "abccba" -> "abba" -> "aa" -> "".
-
-
-3)
-"abab"
-
-Returns: "Impossible"
-
-No two successive letters are the same, so we can't do any operation.
-
-
-4)
-"aaaaaaaaaa"
-
-Returns: "Possible"
-
-
-5)
-"aababbabbaba"
-
-Returns: "Impossible"
-
-
-6)
-"zzxzxxzxxzzx"
-
-Returns: "Possible"
+問題
+-文字列Sが与えられる
+-2文字以上連続する文字のうち、最も左のものを削除していく
+-最終的に空文字列になるかどうかを求める
 
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
