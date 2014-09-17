@@ -1,75 +1,11 @@
 // BEGIN CUT HERE
 /*
-SRM 618 Div1 Easy (250)
+SRM 618 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Fox Ciel wants to type a word on her old cell phone. The cell phone has only one button. The letter A is typed by tapping the button once, B by tapping it twice in a row, and so on, in alphabetical order. Thus, the last letter Z is typed by tapping the button 26 times without a pause.
-
-You are given a string word. Compute and return the answer to the following question: How many times will Ciel tap the button while typing this word?
-
-DEFINITION
-Class:WritingWords
-Method:write
-Parameters:string
-Returns:int
-Method signature:int write(string word)
-
-
-NOTES
--While typing a word, Ciel has to make a short pause after typing each letter, so that the phone can tell when one letter ends and another letter begins. These pauses do not matter in this problem.
-
-
-CONSTRAINTS
--word will contain between 1 and 50 characters, inclusive.
--Each character in word will be an uppercase English letter ('A'-'Z').
-
-
-EXAMPLES
-
-0)
-"A"
-
-Returns: 1
-
-One tap types the letter A.
-
-
-1)
-"ABC"
-
-Returns: 6
-
-To type ABC, Ciel will do the following:
-
-Tap the button once to type A.
-Tap the button twice to type B.
-Tap the button three times to type C.
-
-The total number of taps is 1+2+3 = 6.
-
-
-2)
-"VAMOSGIMNASIA"
-
-Returns: 143
-
-
-3)
-"TOPCODER"
-
-Returns: 96
-
-
-4)
-"SINGLEROUNDMATCH"
-
-Returns: 183
-
-
-5)
-"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-
-Returns: 1300
+問題
+-携帯電話で文字列を入力する
+-ボタンはひとつだけで、Aは1回、Zは26回押す必要がある
+-与えられた文字列を入力するのに必要な回数を求める
 
 */
 // END CUT HERE
