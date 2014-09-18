@@ -2,78 +2,9 @@
 /*
 SRM 621 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-	Sasha has a vector <string> stringList. No two elements of stringList have the same length.
-	So far, Sasha has learned two ways of sorting strings:
-		He can sort strings lexicographically. For example, "car" < "carriage" < "cats" < "doggies". (See Notes for a definition of the lexicographic order.)
-		He can also sort strings according to their lengths in ascending order. For example, "car" < "cats" < "doggies" < "carriage".
-	Sasha now wonders whether stringList is sorted in either of these two ways. Return "lexicographically" (quotes for clarity) if stringList is sorted lexicographically but not according to the string lengths. Return "lengths" if stringList is sorted according to the string lengths but not lexicographically. Return "both" if it is sorted in both ways. Otherwise, return "none".
-
-
-DEFINITION
-Class:TwoWaysSorting
-Method:sortingMethod
-Parameters:vector <string>
-Returns:string
-Method signature:string sortingMethod(vector <string> stringList)
-
-
-NOTES
--String A is lexicographically smaller than string B if A contains a character with a smaller ASCII value in the first position where they differ. In case one of the strings ends before they have a different character, the shorter one is considered smaller.
-
-
-CONSTRAINTS
--stringList will contain between 1 and 50 elements, inclusive.
--Each element of stringList will contain between 1 and 50 characters, inclusive.
--Each character of each element of stringList will be a lowercase English letter ('a'-'z').
--Every two elements of stringList will have different lengths.
-
-
-EXAMPLES
-
-0)
-{"a", "aa", "bbb"}
-
-Returns: "both"
-
-These strings are sorted both lexicographically and according to their lengths.
-
-
-1)
-{"c", "bb", "aaa"}
-
-Returns: "lengths"
-
-The lengths of these strings are in ascending order. However, they are not sorted lexicographically as, for instance, "aaa" is lexicographically smaller than "c".
-
-
-2)
-{"etdfgfh", "aio"}
-
-Returns: "none"
-
-Here the first string is longer than the second one, so they are not sorted according to length. (Note that we require the lengths to be in ascending order.) Similarly, they are not sorted lexicographically: "aio" should come before "etdfgfh".
-
-
-3)
-{"aaa", "z"}
-
-Returns: "lexicographically"
-
-The input strings are sorted lexicographically only.
-
-
-4)
-{"z"}
-
-Returns: "both"
-
-
-5)
-{"abcdef", "bcdef", "cdef", "def", "ef", "f", "topcoder"}
-
-Returns: "lexicographically"
+問題
+-文字列の配列がある
+-辞書順と長さ順のそれぞれでソートしたものと一致するかどうかを求める
 
 */
 // END CUT HERE
