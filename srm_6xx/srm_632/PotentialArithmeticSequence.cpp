@@ -22,19 +22,16 @@ class PotentialArithmeticSequence {
 public:
 	int numberOfSubsequences(vector <int> d) {
 		int N = (int)d.size();
+
 		int a[257];
 		for (int i = 0; i <= 8; ++i){
 			a[1 << i] = i;
 		}
+
 		char b[384];
 		for (int i = 0; i < 384; ++i) {
-			b[i] = a[i&-i];
+			b[i] = a[i&-i];		// extract lowest bit
 		}
-
-
-
-
-
 
 		char c[256];
 		for (int i = 0; i < N; ++i) {
