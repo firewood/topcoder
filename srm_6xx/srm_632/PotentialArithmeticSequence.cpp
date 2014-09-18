@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-SRM 632 Div1 Easy (250)
+SRM 632 Div1 Easy (300)
 
 問題
 -N個の正の整数からなる配列aがある
@@ -30,6 +30,12 @@ public:
 		for (int i = 0; i < 384; ++i) {
 			b[i] = a[i&-i];
 		}
+
+
+
+
+
+
 		char c[256];
 		for (int i = 0; i < N; ++i) {
 			c[i] = min(d[i], 7);
