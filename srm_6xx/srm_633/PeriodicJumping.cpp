@@ -12,6 +12,7 @@ SRM 633 Div1 Easy (250)
 */
 // END CUT HERE
 #include <algorithm>
+#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -24,29 +25,13 @@ typedef long long LL;
 class PeriodicJumping {
 public:
 	int minimalTime(int x, vector <int> jumpLengths) {
-		int ans = 0;
 		LL X = abs(x);
 		LL N = jumpLengths.size();
+		LL sum = accumulate(jumpLengths.begin(), jumpLengths.end(), 0LL);
+		LL loops = max(0LL, X / sum - 2);
+		int ans = (int)(loops * N);
+		sum *= loops;
 
-		LL sum = 0;
-		for (int a : jumpLengths) {
-			sum += a;
-		}
-
-		if (X >= sum * 2) {
-			LL loops = X / sum;
-			ans += (int)(loops * N);
-			sum *= loops;
-			for (LL i = 0; ; ++i) {
-				if (sum >= X) {
-					return ans;
-				}
-				++ans;
-				sum += jumpLengths[i % N];
-			}
-		}
-
-		sum = 0;
 		LL m = 0;
 		for (LL i = 0; ; ++i) {
 			if (sum >= X && m <= (X + sum - m)) {
