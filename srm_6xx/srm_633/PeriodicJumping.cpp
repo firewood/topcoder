@@ -2,83 +2,12 @@
 /*
 SRM 633 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Frog Suwako lives on a two-dimensional plane.
-Currently, she is located in the point (0, 0).
-She would like to reach the point (x, 0).
-
-Suwako jumps in a peculiar way: her jump lengths repeat in a periodic fashion.
-The vector <int> jumpLengths contains one period of her jump lengths, starting with the length of the first jump she will make.
-For example, if jumpLengths = { 2, 5 }, Suwako's jump lengths will be 2, 5, 2, 5, 2, 5, ...
-Note that Suwako can jump onto arbitrary points in the plane, they are not required to have integer coordinates.
-
-You are given the int x and the vector <int> jumpLengths.
-Return the smallest non-negative integer j such that Suwako can reach the desired destination after j jumps.
-If there is no such j, return -1 instead.
-
-
-DEFINITION
-Class:PeriodicJumping
-Method:minimalTime
-Parameters:int, vector <int>
-Returns:int
-Method signature:int minimalTime(int x, vector <int> jumpLengths)
-
-
-CONSTRAINTS
--x will be between -1,000,000,000 and 1,000,000,000, inclusive.
--len will contain between 1 and 50 elements, inclusive.
--Each element in len will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-15
-{1,2,3,4,5,6,7,8,9,10}
-
-Returns: 5
-
-In 4 jumps Suwako cannot get far enough. In 5 jumps she can reach the destination as follows: (0,0) -> (1,0) -> (3,0) -> (6,0) -> (10,0) -> (15,0).
-
-
-1)
-5
-{5}
-
-Returns: 1
-
-One jump is enough, since the distance between (0,0) and (5,0) is exactly 5.
-
-
-2)
-1
-{10}
-
-Returns: 2
-
-Here Suwako needs two jumps. One possible solution is to land at (0.5, sqrt(10*10-0.5*0.5)) after the first jump.
-
-
-3)
--10
-{2,3,4,500,6,7,8}
-
-Returns: 11
-
-
-4)
--1000000000
-{1}
-
-Returns: 1000000000
-
-
-5)
-0
-{19911120}
-
-Returns: 0
+問題
+-二次元平面上に蛙がいる
+-ジャンプできる距離の配列が与えられる
+-{2,5}が与えられたときは距離2,距離5,距離2,...のようにジャンプできる
+-ジャンプする方向はx軸またはy軸に平行でなくてよい
+-(x,0)に到達するために必要なジャンプの回数を求める
 
 */
 // END CUT HERE
@@ -95,10 +24,6 @@ typedef long long LL;
 class PeriodicJumping {
 public:
 	int minimalTime(int x, vector <int> jumpLengths) {
-		if (x == 0) {
-			return 0;
-		}
-
 		int ans = 0;
 		LL X = abs(x);
 		LL N = jumpLengths.size();
@@ -109,28 +34,28 @@ public:
 		}
 
 		if (X >= sum * 2) {
-			LL loops = X / sum - 1;		// for X==sum*2
+			LL loops = X / sum;
 			ans += (int)(loops * N);
 			sum *= loops;
-			for (LL i = 0;; ++i) {
-				++ans;
-				sum += jumpLengths[i % N];
+			for (LL i = 0; ; ++i) {
 				if (sum >= X) {
 					return ans;
 				}
+				++ans;
+				sum += jumpLengths[i % N];
 			}
 		}
 
 		sum = 0;
 		LL m = 0;
 		for (LL i = 0; ; ++i) {
+			if (sum >= X && m <= (X + sum - m)) {
+				break;
+			}
 			++ans;
 			LL j = jumpLengths[i % N];
 			sum += j;
 			m = max(m, j);
-			if (sum >= X && m <= (X + sum - m)) {
-				break;
-			}
 		}
 		return ans;
 	}
@@ -333,17 +258,15 @@ public:
 		n++;
 
 
-
 		if ((Case == -1) || (Case == n)){
 			int Arg0 = 100;
-			int Arr1[] = { 1, 1, 536870912, 536870912, 536870912, 536870912, 536870912, 536870912, 536870912, 536870912 };
-			int Arg2 = 4;
+			int Arr1[] = { 1, 536870912, 536870912, 536870912, 536870912, 536870912, 536870912, 536870912, 536870912 };
+			int Arg2 = 3;
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
 			verify_case(n, Arg2, minimalTime(Arg0, Arg1));
 		}
 		n++;
-
 
 
 	}
