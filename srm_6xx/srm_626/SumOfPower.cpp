@@ -2,66 +2,10 @@
 /*
 SRM 626 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given a vector <int> array.
-At any moment, you may choose a nonempty contiguous subsequence of array.
-Whenever you do so, you will gain power equal to the sum of all elements in the chosen subsequence.
-
-You chose each possible contiguous subsequence exactly once, each time gaining some power.
-Compute and return the total amount of power you gained.
-
-
-DEFINITION
-Class:SumOfPower
-Method:findSum
-Parameters:vector <int>
-Returns:int
-Method signature:int findSum(vector <int> array)
-
-
-CONSTRAINTS
--array will contain between 1 and 50 elements, inclusive.
--Each element in array will be between 1 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,2}
-
-Returns: 6
-
-We have the following three contiguous subsequences:
-
- {1} => 1 
- {2} => 2 
- {1,2} => 3 
-
-Thus, the sum of all possible powers is 1+2+3=6.
-
-
-1)
-{1,1,1}
-
-Returns: 10
-
-A 3-element sequence has 6 possible nonempty contiguous subsequences.
-For the sequence {1,1,1} these are the subsequences: {1}, {1}, {1}, {1,1}, {1,1}, and {1,1,1}.
-Their sums are 1, 1, 1, 2, 2, and 3.
-If you choose each of them once, the total power you'll gain is 1+1+1+2+2+3 = 10.
-
-
-2)
-{3,14,15,92,65}
-
-Returns: 1323
-
-
-3)
-{1,2,3,4,5,6,7,8,9,10}
-
-Returns: 1210
+問題
+-配列が与えられる
+-連続する数値の和がパワーになる
+-全ての組み合わせのパワーの総和を求める
 
 */
 // END CUT HERE
