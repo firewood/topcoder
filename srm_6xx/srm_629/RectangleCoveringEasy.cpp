@@ -2,78 +2,10 @@
 /*
 SRM 629 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-There is a rectangular hole in the ground.
-You are given the dimensions of this rectangle: ints holeH and holeW.
-
-You have a rectangular board.
-You are given its dimensions: ints boardH and boardW.
-You would like to use the board to cover the hole.
-
-There are some rules you must follow when covering the hole:
-
-You may rotate the board, but you must place it so that the sides of the board are parallel to the sides of the hole.
-The board must cover the entire hole.
-All corners of the board must be strictly outside the hole. (That is, they are not allowed to lie on the boundary of the hole.)
-
-If you can cover the hole using the board you have, return 1. Otherwise, return -1.
-
-
-DEFINITION
-Class:RectangleCoveringEasy
-Method:solve
-Parameters:int, int, int, int
-Returns:int
-Method signature:int solve(int holeH, int holeW, int boardH, int boardW)
-
-
-CONSTRAINTS
--holeW, holeH, boardW, and boardH will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-1
-1
-1
-
-Returns: -1
-
-The vertices of the board must not be on the boundary of the hole.
-
-
-1)
-3
-5
-4
-6
-
-Returns: 1
-
-One possibility is to place the board so that it extends over the hole by 0.5 on each side.
-
-
-2)
-10
-20
-25
-15
-
-Returns: 1
-
-Here we have to rotate the board by 90 degrees.
-
-
-3)
-3
-10
-3
-12
-
-Returns: 1
+問題
+-地面に四角形の穴が開いていて、四角形の板が1枚ある
+-板は穴の座標軸に平行に、かつ、板の四隅が穴の外側になるように置くこと
+-地面の穴を完全に覆えるかどうかを求める
 
 */
 // END CUT HERE
