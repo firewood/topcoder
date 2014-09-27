@@ -2,95 +2,10 @@
 /*
 SRM 634 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-A store sells M different items, conveniently numbered 0 through M-1.
-For a shopping survey you interviewed N customers.
-Each customer responded to the survey with a list of items they've bought.
-Each customer bought at most one of each item.
-It is possible that some customers did not buy anything at all.
-
-After collecting the responses, you've summed up the results and found that s[i] people have bought item i.
-Due to an unfortunate accident, you've then lost the actual survey responses.
-All you have left are the values s[i] you computed.
-
-You are now supposed to report the number of big shoppers among the survey respondents.
-A big shopper is defined as a customer who has bought K or more items.
-Of course, having lost the detailed responses, you might be unable to determine the actual number of big shoppers.
-
-You are given the ints N and K, and the vector <int> s with M elements.
-Compute and return the smallest possible number of big shoppers.
-
-
-DEFINITION
-Class:ShoppingSurveyDiv1
-Method:minValue
-Parameters:int, int, vector <int>
-Returns:int
-Method signature:int minValue(int N, int K, vector <int> s)
-
-
-CONSTRAINTS
--N will be between 1 and 500, inclusive.
--s will contain between 1 and 500 elements, inclusive.
--Each element in s will be between 0 and N, inclusive.
--K will be between 1 and the length of s, inclusive.
-
-
-EXAMPLES
-
-0)
-10
-2
-{1, 2, 3}
-
-Returns: 0
-
-There are 10 customers.
-Item 0 was bought by 1 customer, item 1 by 2 customers, and item 2 by 3 of the customers.
-A big shopper is a customer who bought at least 2 items.
-Given this data it is possible that there are no big shoppers at all.
-(There could have been six customers who bought one item each, and four other customers who didn't buy anything at all.)
-
-
-1)
-5
-2
-{1, 2, 3}
-
-Returns: 1
-
-
-2)
-4
-4
-{4, 4, 4, 2}
-
-Returns: 2
-
-
-3)
-20
-3
-{1, 10, 3, 4, 8, 15, 3, 16, 18, 2, 7, 3}
-
-Returns: 10
-
-
-4)
-4
-2
-{1, 2, 1, 1, 3, 1, 2, 2, 1, 2, 1}
-
-Returns: 2
-
-
-5)
-2
-3
-{1, 1, 1, 2}
-
-Returns: 1
+問題
+-M種類の商品があり、購入総数が配列で与えられる
+-N人の顧客がいて、それぞれの種類の商品を最大1個買う
+-K種類以上購入した顧客の最小値を求める
 
 */
 // END CUT HERE
