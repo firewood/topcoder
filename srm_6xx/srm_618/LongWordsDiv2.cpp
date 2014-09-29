@@ -1,79 +1,11 @@
 // BEGIN CUT HERE
 /*
-SRM 618 Div1 Medium (500)
+SRM 618 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Fox Ciel likes all the words that have the following properties:
-
-Each letter of the word is an uppercase English letter.
-Equal letters are never consecutive.
-There is no subsequence of the form xyxy, where x and y are (not necessarily distinct) letters. Note that a subsequence doesn't have to be contiguous.
-
-Examples:
-
-Ciel does not like "ABBA" because there are two consecutive 'B's.
-Ciel does not like "THETOPCODER" because it contains the subsequence "TETE".
-Ciel does not like "ABACADA" because it contains the subsequence "AAAA". (Note that here x=y='A'.)
-Ciel likes "A", "ABA", and also "ABCBA".
-
-Given a string word, return "Likes" (quotes for clarity) if Ciel likes word and "Dislikes" if she does not.
-
-
-DEFINITION
-Class:LongWordsDiv2
-Method:find
-Parameters:string
-Returns:string
-Method signature:string find(string word)
-
-
-CONSTRAINTS
--word will contain between 1 and 100 characters, inclusive.
--Each character of word will be an uppercase English letter ('A'-'Z').
-
-
-EXAMPLES
-
-0)
-"AAA"
-
-Returns: "Dislikes"
-
-
-1)
-"ABCBA"
-
-Returns: "Likes"
-
-
-2)
-"ABCBAC"
-
-Returns: "Dislikes"
-
-
-3)
-"TOPCODER"
-
-Returns: "Likes"
-
-
-4)
-"VAMOSGIMNASIA"
-
-Returns: "Dislikes"
-
-
-5)
-"SINGLEROUNDMATCH"
-
-Returns: "Likes"
-
-
-6)
-"DALELOBO"
-
-Returns: "Likes"
+–â‘è
+-(1)˜A‘±‚·‚é•¶š‚ª‚È‚¢‚±‚Æ
+-(2)•”•ª•¶š—ñ‚ªXYXY‚É‚È‚ç‚È‚¢‚±‚Æ
+-—^‚¦‚ç‚ê‚½•¶š—ñ‚ªğŒ‚ğ–‚½‚·‚©‚Ç‚¤‚©‚ğ‹‚ß‚é
 
 */
 // END CUT HERE
