@@ -123,17 +123,14 @@ public:
 		for (int i = trophy; i < (int)doors.size(); ++i) {
 			b |= (1 << (doors[i] - 'A'));
 		}
-		int c = popcount(a), d = popcount(b);
-		if (a == b) {
+		int c = popcount(a), d = popcount(b), e = popcount(a&b);
+		if (c + e > d && d + e >= c) {
 			return 0;
 		}
-		if (doors[trophy - 1] == doors[trophy] && (c == d || c - 1 == d)) {
-			return 0;
+		if (d < c) {
+			return -2 * d;
 		}
-		if (c <= d) {
-			return 2 * c - 1;
-		}
-		return -2 * d;
+		return 2 * c - 1;
 	}
 
 // BEGIN CUT HERE
@@ -215,6 +212,45 @@ public:
 			verify_case(n, Arg2, determineOutcome(Arg0, Arg1));
 		}
 		n++;
+
+
+		if ((Case == -1) || (Case == n)){
+			string Arg0 = "ABCB";
+			int Arg1 = 2;
+			int Arg2 = 0;
+
+			verify_case(n, Arg2, determineOutcome(Arg0, Arg1));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			string Arg0 = "BCABA";  //c-b-a
+			int Arg1 = 3;
+			int Arg2 = 0;
+
+			verify_case(n, Arg2, determineOutcome(Arg0, Arg1));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			string Arg0 = "ABCBA";  //c-b-a
+			int Arg1 = 3;
+			int Arg2 = 0;
+
+			verify_case(n, Arg2, determineOutcome(Arg0, Arg1));
+		}
+		n++;
+
+
+		if ((Case == -1) || (Case == n)){
+			string Arg0 = "EBFDCAE";
+			int Arg1 = 4;
+			int Arg2 = 0;
+
+			verify_case(n, Arg2, determineOutcome(Arg0, Arg1));
+		}
+		n++;
+
 
 	}
 
