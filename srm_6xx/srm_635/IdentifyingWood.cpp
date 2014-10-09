@@ -2,65 +2,8 @@
 /*
 SRM 635 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-We call a pair of strings (s, t) "wood" if t is contained in s as a subsequence. (See Notes for a formal definition.)
-
-Given strings s and t, return the string "Yep, it's wood." (quotes for clarity) if the pair (s, t) is wood and "Nope." otherwise.
-
-
-DEFINITION
-Class:IdentifyingWood
-Method:check
-Parameters:string, string
-Returns:string
-Method signature:string check(string s, string t)
-
-
-NOTES
--String t is contained in string s as a subsequence if we can obtain t by removing zero or more (not necessarily consecutive) characters from s.
-
-
-CONSTRAINTS
--s and t will consist only of lowercase English letters.
--s and t will each be between 1 and 10 characters long, inclusive.
-
-
-EXAMPLES
-
-0)
-"absdefgh"
-"asdf"
-
-Returns: "Yep, it's wood."
-
-
-1)
-"oxoxoxox"
-"ooxxoo"
-
-Returns: "Nope."
-
-
-2)
-"oxoxoxox"
-"xxx"
-
-Returns: "Yep, it's wood."
-
-
-3)
-"qwerty"
-"qwerty"
-
-Returns: "Yep, it's wood."
-
-
-4)
-"string"
-"longstring"
-
-Returns: "Nope."
+問題
+-文字列sから何文字か削除して文字列tに一致するかどうを求める
 
 */
 // END CUT HERE
