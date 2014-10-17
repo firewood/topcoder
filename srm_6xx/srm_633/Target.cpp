@@ -2,8 +2,8 @@
 /*
 SRM 633 Div2 Easy (250)
 
-���
--�傫��n�̏��ڂɓI�̊G��`��
+問題
+-大きさnの升目に的の絵を描く
 
 */
 // END CUT HERE
