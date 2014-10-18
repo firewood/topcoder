@@ -2,75 +2,11 @@
 /*
 SRM 628 Div2 Medium (500)
 
-PROBLEM STATEMENT
-We have three types of brackets: "()", "[]", and "{}".
-We are now interested in some special strings.
-A string is special if all the following conditions hold:
-
-Each character of the string is one of the six bracket characters mentioned above.
-The characters of the string can be divided into disjoint pairs such that in each pair we have an opening bracket and a closing bracket of the same type.
-For each pair, the opening bracket must occur to the left of the corresponding closing bracket.
-For each pair, the substring strictly between the opening and the closing bracket must be a special string (again, according to this definition).
-
-For example, the empty string is a special string: there are 0 pairs of brackets.
-The string "[]" is also a special string: there is one pair of matching brackets, they are in the proper order, and the string between them (which is the empty string) is a special string.
-
-The character 'X' (uppercase x) occurs in expression at most five times; all other characters in expression are brackets of the types mentioned above.
-We want to change expression into a special string by changing each 'X' into one of the brackets.
-(Different occurrences of 'X' may be changed into different brackets.)
-Return "possible" (quotes for clarity) if we can do that, and "impossible" otherwise.
-
-
-DEFINITION
-Class:BracketExpressions
-Method:ifPossible
-Parameters:string
-Returns:string
-Method signature:string ifPossible(string expression)
-
-
-CONSTRAINTS
--expression will have between 1 and 50 characters, inclusive.
--Each character in expression will be '(', ')', '[', ']', '{', '}' or 'X'.
--There will be at most 5 occurences of 'X' in expression.
-
-
-EXAMPLES
-
-0)
-"([]{})"
-
-Returns: "possible"
-
-This is already a special string. As there are no 'X's, we do not get to change anything.
-
-
-1)
-"(())[]"
-
-Returns: "possible"
-
-
-2)
-"({])"
-
-Returns: "impossible"
-
-
-3)
-"[]X"
-
-Returns: "impossible"
-
-Regardless of bracket type you put instead of 'X', you cannot create a special string.
-
-
-4)
-"([]X()[()]XX}[])X{{}}]"
-
-Returns: "possible"
-
-You can replace 'X's respectively with '{', '(', ')' and '['.
+問題
+-3種類の括弧がある
+-Xは括弧の文字のいずれかである
+-括弧またはXからなる文字列が与えられる
+-正しく閉じているかどうか求める
 
 */
 // END CUT HERE
