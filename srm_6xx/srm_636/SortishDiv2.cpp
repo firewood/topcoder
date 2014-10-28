@@ -2,85 +2,10 @@
 /*
 SRM 636 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Everyone likes some sequences more than others.
-Every person has their own function which tells them how good a sequence is.
-For example, for some people this function could simply be the count of negative numbers in the sequence.
-
-Jezalb's most favorite sequences are ones that are sorted in increasing order.
-When he sees a sequence S, he immediately calculates the number of pairs of indexes i < j such that S[i] < S[j].
-He calls this number the "sortedness" of S.
-
-This morning Jezalb entered a classroom and saw a permutation of 1 through N on the blackboard.
-He quickly calculated its sortedness.
-He then left the classroom and forgot the permutation.
-He only remembered the sortedness he computed.
-You are given this value in a int sortedness. 
-
-Later that day Jezalb reentered the classroom and saw a sequence on the blackboard.
-The sequence was a permutation of 1 through N, but with some elements erased.
-You are given this sequence as a vector <int> seq with N elements.
-Some of the elements in seq may be 0, which indicates an erased number.
-
-Jezalb thinks that the sequence seq may have been obtained by erasing some elements of the sequence he saw during his first visit to the classroom.
-He would like to restore the erased elements.
-
-You are given the int sortedness and the vector <int> seq.
-Return the number of ways in which he can fill in the missing elements into seq in such a way that the sortedness of the obtained permutation will be exactly sortedness.
-
-
-DEFINITION
-Class:SortishDiv2
-Method:ways
-Parameters:int, vector <int>
-Returns:int
-Method signature:int ways(int sortedness, vector <int> seq)
-
-
-CONSTRAINTS
--sortedness will be between 0 and 1,000,000,000, inclusive. 
--seq will contain between 1 and 100 elements, inclusive. 
--Elements in seq will be between 0 and number of elements in seq, inclusive. 
--Positive elements in seq will be distinct. 
--Number of elements equal to 0 in seq will be between 0 and 5, inclusive.
-
-
-EXAMPLES
-
-0)
-5
-{4, 0, 0, 2, 0}
-
-Returns: 2
-
-There are six ways to fill in the missing elements. Out of those six permutations, only two have sortedness 5: {4, 1, 5, 2, 3} and {4, 3, 1, 2, 5}.
-
-
-1)
-4
-{0, 0, 0, 0}
-
-Returns: 5
-
-All 5 possible ways are: {1, 3, 4, 2}, {1, 4, 2, 3}, {2, 1, 4, 3}, {2, 3, 1, 4}, {3, 1, 2, 4}.
-
-
-2)
-2
-{1, 3, 2}
-
-Returns: 1
-
-There are no gaps and sortedness is indeed equal to 2.
-
-
-3)
-2
-{1, 2, 0, 5, 0, 0}
-
-Returns: 0
-
-Regardless of how he fills in the gaps, the sortedness of the resulting permutation will always be greater than 2.
+問題
+-配列が与えられる
+-いくつかの値は未知である
+-任意の2つの値について昇順なものがsortedness個あるとき、配列の組み合わせの総数を求める
 
 */
 // END CUT HERE
