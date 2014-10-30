@@ -2,67 +2,11 @@
 /*
 SRM 614 Div2 Medium (500)
 
-PROBLEM STATEMENT
-There are N points in the plane. You are given their description as two vector <int>s, x and y, with N elements each.
-The N points have coordinates (x[0],y[0]), (x[1],y[1]), ..., (x[N-1],y[N-1]).
-
-You want to draw a single square onto the plane. The vertices of the square must have integer coordinates,
-and the sides of the square must be parallel to the coordinate axes.
-Additionally, at least N-2 of the N given points must lie strictly inside the square (i.e., not on its boundary).
-
-Return the smallest possible area of a square that satisfies these constraints.
-
-
-DEFINITION
-Class:MinimumSquareEasy
-Method:minArea
-Parameters:vector <int>, vector <int>
-Returns:long long
-Method signature:long long minArea(vector <int> x, vector <int> y)
-
-
-CONSTRAINTS
--x will contain between 3 and 50 elements, inclusive.
--y will contain the same number of elements as x.
--All points will be pairwise distinct.
--Each element of x will be between -1,000,000,000 and 1,000,000,000, inclusive.
--Each element of y will be between -1,000,000,000 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{0, 1, 2}
-{0, 1, 5}
-
-Returns: 4
-
-The square must contain at least one of the three given points. One of the optimal solutions is the square with opposite corners at (-1,-1) and (1,1).
-
-
-1)
-{-1, -1, 0, 2, 0}
-{-2, -1, 0, -1, -2}
-
-Returns: 9
-
-This time the square must contain at least three of the five given points. The optimal solution is the square with opposite corners at (-2,-3) and (1,0).
-
-
-2)
-{1000000000, -1000000000, 1000000000, -1000000000}
-{1000000000, 1000000000, -1000000000, -1000000000}
-
-Returns: 4000000008000000004
-
-In this case one of the optimal solutions is a square that contains all four points.
-
-
-3)
-{93, 34, 12, -11, -7, -21, 51, -22, 59, 74, -19, 29, -56, -95, -96, 9, 44, -37, -54, -21}
-{64, 12, -43, 20, 55, 74, -20, -54, 24, 20, -18, 77, 86, 22, 47, -24, -33, -57, 5, 7}
-
-Returns: 22801
+問題
+-N個の座標がある
+-それらのうち、N-2個以上の座標を含むように正方形で囲む
+-ただし辺の上にあるものは含めない
+-最小の面積を求める
 
 */
 // END CUT HERE
