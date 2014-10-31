@@ -2,68 +2,10 @@
 /*
 SRM 613 Div2 Easy (250)
 
-
-PROBLEM STATEMENT
-
-Cat Taro has a string S.
-He wants to obtain the string "CAT" from the string S.
-In a single turn he can choose any character and erase all occurrences of this character in S.
-He can do as many turns as he wants (possibly zero).
-
-You are given the string S.
-Return "Possible" (quotes for clarity) if it is possible to obtain the string "CAT" and "Impossible" otherwise.
-
-
-DEFINITION
-Class:TaroString
-Method:getAnswer
-Parameters:string
-Returns:string
-Method signature:string getAnswer(string S)
-
-
-CONSTRAINTS
--S will contain between 1 and 50 characters, inclusive.
--S will contain only uppercase English letters ('A'-'Z').
-
-
-EXAMPLES
-
-0)
-"XCYAZTX"
-
-Returns: "Possible"
-
-It is possible to obtain string "CAT" in three turns, as follows:
-Erase all characters 'X' (and obtain the string "CYAZT")
-Erase all characters 'Y' (and obtain the string "CAZT")
-Erase all characters 'Z' (and obtain the string "CAT")
-
-
-1)
-"CTA"
-
-Returns: "Impossible"
-
-
-2)
-"ACBBAT"
-
-Returns: "Impossible"
-
-Note that whenever you are erasing a character, you must erase all its occurrences. In this case, it is not possible to erase the first 'A' and keep the second one.
-
-
-3)
-"SGHDJHFIOPUFUHCHIOJBHAUINUIT"
-
-Returns: "Possible"
-
-
-4)
-"CCCATT"
-
-Returns: "Impossible"
+問題
+-文字列Sが与えられる
+-任意のアルファベットを全て除去することができる
+-Sを“CAT”にできるかどうかを求める
 
 */
 // END CUT HERE
