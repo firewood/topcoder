@@ -2,96 +2,9 @@
 /*
 SRM 638 Div1 Easy (300)
 
-PROBLEM STATEMENT
-A shadow sculpture is a 3D object that seems amorphous but casts a beautiful shadow.
-
-You want to create a simple shadow sculpture that will consist of unit cubes.
-More precisely, imagine an n*n*n cube that is aligned with the coordinate axes and divided into unit cubes.
-Your sculpture will consist of some of those unit cubes (possibly none or all of them).
-The unit cubes have coordinates (x,y,z) where 0 <= x,y,z < n.
-
-You have already determined three shadows your sculpture should cast: its orthogonal projections onto the XY, YZ, and ZX plane.
-You are given their description in three vector <string>s: XY, YZ, and ZX.
-
-Their meaning is as follows:
-For each i and j, the character XY[i][j] is either 'Y' or 'N'.
-The character 'Y' means that the unit square (i,j) of the projection is dark.
-In other words, if XY[i][j] is 'Y', at least one of the cubes with coordinates (i,j,k) has to be a part of your sculpture.
-On the other hand, if XY[i][j] is 'N', none of the cubes with coordinates (i,j,k) may belong into your sculpture.
-YZ and ZX describe the other two projections in the same way.
-E.g., if ZX[i][j] is 'Y', you have to use at least one of the cubes (j,k,i).
-
-Finally, there is one last constraint:
-Your entire sculpture has to be 6-connected.
-(Formally: Your sculpture must form one connected component, given that two cubes are adjacent iff they share a common face.)
-
-Return "Possible" if it is possible to construct a sculpture that matches all the given constraints.
-Otherwise, return "Impossible".
-
-
-DEFINITION
-Class:ShadowSculpture
-Method:possible
-Parameters:vector <string>, vector <string>, vector <string>
-Returns:string
-Method signature:string possible(vector <string> XY, vector <string> YZ, vector <string> ZX)
-
-
-CONSTRAINTS
--n will be between 1 and 10, inclusive.
--XY, YZ and ZX will contain exactly n elements.
--Each element of XY, YZ and ZX will contain exactly n characters.
--Each element of XY, YZ and ZX will contain only 'Y' and 'N'.
-
-
-EXAMPLES
-
-0)
-{"YN","NN"}
-{"YN","NN"}
-{"YN","NN"}
-
-Returns: "Possible"
-
-It is possible: we only have one solid cell at (0, 0, 0).
-
-
-1)
-{"YN","NY"}
-{"YN","NY"}
-{"YN","NY"}
-
-Returns: "Impossible"
-
-Here it is impossible to make a valid sculpture.
-Note that you can make all three projections look right by using exactly two cubes: (0,0,0) and (1,1,1).
-However, this sculpture is not 6-connected.
-
-
-2)
-{"YYY","YNY","YYY"}
-{"YYY","YNY","YYY"}
-{"YYY","YNY","YYY"}
-
-Returns: "Possible"
-
-
-3)
-{"YYY","YNY","YYY"}
-{"NYY","YNY","YYY"}
-{"YYY","YNY","YYN"}
-
-Returns: "Impossible"
-
-
-4)
-{"N"}
-{"N"}
-{"N"}
-
-Returns: "Possible"
-
-A sculpture that consists of no cubes is connected.
+問題
+-XY平面、YZ平面、ZX平面の影が与えられる
+-連続する物体で条件を満たすものがあるかどうかを求める
 
 */
 // END CUT HERE
