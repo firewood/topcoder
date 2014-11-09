@@ -1,6 +1,7 @@
 // BEGIN CUT HERE
 /*
 SRM 613 Div1 Easy (250)
+SRM 613 Div2 Medium (500)
 
 問題
 -猫がN匹いる
