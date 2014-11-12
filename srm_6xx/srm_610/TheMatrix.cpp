@@ -1,5 +1,6 @@
 // BEGIN CUT HERE
 /*
+SRM 610 Div1 Easy (250)
 SRM 610 Div2 Medium (550)
 
 問題
