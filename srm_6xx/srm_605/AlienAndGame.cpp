@@ -2,92 +2,11 @@
 /*
 SRM 605 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Alien Fred wants to destroy the Earth.
-But before he does that, he wants to play the following game.
-
-He has a rectangular board divided into unit cells.
-Each cell is initially painted black or white.
-You are given a vector <string> board.
-The character board[i][j] represents the cell with coordinates (i, j).
-Each of those characters is either 'B' (representing a black cell) or 'W' (representing a white cell).
-The game is played in turns.
-In each turn Fred can choose any row of the board and repaint all black cells of the row to white, and vice versa.
-(Note that he can only select rows, not columns. 
-Formally, he can choose an index i and change all characters of board[i].)
-
-Fred wants to have a large white square somewhere on his board.
-The sides of Fred's square must be parallel to the sides of the board.
-The white square may be a part of a larger white area. 
-(I.e., the cells that touch the square may be both black and white.)
-Find a sequence of turns that produces the largest possible white square somewhere on the board, and return the area of that square.
-
-
-DEFINITION
-Class:AlienAndGame
-Method:getNumber
-Parameters:vector <string>
-Returns:int
-Method signature:int getNumber(vector <string> board)
-
-
-CONSTRAINTS
--board will contain between 1 and 50 elements, inclusive.
--Each element of board will contain between 1 and 50 characters, inclusive.
--Each element of board will contain the same number of characters.
--Each character in each element of board will be either 'B' or 'W'.
-
-
-EXAMPLES
-
-0)
-{"BB",
- "WW"}
-
-Returns: 4
-
-The optimal strategy is to repaint row 0. After this change the entire board will be white, and thus we have a 2*2 white square.
-
-
-1)
-{"W"}
-
-Returns: 1
-
-Sometimes the optimal strategy requires no repainting.
-
-
-2)
-{"WBBB",
- "WBBB",
- "WWWW"}
-
-Returns: 9
-
-We should repaint row 0 and then repaint row 1. 
-The resulting board will contain a 3*3 white square (in rows 0-2 and columns 1-3).
-
-
-3)
-{"W",
- "B",
- "W",
- "W",
- "W"}
-
-Returns: 1
-
-
-4)
-{"BWBBWBB",
- "WWBWWBW",
- "BBBBBBW",
- "WBBBBWB",
- "BBWWWWB",
- "WWWWWWW",
- "BBWWBBB"}
-
-Returns: 9
+問題
+-エイリアンのFredは地球を滅ぼす前にゲームで遊ぶことにした
+-黒か白の升目がある
+-任意の行の色を反転することができる
+-同じ色の最大の長方形の大きさを求める
 
 */
 // END CUT HERE
