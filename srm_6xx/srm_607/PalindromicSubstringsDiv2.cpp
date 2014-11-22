@@ -2,72 +2,9 @@
 /*
 SRM 607 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Marco recently learned about palindromic strings.
-A palindromic string is a string that reads the same forwards and backwards.
-For example, "radar" and "racecar" are palindromic strings.
-
-Now Marco is excited about palindromic strings.
-In particular, he likes strings that have a lot of palindromic substrings.
-For example, he really likes the string "aaa" because it has 6 palindromic substrings: "a" occurs three times, "aa" occurs twice, and "aaa" occurs once.
-
-Right now, Marco has a string S composed of lowercase letters.
-You are to reconstruct S from the given vector <string>s S1 and S2 as follows:
-
-Concatenate in order all elements of S1 to make a string A.
-Concatenate in order all elements of S2 to make a string B.
-Finally, concatenate A and B to get S.
-
-Return the number of palindromic substrings in S.
-
-
-DEFINITION
-Class:PalindromicSubstringsDiv2
-Method:count
-Parameters:vector <string>, vector <string>
-Returns:int
-Method signature:int count(vector <string> S1, vector <string> S2)
-
-
-CONSTRAINTS
--S1 and S2 will each contain no more than 50 elements.
--Each element of S1 and S2 will contain no more than 50 characters.
--S will contain at least 1 character.
--S will contain only lowercase letters ('a' - 'z').
-
-
-EXAMPLES
-
-0)
-{"a","a",""}
-{"a"}
-
-Returns: 6
-
-This is the example given in the statement, "aaa".
-
-
-1)
-{"zaz"}
-{}
-
-Returns: 4
-
-
-2)
-{"top"}
-{"coder"}
-
-Returns: 8
-
-
-3)
-{}
-{"daata"}
-
-Returns: 7
-
-There are five palindromic substrings of length 1, one of length 2 ("aa" starting at index 1), and one of length 3 ("ata" starting at index 2).
+問題
+-a-zからなる文字列が与えられる
+-部分文字列が左右対称になる個数を求める
 
 */
 // END CUT HERE
