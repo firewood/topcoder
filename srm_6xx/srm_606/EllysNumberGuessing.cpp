@@ -1,6 +1,7 @@
 // BEGIN CUT HERE
 /*
 SRM 606 Div1 Easy (250)
+SRM 606 Div2 Medium (500)
 
 問題
 -数当てゲーム
