@@ -1,6 +1,7 @@
 // BEGIN CUT HERE
 /*
 SRM 597 Div1 Easy (250)
+SRM 597 Div2 Medium (500)
 
 問題
 -同じ長さの文字列AとBがある
