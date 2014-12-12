@@ -2,72 +2,11 @@
 /*
 SRM 639 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Alice and Kirito just played a game.
-The game consisted of a finite (possibly empty) sequence of turns.
-You do not know the exact number of turns.
-The turns were numbered starting from 1.
-In each turn, exactly one of our two players won.
-The winner of turn i scored 2*i-1 points.
-
-You are given two long longs x and y.
-Find out whether it is possible that at the end of the game Alice had exactly x points and Kirito had exactly y points.
-If it is possible, return the smallest number of turns Alice could have won.
-If the given final result is not possible, return -1 instead.
-
-
-DEFINITION
-Class:AliceGame
-Method:findMinimumValue
-Parameters:long long, long long
-Returns:long long
-Method signature:long long findMinimumValue(long long x, long long y)
-
-
-CONSTRAINTS
--x and y are between 0 and 1,000,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-8
-17
-
-Returns: 2
-
-This final result is possible.
-Alice must have won at least two turns.
-One possibility is that Alice won turns 2 and 3 (for 3+5 = 8 points) and Kirito won turns 1, 4, and 5 (for 1+7+9 = 17 points).
-
-
-1)
-17
-8
-
-Returns: 3
-
-
-2)
-0
-0
-
-Returns: 0
-
-
-3)
-9
-9
-
-Returns: -1
-
-
-4)
-500000
-500000
-
-Returns: 294
+問題
+-2人でターン制のゲームをする
+-各ターンの勝者はターン番号×2－1ポイントを得る
+-2人の総ポイントxとyが与えられる
+-xポイントを取るための最小のターン数を求める
 
 */
 // END CUT HERE
@@ -232,7 +171,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	AliceGame ___test;
-	___test.run_test(10);
 	___test.run_test(-1);
 }
 // END CUT HERE
