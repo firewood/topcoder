@@ -2,71 +2,10 @@
 /*
 SRM 641 Div1 Easy (250)
 
-PROBLEM STATEMENT
-We have chosen a finite set of points in the plane.
-You are given their coordinates in the vector <int>s x and y:
-for each valid i, there is a point with coordinates (x[i],y[i]).
-
-We are interested in triangles with the following properties:
-
-Each vertex of the triangle is one of our chosen points.
-The point (0,0) lies inside the triangle.
-
-Return the number of such triangles.
-
-Note that the constraints guarantee that there are no degenerate triangles and that the point (0,0) never lies on the boundary of a triangle.
-
-
-DEFINITION
-Class:TrianglesContainOrigin
-Method:count
-Parameters:vector <int>, vector <int>
-Returns:long long
-Method signature:long long count(vector <int> x, vector <int> y)
-
-
-CONSTRAINTS
--x and y will contain between 3 and 2500 elements, inclusive.
--x and y will contain the same number of elements.
--Each element of x and y will be between -10,000 and 10,000, inclusive.
--No two points will be the same.
--No three points will be collinear.
--No point will be on the origin.
--There will be no two points P and Q such that P, Q, and the origin are collinear.
-
-
-EXAMPLES
-
-0)
-{-1,-1,1}
-{1,-1,0}
-
-Returns: 1
-
-There is exactly one possible triangle. It does contain the origin.
-
-
-1)
-{-1,-1,1,2}
-{1,-1,2,-1}
-
-Returns: 2
-
-There are four possible triangles. Two of them contain the origin. One is the triangle with vertices in (-1,1), (-1,-1), and (2,-1). The other is the triangle with vertices in (-1,-1), (1,2), and (2,-1).
-
-
-2)
-{-1,-2,3,3,2,1}
-{-2,-1,1,2,3,3}
-
-Returns: 8
-
-
-3)
-{1,5,10,5,-5,7,-9,-6,-3,0,8,8,1,-4,7,-3,10,9,-6}
-{5,-6,-3,4,-2,-8,-7,2,7,4,2,0,-4,-8,7,5,-5,-2,-9}
-
-Returns: 256
+問題
+-点の集合が与えられる
+-一直線上に3点が並ぶことはない
+-原点を内側に含む三角形が何個できるか求める
 
 */
 // END CUT HERE
