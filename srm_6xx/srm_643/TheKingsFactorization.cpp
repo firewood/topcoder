@@ -1,6 +1,7 @@
 // BEGIN CUT HERE
 /*
 SRM 643 Div1 Easy (250)
+SRM 643 Div2 Medium (500)
 
 PROBLEM STATEMENT
 
