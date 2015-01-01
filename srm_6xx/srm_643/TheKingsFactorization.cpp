@@ -3,79 +3,10 @@
 SRM 643 Div1 Easy (250)
 SRM 643 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-The King of Byteland likes integer factorization.
-Your task is to help him factor the number N.
-You will be given the long long N and you should return a vector<long long> containing all prime factors of N sorted in non-decreasing order.
-Note that some primes may occur multiple times in the prime factorization of N.
-For example, for N = 60 the only correct return value is {2, 2, 3, 5} because 2*2*3*5 = 60.
-
-To make this task easier, the King has decided to give you a hint.
-He already knows the correct factorization and he will tell you every second number in the correct return value.
-More precisely, in addition to N you will be given a vector<long long> primes.
-The number of elements in primes will be (M+1)/2, rounded down, where M is the number of elements in the correct return value.
-For each valid i, primes[i] will be equal to the element 2i of the correct return value.
-(All indices are 0-based.)
-
-Given N and primes, return the vector<long long> containing the factorization of N.
-
-
-DEFINITION
-Class:TheKingsFactorization
-Method:getVector
-Parameters:long long, vector<long long>
-Returns:vector<long long>
-Method signature:vector<long long> getVector(long long N, vector<long long> primes)
-
-
-CONSTRAINTS
--N will be between 2 and 1,000,000,000,000,000,000 (10^18), inclusive.
--primes will contain the correct prime factors (as defined in the problem statement).
-
-
-EXAMPLES
-
-0)
-12
-{2, 3}
-
-Returns: {2, 2, 3 }
-
-
-1)
-7
-{7}
-
-Returns: {7 }
-
-
-2)
-1764
-{2, 3, 7}
-
-Returns: {2, 2, 3, 3, 7, 7 }
-
-
-3)
-49
-{7}
-
-Returns: {7, 7 }
-
-
-4)
-210
-{2, 5}
-
-Returns: {2, 3, 5, 7 }
-
-
-5)
-100000
-{2, 2, 2, 5, 5}
-
-Returns: {2, 2, 2, 2, 2, 5, 5, 5, 5, 5 }
+問題
+-数Nを素因数分解したい
+-奇数番目の素因数が与えられる
+-全ての素因数を昇順に求める
 
 */
 // END CUT HERE
