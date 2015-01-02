@@ -2,87 +2,13 @@
 /*
 SRM 637 Div1 Medium (500)
 
-PROBLEM STATEMENT
-Cat Snuke and wolf Sothe are playing the Path Game.
-
-The Path Game is played on a rectangular grid of square cells.
-The grid has 2 rows and some positive number of columns.
-Each cell is either black or white.
-
-A left-to-right path in the grid is a sequence of white cells such that the first cell in the sequence is in the leftmost column, the last cell in the sequence is in the rightmost column, and each pair of consecutive cells shares a common side.
-
-The initial coloring of the grid is such that there is at least one left-to-right path.
-You are given this initial coloring as a vector <string> board with two elements.
-For each i and j, board[i][j] is either '#' (representing a black cell) or '.' (representing a white cell).
-
-The players take alternating turns.
-In each turn, the current player has to choose and color one white cell black.
-Snuke goes first.
-The game ends when there is no longer a left-to-right path on the board.
-The last player who colored a cell loses the game.
-In other words, the loser is the player who was forced to block the last left-to-right path.
-
-Assume that both players play the game optimally.
-Return "Snuke" (quotes for clarity) if Snuke wins the game, and "Sothe" otherwise.
-
-
-DEFINITION
-Class:PathGame
-Method:judge
-Parameters:vector <string>
-Returns:string
-Method signature:string judge(vector <string> board)
-
-
-CONSTRAINTS
--board will contain 2 elements.
--Each element in board will contain between 1 and 1000 characters, inclusive.
--All elements in board will have the same length.
--Each character in board will be '#' or '.'.
--The grid described by board will contain a left-to-right path.
-
-
-EXAMPLES
-
-0)
-{"#.."
-,"..."}
-
-Returns: "Snuke"
-
-Snuke has exactly one winning move: he must color the lower right cell.
-After this move the resulting grid will still contain a left-to-right path.
-Sothe will then have four possible moves, but each of those loses the game immediately.
-
-
-1)
-{"#"
-,"."}
-
-Returns: "Sothe"
-
-Snuke has to color the only white cell black, and he immediately loses the game.
-
-
-2)
-{"....."
-,"..#.."}
-
-Returns: "Sothe"
-
-
-3)
-{".#..."
-,"....."}
-
-Returns: "Snuke"
-
-
-4)
-{".....#..#........##......."
-,"..........#..........#...."}
-
-Returns: "Snuke"
+問題
+-縦2マスの通路がある
+-升目は白か黒で、白い升目だけ通れる
+-2人で交互に升目を黒く塗る
+-ただし左端から右端まで通れる状態を維持する必要がある
+-塗れないほうが負け
+-最善手のときの勝者を求める
 
 */
 // END CUT HERE
@@ -182,8 +108,7 @@ public:
 
 		// test_case_0
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"#.."
-,"..."};
+			string Arr0[] = {"#..","..."};
 			string Arg1 = "Snuke";
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -193,8 +118,7 @@ public:
 
 		// test_case_1
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"#"
-,"."};
+			string Arr0[] = {"#","."};
 			string Arg1 = "Sothe";
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -204,8 +128,7 @@ public:
 
 		// test_case_2
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"....."
-,"..#.."};
+			string Arr0[] = {".....","..#.."};
 			string Arg1 = "Sothe";
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -215,8 +138,7 @@ public:
 
 		// test_case_3
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {".#..."
-,"....."};
+			string Arr0[] = {".#...","....."};
 			string Arg1 = "Snuke";
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -226,8 +148,7 @@ public:
 
 		// test_case_4
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {".....#..#........##......."
-,"..........#..........#...."};
+			string Arr0[] = {".....#..#........##.......","..........#..........#...."};
 			string Arg1 = "Snuke";
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -253,7 +174,6 @@ public:
 			verify_case(n, Arg1, judge(Arg0));
 		}
 		n++;
-
 
 	}
 
