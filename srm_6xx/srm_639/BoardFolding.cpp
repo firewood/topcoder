@@ -56,7 +56,7 @@ If paper[i][j] = 0, then the cell (i,j) is white, otherwise it is black.
 
 
 Definition
-    	
+
 Class:	BoardFolding
 Method:	howMany
 Parameters:	int, int, String[]
@@ -96,16 +96,16 @@ class BoardFolding {
 	int ways;
 
 	unsigned int tonumber(char c) {
-		if (c >= '0' && c <='9') {
-            return c - '0';
+		if (c >= '0' && c <= '9') {
+			return c - '0';
 		}
-        if (c >= 'a' && c <='z') {
+		if (c >= 'a' && c <= 'z') {
 			return c - 'a' + 10;
 		}
 		if (c >= 'A' && c <= 'Z') {
 			return c - 'A' + 36;
 		}
-		if (c=='#') {
+		if (c == '#') {
 			return 62;
 		}
 		return 63;
@@ -123,7 +123,6 @@ class BoardFolding {
 				dfs(s + i, e);
 			}
 		}
-		w -= (e - s) % 2;
 		for (int i = 1; i <= w; ++i) {
 			if (l_foldable[e][i]) {
 				dfs(s, e - i);
