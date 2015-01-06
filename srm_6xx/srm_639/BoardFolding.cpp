@@ -2,74 +2,10 @@
 /*
 SRM 639 Div1 Medium (500)
 
-Problem Statement
-Little Petya likes puzzles a lot. Recently he has received one as a gift from his mother.
-The puzzle has the form of a rectangular sheet of paper that is divided into N rows by M columns of unit square cells.
-Rows are numbered 0 through N-1 from top to bottom, and columns 0 through M-1 from left to right.
-Each cell is colored either black or white.
-You are given a description of the paper, the exact format is specified at the end of this problem statement. 
-
-The goal of the puzzle is to fold the paper. This has to be done in a sequence of turns.
-In each turn, Petya has to fold the paper according to the rules below.
-He can end the process after any number of turns (including zero), even if there are still valid ways to fold the paper. 
-
-In each turn, Petya must follow these steps:
-  To start folding, he must choose a line that is parallel to one of the sides of the paper and passes between two rows/columns of cells.
-  He can then take the smaller part of the paper and fold it on top of the larger part.
-  (If the line divides the current paper in half, he can fold either half on top of the other.)
-There is one additional restriction:
-  Petya may only perform the fold if all cells of the part that is being folded land on equally-colored cells of the part that remains in place. 
-
-For example, consider the following paper (with 0 and 1 representing white and black):
-10010101
-11110100
-00000000
-01101110
-
-Here, Petya could choose the vertical line that goes between the two leftmost columns and the rest of the paper.
-Note that this is a valid choice: as he makes the fold, the cells from the leftmost two columns will all match their counterparts in the right part of the paper. This is how the paper looks like after the fold (with periods representing empty spaces):
-..010101
-..110100
-..000000
-..101110
-
-Clearly, even after multiple folds the paper will always look like a subrectangle of the original paper.
-Two states of the game are considered the same if that rectangle has the same dimensions and the same offset with respect to the original top left corner of the paper.
-(Note that folding order does not matter. Two different sequences of folding may produce the same final state.) 
-
-You are given the ints N and M.
-You are also given a description of the original state of the paper in a compressed form, as a String[] compressedPaper.
-Compute and return the number of possible final states of the game. 
-
-The String[] compressedPaper will contain N elements with ceil(M/6) characters each.
-Each character (except possibly the last one) encodes six cells of the paper.
-The actual paper can be obtained from compressedPaper using the following pseudocode: 
-
-for i in 0..N-1:
-    for j in 0..M-1:
-        paper[i][j] = (tonumber(compressedPaper[i][j / 6]) >> (j modulo 6)) modulo 2
-
-In the above pseudocode, "/" represents integer division (rounding down), ">>" is a bit shift to the right, and tonumber(x) maps the character x to a number between 0 and 63 as follows:
-the characters '0'-'9' map to integers 0-9, 'a'-'z' map to 10-35, 'A'-'Z' map to 36-61, '#' maps to 62, and '@' maps to 63. 
-
-If paper[i][j] = 0, then the cell (i,j) is white, otherwise it is black.
-
-
-Definition
-
-Class:	BoardFolding
-Method:	howMany
-Parameters:	int, int, String[]
-Returns:	int
-Method signature:	int howMany(int N, int M, String[] compressedPaper)
-(be sure your method is public)
-
-
-Constraints
--	N and M will be between 1 and 250, inclusive.
--	compressedPaper will contain N elements.
--	Each element of compressedPaper will contain ceil(M / 6) elements.
--	compressedPaper will contain only characters '0'-'9', 'a'-'z', 'A'-'Z', '#' and '@'.
+問題
+-升目上に白か黒が書かれた紙がある
+-模様が完全に重なるとき、端から折りたたむことができる
+-折りたたみの状態数を求める
 */
 // END CUT HERE
 
