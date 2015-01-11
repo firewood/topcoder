@@ -29,14 +29,9 @@ public:
 		double rad[10000] = {};
 		for (int i = 0; i < N; ++i) {
 			rad[i] = atan2(x[i], y[i]);
-			if (rad[i] < 0) {
-				rad[i] += 2.0 * M_PI;
-			}
+			rad[i + N] = rad[i] + 2.0 * M_PI;
 		}
-		sort(rad, rad + N);
-		for (int i = 0; i < N; ++i) {
-			rad[N + i] = rad[i] + 2.0 * M_PI;
-		}
+		sort(rad, rad + N * 2);
 		LL ans = 0;
 		for (int i = 0; i < N; ++i) {
 			size_t a = lower_bound(rad + i, rad + i + N, rad[i] + M_PI) - rad;
