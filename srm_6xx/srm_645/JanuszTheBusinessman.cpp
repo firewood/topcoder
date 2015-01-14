@@ -2,78 +2,12 @@
 /*
 SRM 645 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Janusz owns a hotel.
-He has already received some reservations for the upcoming year.
-The days in the year are numbered 1 through 365.
-For each valid i, there is a guest who will arrive on day arrivals[i] and depart on day departures[i].
-
-Janusz can give some guests a special promotion.
-Any guest that gets the special promotion will leave a good review.
-Additionally, all guests that meet a guest with promotion will also leave a good review.
-(Here we assume that two guests meet if and only if they are in the hotel on the same day, including the situation when one of them departs on the same day the other one arrives.)
-
-Janusz wants to make sure that all his guests leave good reviews.
-You are given the vector <int>s arrivals and departures.
-Return the smallest possible number of special promotions sufficient to make sure that all guests leave good reviews.
-
-
-DEFINITION
-Class:JanuszTheBusinessman
-Method:makeGuestsReturn
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int makeGuestsReturn(vector <int> arrivals, vector <int> departures)
-
-
-CONSTRAINTS
--arrivals and departures will have the same number of elements.
--arrivals will have between 2 and 50 elements, inclusive.
--Each element of arrivals and departures will be between 1 and 365, inclusive.
--For each valid i arrivals[i] will be less than departures[i].
-
-
-EXAMPLES
-
-0)
-{2, 10, 6}	
-{6, 11, 9}
-
-Returns: 2
-
-One promotion is not enough.
-One optimal solution is to give promotions to the guest who arrives on day 2 and to the guest who arrives on day 10.
-The third guest will meet the first guest on day 6.
-
-
-1)
-{2, 10, 23, 34, 45, 123, 1}
-{25, 12, 40, 50, 48, 187, 365}
-
-Returns: 1
-
-One guest is going to stay for the whole season so Janusz can give the promotion only to him.
-
-
-2)
-{8, 12, 20, 30, 54, 54, 68, 75}
-{13, 31, 30, 53, 55, 70, 80, 76}
-
-Returns: 3
-
-
-3)
-{124, 328, 135, 234, 347, 124, 39, 99, 116, 148}
-{237, 335, 146, 246, 353, 213, 197, 215, 334, 223}
-
-Returns: 2
-
-
-4)
-{154, 1, 340, 111, 92, 237, 170, 113, 241, 91, 228, 134, 191, 86, 59, 115, 277, 328, 12, 6}
-{159, 4, 341, 118, 101, 244, 177, 123, 244, 96, 231, 136, 193, 95, 64, 118, 282, 330, 17, 13}
-
-Returns: 14
+問題
+-ホテルを経営している
+-宿泊客の到着日と出発日の配列が与えられる
+-宿泊客に特別なサービスをすると、良いレビューを残してくれる
+-特別なサービスを受けた宿泊客に居合わせた宿泊客も良いレビューを残してくれる
+-全員が良いレビューを残すために必要な特別サービスの最小値を求める
 
 */
 // END CUT HERE
