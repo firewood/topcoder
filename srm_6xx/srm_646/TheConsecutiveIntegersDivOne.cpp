@@ -85,15 +85,14 @@ public:
 	int find(vector <int> numbers, int k) {
 		int ans = 1 << 30;
 		int N = (int)numbers.size();
+		int m = k / 2;
 		sort(numbers.begin(), numbers.end());
 		for (int i = 0; i <= N - k; ++i) {
-			for (int b = 0; b < k; ++b) {
-				int sum = 0;
-				for (int j = 0; j < k; ++j) {
-					sum += abs(numbers[i + b] - b + j - numbers[i + j]);
-				}
-				ans = min(ans, sum);
+			int sum = 0;
+			for (int j = 0; j < k; ++j) {
+				sum += abs(numbers[i + m] + j - m - numbers[i + j]);
 			}
+			ans = min(ans, sum);
 		}
 		return ans;
 	}
