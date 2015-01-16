@@ -86,15 +86,13 @@ public:
 		int ans = 1 << 30;
 		int N = (int)numbers.size();
 		sort(numbers.begin(), numbers.end());
-		for (int a : numbers) {
-			for (int b = -N; b <= N; ++b) {
-				for (int i = 0; i <= N - k; ++i) {
-					int sum = 0;
-					for (int j = 0; j < k; ++j) {
-						sum += abs(a + b + j - numbers[i + j]);
-					}
-					ans = min(ans, sum);
+		for (int i = 0; i <= N - k; ++i) {
+			for (int b = 0; b < k; ++b) {
+				int sum = 0;
+				for (int j = 0; j < k; ++j) {
+					sum += abs(numbers[i + b] - b + j - numbers[i + j]);
 				}
+				ans = min(ans, sum);
 			}
 		}
 		return ans;
