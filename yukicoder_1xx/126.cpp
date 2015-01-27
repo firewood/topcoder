@@ -16,12 +16,10 @@ int main(int argc, char *argv[])
 	int a = abs(A - S), b = abs(B - S);
 	if (a <= b || S <= 1) {
 		ans = a + S;
-	} else if (A < B) {
-		ans = b + S;
-	} else if (A < S * 2) {
-		ans = b + a + A;
 	} else {
-		ans = b + S - 1 + A;
+		int c = b + a + abs(A - 1) + 1;
+		int d = b + (S - 1) + abs(A - 1) + 1;
+		ans = min(c, d);
 	}
 	cout << ans << endl;
 	return 0;
