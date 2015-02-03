@@ -2,64 +2,9 @@
 /*
 SRM 648 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You are given two ints: N and K. Lun the dog is interested in strings that satisfy the following conditions:
-
-The string has exactly N characters, each of which is either 'A' or 'B'.
-The string s has exactly K pairs (i, j) (0 <= i < j <= N-1) such that s[i] = 'A' and s[j] = 'B'.
-
-If there exists a string that satisfies the conditions, find and return any such string. Otherwise, return an empty string.
-
-
-DEFINITION
-Class:AB
-Method:createString
-Parameters:int, int
-Returns:string
-Method signature:string createString(int N, int K)
-
-
-CONSTRAINTS
--N will be between 2 and 50, inclusive.
--K will be between 0 and N(N-1)/2, inclusive.
-
-
-EXAMPLES
-
-0)
-3
-2
-
-Returns: "ABB"
-
-This string has exactly two pairs (i, j) mentioned in the statement: (0, 1) and (0, 2).
-
-
-1)
-2
-0
-
-Returns: "BA"
-
-Please note that there are valid test cases with K = 0.
-
-
-2)
-5
-8
-
-Returns: ""
-
-Five characters is too short for this value of K.
-
-
-3)
-10
-12
-
-Returns: "BAABBABAAB"
-
-Please note that this is an example of a solution; other valid solutions will also be accepted.
+問題
+-'A'か'B'だけからなる長さNの文字列Sについて考える
+-i<jで位置iが'A'、位置jが'B'の個数がK個のものを求める
 
 */
 // END CUT HERE
