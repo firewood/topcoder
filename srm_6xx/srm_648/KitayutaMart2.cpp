@@ -2,62 +2,10 @@
 /*
 SRM 648 Div2 Easy (250)
 
-PROBLEM STATEMENT
-This problem statement contains superscripts that may not display properly outside the applet.
-
-Kitayuta Mart is the largest supermarket in Shuseki Kingdom, offering a great variety of food and household products. The main products are fruits, especially apples. The price system is a little special: the original price of an apple is K yen (the currency of the kingdom). However, if a customer wants to buy more than one apple, the second apple will cost 2*K yen, the third apple will cost 22*K yen, and so on. In general, if a customer is buying n apples, the actual price of the i-th (1 <= i <= n) apple will be 2i-1*K yen.
-
-Lun the dog loves apples. She has just bought some number of apples at Kitayuta Mart. The prices of those apples were calculated using the above formula. The total she paid for her apples was T yen. You are given two ints: K and T. Find and return the number of the apples that Lun has bought. It is guaranteed that K and T are such that the answer exists and is unique.
-
-
-DEFINITION
-Class:KitayutaMart2
-Method:numBought
-Parameters:int, int
-Returns:int
-Method signature:int numBought(int K, int T)
-
-
-CONSTRAINTS
--K will be between 80 and 160, inclusive.
--T will be between 80 and 163,680, inclusive.
--The input will be such that the answer exists and is unique.
-
-
-EXAMPLES
-
-0)
-100
-100
-
-Returns: 1
-
-If she buys only one apple, the price will just be K yen.
-
-
-1)
-100
-300
-
-Returns: 2
-
-The second apple will cost 2*100 = 200 yen, for the total price of 100 + 200 = 300 yen.
-
-
-2)
-150
-1050
-
-Returns: 3
-
-150 + 2*150 + 22*150 = 150 + 300 + 600 = 1050.
-
-
-3)
-160
-163680
-
-Returns: 10
+問題
+-予算T円でりんごを買う
+-1個目はK円、2個目は2K円、それ以降1個ごとに2倍になる
+-買える最大の個数を求める
 
 */
 // END CUT HERE
