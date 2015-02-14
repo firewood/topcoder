@@ -2,14 +2,11 @@
 #include <algorithm>
 #include <sstream>
 #include <vector>
-#include <queue>
+#include <cstring>
 
 using namespace std;
 
-typedef pair<int, int> II;
-typedef pair<int, II> III;
 typedef vector<int> IntVec;
-typedef vector<III> IIIVec;
 
 int main(int argc, char *argv[])
 {
@@ -49,33 +46,33 @@ int main(int argc, char *argv[])
 			ss >> M[i];
 		}
 	}
-	IIIVec v[64];
+
+	IntVec y[50][50];
+	IntVec m[50][50];
 	for (int i = 0; i < V; ++i) {
-		if (Y[i] <= C) {
-			v[S[i] - 1].push_back(III(-Y[i], II(T[i] - 1, M[i])));
-		}
+		int s = S[i] - 1, t = T[i] - 1;
+		y[s][t].push_back(Y[i]);
+		m[s][t].push_back(M[i]);
 	}
-	int ans = 1 << 30;
-	priority_queue<III> q;
-	for (int i = 0; i < v[0].size(); ++i) {
-		q.push(v[0][i]);
-	}
-	while (q.size() > 0) {
-		III current = q.top();
-		q.pop();
-		int pos = current.second.first;
-		if (pos == N - 1) {
-			ans = min(ans, current.second.second);
-		}
-		for (int i = 0; i < v[pos].size(); ++i) {
-			III &e = v[pos][i];
-			int cost = current.first + e.first;
-			if (-cost <= C) {
-				int time = current.second.second + e.second.second;
-				q.push(III(cost, II(e.second.first, time)));
+	int cost[50][301];
+	memset(cost, 0x3f, sizeof(cost));
+	cost[0][0] = 0;
+	for (int i = 1; i < N; ++i) {
+		for (int j = 0; j < i; ++j) {
+			for (int k = 0; k < y[j][i].size(); ++k) {
+				int c = y[j][i][k];
+				for (int l = 0; l <= (C - c); ++l) {
+					cost[i][l + c] = min(cost[i][l + c], cost[j][l] + m[j][i][k]);
+				}
 			}
 		}
 	}
-	cout << (ans < (1<<30) ? ans : -1) << endl;
+
+	int ans = 1 << 29;
+	for (int i = 0; i <= C; ++i) {
+		ans = min(ans, cost[N - 1][i]);
+	}
+
+	cout << (ans < (1<<29) ? ans : -1) << endl;
 	return 0;
 }
