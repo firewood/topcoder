@@ -2,94 +2,12 @@
 /*
 SRM 651 Div1 Easy (250)
 
-PROBLEM STATEMENT
-There is a robot on the moon.
-You are given a vector <string> board containing the map of a rectangular area.
-The robot is currently located somewhere in that area.
-In the map, the character '.' (period) represents an empty square, 'S' represents an empty square that currently contains the robot, and '#' represents an obstacle.
-
-We are going to send a sequence of commands to the robot.
-Each command must be one of 'U', 'D', 'L', and 'R', representing a step up, down, left, and right, respectively.
-
-Whenever the robot receives a command, one of three things will happen:
-
-If the requested move leads to an empty square, the robot performs the move.
-If the requested move leads to a square with an obstacle, the robot ignores the command and remains in place.
-If the requested move leads out of the mapped area, the robot leaves the mapped area and dies immediately.
-
-A sequence of commands is called safe if the robot is still alive after executing the entire sequence.
-
-When sending commands to the moon, some of them may get lost along the way.
-This may sometimes change a safe sequence of commands into an unsafe one.
-We want to avoid that.
-
-
-A sequence of commands is called perfectly safe if it is safe, and each of its subsequences is safe as well.
-(Note that this includes subsequences that are not contiguous.)
-
-
-Find and return the largest X such that there is a perfectly safe sequence of X commands.
-If there are arbitrarily long perfectly safe sequences, return -1 instead.
-
-
-DEFINITION
-Class:RobotOnMoon
-Method:longestSafeCommand
-Parameters:vector <string>
-Returns:int
-Method signature:int longestSafeCommand(vector <string> board)
-
-
-NOTES
--The direction 'U' corresponds to moving from board[i][j] to board[i-1][j]. The direction 'L' corresponds to moving from board[i][j] to board[i][j-1].
-
-
-CONSTRAINTS
--board will contain between 1 and 50 elements, inclusive.
--Each element of board will contain between 1 and 50 characters.
--Each element of board will contain same number of characters.
--The characters in board will be '.', '#' or 'S'.
--There will be exactly one 'S' in board.
-
-
-EXAMPLES
-
-0)
-{"#####",
- "#...#",
- "#.S.#",
- "#...#",
- "#####"}
-
-Returns: -1
-
-There are obstacles all around the map. This means that all possible sequences of commands are perfectly safe.
-
-
-1)
-{"S......"}
-
-Returns: 6
-
-The longest perfectly safe string is "RRRRRR"
-
-
-2)
-{"#.######",
- "#.#..S.#",
- "#.#.##.#",
- "#......#",
- "########"}
-
-Returns: -1
-
-Even though it is possible to leave this map, there are still arbitrarily long perfectly safe sequences of commands. For example, any sequence that does not contain any 'U' is perfectly safe.
-
-
-3)
-{"S"}
-
-Returns: 0
+問題
+-月にロボットがいる
+-有効な座標の範囲、および、ロボットと障害物の座標が与えられる
+-上下左右のいずれからなる一連のコマンドを送信する
+-コマンドの任意の部分が欠損する可能性がある
+-ロボットが地図からはみ出さないコマンドの最大長を求める
 
 */
 // END CUT HERE
