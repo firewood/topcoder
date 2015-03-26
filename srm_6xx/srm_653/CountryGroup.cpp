@@ -2,75 +2,11 @@
 /*
 SRM 653 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-Some people are sitting in a row.
-Each person came here from some country.
-You have a theory that people from the same country are all sitting together.
-You decided to test this theory.
-You asked each person the same question: "How many people from your country (including you) are here?"
-
-You are given a vector <int> a containing their answers.
-The answers are given in the order in which the people sit in the row.
-(Note that some of the answers may be incorrect.
-See the examples for clarification.)
-
-If all the answers are consistent with your theory, return the number of different countries that are present.
-(Given that all answers are consistent with the theory, the number of countries can always be uniquely determined.)
-Otherwise, return -1.
-
-
-DEFINITION
-Class:CountryGroup
-Method:solve
-Parameters:vector <int>
-Returns:int
-Method signature:int solve(vector <int> a)
-
-
-CONSTRAINTS
--The number of elements in a will be between 1 and 100, inclusive.
--All elements of a will be between 1 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{2,2,3,3,3}
-
-Returns: 2
-
-These answers are consistent with your theory. The first two people are from one country, the other three are from a different country. Thus, there are two countries and the correct return value is 2.
-
-
-1)
-{1,1,1,1,1}
-
-Returns: 5
-
-Here, each person comes from a different country.
-
-
-2)
-{3,3}
-
-Returns: -1
-
-These answers do not correspond to your theory. In particular, they are not even correct: there are only two people but each of them claims that there are three people from their country.
-
-
-3)
-{4,4,4,4,1,1,2,2,3,3,3}
-
-Returns: 5
-
-
-4)
-{2,1,2,2,1,2}
-
-Returns: -1
-
-These answers do not correspond to your theory. It is possible that these are people from four different countries, but even if that were the case, we can tell that people from some countries are not sitting together. For example, consider the leftmost person. According to her answer, there are two people from her country. However, the person sitting next to her cannot be from the same country.
+問題
+-人々が一列に座っている
+-同じ国の人が連続して座る
+-同じ国の人数をそれぞれに聞いた
+-国の数を求める
 
 */
 // END CUT HERE
