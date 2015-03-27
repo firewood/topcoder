@@ -2,72 +2,11 @@
 /*
 SRM 653 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Some people are sitting in a row.
-Each person came here from some country.
-People from the same country are all sitting together.
-
-A reporter has already approached some of the people and asked each of them the same question:
-"How many people from your country (including you) are here?"
-All the people who were asked the question gave her correct answers.
-
-You are given a vector <int> a.
-The elements of a correspond to the people in the row, in order.
-For each i, element i of a is either 0 if the corresponding person was not asked the question, or a positive integer: the answer given by that person.
-
-The reporter just realized that she might be able to reconstruct all the missing answers from the answers she already knows.
-Return "Sufficient" if she can do that, or "Insufficient" if she cannot.
-
-
-DEFINITION
-Class:CountryGroupHard
-Method:solve
-Parameters:vector <int>
-Returns:string
-Method signature:string solve(vector <int> a)
-
-
-CONSTRAINTS
--The number of elements in a will be between 1 and 100, inclusive.
--All numbers of a will be between 0 and 100, inclusive.
--There exist valid country assignment of people for input.
-
-
-EXAMPLES
-
-0)
-{0,2,3,0,0}
-
-Returns: "Sufficient"
-
-The first two people must be from the same country. The last three people must also be from the same country. Thus, the only possible sequence of answers is {2,2,3,3,3}.
-
-
-1)
-{0,2,0}
-
-Returns: "Insufficient"
-
-There are still two different sequences of answers that are consistent with the reporter's information: the answers can be either {1,2,2} or {2,2,1}.
-
-
-2)
-{0,3,0,0,3,0}
-
-Returns: "Sufficient"
-
-
-3)
-{0,0,3,3,0,0}
-
-Returns: "Insufficient"
-
-
-4)
-{2,2,0,2,2}
-
-Returns: "Sufficient"
+問題
+-人々が一列に座っている
+-同郷の人が連続して座る
+-同郷の人の人数を何人かに聞いた
+-残りの人に質問しなくても一意かどうかを求める
 
 */
 // END CUT HERE
