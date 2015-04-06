@@ -2,93 +2,11 @@
 /*
 SRM 654 Div1 Easy (250)
 
-PROBLEM STATEMENT
-A substring of a string is a contiguous sequence of characters from the string.
-For example, each of the strings "ab", "bcd", and "e" is a substring of "abcde". 
-On the other hand, "cba", "ace", and "f" are not substrings of "abcde".
-
-The score of a string S is the number of ways in which we can select a non-empty substring of S such that all characters in the substring are the same.
-If two substrings consist of the same letters but occur at different places in S, they are still considered different.
-For example, the score of "aaaba" is 8: there are four occurrences of the substring "a", two occurrences of "aa", one occurrence of "aaa", and one of "b".
-
-On her birthday, Maki got a string s from her friend Niko as a present.
-Each character in this string is either a lowercase letter or a question mark ('?').
-
-Maki is going to randomly change each question mark into a letter.
-For each question mark and each i, the probability that she changes it into the (i+1)-st letter of the alphabet is p[i] percent.
-(I.e., she will change it into an 'a' with probability p[0]/100, into a 'b' with probability p[1]/100, and so on.)
-The choices for different question marks are mutually independent.
-
-You are given the vector <int> p.
-Note that p may have fewer than 26 elements.
-In that case we assume that the missing probabilities are 0.
-
-Calculate and return the expected score of the string after all the question marks are changed into letters.
-
-
-DEFINITION
-Class:SquareScores
-Method:calcexpectation
-Parameters:vector <int>, string
-Returns:double
-Method signature:double calcexpectation(vector <int> p, string s)
-
-
-NOTES
--The solution is correct if the relative error or the absolute error is at most 1e-9.
-
-
-CONSTRAINTS
--s will contain between 1 and 1,000 elements, inclusive.
--Each character in s will be '?' or a lowercase letter ('a'-'z').
--If a character in s is j'th lowercase letter(1-indexed), j will be between 1 and (the size of p), inclusive.
--p will contain between 1 and 26 characters, inclusive.
--Each element in p will be between 0 and 100, inclusive.
--The sum of all elements in p will be exactly 100.
-
-
-EXAMPLES
-
-0)
-{1, 99}
-"aaaba"
-
-Returns: 8.0
-
-
-1)
-{10, 20, 70}
-"aa?bbbb"
-
-Returns: 15.0
-
-
-2)
-{10, 20, 30, 40}
-"a??c?dc?b"
-
-Returns: 11.117
-
-
-3)
-{25, 25, 21, 2, 2, 25}
-"a??b???????ff??e"
-
-Returns: 21.68512690712425
-
-
-4)
-{4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4}
-"??????????????????????????????"
-
-Returns: 31.16931963781721
-
-
-5)
-{4, 3, 4, 3, 8, 2, 4, 3, 4, 4, 3, 2, 4, 4, 3, 4, 2, 4, 7, 6, 4, 4, 3, 4, 4, 3}
-"makigotapresentfromniko"
-
-Returns: 23.0
+問題
+-アルファベットと?からなる文字列Sがある
+-?がどの文字になるかの確率が与えられる
+-同じ文字だけからなるSの部分文字列の総数をスコアとする
+-スコアの期待値を求める
 
 */
 // END CUT HERE
