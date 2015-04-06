@@ -2,66 +2,8 @@
 /*
 SRM 654 Div2 Easy (250)
 
-PROBLEM STATEMENT
-A substring of a string is a contiguous sequence of characters from the string.
-For example, each of the strings "ab", "bcd", and "e" is a substring of "abcde". 
-On the other hand, "cba", "ace", and "f" are not substrings of "abcde".
-
-The score of a string S is the number of ways in which we can select a non-empty substring of S such that all characters in the substring are the same.
-If two substrings consist of the same letters but occur at different places in S, they are still considered different.
-For example, the score of "aaaba" is 8: there are four occurrences of the substring "a", two occurrences of "aa", one occurrence of "aaa", and one of "b".
-
-On her birthday, Maki got a string s from her friend Niko as a present.
-Calculate and return its score.
-
-
-DEFINITION
-Class:SquareScoresDiv2
-Method:getscore
-Parameters:string
-Returns:int
-Method signature:int getscore(string s)
-
-
-CONSTRAINTS
--The length of s will be between 1 and 100, inclusive.
--Each character in s will be a lowercase letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"aaaba"
-
-Returns: 8
-
-The example explained above.
-
-
-1)
-"zzzxxzz"
-
-Returns: 12
-
-
-2)
-"abcdefghijklmnopqrstuvwxyz"
-
-Returns: 26
-
-
-3)
-"p"
-
-Returns: 1
-
-
-4)
-"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-
-Returns: 5050
-
-All substrings satisfy the condition.
+問題
+-文字列Sの同じ文字だけからなる部分文字列の数を求める
 
 */
 // END CUT HERE
