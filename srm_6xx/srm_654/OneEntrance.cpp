@@ -2,101 +2,12 @@
 /*
 SRM 654 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-There are N rooms in Maki's new house.
-The rooms are numbered from 0 to N-1.
-Some pairs of rooms are connected by bidirectional passages.
-The passages have the topology of a tree.
-That is, there are exactly N-1 of them and it is possible to go from any room to any other room by following some sequence of passages.
-
-You are given two vector <int>s a and b that describe the passages.
-For each valid i, there is a passage that connects the rooms a[i] and b[i].
-You are also given an int s.
-The house has exactly one entrance from the outside, and the entrance leads to the room s.
-
-Niko is helping Maki move into the new house.
-Maki has exactly N pieces of furniture.
-The pieces are numbered from 0 to N-1.
-Niko will carry them into the house in this order.
-Each piece of furniture must be placed into a different room.
-Maki does not care which piece goes where, each of the N! permutations is allowed.
-
-However, not all of those N! permutations are actually possible.
-This is because the furniture is large.
-As soon as a room contains a piece of furniture, it is impossible to move other pieces through this room.
-Thus, Niko must place the furniture carefully.
-Formally, she can place a new piece of furniture into the room x if and only if all rooms on the (unique) path between s and x, including s and x, are still empty.
-Niko is smart and she will always place the furniture in such a way that she never gets stuck.
-Thus, at the end each of Maki's rooms will contain exactly one piece of furniture.
-
-Calculate and return the number of ways how the furniture can be arranged in Maki's house at the end.
-
-
-DEFINITION
-Class:OneEntrance
-Method:count
-Parameters:vector <int>, vector <int>, int
-Returns:int
-Method signature:int count(vector <int> a, vector <int> b, int s)
-
-
-CONSTRAINTS
--N will be between 1 and 9, inclusive.
--a and b will contain exactly N-1 elements each.
--Each element of a and b will be between 0 and N-1, inclusive.
--The graph described by a and b will be a tree.
--s will be between 0 and N-1, inclusive.
-
-
-EXAMPLES
-
-0)
-{0, 1, 2}
-{1, 2, 3}
-0
-
-Returns: 1
-
-There is only one solution: Niko must fill the rooms in the order {3,2,1,0}.
-Thus, piece number 0 will end in room 3, piece number 1 in room 2, and so on.
-
-
-1)
-{0, 1, 2}
-{1, 2, 3}
-2
-
-Returns: 3
-
-In this case Niko can choose one of three orders: {3,0,1,2}, {0,3,1,2}, or {0,1,3,2}.
-Note that the room with the entrance (in this case, room 2) always gets the last piece of furniture.
-
-
-2)
-{0, 0, 0, 0}
-{1, 2, 3, 4}
-0
-
-Returns: 24
-
-
-3)
-{7, 4, 1, 0, 1, 1, 6, 0}
-{6, 6, 2, 5, 0, 3, 8, 4}
-4
-
-Returns: 896
-
-
-4)
-{}
-{}
-0
-
-Returns: 1
-
-Maki's new house has only one room.
+問題
+-N個の部屋があり、それぞれどこかの部屋につながっている
+-入り口からN個の家具を運びこんで配置する
+-それぞれの部屋には家具は一つだけ置ける
+-すでに家具が配置された部屋は家具が通り抜けられない
+-家具の配置のしかたの場合の数を求める
 
 */
 // END CUT HERE
