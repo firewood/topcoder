@@ -1,47 +1,34 @@
 // BEGIN CUT HERE
 /*
-SRM 652 Div1 Easy (250)
+SRM 654 Div2 Easy (250)
 
 問題
--1からNまでのN個の数を使った順列がある
--それぞれの値をp[1]からp[N]とする
--f(1)=p[1],f(m)=p[f(m-1)]とする
--順列がどのような並びでもf(x)=1となるためのxの最小値を求める
+-文字列Sの同じ文字だけからなる部分文字列の数を求める
 
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
-#include <map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
-#include <string.h>
 
 using namespace std;
 
-typedef long long LL;
-const LL MOD = 1000000007;
-
-class ThePermutationGame {
-public:
-	int findMin(int N) {
-		LL ans = 1;
-		LL f[100001] = {};
-		for (LL i = 2; i <= N; ++i) {
-			if (!f[i]) {
-				for (LL j = i; j <= N; j += i) {
-					f[j] = 1;
+class SquareScoresDiv2 {
+	public:
+	int getscore(string s) {
+		int ans = 0;
+		int len = s.length();
+		for (int i = 0; i < len; ++i) {
+			for (int j = 0; i + j < len; ++j) {
+				if (s[i] != s[i + j]) {
+					break;
 				}
-				for (LL j = i; j <= N; j *= i) {
-					ans = (ans * i) % MOD;
-				}
+				++ans;
 			}
 		}
-		return (int)ans;
+		return ans;
 	}
 
 // BEGIN CUT HERE
@@ -56,69 +43,57 @@ public:
 
 		// test_case_0
 		if ((Case == -1) || (Case == n)){
-			int Arg0 = 2;
-			int Arg1 = 2;
+			string Arg0 = "aaaba";
+			int Arg1 = 8;
 
-			verify_case(n, Arg1, findMin(Arg0));
+			verify_case(n, Arg1, getscore(Arg0));
 		}
 		n++;
 
 		// test_case_1
 		if ((Case == -1) || (Case == n)){
-			int Arg0 = 3;
-			int Arg1 = 6;
+			string Arg0 = "zzzxxzz";
+			int Arg1 = 12;
 
-			verify_case(n, Arg1, findMin(Arg0));
+			verify_case(n, Arg1, getscore(Arg0));
 		}
 		n++;
 
 		// test_case_2
 		if ((Case == -1) || (Case == n)){
-			int Arg0 = 11;
-			int Arg1 = 27720;
+			string Arg0 = "abcdefghijklmnopqrstuvwxyz";
+			int Arg1 = 26;
 
-			verify_case(n, Arg1, findMin(Arg0));
+			verify_case(n, Arg1, getscore(Arg0));
 		}
 		n++;
 
 		// test_case_3
 		if ((Case == -1) || (Case == n)){
-			int Arg0 = 102;
-			int Arg1 = 53580071;
+			string Arg0 = "p";
+			int Arg1 = 1;
 
-			verify_case(n, Arg1, findMin(Arg0));
+			verify_case(n, Arg1, getscore(Arg0));
 		}
 		n++;
 
 		// test_case_4
 		if ((Case == -1) || (Case == n)){
-			int Arg0 = 9999;
-			int Arg1 = 927702802;
+			string Arg0 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+			int Arg1 = 5050;
 
-			verify_case(n, Arg1, findMin(Arg0));
+			verify_case(n, Arg1, getscore(Arg0));
 		}
 		n++;
-
-
-
-		if ((Case == -1) || (Case == n)){
-			int Arg0 = 100000;
-			int Arg1 = 59814054;
-
-			verify_case(n, Arg1, findMin(Arg0));
-		}
-		n++;
-
 
 	}
-
 // END CUT HERE
 
 };
 
 // BEGIN CUT HERE
 int main() {
-	ThePermutationGame ___test;
+	SquareScoresDiv2 ___test;
 	___test.run_test(-1);
 }
 // END CUT HERE
