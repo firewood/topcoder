@@ -2,70 +2,9 @@
 /*
 TCO 2015 Round 1A Easy (250)
 
-PROBLEM STATEMENT
-Given two positive integers x and y, their similarity S(x, y) is defined as follows:
-To compute S(x, y) we count all d between 0 and 9, inclusive, such that both x and y contain the digit d when written in base 10 (without any leading zeros).
-For example, S(1123, 220181) = 2 since both numbers contain the digit 1 and both contain the digit 2.
-
-You are given two ints L and R that define a range.
-Find two distinct integers in this range that have the largest similarity.
-Formally, return the maximum of S(a, b) over all a, b such that L <= a < b <= R.
-
-
-DEFINITION
-Class:Similars
-Method:maxsim
-Parameters:int, int
-Returns:int
-Method signature:int maxsim(int L, int R)
-
-
-CONSTRAINTS
--R will be between 2 and 100,000, inclusive.
--L will be between 1 and R - 1, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-10
-
-Returns: 1
-
-We have S(1, 10) = 1 since both numbers contain the digit 1. All other pairs of numbers within this range have similarity 0.
-
-
-1)
-1
-99
-
-Returns: 2
-
-There are many pairs with similarity 2, for example pairs (23,32) and (38,83).
-
-
-2)
-99
-100
-
-Returns: 0
-
-Here we have only one pair (99, 100) and its similarity is 0.
-
-
-3)
-1000
-1010
-
-Returns: 2
-
-
-4)
-444
-454
-
-Returns: 2
+問題
+-2つの数値について、10進数表記にしたとき共通する数字の数を類似性とする
+-L以上R以下の異なる2つの数の類似性の最大値を求める
 
 */
 // END CUT HERE
