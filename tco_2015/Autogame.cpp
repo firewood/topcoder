@@ -2,84 +2,12 @@
 /*
 TCO 2015 Round 1A Medium (500)
 
-PROBLEM STATEMENT
-Hero is playing a game with tokens.
-There are N places for tokens.
-The places are numbered 1 through N.
-There are also N arrows, each pointing from some place to some place.
-No two arrows start at the same place.
-It is possible that multiple arrows point to the same place.
-Also, an arrow may start and end at the same place.
-
-You are given the description of the game board: a vector <int> a with N elements.
-For each i between 1 and N, inclusive, the arrow that starts at the place i points to the place a[i-1].
-
-At the beginning of the game, Hero will take an arbitrary number of tokens between 0 and N, inclusive, and he will place them onto distinct places.
-He will then play K rounds of the game.
-In each round each token moves from its current place along the arrow to the new place.
-After each round, Hero checks whether all tokens are still in distinct places.
-If two or more tokens are in the same place, Hero loses the game.
-Hero wins the game if he does not lose it during the K rounds he plays.
-
-There may be multiple ways how Hero can win the game.
-Two ways are different if there is some i such that at the beginning of the game place i did contain a token in one case but not in the other.
-Count those ways and return their count modulo 1,000,000,007.
-
-
-DEFINITION
-Class:Autogame
-Method:wayscnt
-Parameters:vector <int>, int
-Returns:int
-Method signature:int wayscnt(vector <int> a, int K)
-
-
-CONSTRAINTS
--a will contain exactly N elements.
--N will be between 1 and 50, inclusive.
--Each element in a will be between 1 and N, inclusive.
--K will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,2,3}
-5
-
-Returns: 8
-
-There are 2^3 = 8 valid ways to place the tokens. In each round each token will stay in the same place. Hence, Hero will win the game for each initial placement of tokens.
-
-
-1)
-{1,1,1}
-1
-
-Returns: 4
-
-If Hero starts the game with two or three tokens, after the first round there will be multiple tokens in the same place (place 1) and Hero will lose the game. He will only win the game if he starts with 0 tokens (1 possibility) or with 1 token (3 possibilities).
-
-
-2)
-{2,1}	
-42
-
-Returns: 4
-
-
-3)
-{2,3,4,3}
-3
-
-Returns: 9
-
-
-4)
-{4,4,3,2,1}
-3
-
-Returns: 18
+問題
+-N個の場所とN個のトークンとN個の矢印がある
+-トークンを0個以上場所に置く
+-各ターンでは、各場所のトークンを、矢印で指示された先に移動する
+-トークンが同じ場所に置かれるとゲームオーバー
+-ゲームオーバーにならないトークンの置き方の総数を求める
 
 */
 // END CUT HERE
