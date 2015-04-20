@@ -2,93 +2,11 @@
 /*
 SRM 655 Div2 Easy (250)
 
-PROBLEM STATEMENT
-We have a rectangular board divided into a grid of unit squares.
-We are going to color each square either white or black.
-
-You are given the vector <string> board.
-Each character in board represents one unit square.
-If board[i][j] is 'B', the corresponding square must be black.
-If board[i][j] is 'W', the corresponding square must be white.
-Finally, if board[i][j] is '?', you get to choose the color for this square: either white or black.
-
-Two squares are adjacent if they share a common side.
-We want to color the board in such a way that no two adjacent squares share the same color.
-Return "Possible" (quotes for clarity) if it can be done, or "Impossible" otherwise.
-
-
-DEFINITION
-Class:BichromeBoard
-Method:ableToDraw
-Parameters:vector <string>
-Returns:string
-Method signature:string ableToDraw(vector <string> board)
-
-
-CONSTRAINTS
--board will contain between 1 and 50 elements, inclusive.
--Each element in board will contain between 1 and 50 characters, inclusive.
--Each element in board will contain the same number of characters.
--Each character in board will be one of 'W', 'B', '?'.
-
-
-EXAMPLES
-
-0)
-{"W?W",
- "??B",
- "???"}
-
-Returns: "Possible"
-
-The solution is:
-
-WBW
-BWB
-WBW
-
-
-1)
-{"W??W"}
-
-Returns: "Impossible"
-
-The four possible colorings of this board are WWWW, WWBW, WBWW, and WBBW.
-In each of them there is at least one pair of adjacent squares that share the same color.
-Thus, there is no way to get a pattern with the desired property.
-
-
-2)
-{"??"}
-
-Returns: "Possible"
-
-There are 2 ways:
-WB and BW
-
-
-3)
-{"W???",
- "??B?",
- "W???",
- "???W"}
-
-Returns: "Possible"
-
-
-4)
-{"W???",
- "??B?",
- "W???",
- "?B?W"}
-
-Returns: "Impossible"
-
-
-5)
-{"B"}
-
-Returns: "Possible"
+問題
+-碁盤がある
+-各升目の初期状態はBかWか?である
+-それぞれの?はBかWにする
+-市松模様にできるかどうかを求める
 
 */
 // END CUT HERE
