@@ -2,87 +2,10 @@
 /*
 SRM 656 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-Your friend just sent you a message.
-The message consisted of one or more copies of the same lowercase letter.
-For example, "aaaaa" and "xxxxxxxxx" are valid messages.
-Unfortunately, on its way to you the message became corrupted: exactly k letters of the original message were changed to some other letters.
-The message you received is s.
-
-Given the string s and the int k, reconstruct the original message.
-More precisely, return a string that could have been the original message.
-It is guaranteed that at least one such string will always exist.
-If there are multiple possible answers, you may return any of them.
-
-
-DEFINITION
-Class:CorruptedMessage
-Method:reconstructMessage
-Parameters:string, int
-Returns:string
-Method signature:string reconstructMessage(string s, int k)
-
-
-CONSTRAINTS
--The number of characters in s will be between 1 and 50, inclusive.
--Each character in s will be a lowercase letter ('a'-'z').
--k will be between 0 and the length of s, inclusive.
--At least one possible original message will be consistent with s and k.
-
-
-EXAMPLES
-
-0)
-"hello"
-3
-
-Returns: "lllll"
-
-The three corrupted characters have 0-based indices 0, 1, and 4.
-
-
-1)
-"abc"
-3
-
-Returns: "ddd"
-
-The original message can't be "aaa", "bbb", or "ccc", since we need to change exactly 3 characters.
-
-Some other possible answers include "qqq", "xxx", or "ppp".
-
-
-2)
-"wwwwwwwwwwwwwwwwww"
-0
-
-Returns: "wwwwwwwwwwwwwwwwww"
-
-No characters were corrupted.
-
-
-3)
-"ababba"
-3
-
-Returns: "aaaaaa"
-
-"bbbbbb" will also be accepted.
-
-
-4)
-"zoztxtoxytyt"
-10
-
-Returns: "oooooooooooo"
-
-
-5)
-"jlmnmiunaxzywed"
-13
-
-Returns: "mmmmmmmmmmmmmmm"
+問題
+-同じ文字からなる文字列がある
+-K文字が別の文字に変更された
+-元の文字列の候補を求める
 
 */
 // END CUT HERE
