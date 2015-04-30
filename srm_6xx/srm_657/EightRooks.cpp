@@ -2,99 +2,10 @@
 /*
 SRM 657 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Cat Snuke is playing a puzzle called Eight Rooks Puzzle.
-
-In this puzzle, he must put exactly eight rooks onto an 8x8 chessboard. No two rooks must be in the same row, and no two rooks must be in the same column.
-
-You are given a vector <string> board. The j-th character of the i-th element of board is either 'R' or '.'. If this is 'R', the cell in row i, column j contains a rook. Otherwise the cell doesn't contain a rook.
-
-Determine whether Snuke solved the puzzle correctly. If he solved the puzzle correctly, return "Correct". Otherwise return "Incorrect".
-
-
-DEFINITION
-Class:EightRooks
-Method:isCorrect
-Parameters:vector <string>
-Returns:string
-Method signature:string isCorrect(vector <string> board)
-
-
-CONSTRAINTS
--board will contain exactly 8 elements.
--Each element of board will contain exactly 8 characters.
--Each character in board will be either 'R' or '.'.
-
-
-EXAMPLES
-
-0)
-{"R.......",
- ".R......",
- "..R.....",
- "...R....",
- "....R...",
- ".....R..",
- "......R.",
- ".......R"}
-
-Returns: "Correct"
-
-
-1)
-{"........",
- "....R...",
- "........",
- ".R......",
- "........",
- "........",
- "..R.....",
- "........"}
-
-Returns: "Incorrect"
-
-The number of rooks is not eight.
-
-
-2)
-{"......R.",
- "....R...",
- "...R....",
- ".R......",
- "R.......",
- ".....R..",
- "..R.....",
- ".......R"}
-
-Returns: "Correct"
-
-
-3)
-{"......R.",
- "....R...",
- "...R....",
- ".R......",
- "R.......",
- ".......R",
- "..R.....",
- ".......R"}
-
-Returns: "Incorrect"
-
-The rightmost column contains two rooks.
-
-
-4)
-{"........",
- "........",
- "........",
- "........",
- "........",
- "........",
- "........",
- "........"}
-
-Returns: "Incorrect"
+問題
+-8×8の升目に8個の岩を置く
+-同じ行または同じ桁には2つ以上の岩がないこと
+-条件を満たしているかどうかを求める
 
 */
 // END CUT HERE
