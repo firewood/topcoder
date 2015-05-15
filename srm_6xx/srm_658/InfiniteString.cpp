@@ -2,83 +2,8 @@
 /*
 SRM 658 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Given a string s, let f(s) denote the infinite string obtained by concatenating infinitely many copies of s.
-For example, if s = "abc" then f(s) = "abcabcabcabc...".
-
-Note that the string f(s) still has a beginning.
-Hence, f("abc") and f("bca") are two different infinite strings: the first one starts with an 'a' while the other starts with a 'b'.
-
-Sometimes, two different finite strings can produce the same infinite string.
-For example, f("abc") is the same as f("abcabc").
-
-You are given strings s and t.
-Check whether f(s) equals f(t).
-If the two infinite strings are equal, return "Equal".
-Otherwise, return "Not equal".
-
-
-DEFINITION
-Class:InfiniteString
-Method:equal
-Parameters:string, string
-Returns:string
-Method signature:string equal(string s, string t)
-
-
-CONSTRAINTS
--s will contain between 1 and 50 elements, inclusive.
--t will contain between 1 and 50 elements, inclusive.
--Each character in s will be a lowercase English letter ('a'-'z').
--Each character in t will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"ab"
-"abab"
-
-Returns: "Equal"
-
-Both string will generate "ababababab...".
-
-
-1)
-"abc"
-"bca"
-
-Returns: "Not equal"
-
-
-2)
-"abab"
-"aba"
-
-Returns: "Not equal"
-
-The first one will generate "abababab...", but the second one will generate "abaaba...".
-
-
-3)
-"aaaaa"
-"aaaaaa"
-
-Returns: "Equal"
-
-
-4)
-"ababab"
-"abab"
-
-Returns: "Equal"
-
-
-5)
-"a"
-"z"
-
-Returns: "Not equal"
+問題
+-文字列sを無限に連結した文字列と、文字列tを無限に連結した文字列が同じかどうかを求める
 
 */
 // END CUT HERE
