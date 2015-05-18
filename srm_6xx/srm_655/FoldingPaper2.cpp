@@ -2,92 +2,10 @@
 /*
 SRM 655 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-You have a rectangular piece of paper.
-Its dimensions are W times H.
-You want to have a paper with area A instead.
-Therefore, you decided to fold the paper you have.
-In each step you can fold the paper according to a straight line.
-There are two restrictions: First, that line must always be parallel to one of the rectangle's sides.
-Second, after each fold both dimensions of the new rectangle must be integers again.
-
-For example, suppose that your paper is 5 units wide and 3 units tall.
-If you fold it according to a vertical line that is 4 units to the right of its left side, you will obtain a rectangle that is 4 units wide and 3 units tall.
-If you fold it according to a horizontal line that is 1 unit below the top of the rectangle, you will get a rectangle that is 5 units wide and 2 units tall.
-
-You are given the ints W, H, and A.
-If it is impossible to fold the paper into a valid rectangle with area A, return -1.
-Otherwise, return the smallest number of times you need to fold the paper.
-
-
-DEFINITION
-Class:FoldingPaper2
-Method:solve
-Parameters:int, int, int
-Returns:int
-Method signature:int solve(int W, int H, int A)
-
-
-CONSTRAINTS
--H, W will be between 1 and 1,000,000,000, inclusive.
--A will be between 1 and 100,000, inclusive.
-
-
-EXAMPLES
-
-0)
-5
-3
-12
-
-Returns: 1
-
-The solution in this case is the first example mentioned above.
-
-
-1)
-2
-2
-3
-
-Returns: -1
-
-A 2x2 square cannot be folded into a rectangle with area 3. Note that a rectangle that is 1.5 units wide and 2 units tall is not a solution: both dimensions of all rectangles you produce must be integers.
-
-
-2)
-4
-4
-1
-
-Returns: 4
-
-
-3)
-127
-129
-72
-
-Returns: 8
-
-
-4)
-1
-100000
-100000
-
-Returns: 0
-
-The paper already has the desired area, so no folding is necessary.
-
-
-5)
-1
-1
-2
-
-Returns: -1
+問題
+-幅W高さHの長方形の紙を縦または横に折りたたむ
+-整数の単位で折りたためる
+-面積Aに折りたたむ最小手数を求める
 
 */
 // END CUT HERE
