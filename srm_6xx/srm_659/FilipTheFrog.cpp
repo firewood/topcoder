@@ -2,65 +2,11 @@
 /*
 SRM 649 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Filip the Frog lives on a number line. There are islands at some points on the number line. You are given the positions of these islands in the vector <int> positions.
-
-Filip starts on the island located at positions[0]. His maximal jump length is L, which means that he can jump to any island that is within a distance of L (inclusive) from his current location. Filip can't jump to a point on the number line that doesn't contain an island. He can make an unlimited number of jumps.
-
-An island is reachable if Filip can get to it through some sequence of jumps. Please find and return the number of reachable islands.
-
-
-DEFINITION
-Class:FilipTheFrog
-Method:countReachableIslands
-Parameters:vector <int>, int
-Returns:int
-Method signature:int countReachableIslands(vector <int> positions, int L)
-
-
-NOTES
--If two islands are located at points A and B on the number line, then the distance between them is |A - B|.
-
-
-CONSTRAINTS
--positions will contain between 1 and 50 elements, inclusive.
--Each element of positions will be between 0 and 1000, inclusive.
--The elements of positions will be distinct.
--L will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-{4, 7, 1, 3, 5}
-1
-
-Returns: 3
-
-Filip starts at position 4 and his maximal jump length is 1. He can reach the islands at positions 3, 4, and 5.
-
-
-1)
-{100, 101, 103, 105, 107}
-2
-
-Returns: 5
-
-Here he can reach all 5 islands.
-
-
-2)
-{17, 10, 22, 14, 6, 1, 2, 3}
-4
-
-Returns: 7
-
-
-3)
-{0}
-1000
-
-Returns: 1
+問題
+-最大距離Lまでジャンプできる蛙がいる
+-島の位置の配列positionsが与えられる
+-初期の位置はpositions[0]である
+-到達できる島の総数を求める
 
 */
 // END CUT HERE
