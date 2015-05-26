@@ -2,59 +2,10 @@
 /*
 SRM 659 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Note that this problem has a time limit of 5 seconds.
-
-The city of Gridlock is a grid of cells with R rows and C columns. Each cell has up to four neighbours: the cells directly above, below, to the left, and to the right. A citizen of Gridlock can travel from a cell to any of its neighbours in one minute.
-
-The citizens of Gridlock are upset that it takes too long to get around, so they have decided to build a teleporter. The teleporter will consist of two identical booths, each located in some cell. If a citizen enters either booth, he or she may choose to teleport to the other booth instantly. It is allowed to build both booths in the same cell.
-
-We define the distance between two cells as the minimum number of minutes needed to get from one cell to another. Let D be the maximum distance between any two cells. Place the teleporter in such a way that D is minimized, and return this minimum value.
-
-
-DEFINITION
-Class:PublicTransit
-Method:minimumLongestDistance
-Parameters:int, int
-Returns:int
-Method signature:int minimumLongestDistance(int R, int C)
-
-
-CONSTRAINTS
--R is between 1 and 10, inclusive.
--C is between 1 and 10, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-1
-
-Returns: 1
-
-The optimal solution is to connect cell (1, 1) to cell (4, 1). (All cell coordinates are 1-based.)
-
-
-1)
-2
-2
-
-Returns: 1
-
-
-2)
-5
-3
-
-Returns: 4
-
-
-3)
-8
-2
-
-Returns: 4
+問題
+-R×Cのセルがある
+-1個だけテレポーターを設置でき、その2点間の距離は0になる
+-マンハッタン距離の最大値を求める
 
 */
 // END CUT HERE
