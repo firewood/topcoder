@@ -2,82 +2,9 @@
 /*
 TCO 2015 Round 2A Easy (300)
 
-PROBLEM STATEMENT
-
-Moose Mod has just learned about the mod operator.
-Given two positive integers x and y, the mod operator returns the remainder when x is divided by y.
-For example, 17 mod 5 = 2 because 17 = 3*5 + 2.
-
-Moose Mod has just defined a function that applies a sequence of N mod operators to its input.
-Formally, the function looks as follows:
-f(x) = (((x mod m[0]) mod m[1]) ... mod m[N-1]).
-For example, m = { 10, 3 } corresponds to the function f(x) = (x mod 10) mod 3.
-For this function we have f(18) = (18 mod 10) mod 3 = 8 mod 3 = 2.
-
-You are given the vector <int> m.
-You are also given a int R.
-Moose Mod is interested in finding the sum f(1) + f(2) + ... + f(R).
-Compute and return its value.
-
-
-DEFINITION
-Class:ModModMod
-Method:findSum
-Parameters:vector <int>, int
-Returns:long long
-Method signature:long long findSum(vector <int> m, int R)
-
-
-CONSTRAINTS
--m will have between 1 and 5,000 elements, inclusive.
--Each element of m will be between 1 and 10,000,000, inclusive.
--R will be between 1 and 10,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{5,3,2}
-10
-
-Returns: 4
-
-The values of f from 1 to 10 are 1, 0, 0, 1, 0, 1, 0, 0, 1, 0. The sum of all these values is 4.
-
-
-1)
-{33, 15, 7, 10, 100, 9, 5}
-64
-
-Returns: 92
-
-
-2)
-{995,149,28,265,275,107,555,241,702,462,519,212,362,478,783,381,602,546,183,886,59,317,977,612,328,91,771,131}
-992363
-
-Returns: 12792005
-
-
-3)
-{100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
- 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}
-100
-
-Returns: 4950
-
-
-4)
-{2934}
-10000000
-
-Returns: 14664070144
+問題
+-配列mの各要素でmodを取る関数f(x)がある
+-f(1)からf(R)までの合計を求める
 
 */
 // END CUT HERE
