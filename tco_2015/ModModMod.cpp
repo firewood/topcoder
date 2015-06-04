@@ -23,28 +23,28 @@ typedef long long LL;
 typedef vector<int> IntVec;
 
 class ModModMod {
-	int N;
-	IntVec _m;
-	
-	LL calc(int i, LL r) {
-		if (r <= 0) {
-			return 0;
-		}
-		LL d = _m[i];
-		LL a = r / d;
-		LL b = r % d;
-		if (i == (N - 1)) {
-			return ((d - 1) * d) / 2 * a + ((b + 1) * b) / 2;
-		}
-		LL sum = a > 0 ? calc(i + 1, d - 1) * a : 0;
-		return sum + calc(i + 1, b);
-	}
-
 public:
 	long long findSum(vector <int> m, int R) {
-		N = (int)m.size();
-		_m = m;
-		return calc(0, R);
+		int N = (int)m.size();
+		LL cnt[10000001];
+		for (LL i = 1; i <= R; ++i) {
+			cnt[i] = 1;
+		}
+		LL u = R + 1;
+		for (LL p : m) {
+			if (p < u) {
+				for (LL i = p; i < u; ++i) {
+					cnt[i % p] += cnt[i];
+					cnt[i] = 0;
+				}
+				u = p;
+			}
+		}
+		LL ans = 0;
+		for (LL i = 1; i <= R; ++i) {
+			ans += i * cnt[i];
+		}
+		return ans;
 	}
 
 // BEGIN CUT HERE
