@@ -2,68 +2,11 @@
 /*
 TCO 2015 Round 2B Easy (250)
 
-PROBLEM STATEMENT
-In this problem we are dealing with a string of N bits, numbered from 0 to N-1.
-Julia likes the string that consists of N zeros.
-If you give her any N-bit string, she will convert it into a string of N zeros using the smallest possible number of actions.
-An action consists of selecting an integer k (1 <= k <= N) and flipping either the first k bits or the last k bits of the string.
-Formally, Julia can flip either all bits with number i such that i < k or all bits with number i such that i >= N - k.
-
-You are going to generate a random string of N bits.
-You are given a vector <int> p with N elements.
-For each i, bit number i has a p[i] percent chance of being a 1 and a (100 - p[i]) percent chance of being a 0.
-The values of the bits are chosen independently from each other.
-
-After you generate the string, you are going to give it to Julia.
-Please find and return the expected number of actions Julia will take.
-
-DEFINITION
-Class:Bitwisdom
-Method:expectedActions
-Parameters:vector <int>
-Returns:double
-Method signature:double expectedActions(vector <int> p)
-
-
-NOTES
--When a bit is flipped, its value changes. If the bit is originally 1, it will become 0. If it is originally 0, it will become 1.
--Your answer must have an absoute or relative error not exceeding 10^(-9).
-
-
-CONSTRAINTS
--N will be between 1 and 300, inclusive.
--p will contain exactly N elements.
--Each element of p will be between 0 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{100, 100, 100}
-
-Returns: 1.0
-
-All of the bits are guaranteed to be 1, and Julia can set them all to 0 in a single action.
-
-
-1)
-{50, 50}
-
-Returns: 0.75
-
-There is a 25% chance that all of the bits are 0, in which case Julia will do nothing. All other configurations allow Julia to clear the field in 1 action, so the answer is 0.75 * 1 = 0.75.
-
-
-2)
-{0, 40, 50, 60}
-
-Returns: 1.4
-
-
-3)
-{37, 63, 23, 94, 12}
-
-Returns: 2.6820475464
+問題
+-Nビットの文字列が与えられる
+-1回の操作で、先頭または末尾から連続するビットを反転できる
+-各ビットの生起確率が与えられる
+-全ビットを0にするための操作回数の期待値を求める
 
 */
 // END CUT HERE
