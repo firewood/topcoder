@@ -1,74 +1,10 @@
-// BEGIN CUT HERE
+﻿// BEGIN CUT HERE
 /*
 SRM 662 Div2 Medium (500)
 
-PROBLEM STATEMENT
-You are given ints n and m.
-Construct any tree with exactly n nodes (labeled 0 through n-1) and exactly m leaves.
-For the given constraints on n and m a solution will always exist.
-
-The return value should be a vector <int> containing a sequence of 2*(n-1) integers.
-If your tree has edges (a[0], b[0]), (a[1], b[1]), etc.,
-the correct return value is the sequence {a[0], b[0], a[1], b[1], ...}.
-If there are multiple correct return values, you may return any of them.
-
-
-DEFINITION
-Class:ExactTreeEasy
-Method:getTree
-Parameters:int, int
-Returns:vector <int>
-Method signature:vector <int> getTree(int n, int m)
-
-
-NOTES
--A tree is a connected acyclic graph. The leaf of a tree is a node of degree 1, i.e., a node that has exactly one outgoing edge.
-
-
-CONSTRAINTS
--n will be between 3 and 50, inclusive.
--m will be between 2 and n-1, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-2
-
-Returns: {0, 1, 1, 2, 2, 3 }
-
-We are supposed to construct a tree with 4 nodes and 2 leaves. One such tree is a simple path consisting of the edges 0-1, 1-2, and 2-3.
-
-
-1)
-4
-3
-
-Returns: {0, 1, 1, 2, 1, 3 }
-
-Now we have to construct a tree with 4 nodes and 3 leaves. The tree returned by our solution contains the edges 1-0, 1-2, and 1-3. The leaves are the nodes 0, 2, and 3.
-
-
-2)
-3
-2
-
-Returns: {0, 1, 1, 2 }
-
-
-3)
-5
-3
-
-Returns: {0, 1, 1, 2, 1, 3, 3, 4 }
-
-
-4)
-10
-9
-
-Returns: {0, 1, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9 }
+問題
+-N個のノードがある
+-M個の葉を持つ木を構築せよ
 
 */
 // END CUT HERE
