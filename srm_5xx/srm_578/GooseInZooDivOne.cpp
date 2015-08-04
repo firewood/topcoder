@@ -11,9 +11,11 @@ SRM 578 Div1 Easy (250)
 */
 // END CUT HERE
 #include <string>
+#include <algorithm>
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -47,32 +49,21 @@ public:
 		_field = field;
 		_dist = dist;
 		memset(_visited, 0, sizeof(_visited));
-		int groups = 0;
-		int i, x, y;
-		int geese[50*50];
-		for (y = 0; y < (int)field.size(); ++y) {
-			for (x = 0; x < (int)field[0].length(); ++x) {
+		int geese[2] = {};
+		for (int y = 0; y < (int)field.size(); ++y) {
+			for (int x = 0; x < (int)field[0].length(); ++x) {
 				int birds = dfs(x, y);
 				if (birds > 0) {
-					geese[groups++] = birds;
+					geese[birds % 2] += 1;
 				}
 			}
 		}
-		int dp[2] = {1, 0};
-		for (i = 0; i < groups; ++i) {
-			int even = dp[0];
-			int odd = dp[1];
-			if ((geese[i] % 2) == 0) {
-				even *= 2;
-				odd *= 2;
-			} else {
-				even += odd;
-				odd = even;
-			}
-			dp[0] = even % MOD;
-			dp[1] = odd % MOD;
+		int cnt = geese[0] + max(0, geese[1] - 1);
+		int res = 1;
+		for (int i = 0; i < cnt; ++i) {
+			res = (res * 2) % MOD;
 		}
-		return (dp[0] - 1 + MOD) % MOD;
+		return (res - 1 + MOD) % MOD;
 	}
 
 // BEGIN CUT HERE
