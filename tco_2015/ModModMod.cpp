@@ -25,7 +25,6 @@ typedef vector<int> IntVec;
 class ModModMod {
 public:
 	long long findSum(vector <int> m, int R) {
-		int N = (int)m.size();
 		LL cnt[10000001];
 		for (LL i = 1; i <= R; ++i) {
 			cnt[i] = 1;
