@@ -2,95 +2,11 @@
 /*
 SRM 664 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Limak is a little bear who loves to play.
-Today he is playing by moving some stones between two piles of stones.
-Initially, one of the piles has A and the other has B stones in it.
-
-Limak has decided to perform a sequence of K operations.
-In each operation he will double the size of the currently smaller pile.
-Formally, if the current pile sizes are labeled X and Y in such a way that X <= Y, he will move X stones from the second pile to the first one.
-After this move the new pile sizes will be X+X and Y-X.
-
-You are given the ints A, B, and K.
-Determine the pile sizes after Limak finishes all his operations.
-Return the size of the smaller of those piles.
-
-Formally, suppose that the final pile sizes are labeled P and Q in such a way that P <= Q.
-Return P.
-
-DEFINITION
-Class:BearPlays
-Method:pileSize
-Parameters:int, int, int
-Returns:int
-Method signature:int pileSize(int A, int B, int K)
-
-
-NOTES
--Pay attention to the unusual time limit.
-
-
-CONSTRAINTS
--A and B will be between 1 and 1,000,000,000, inclusive. 
--K will be between 1 and 2,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-7
-2
-
-Returns: 5
-
-The process will look as follows:
-
-Initially, the pile sizes are 4 and 7.
-First operation: Limak doubles the pile of size 4 by moving 4 stones from the other pile to this pile. The new pile sizes are 8 and 3.
-Second operation: Limak doubles the pile of size 3. The final pile sizes are 5 and 6.
-As 5 <= 6, the correct return value is 5.
-
-
-1)
-5
-5
-3
-
-Returns: 0
-
-The initial pile sizes are 5 and 5.
-In the first operation Limak will double one of them, so after the operation the new pile sizes will be 10 and 0.
-The second and third operation do nothing: in each of them Limak doubles the size of an empty pile.
-
-As 0 <= 10, the correct return value is 0.
-
-
-2)
-2
-6
-1
-
-Returns: 4
-
-After the only operation the pile sizes will be 4 and 4, hence the correct return value is 4.
-
-
-3)
-2
-8
-2000000000
-
-Returns: 2
-
-
-4)
-900000000
-350000000
-3
-
-Returns: 300000000
+問題
+-何個かの石があり、2つの山にわける
+-数が少ないほうをX個、数が多いほうをY個とする
+-Y個の山からX個の山にX個移動する操作をK回行う
+-少ないほうの山の数を求める
 
 */
 // END CUT HERE
