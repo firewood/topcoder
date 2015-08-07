@@ -2,87 +2,11 @@
 /*
 SRM 664 Div2 Medium (550)
 
-PROBLEM STATEMENT
-Limak is a little bear who loves to play.
-Today he is playing by moving some stones between three piles of stones.
-Initially, the piles contain A, B, and C stones, respectively.
-Limak's goal is to produce three equal piles.
-
-Limak will try reaching his goal by performing a sequence of zero or more operations.
-In each operation he will start by choosing two unequal piles.
-Let's label their sizes X and Y in such a way that X < Y.
-He will then double the size of the smaller chosen pile by moving some stones between the two chosen piles.
-Formally, the new sizes of the two chosen piles will be X+X and Y-X.
-
-You are given the ints A, B, and C.
-Return "possible" (quotes for clarity) if there is a sequence of operations that will make all three piles equal.
-Otherwise, return "impossible".
-
-
-DEFINITION
-Class:BearPlaysDiv2
-Method:equalPiles
-Parameters:int, int, int
-Returns:string
-Method signature:string equalPiles(int A, int B, int C)
-
-
-CONSTRAINTS
--A, B and C will be between 1 and 500, inclusive.
-
-
-EXAMPLES
-
-0)
-10
-15
-35
-
-Returns: "possible"
-
-One valid sequence of operations looks as follows:
-
-The initial pile sizes are 10, 15, and 35.
-For the first operation Limak will choose the piles with 15 and 35 stones. After doubling the size of the smaller pile the new sizes of these two piles will be 30 and 20.
-After the first operation the pile sizes are 10, 30, and 20.
-For the second operation Limak will choose the piles with 10 and 30 stones. After doubling the size of the smaller pile the new sizes of these two piles will be 20 and 20.
-After the second operation each pile has 20 stones, which means that Limak has reached his goal.
-
-
-1)
-1
-1
-2
-
-Returns: "impossible"
-
-No matter what Limak does, there will always be two piles with a single stone each and one pile with 2 stones.
-
-
-2)
-4
-6
-8
-
-Returns: "impossible"
-
-
-3)
-18
-18
-18
-
-Returns: "possible"
-
-Sometimes Limak can reach his goal without making any operations.
-
-
-4)
-225
-500
-475
-
-Returns: "possible"
+問題
+-何個かの石があり、3つの山にわける
+-任意の2つの山を選び、数が少ないほうをX個、数が多いほうをY個とする
+-Y個の山からX個の山にX個移動することを繰り返す
+-3つの山の個数を等しくできるかどうかを求める
 
 */
 // END CUT HERE
