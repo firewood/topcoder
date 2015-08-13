@@ -38,14 +38,6 @@ int main(int argc, char *argv[])
 		} else {
 			out -= d;
 		}
-		if (len == 50) {
-			int i = 0;
-			++i;
-		}
-		if (len == 51) {
-			int i = 0;
-			++i;
-		}
 		in -= min(in, out);
 		ans = min(ans, in + out);
 	}
