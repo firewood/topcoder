@@ -2,74 +2,12 @@
 /*
 SRM 665 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-A lucky number is a positive integer such that each of its digits is a 4 or a 7.
-A lucky sum is the sum of two (not necessarily distinct) lucky numbers.
-Cat loves lucky sums!
-
-Cat has a string note.
-Each character in note is either a digit or a question mark.
-A number matches note if it can be produced from note by changing each question mark to a single digit.
-Note that the number produced this way must not have any leading zeros: after the changes, note[0] must be between '1' and '9', inclusive.
-
-Find and return the smallest lucky sum that matches note.
-If there are no lucky sums that match note, return -1.
-
-
-DEFINITION
-Class:LuckySum
-Method:construct
-Parameters:string
-Returns:long long
-Method signature:long long construct(string note)
-
-
-CONSTRAINTS
--note will contain between 1 and 14 characters, inclusive.
--Each character of note will be either a digit ('0'-'9') or a question mark ('?').
--The first character of note will not be '0'.
--At least one character of note will be '?'.
-
-
-EXAMPLES
-
-0)
-"?"
-
-Returns: 8
-
-4+4=8, which is the smallest lucky sum.
-
-
-1)
-"?1"
-
-Returns: 11
-
-4+7=11
-
-
-2)
-"4?8"
-
-Returns: 448
-
-4+444=448
-
-
-3)
-"2??"
-
-Returns: -1
-
-The numbers that match this note are the numbers 200 through 299. None of these numbers is a lucky sum.
-
-
-4)
-"??????????????"
-
-Returns: 11888888888888
+問題
+-4か7だけからなる数がラッキーナンバー
+-ラッキーナンバー同士の和をラッキーサムとする
+-数値または?からなる文字列noteが与えられる
+-?は任意の数字、ただし先頭は0ではない
+-noteの条件を満たす最小のラッキーサムを求める
 
 */
 // END CUT HERE
