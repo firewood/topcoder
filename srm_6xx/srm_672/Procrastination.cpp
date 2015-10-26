@@ -2,84 +2,12 @@
 /*
 SRM 672 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You are working in the Huge Software Company.
-The company is so huge that it has an infinite number of employees.
-Employee number 1 is reserved for the Big Boss and Legendary Founder of the company, Mr. Z.
-Ordinary employees are numbered using positive integers, starting from 2.
-
-At the beginning of the day each employee is assigned a task they should accomplish:
-for each x from 2 to infinity, employee number x is assigned task number x.
-During the day some pairs of employees will swap the tasks they were assigned.
-The swapping follows a precise schedule that is described below.
-
-The working day in the Huge Software Company has infinitely many hours.
-The hours are numbered using positive integers, starting from 1.
-During hour 1 there are no swaps at all.
-During each of the following hours there are infinitely many swaps.
-These look as follows:
-
-During hour 2 we have the following swaps: workers 4 and 5 swap their tasks, workers 6 and 7 swap their tasks, workers 8 and 9 swap their tasks, and so on.
-During hour 3 we have the following swaps: workers 6 and 7 swap their tasks, workers 9 and 10 swap their tasks, workers 12 and 13 swap their tasks, and so on.
-...
-
-Formally, for each h greater than or equal to 2, during hour h we look at all workers that have numbers divisible by h and strictly greater than h. Each of these workers will swap the task they currently have with the worker with a number one larger than their own.
-
-It can be shown that for each employee there is a finite number of hours after which the employee will never swap their current task with anyone.
-It can also be shown that for each task there is a finite number of hours after which the task will remain with the current employee forever.
-
-You are given a long long n.
-Compute and return the number of employee who will have the task number n at the end of the day.
-
-
-DEFINITION
-Class:Procrastination
-Method:findFinalAssignee
-Parameters:long long
-Returns:long long
-Method signature:long long findFinalAssignee(long long n)
-
-
-CONSTRAINTS
--n will be between 2 and 10^10, inclusive.
-
-
-EXAMPLES
-
-0)
-3
-
-Returns: 3
-
-Employee 3 is never involved in any swaps: neither with employee 2, nor with employee 4.
-
-
-1)
-8
-
-Returns: 11
-
-Task 8 starts assigned to employee 8. During hour 2 this employee swaps it for another task with employee 9. During hour 3 employee 9 gives this task to employee 10. Finally, during hour 5 employee 10 gives this task to employee 11 where it will stay forever.
-
-
-2)
-20
-
-Returns: 20
-
-Task 20 goes from employee 20 to employee 21 (during hour 2), then to employee 22 (during hour 3), then back to employee 21 (during hour 7), and finally back to employee 20 (during hour 10). This is where it then remains forever.
-
-
-3)
-196248
-
-Returns: 196259
-
-
-4)
-5587021440
-
-Returns: 5587021440
+問題
+-Hugeソフトウェアには無限の従業員がいる
+-従業員には2から連番の従業員番号がついている
+-最初、従業員xにはタスクxが割り当てられる
+-時間tに、2以上の整数kについて、従業員k×tと従業員k×t+1がタスクを交換する
+-最終的にタスクnが割り当てられる従業員を求める
 
 */
 // END CUT HERE
