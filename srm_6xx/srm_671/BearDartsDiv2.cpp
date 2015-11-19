@@ -2,89 +2,10 @@
 /*
 SRM 671 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Limak is an old brown bear who likes to play darts.
-
-Limak just picked up an empty scorecard.
-He then threw a sequence of darts into a dartboard and for each dart he recorded the point value of the area it hit.
-You are given a vector <int> w containing the contents of Limak's scorecard: a sequence of point values.
-
-Today there is a special jackpot.
-In order to win the jackpot, the player must present a scorecard with exactly four scores: (a, b, c, d).
-Additionally, these scores must be such that a*b*c = d.
-Note that order matters: the scores a, b, c, d must have been obtained in this particular order.
-
-Limak wants to erase all but four scores from his scorecard in such a way that he will win the jackpot.
-Compute and return the number of different ways in which he can do that.
-
-
-DEFINITION
-Class:BearDartsDiv2
-Method:count
-Parameters:vector <int>
-Returns:long long
-Method signature:long long count(vector <int> w)
-
-
-NOTES
--Pay attention to the unusual time limit.
-
-
-CONSTRAINTS
--w will contain between 4 and 500 elements, inclusive.
--Each element in w will be between 1 and 10^6, inclusive.
-
-
-EXAMPLES
-
-0)
-{10,2,2,7,40,160}
-
-Returns: 2
-
-Limak must erase two of the six scores on his scorecard.
-There are two ways to do that and win the jackpot:
-
-Erase the elements on 0-based indices 3 and 5. You are left with (a,b,c,d) = (10,2,2,40), and 10*2*2 = 40.
-Erase the elements on 0-based indices 0 and 3. You are left with (a,b,c,d) = (2,2,40,160), and 2*2*40 = 160.
-
-
-1)
-{128,64,32,16,8,4,2,1}
-
-Returns: 0
-
-Regardless of which four scores Limak erases, the remaining four will always have a > b > c > d and therefore it cannot be the case that a*b*c = d.
-
-2)
-{2,3,4,5,6,8,12,16,20,24,40,24,20,16,12,8,6,5,4,3,2}
-
-Returns: 3
-
-
-
-3)
-{100,100,100,1000000,1000000,1000000,1000000,1000000}
-
-Returns: 5
-
-
-
-4)
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-
-Returns: 2573031125
-
-
+問題
+-何回かダーツを投げたスコアが記録されている
+-そのうちの4つだけ残し、順にa,b,c,dとする
+-a*b*c=dとなる場合の数を求める
 
 */
 // END CUT HERE
