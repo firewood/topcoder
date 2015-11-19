@@ -2,88 +2,11 @@
 /*
 SRM 671 Div1 Medium (500)
 
-PROBLEM STATEMENT
-Limak is an old brown bear who likes to play darts.
-
-Limak just picked up an empty scorecard.
-He then threw a sequence of darts into a dartboard and for each dart he recorded the point value of the area it hit.
-You are given a vector <int> w containing the contents of Limak's scorecard: a sequence of point values.
-
-Today there is a special jackpot.
-In order to win the jackpot, the player must present a scorecard with exactly four scores: (a, b, c, d).
-Additionally, these scores must be such that a*c = b*d.
-Note that order matters: the scores a, b, c, d must have been obtained in this particular order.
-
-Limak wants to erase all but four scores from his scorecard in such a way that he will win the jackpot.
-Compute and return the number of different ways in which he can do that.
-
-
-DEFINITION
-Class:BearDarts
-Method:count
-Parameters:vector <int>
-Returns:long long
-Method signature:long long count(vector <int> w)
-
-
-CONSTRAINTS
--w will contain between 4 and 1000 elements, inclusive.
--Each element in w will be between 1 and 10^9, inclusive.
-
-
-EXAMPLES
-
-0)
-{6,8,4,3,6}
-
-Returns: 2
-
-Limak must present a scorecard with four scores, so here he has to erase exactly one of these five scores.
-There are two ways to do that and win the jackpot: he can erase either the first throw or the last throw.
-If he erases the first throw, he will be left with (a,b,c,d) = (8,4,3,6), and indeed 8*3 = 4*6.
-If he erases the last throw, he will be left with (a,b,c,d) = (6,8,4,3), and we have 6*4 = 8*3.
-
-
-1)
-{3,4,12,1}
-
-Returns: 0
-
-Limak cannot erase anything, so the only thing he can try is to present this scorecard without any changes.
-However, 3*12 does not equal 4*1, so he won't win the jackpot.
-
-
-2)
-{42,1000000,1000000,42,1000000,1000000}
-
-Returns: 3
-
-In this case there are three valid solutions:
-
-Erase the elements with 0-based indices 4 and 5.
-Erase the elements with 0-based indices 1 and 2.
-Erase the elements with 0-based indices 0 and 3.
-
-
-3)
-{1,1,1,1,1}
-
-Returns: 5
-
-Here, Limak can erase any single score.
-Note that the five ways are considered different, even though they all produce a scorecard with four 1s.
-
-
-4)
-{1,2,3,4,5,6,5,4,3,2,1}
-
-Returns: 22
-
-
-5)
-{33554432, 33554432, 67108864, 134217728}
-
-Returns: 0
+問題
+問題
+-何回かダーツを投げたスコアが記録されている
+-そのうちの4つだけ残し、順にa,b,c,dとする
+-a*c=b*dとなる場合の数を求める
 
 */
 // END CUT HERE
