@@ -2,122 +2,12 @@
 /*
 SRM 673 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Would you want to fight against bears who ride horses?
-Me neither.
-
-Limak is a grizzly bear.
-He is a general of the dreadful army of Bearland.
-The most important part of the army is, of course, the cavalry.
-
-The cavalry of Bearland consists of the same number of warriors and horses.
-Limak knows the strength of each warrior and also the strength of each horse.
-These are given in vector <int>s warriors and horses, respectively.
-
-General Limak must assign exactly one horse to each warrior.
-Obviously, different warriors must be given different horses.
-
-A warrior together with his assigned horse is called a unit.
-The strength of a unit is equal to the product of the strengths of the warrior and the horse that form the unit.
-
-The warrior that corresponds to element 0 in warriors is called Bravebeart.
-He is always the first to charge the enemy.
-Limak decided that Bravebeart deserves some respect.
-Thus, his unit must be strictly stronger than any other unit.
-(Ties are not allowed.)
-
-Given this constraint, let X be the number of valid ways in which Limak can create the units.
-A general must know everything about his army.
-Help Limak count the valid assignments.
-Compute and return the value (X modulo 1,000,000,007).
-
-
-DEFINITION
-Class:BearCavalry
-Method:countAssignments
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int countAssignments(vector <int> warriors, vector <int> horses)
-
-
-CONSTRAINTS
--warriors will contain between 2 and 50 elements, inclusive.
--warriors and horses will contain the same number of elements.
--Each element in warriors and in horses will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-{5,8,4,8}
-{19,40,25,20}
-
-Returns: 2
-
-There are four warriors and four horses for them.
-Bravebeart's strength is warriors[0] = 5.
-
-There are two valid ways to pair the warriors and horses into units.
-Below, each unit is presented as an ordered pair (warrior's strength, horse's strength).
-The warriors are presented in the same order as in warriors.
-
-Valid assignment #1: (5,40), (8,19), (4,25), (8,20).
-
-Valid assignment #2: (5,40), (8,20), (4,25), (8,19).
-
-In assignment #1, the strength of Bravebeart's unit is 5*40 = 200.
-The other three units have strengths 8*19 = 152, 4*25 = 100, and 8*20 = 160.
-This is a valid assignment because the number 200 is strictly greater than each of the numbers 152, 100, and 160.
-
-
-1)
-{1,1}
-{1,1}
-
-Returns: 0
-
-
-2)
-{10,2,10}
-{100,150,200}
-
-Returns: 3
-
-There are three valid assignments.
-
-(10,200), (2,150), (10,100)
-(10,200), (2,100), (10,150)
-(10,150), (2,200), (10,100)
-
-(Again, the warriors are printed in the same order as in warriors. Hence, in each assignment Bravebeart's unit is the first one printed.)
-
-
-3)
-{10,20}
-{1,3}
-
-Returns: 1
-
-
-4)
-{20,20,25,23,24,24,21}
-{20,25,25,20,25,23,20}
-
-Returns: 0
-
-
-5)
-{970,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,
-800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800,800}
-{1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,
-1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,
-1000,1000,1000,1000,1000,1000,1000,1000,1000,1000}
-
-Returns: 318608048
-
-In all 50! assignments Bravebeart's unit is the strongest one.
-Thus, you should return 50! modulo 1,000,000,007.
-Note that even if different warriors/horses have the same strength, they are still considered distinct.
+問題
+-N頭の熊と馬がいる
+-それぞれの強さが与えられる
+-それぞれの熊に馬を1頭ずつ与えて騎兵とする
+-騎兵の強さは熊と馬の強さの積である
+-先頭の騎兵の強さが、他のどの騎兵よりも強い組み合わせの場合の数を求める
 
 */
 // END CUT HERE
