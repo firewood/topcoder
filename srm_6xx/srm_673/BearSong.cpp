@@ -2,72 +2,9 @@
 /*
 SRM 673 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Bear Limak has recently learned about musical notes.
-He then listened to a song and noticed that some notes appeared less often than others.
-In fact, some notes were so rare that they appeared in the song only once!
-
-Limak now wants to look for such notes in other songs.
-Write a program that will look for the rare notes.
-
-You are given a vector <int> notes that describes a song.
-Each number in notes represents one note of the song.
-Different numbers represent different notes, equal numbers represent equal notes.
-
-Compute and return the number of notes that occur exactly once in the given song.
-
-
-DEFINITION
-Class:BearSong
-Method:countRareNotes
-Parameters:vector <int>
-Returns:int
-Method signature:int countRareNotes(vector <int> notes)
-
-
-CONSTRAINTS
--notes will contain between 1 and 50 elements, inclusive.
--Each element in notes will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-{9,10,7,8,9}
-
-Returns: 3
-
-The rare notes are the notes 7, 8, and 10.
-Each of these notes occurs exactly once in the whole song.
-The note 9 occurs twice, so it is not a rare note
-
-
-1)
-{8,8,7,6,7,3,5,10,9,3}
-
-Returns: 4
-
-Each of the notes 5, 6, 9, and 10 occurs exactly once in this song.
-
-
-2)
-{234,462,715,596,906}
-
-Returns: 5
-
-
-3)
-{17}
-
-Returns: 1
-
-
-4)
-{1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,
-1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,
-1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000}
-
-Returns: 0
+問題
+-ある曲の音程を数値で表した配列が与えられる
+-一回だけ出現する音程の個数を求める
 
 */
 // END CUT HERE
