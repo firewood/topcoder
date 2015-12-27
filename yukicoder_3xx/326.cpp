@@ -39,12 +39,11 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-						
+
+	cout << v.size() << endl;
 	for (int i = 0; i != v.size(); ++i) {
 		cout << v[i] << " " << (v[i] + 1) << endl;
 	}
-
-
 
 	return 0;
 }
