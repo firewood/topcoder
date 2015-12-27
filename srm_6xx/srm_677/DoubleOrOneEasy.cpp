@@ -108,23 +108,25 @@ public:
 			swap(a, b);
 			swap(newA, newB);
 		}
-		int x = b - a, y = newB - newA;
-		int r = 1;
-		while (x > 0 && y > 0 && x * r < y) {
-			r *= 2;
-		}
-		if (x * r != y) {
-			return -1;
-		}
 		int ans = 0;
-		while (a < newA) {
-			int p = newA / r, q = newB / r, d = p - a;
-			a += d, b += d, ans += d;
-			if (r > 1) {
-				a *= 2, b *= 2, r /= 2, ++ans;
+		while (newA >= a * 2 && newB >= b * 2) {
+			if (newA % 2 || newB % 2) {
+				++ans;
+				--newA, --newB;
+				if (newA % 2 || newB % 2) {
+					break;
+				}
+			}
+			if ((newA / 2 - a) <= (newB / 2 - b)) {
+				++ans;
+				newA /= 2, newB /= 2;
+			} else {
+				break;
 			}
 		}
-		return a == newA && b == newB ? ans : -1;
+		int d = newA - a;
+		ans += d;
+		return d >= 0 && (b + d) == newB ? ans : -1;
 	}
 
 // BEGIN CUT HERE
@@ -224,19 +226,16 @@ public:
 
 
 
-
 		if ((Case == -1) || (Case == n)){
 			int Arg0 = 1;
 			int Arg1 = 1;
 			int Arg2 = 999999999;
 			int Arg3 = 999999999;
-			int Arg4 = 999999998;
+			int Arg4 = 49;
 
 			verify_case(n, Arg4, minimalSteps(Arg0, Arg1, Arg2, Arg3));
 		}
 		n++;
-
-
 
 		if ((Case == -1) || (Case == n)){
 			int Arg0 = 1;
@@ -249,8 +248,6 @@ public:
 		}
 		n++;
 
-
-
 		if ((Case == -1) || (Case == n)){
 			int Arg0 = 2;
 			int Arg1 = 2;
@@ -262,7 +259,49 @@ public:
 		}
 		n++;
 
+		if ((Case == -1) || (Case == n)){
+			int Arg0 = 100;
+			int Arg1 = 100;
+			int Arg2 = 800;
+			int Arg3 = 800;
+			int Arg4 = 3;
 
+			verify_case(n, Arg4, minimalSteps(Arg0, Arg1, Arg2, Arg3));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			int Arg0 = 100;
+			int Arg1 = 100;
+			int Arg2 = 899;
+			int Arg3 = 899;
+			int Arg4 = 17;
+
+			verify_case(n, Arg4, minimalSteps(Arg0, Arg1, Arg2, Arg3));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			int Arg0 = 1;
+			int Arg1 = 2;
+			int Arg2 = 999999999;
+			int Arg3 = 1000000000;
+			int Arg4 = 999999998;
+
+			verify_case(n, Arg4, minimalSteps(Arg0, Arg1, Arg2, Arg3));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)){
+			int Arg0 = 1;
+			int Arg1 = 2;
+			int Arg2 = 4;
+			int Arg3 = 7;
+			int Arg4 = -1;
+
+			verify_case(n, Arg4, minimalSteps(Arg0, Arg1, Arg2, Arg3));
+		}
+		n++;
 
 	}
 
