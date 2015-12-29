@@ -2,93 +2,10 @@
 /*
 SRM 677 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You have two positive integers: the first one is a, the second one is b.
-
-You also have a red button and a blue button.
-Whenever you push the red button, both your numbers are incremented by 1.
-Whenever you push the blue button, both your numbers are multiplied by 2.
-
-Your goal is to change the pair (a, b) into the pair (newA, newB).
-
-You are given the ints a, b, newA, and newB.
-If there is a sequence of zero or more button pushes that accomplishes your goal, return the length of the shortest such sequence.
-Otherwise, return -1.
-
-DEFINITION
-Class:DoubleOrOneEasy
-Method:minimalSteps
-Parameters:int, int, int, int
-Returns:int
-Method signature:int minimalSteps(int a, int b, int newA, int newB)
-
-
-NOTES
--The operations can produce arbitrarily large integers. For example, if you just push the blue button 1000 times in a row, you will get the numbers a*2^1000 and b*2^1000.
-
-
-CONSTRAINTS
--a will be between 1 and 1,000,000,000, inclusive.
--b will be between 1 and 1,000,000,000, inclusive.
--newA will be between 1 and 1,000,000,000, inclusive.
--newB will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-100
-1000
-101
-1001
-
-Returns: 1
-
-Just push the red button once.
-
-
-1)
-100
-1000
-202
-2002
-
-Returns: 2
-
-The best solution is to push the red button followed by the blue button.
-This performs the operation +1 followed by the operation *2.
-
-Another valid solution is to push the blue button once and then the red button twice to perform the operations *2, +1, and +1.
-This solution is not optimal because the previous solution contains fewer operations.
-
-
-2)
-2
-2
-1
-1
-
-Returns: -1
-
-We are unable to decrease a and b.
-
-
-3)
-1
-111111111
-8
-888888888
-
-Returns: 3
-
-
-4)
-1
-111111111
-9
-999999999
-
-Returns: -1
+問題
+-数aとbが与えられる
+-一回の操作で+1または2倍にできる
+-数aをnewAに、数bをnewBにするための最小操作回数を求める
 
 */
 // END CUT HERE
