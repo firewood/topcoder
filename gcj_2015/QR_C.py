@@ -34,7 +34,7 @@ def solve(L, X, s):
   if current != 4:
     return False
   if X > 8:
-    X = 4 + (X - 4) % 4
+    X = 4 + (X % 4);
   (X, pos, current) = find(L, X, s, 1, 255, pos)
   return X == 0 and pos == 0 and current == 1
 
