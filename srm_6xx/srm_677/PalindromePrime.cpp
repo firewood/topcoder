@@ -2,75 +2,8 @@
 /*
 SRM 677 Div2 Easy (250)
 
-PROBLEM STATEMENT
-A positive integer is called a prime if it has exactly two distinct positive integer divisors: 1 and itself.
-The first few primes are 2, 3, 5, 7, 11, 13, ...
-
-A positive integer is called a palindrome if its base-10 representation reads the same forwards and backwards.
-Some palindromes: 2, 77, 101, 33333, 12344321.
-
-A positive integer is called a palindromic prime if it is both a palindrome and a prime.
-
-You are given two ints: L and R.
-Compute and return the number of palindromic primes between L and R, inclusive.
-
-
-DEFINITION
-Class:PalindromePrime
-Method:count
-Parameters:int, int
-Returns:int
-Method signature:int count(int L, int R)
-
-
-NOTES
--The number 1 is not a prime number.
-
-
-CONSTRAINTS
--L will be between 1 and 1,000, inclusive.
--R will be between L and 1,000, inclusive.
-
-
-EXAMPLES
-
-0)
-100
-150
-
-Returns: 2
-
-This range contains only two palindromic primes: 101 and 131.
-
-
-1)
-1
-9
-
-Returns: 4
-
-The palindromic primes in this range are 2, 3, 5, and 7.
-
-
-2)
-929
-929
-
-Returns: 1
-
-
-3)
-1
-1
-
-Returns: 0
-
-
-4)
-1
-1000
-
-Returns: 20
+問題
+-LからRまでの間にある左右対称な素数の総数を求める
 
 */
 // END CUT HERE
