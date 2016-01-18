@@ -2,95 +2,9 @@
 /*
 SRM 677 Div2 Medium (550)
 
-PROBLEM STATEMENT
-We have four strings: a, b, c, and d.
-
-A superstring of our four strings is any string S such that each of the four strings occurs somewhere in S as a contiguous substring.
-Note that some superstrings of our four strings always exist.
-For example, the string S = a+b+c+d is obviously a superstring of a, b, c, and d.
-
-Find and return the length of the shortest superstring of a, b, c, and d.
-
-DEFINITION
-Class:FourStrings
-Method:shortestLength
-Parameters:string, string, string, string
-Returns:int
-Method signature:int shortestLength(string a, string b, string c, string d)
-
-
-CONSTRAINTS
--a will contain between 1 and 10 characters, inclusive.
--b will contain between 1 and 10 characters, inclusive.
--c will contain between 1 and 10 characters, inclusive.
--d will contain between 1 and 10 characters, inclusive.
--Each character in a will be a lowercase English letter ('a'-'z').
--Each character in b will be a lowercase English letter ('a'-'z').
--Each character in c will be a lowercase English letter ('a'-'z').
--Each character in d will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"abc"
-"ab"
-"bc"
-"b"
-
-Returns: 3
-
-The shortest superstring in this test case is the string "abc".
-Note that each of the other three strings occurs in "abc" as a contiguous substring.
-
-
-1)
-"a"
-"bc"
-"def"
-"ghij"
-
-Returns: 10
-
-In this case, one possible shortest superstring is "abcdefghij".
-
-
-2)
-"top"
-"coder"
-"opco"
-"pcode"
-
-Returns: 8
-
-S = "topcoder"
-
-
-3)
-"thereare"
-"arelots"
-"lotsof"
-"ofcases"
-
-Returns: 19
-
-
-4)
-"aba"
-"b"
-"b"
-"b"
-
-Returns: 3
-
-
-5)
-"x"
-"x"
-"x"
-"x"
-
-Returns: 1
+問題
+-文字列a,b,c,dが与えられる
+-a,b,c,d全てを部分文字列として含む文字列Sの最小の長さを求める
 
 */
 // END CUT HERE
