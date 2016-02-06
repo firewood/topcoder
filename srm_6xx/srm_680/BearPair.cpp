@@ -2,85 +2,8 @@
 /*
 SRM 680 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Bear Limak loves algorithms, especially the ones with words and strings.
-
-Limak's friend recently entered a programming competition and wrote a program.
-The program contains a string constant s.
-Limak would now like to challenge the program by making it exceed the time limit.
-To do that, he must find two different characters in s that are as far apart as possible.
-
-Formally, Limak must find two integers i and j with the following properties:
-
-Both i and j must be valid indices into s. That is, both numbers must be between 0 and n-1, inclusive, where n is the length of s.
-The characters s[i] and s[j] must be different.
-The difference between i and j must be as large as possible.
-
-
-You are given the string s.
-If Limak cannot choose any integers with the required properties, return -1.
-Otherwise, return the largest possible difference between i and j.
-
-
-DEFINITION
-Class:BearPair
-Method:bigDistance
-Parameters:string
-Returns:int
-Method signature:int bigDistance(string s)
-
-
-CONSTRAINTS
--s will have between 2 and 50 characters, inclusive.
--Each character in s will be a lowercase English letter ('a' - 'z').
-
-
-EXAMPLES
-
-0)
-"bear"
-
-Returns: 3
-
-Limak can choose the (0-based) indices 0 and 3.
-We have s[0]='b' and s[3]='r', which are indeed two different letters.
-The difference between the two indices is 3-0 = 3.
-
-
-1)
-"abcba"
-
-Returns: 3
-
-Here, one optimal solution is for Limak to choose the indices 1 and 4 (corresponding to 'b' and 'a', respectively).
-Another optimal solution is to choose indices 0 and 3 (letters 'a' and 'b').
-In both cases the difference is 3.
-
-
-2)
-"oooohyeahpotato"
-
-Returns: 13
-
-
-3)
-"zzzzzzzzzzzzzzzzzzzzz"
-
-Returns: -1
-
-Here, Limak can't choose two indices with different letters.
-
-
-4)
-"qw"
-
-Returns: 1
-
-
-5)
-"xxyyxyxyyyyyyxxxyxyxxxyxyxyyyyyxxxxxxyyyyyyyyxxxxx"
-
-Returns: 47
+問題
+-文字列s内で、異なる2文字の最大の長さを求める
 
 */
 // END CUT HERE
