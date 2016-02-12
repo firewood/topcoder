@@ -12,8 +12,6 @@ SRM 660 Div1 Easy (250)
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -29,43 +27,40 @@ public:
 		int H = (int)a.size();
 		int W = (int)a[0].length();
 		int K = (int)x.size();
-		vector<pair<int, int> > v;
-
-		for (int i = 0; i < H*W; ++i) {
-			int ix = i / W, iy = i % W;
-			int sum = 0;
-			for (int k = 0; k < K; ++k) {
-				int p = ix + x[k], q = iy + y[k];
-				if (p >= 0 && p < H && q >= 0 && q < W) {
-					sum += a[p][q] - '0';
+		vector<pair<int, pair<int, int> > > v;
+		for (int i = 0; i < H; ++i) {
+			for (int j = 0; j < W; ++j) {
+				int sum = 0;
+				for (int k = 0; k < K; ++k) {
+					int p = i + x[k], q = j + y[k];
+					if (p >= 0 && p < H && q >= 0 && q < W) {
+						sum += a[p][q] - '0';
+					}
 				}
+				v.push_back(make_pair(sum, make_pair(i, j)));
 			}
-			v.push_back(make_pair(-sum, i));
 		}
-		sort(v.begin(), v.end());
-		int M = min((int)v.size(), 100);
-
-		for (int i = 0; i < M; ++i) {
-			int ix = v[i].second / W, iy = v[i].second % W;
-			int sum = 0;
+		sort(v.rbegin(), v.rend());
+		for (int z = 0; z < 100 && z != v.size(); ++z) {
+			int i = v[z].second.first, j = v[z].second.second;
 			int u[128][128] = {};
 			for (int k = 0; k < K; ++k) {
-				int p = ix + x[k], q = iy + y[k];
+				int p = i + x[k], q = j + y[k];
 				if (p >= 0 && p < H && q >= 0 && q < W) {
-					sum += a[p][q] - '0';
 					u[p][q] = 1;
 				}
 			}
-			for (int j = 0; j < H*W; ++j) {
-				int tot = sum;
-				int jx = j / W, jy = j % W;
-				for (int k = 0; k < K; ++k) {
-					int p = jx + x[k], q = jy + y[k];
-					if (p >= 0 && p < H && q >= 0 && q < W && !u[p][q]) {
-						tot += a[p][q] - '0';
+			for (i = 0; i < H; ++i) {
+				for (j = 0; j < W; ++j) {
+					int sum = v[z].first;
+					for (int k = 0; k < K; ++k) {
+						int p = i + x[k], q = j + y[k];
+						if (p >= 0 && p < H && q >= 0 && q < W && !u[p][q]) {
+							sum += a[p][q] - '0';
+						}
 					}
+					ans = max(ans, sum);
 				}
-				ans = max(ans, tot);
 			}
 		}
 		return ans;
