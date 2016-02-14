@@ -2,108 +2,11 @@
 /*
 SRM 681 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-You have two robots.
-Currently, the robots are standing on two different points on an infinite two-dimensional plane.
-You are given the ints x1, y1, x2, and y2.
-These are the initial coordinates of both robots: one is located at (x1,y1), the other one is at (x2,y2).
-
-The robots know four instructions: U, D, L, and R.
-These represent moving 1 unit up, down, left, and right.
-More formally, U increases the robot's y coordinate by 1, D decreases the y coordinate by 1, L decreases the x coordinate by 1, and R increases the x coordinate by 1.
-
-You are going to send both robots the same sequence of instructions at the same time.
-This sequence of instructions is given in the string instructions.
-
-Both robots are going to execute this sequence of instructions.
-They will spend exactly one second executing each instruction.
-Unfortunately, your robots are a bit buggy.
-It is possible that they will ignore some instructions and spend the corresponding seconds just standing in place.
-Each robot has its own bugs and therefore the two robots may ignore different subsets of instructions.
-(It is possible that a robot will ignore all instructions, and it is also possible that a robot will execute all instructions it was given.)
-
-The robots will explode if they ever occupy the same point at the same time.
-
-Return the string "Explosion" if it is possible that your two robots will explode.
-Otherwise, return "Safe".
-
-
-DEFINITION
-Class:ExplodingRobots
-Method:canExplode
-Parameters:int, int, int, int, string
-Returns:string
-Method signature:string canExplode(int x1, int y1, int x2, int y2, string instructions)
-
-
-CONSTRAINTS
--x1,y1,x2,y2 will be between -25 and 25, inclusive.
--(x1,y1) will be different from (x2,y2).
--instructions will have between 1 and 50 characters, inclusive.
--Each character of instructions will be 'U', 'R', 'L', or 'D'.
-
-
-EXAMPLES
-
-0)
-1
-0
-2
-0
-"L"
-
-Returns: "Explosion"
-
-We have two robots.
-One starts at coordinates (1,0), the other at (2,0).
-We send them a command to move left.
-If the first robot ignores it and the second robot moves left, they will collide and explode.
-
-
-1)
-1
-0
-2
-0
-"U"
-
-Returns: "Safe"
-
-We have the same starting positions as in Example 0, but this time we send a command to go up.
-Regardless of whether they ignore it or perform it, they cannot collide.
-
-
-2)
-1
-0
-2
-0
-"UL"
-
-Returns: "Explosion"
-
-In this case, one possible scenario where the robots collide is when the first robot performs the instructions "U", and the second robot performs the instructions "UL".
-
-
-3)
-3
-3
-5
-5
-"LURLL"
-
-Returns: "Safe"
-
-
-4)
-10
-5
--9
--10
-"LULULULLLUULRULULULULULULLULULLULD"
-
-Returns: "Explosion"
+問題
+-2台のロボットがいて、それぞれの座標が与えられる
+-上下左右からなる一連の移動コマンドを、両方に送る
+-両方に同じコマンドを送るが、コマンドのいくつかは無視される可能性がある
+-同じ座標になる可能性があるかどうかを求める
 
 */
 // END CUT HERE
