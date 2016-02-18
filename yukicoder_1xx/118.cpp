@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	int N = atoi(s.c_str());
 	getline(cin, s);
 	stringstream ss(s);
-	int cnt[102] = {};
+	LL cnt[102] = {};
 	int t = 0;
 	for (LL i = 0; i < N; ++i) {
 		int n;
