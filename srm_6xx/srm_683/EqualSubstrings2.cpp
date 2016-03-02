@@ -2,89 +2,9 @@
 /*
 SRM 683 Div2 Easy (250)
 
-PROBLEM STATEMENT
-You are given a string s.
-Compute and return the number of ways in which we can choose two identical non-overlapping substrings of s.
-
-(The two substrings must be non-empty.
-Each substring must be contiguous.)
-
-
-DEFINITION
-Class:EqualSubstrings2
-Method:get
-Parameters:string
-Returns:int
-Method signature:int get(string s)
-
-
-CONSTRAINTS
--s will consist only of lowercase English letters ('a'-'z').
--The length of s will be between 1 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-"aa"
-
-Returns: 1
-
-There is exactly one way how to choose two non-empty and non-overlapping substrings.
-In this case they happen to be equal (both are "a"), so the correct return value is 1.
-
-
-1)
-"abcd"
-
-Returns: 0
-
-Regardless how we choose two non-overlapping substrings, they will always differ.
-
-
-2)
-"aba"
-
-Returns: 1
-
-One pair: ("a", "a").
-
-
-3)
-"abab"
-
-Returns: 3
-
-Three pairs: ("a", "a"), ("b", "b"), ("ab", "ab").
-
-
-4)
-"aaaab"
-
-Returns: 7
-
-The 7 ways to select the two equal substrings are shown below.
-Each row represents one way.
-The characters 1 and 2 denote characters selected to form the first and second substring, respectively.
-
-
-aaaab
------
-12...
-1.2..
-1..2.
-.12..
-.1.2.
-..12.
-1122.
-
-(In the first six ways, the two selected substrings are "a" and "a". In the last way the selected substrings are "aa" and "aa".)
-
-
-5)
-"onetwothreeonetwothree"
-
-Returns: 86
+問題
+-文字列sが与えられる
+-重ならない2つの部分文字列のうち、同じものの個数を求める
 
 */
 // END CUT HERE
