@@ -23,39 +23,17 @@ class Bitwisdom {
 
 public:
 	double expectedActions(vector <int> p) {
-		double dp[2][2][304];
-		int N = (int)p.size();
-
-		double ans = 1.0;
-		for (int i = 0; i < N; ++i) {
-			int prev = i & 1;
-			int next = prev ^ 1;
-			double a = (100 - p[i]) * 0.01;
-			double b = p[i] * 0.01;
-			ans *= b;		// all 1
-			if (i == 0) {
-				// setup initial state
-				for (int j = 0; j <= N; ++j) {
-					dp[next][0][j] = 0;
-					dp[next][1][j] = 0;
-				}
-				dp[next][0][0] = a;
-				dp[next][1][0] = b;
-			} else {
-				for (int j = 0; j <= N; ++j) {
-					dp[next][0][j] = dp[prev][0][j] * a + (j > 0 ? dp[prev][1][j - 1] * a : 0);
-					dp[next][1][j] = dp[prev][1][j] * b + (j > 0 ? dp[prev][0][j - 1] * b : 0);
-				}
-			}
+		double ans = 1.0, c[300];
+		for (int i = 0; i != p.size(); ++i) {
+			c[i] = p[i] * 0.01;
+			ans *= c[i];
 		}
-
-		int c = N & 1;
-		for (int i = 0; i <= N; ++i) {
-			ans += (dp[c][0][i] + dp[c][1][i]) * i;
+		for (int i = 1; i != p.size(); ++i) {
+			ans += c[i - 1] * (1.0 - c[i]);
+			ans += (1.0 - c[i - 1]) * c[i];
 		}
 		return ans;
 	}
-
 
 // BEGIN CUT HERE
 private:
