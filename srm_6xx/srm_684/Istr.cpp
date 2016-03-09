@@ -2,85 +2,11 @@
 /*
 SRM 684 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Hero came up with an interesting way to calculate the value of any string.
-It works as follows:
-
-Find all distinct characters that appear in the string.
-For each of those characters, count the number of occurrences.
-Square each of those counts.
-Sum all those squares to get the value of the string.
-
-
-For example, suppose Hero has the string "abacaba".
-This string contains 4 'a's, 2 'b's, and 1 'c'.
-Thus, its value is 4*4 + 2*2 + 1*1 = 21.
-
-You are given a string s and an int k.
-You are allowed to remove at most k characters from s.
-Your goal is to produce a string with the smallest possible value.
-Compute and return that value.
-
-
-DEFINITION
-Class:Istr
-Method:count
-Parameters:string, int
-Returns:int
-Method signature:int count(string s, int k)
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive.
--Each character in s will be a lowercase letter ('a'-'z').
--k will be between 0 and the length of s, inclusive.
-
-
-EXAMPLES
-
-0)
-"aba"
-1
-
-Returns: 2
-
-The optimal strategy is to erase one of the two 'a's.
-This produces a string with value 1*1 + 1*1 = 2.
-
-
-1)
-"abacaba"
-0
-
-Returns: 21
-
-
-2)
-"abacaba"
-1
-
-Returns: 14
-
-
-3)
-"abacaba"
-3
-
-Returns: 6
-
-
-4)
-"abc"
-3
-
-Returns: 0
-
-
-5)
-"wersrsresesrsesrawsdsw"
-11
-
-Returns: 23
+問題
+-文字列のスコアを計算する
+-文字種毎にカウントする
+-カウントの二乗の総和がスコア
+-K文字消せるとき、スコアの最小値を求める
 
 */
 // END CUT HERE
