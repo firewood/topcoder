@@ -1,18 +1,13 @@
 // C.
 
 #include <iostream>
-#include <algorithm>
 #include <sstream>
-#include <set>
-#include <vector>
 #include <cstdio>
 #include <cstring>
 
 using namespace std;
 
 static const int MOD = 1000000007;
-
-int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
 
 struct modll {
 	long long x;
@@ -26,23 +21,33 @@ struct modll {
 	modll operator*(const modll &r) { return (x * r.x) % MOD; }
 	modll operator*(int r) { return (x * r) % MOD; }
 	modll operator*=(const modll &r) { return x = (x * r.x) % MOD; }
+	modll inverse() {
+		modll r = 1;
+		modll a = x;
+		int b = MOD - 2;
+		while (b) {
+			if (b & 1) {
+				r *= a;
+			}
+			a *= a;
+			b >>= 1;
+		}
+		return r;
+	}
 };
-
-#define COMBSZ 1024
 
 int main(int argc, char *argv[])
 {
 	int W, H;
 	cin >> W >> H;
 	--W, --H;
-
-	modll C[COMBSZ][COMBSZ];
-	for (int i = 0; i < COMBSZ - 1; ++i) {
-		C[i][0] = 1, C[i][i+1] = 0;
-		for (int j = 1; j <= i; ++j) {
-			C[i][j] = C[i - 1][j - 1] + C[i - 1][j];
-		}
+	modll ans = 1;
+	for (int i = H + 1; i <= W + H; ++i) {
+		ans *= i;
 	}
-	cout << C[W + H][W] << endl;
+	for (int i = 1; i <= W; ++i) {
+		ans *= modll(i).inverse();
+	}
+	cout << ans << endl;
 	return 0;
 }
