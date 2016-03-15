@@ -2,96 +2,11 @@
 /*
 SRM 684 Div2 Medium (600)
 
-PROBLEM STATEMENT
-Hero likes some arrays. The arrays he likes are the arrays that have all of the following properties:
-
-The length of the array is n.
-Each element is an integer between 1 and k, inclusive.
-Whenever A and B are two consecutive elements of the array (in this order), we have (A <= B) or (A mod B != 0).
-
-
-For example, suppose n=4 and k=7.
-Hero will like the array {1,7,7,2} because it has the right length, all elements are in the correct range, 1 <= 7, 7 <= 7, and 7 mod 2 != 0.
-Hero will not like the array {4,4,4,2}.
-
-You are given the ints n and k.
-Let X be the number of different arrays Hero likes.
-Compute and return the value (X mod 1,000,000,007).
-
-
-DEFINITION
-Class:DivFreed2
-Method:count
-Parameters:int, int
-Returns:int
-Method signature:int count(int n, int k)
-
-
-CONSTRAINTS
--n will be between 1 and 10, inclusive.
--k will be between 1 and 100,000, inclusive.
-
-
-EXAMPLES
-
-0)
-2
-2
-
-Returns: 3
-
-The three arrays Hero likes are {1,1}, {1,2}, and {2,2}.
-
-
-1)
-9
-1
-
-Returns: 1
-
-The only array Hero likes is {1,1,1,1,1,1,1,1,1}.
-
-
-2)
-3
-3
-
-Returns: 15
-
-
-3)
-1
-107
-
-Returns: 107
-
-
-4)
-2
-10
-
-Returns: 83
-
-
-5)
-2
-1234
-
-Returns: 1515011
-
-
-6)
-3
-8
-
-Returns: 326
-
-
-7)
-10
-100000
-
-Returns: 526882214
+問題
+-N個の要素からなる配列がある
+-各要素の範囲は[1-K]である
+-隣り合う2つの要素をA,Bとしたとき、全ての2要素がA <= Bまたは(A mod B) != 0を満たすとき、良い配列とする
+-与えられたN,Kにおいて良い配列の総数を求める
 
 */
 // END CUT HERE
