@@ -21,49 +21,26 @@ SRM 662 Div1 Easy (250)
 using namespace std;
 
 typedef pair<int, int> II;
-typedef vector<int> IntVec;
 typedef vector<II> IIVec;
 
 class FoxesOfTheRoundTable {
 
-	int N;
-	IIVec v;
-
-	bool possible(int M, IntVec &ans) {
-		ans[0] = 0;
-		int l = 0, r = N;
-		for (int i = 1; i < N; ++i) {
-			if (ans[l] <= ans[r % N]) {
-				if (v[i].first - v[ans[l]].first > M) {
-					return false;
-				}
-				ans[++l] = i;
-			} else {
-				if (v[i].first - v[ans[r % N]].first > M) {
-					return false;
-				}
-				ans[--r] = i;
-			}
-		}
-		return true;
-	}
-
 public:
 	vector <int> minimalDifference(vector <int> h) {
-		N = (int)h.size();
-		v.clear();
-		IntVec ans(N);
+		int N = (int)h.size();
+		IIVec v;
 		for (int i = 0; i < N; ++i) {
 			v.push_back(II(h[i], i));
 		}
 		sort(v.begin(), v.end());
-		for (int M = 1; M <= 1000; ++M) {
-			if (possible(M, ans)) {
-				break;
-			}
-		}
+		vector <int> ans(N);
+		int l = 0, r = N - 1;
 		for (int i = 0; i < N; ++i) {
-			ans[i] = v[ans[i]].second;
+			if (i % 2) {
+				ans[r--] = v[i].second;
+			} else {
+				ans[l++] = v[i].second;
+			}
 		}
 		return ans;
 	}
