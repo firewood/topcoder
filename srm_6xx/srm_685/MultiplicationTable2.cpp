@@ -86,9 +86,8 @@ Returns: 1
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
+#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -96,70 +95,30 @@ Returns: 1
 
 using namespace std;
 
-typedef long long LL;
-
-struct UnionFind {
-	std::vector<int> _parent;
-	std::vector<int> _size;
-	UnionFind(int size) : _parent(size, -1), _size(size, 1) { }
-	void unite(int a, int b) {
-		int ra = root(a), rb = root(b); if (ra == rb) { return; }
-		if (_size[ra] >= _size[rb]) { _parent[rb] = ra, _size[ra] += _size[rb]; } else { _parent[ra] = rb, _size[rb] += _size[ra]; }
-	}
-	int root(int a) {
-		int p = _parent[a];
-		if (p < 0) { return a; }
-		while (_parent[p] >= 0) { p = _parent[p]; }
-		return _parent[a] = p;
-	}
-	int size(int a) { return _size[root(a)]; }
-};
-
 class MultiplicationTable2 {
-	int vis[64];
-	int t[64];
-	int N;
-	vector <int> T;
-
-	void dfs(int a, int b, UnionFind &uf) {
-		if (uf.root(a) == uf.root(b)) {
-			return;
-		}
-		vis[a] = 1;
-		vis[b] = 1;
-		uf.unite(a, b);
-		for (int i = 0; i < N; ++i) {
-			if (vis[i]) {
-				int p = T[a*N + i];
-				if (!vis[p]) {
-					dfs(a, p, uf);
-				}
-				p = T[i*N + a];
-				if (!vis[p]) {
-					dfs(a, p, uf);
-				}
-				p = T[b*N + i];
-				if (!vis[p]) {
-					dfs(b, p, uf);
-				}
-				p = T[i*N + b];
-				if (!vis[p]) {
-					dfs(b, p, uf);
-				}
-			}
-		}
-	}
 
 public:
 	int minimalGoodSet(vector <int> table) {
-		N = (int)sqrt(table.size() + 0.1);
-		T = table;
+		int N = (int)sqrt(table.size() + 0.1);
 		int ans = N;
 		for (int i = 0; i < N; ++i) {
-			memset(vis, 0, sizeof(vis));
-			UnionFind uf(N);
-			dfs(i, table[i*N + i], uf);
-			ans = min(ans, uf.size(i));
+			set<int> s, m;
+			m.insert(i);
+			m.insert(table[N * i + i]);
+			while (m.size()) {
+				for (int a : m) {
+					s.insert(a);
+				}
+				m.clear();
+				for (int a : s) {
+					for (int b : s) {
+						if (s.find(table[N * a + b]) == s.end()) {
+							m.insert(table[N * a + b]);
+						}
+					}
+				}
+			}
+			ans = min(ans, (int)s.size());
 		}
 		return ans;
 	}
