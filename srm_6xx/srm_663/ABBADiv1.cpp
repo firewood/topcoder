@@ -2,83 +2,10 @@
 /*
 SRM 663 Div1 Easy (250)
 
-PROBLEM STATEMENT
-One day, Jamie noticed that many English words only use the letters A and B.
-Examples of such words include "AB" (short for abdominal), "BAA" (the noise a sheep makes), "AA" (a type of lava), and "ABBA" (a Swedish pop sensation).
-
-Inspired by this observation, Jamie created a simple game.
-You are given two strings: initial and target.
-The goal of the game is to find a sequence of valid moves that will change initial into target.
-There are two types of valid moves:
-
-Add the letter A to the end of the string.
-Add the letter B to the end of the string and then reverse the entire string. (After the reversal the newly-added B becomes the first character of the string).
-
-Return "Possible" (quotes for clarity) if there is a sequence of valid moves that will change initial into target.
-Otherwise, return "Impossible".
-
-
-DEFINITION
-Class:ABBADiv1
-Method:canObtain
-Parameters:string, string
-Returns:string
-Method signature:string canObtain(string initial, string target)
-
-
-CONSTRAINTS
--The length of initial will be between 1 and 49, inclusive.
--The length of target will be between 2 and 50, inclusive.
--target will be longer than initial.
--Each character in initial and each character in target will be either 'A' or 'B'.
-
-
-EXAMPLES
-
-0)
-"A"
-"BABA"
-
-Returns: "Possible"
-
-Jamie can perform the following moves:
-
-Initially, the string is "A".
-Jamie adds a 'B' to the end of the string and then reverses the string. Now the string is "BA".
-Jamie adds a 'B' to the end of the string and then reverses the string. Now the string is "BAB".
-Jamie adds an 'A' to the end of the string. Now the string is "BABA".
-
-Since there is a sequence of moves which starts with "A" and creates the string "BABA", the answer is "Possible".
-
-
-1)
-"BAAAAABAA"
-"BAABAAAAAB"
-
-Returns: "Possible"
-
-Jamie can add a 'B' to the end of the string and then reverse the string.
-
-
-2)
-"A"
-"ABBA"
-
-Returns: "Impossible"
-
-
-3)
-"AAABBAABB"
-"BAABAAABAABAABBBAAAAAABBAABBBBBBBABB"
-
-Returns: "Possible"
-
-
-4)
-"AAABAAABB"
-"BAABAAABAABAABBBAAAAAABBAABBBBBBBABB"
-
-Returns: "Impossible"
+問題
+-文字列initialが与えられる
+-文字Aを末尾に加えるか、文字Bを末尾に加えて全体を反転する
+-文字列targetにできるかどうかを求める
 
 */
 // END CUT HERE
@@ -136,27 +63,6 @@ public:
 		init_len = initial.length();
 		target_len = target.length();
 		return dfs(0, 0, target_len) ? "Possible" : "Impossible";
-	}
-
-
-	bool dfs2(string a) {
-		if (a.length() < target_len) {
-			if (dfs2(a + 'A')) {
-				return true;
-			}
-			reverse(a.begin(), a.end());
-			if (dfs2('B' + a)) {
-				return true;
-			}
-			return false;
-		}
-		return a == t;
-	}
-
-	string canObtain2(string initial, string target) {
-		t = target;
-		target_len = t.length();
-		return dfs2(initial) ? "Possible" : "Impossible";
 	}
 
 // BEGIN CUT HERE
@@ -229,72 +135,15 @@ public:
 		}
 		n++;
 
-
-
 	}
 
 // END CUT HERE
 
 };
-
-// BEGIN CUT HERE
-/*
-struct UnionFind {
-	std::vector<int> _parent;
-	std::vector<int> _size;
-	UnionFind(int size) : _parent(size, -1), _size(size, 1) { }
-	void unite(int a, int b) {
-		int ra = root(a), rb = root(b); if (ra == rb) { return; }
-		if (_size[ra] >= _size[rb]) { _parent[rb] = ra, _size[ra] += _size[rb]; }
-		else { _parent[ra] = rb, _size[rb] += _size[ra]; }
-	}
-	int root(int a) {
-		int p = _parent[a];
-		if (p < 0) { return a; }
-		while (_parent[p] >= 0) { p = _parent[p]; }
-		return _parent[a] = p;
-	}
-	int size(int a) { return _size[root(a)]; }
-};
-*/
-// END CUT HERE
 
 // BEGIN CUT HERE
 int main() {
 	ABBADiv1 ___test;
-	___test.run_test(0);
-	___test.run_test(1);
-	___test.run_test(2);
-	___test.run_test(3);
-	___test.run_test(4);
-	___test.run_test(5);
-//	___test.run_test(-1);
-
-
-	int cnt = 0;
-	for (int t = 0; t < 10000; ++t) {
-		int alen = (rand() * 4) / (RAND_MAX + 1) + 1;
-		int blen = alen + (rand() * 4) / (RAND_MAX + 1) + 1;
-		string a, b;
-		for (int i = 0; i < alen; ++i) {
-			a += (rand() * 2) / (RAND_MAX + 1) ? 'A' : 'B';
-		}
-		for (int i = 0; i < blen; ++i) {
-			b += (rand() * 2) / (RAND_MAX + 1) ? 'A' : 'B';
-		}
-
-		string p = ___test.canObtain(a, b);
-		string q = ___test.canObtain2(a, b);
-		if (p != q) {
-			printf("a: %s, b: %s, 1: %s, 2: %s\n", a.c_str(), b.c_str(), p.c_str(), q.c_str());
-			if (++cnt >= 3) {
-				break;
-			}
-		}
-	}
-
-
-
-
+	___test.run_test(-1);
 }
 // END CUT HERE
