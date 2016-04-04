@@ -2,75 +2,10 @@
 /*
 SRM 686 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Correct bracket sequences can be defined recursively as follows:
-
-The empty string "" is a correct sequence.
-If "X" and "Y" are correct sequences, then "XY" (the concatenation of X and Y) is a correct sequence.
-If "X" is a correct sequence, then "(X)" and "[X]" are also correct sequences.
-Each correct bracket sequence can be derived using the above rules.
-
-Examples of correct bracket sequences include "", "()", "()[][]", "([]())", and "([[()]])".
-
-You are given a string s that only contains the characters '(', ')', '[', and ']'.
-We want to erase some subset of characters of s (possibly none of them, but not all of them).
-Moreover, we want to do it in such a way that the resulting string will be a correct non-empty bracket sequence.
-Compute and return the number of ways in which this can be done.
-
-
-DEFINITION
-Class:BracketSequenceDiv1
-Method:count
-Parameters:string
-Returns:long long
-Method signature:long long count(string s)
-
-
-CONSTRAINTS
--s will contain between 1 and 40 characters, inclusive.
--Each character in s will be one of '(', ')', '[', ']'.
-
-
-EXAMPLES
-
-0)
-"()[]"
-
-Returns: 3
-
-There are 3 valid ways to erase some characters and obtain a correct non-empty bracket sequence:
-
-Erase nothing and obtain "()[]".
-Erase the first two characters and obtain "[]".
-Erase the last two characters and obtain "()".
-
-
-1)
-"())"
-
-Returns: 2
-
-Here we have 2 solutions: we can either erase the middle character or the last character.
-Note that we count each of those ways separately, even though in both cases we get the same string "()".
-
-
-2)
-"()()"
-
-Returns: 4
-
-
-3)
-"([)]"
-
-Returns: 2
-
-
-4)
-"())[]][]([]()]]()]]]"
-
-Returns: 3854
+問題
+-()と[]だけからなる文字列がある
+-0文字以上削除して、1文字以上にする
+-きちんと括弧が閉じるのは何通りか求める
 
 */
 // END CUT HERE
