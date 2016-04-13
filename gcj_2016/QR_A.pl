@@ -3,17 +3,16 @@
 # Google Code Jam 2016 Qualification Round
 # Problem A. Counting Sheep
 
-use List::Util 'min';
+use List::Util 'max';
 
 sub solve {
   my $n = $_[0];
-  min map {
-    my $d = ''.$_;
-    for (my $x = $n; ; $x += $n) {
-      if (index(''+$x, $d) >= 0) {
-        return $x;
-      }
+  max map {
+    my $d = ''.$_, $x;
+    for ($x = $n; index(''.$x, $d) < 0; $x += $n) {
+      ;
     }
+    $x;
   } (0..9);
 }
 
