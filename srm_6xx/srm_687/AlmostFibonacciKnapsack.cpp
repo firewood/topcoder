@@ -2,71 +2,12 @@
 /*
 SRM 687 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given a sequence of integers.
-This sequence is defined as follows:
-
-A[1] = 2
-A[2] = 3
-for each n >= 3, A[n] = A[n-1] + A[n-2] - 1
-
-You are given a long long x that is at least 2.
-Your task is to write x as a sum of distinct elements of the above sequence.
-More precisely, you have to find and return any valid vector <int> B with the following properties:
-
-The elements of B are distinct positive integers.
-x = A[B[0]] + A[B[1]] + ... + A[B[k-1]], where k is the number of elements in B.
-
-If there are multiple solutions, return any of them.
-If there are no solutions, return the vector <int> {-1} instead.
-
-
-DEFINITION
-Class:AlmostFibonacciKnapsack
-Method:getIndices
-Parameters:long long
-Returns:vector <int>
-Method signature:vector <int> getIndices(long long x)
-
-
-CONSTRAINTS
--x will be between 2 and 10^18, inclusive.
-
-
-EXAMPLES
-
-0)
-148
-
-Returns: {6, 10, 8, 5 }
-
-The first few terms of the sequence are 2,3,4,6,9,14,22,35,56,90.
-We can see that 14+90+35+9=148, and their respective indices are 6,10,8,5.
-
-
-1)
-2
-
-Returns: {1 }
-
-
-2)
-13
-
-Returns: {2, 3, 4 }
-
-
-3)
-3
-
-Returns: {2 }
-
-
-4)
-86267769395
-
-Returns: {3, 14, 15, 9, 26, 53, 5, 8 }
+問題
+-フィボナッチ数列っぽい数列が与えられる
+-A[1] = 2
+-A[2] = 3
+-A[n] = A[n-1] + A[n-2] - 1
+-数xが与えられたとき、この数列の異なる要素の和で表せるかどうかを求める
 
 */
 // END CUT HERE
