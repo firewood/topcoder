@@ -20,7 +20,6 @@ using namespace std;
 class WalkOverATree {
 public:
 	int maxNodesVisited(vector <int> parent, int L) {
-		int dist[100] = {};
 		int N = (int)parent.size() + 1;
 		int ans = 0;
 		for (int i = 0; i < N - 1; ++i) {
