@@ -18,11 +18,11 @@ function gen_primes(m) {
 }
 
 function digitsToInteger(N, digits, radix) {
-  var n = 0;
+  var n = '';
   for (var k = 0; k < N; ++k) {
-    n = n * radix + digits[k];
+    n += digits[k];
   }
-  return n;
+  return parseInt(n, radix);
 }
 
 function check(N, primes, digits, divisors) {
