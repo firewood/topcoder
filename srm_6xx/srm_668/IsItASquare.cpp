@@ -2,78 +2,9 @@
 /*
 SRM 668 Div2 Medium (600)
 
-PROBLEM STATEMENT
-It's a bird! It's a plane! No, it's a square in a plane! Wait, is it really a square?
-
-There are four distinct points in the plane.
-You are given their coordinates in the vector <int>s x and y:
-for each i between 0 and 3, inclusive, there is a point at (x[i], y[i]).
-
-Return "It's a square" (quotes for clarity) if the four points are the vertices of a square.
-Otherwise, return "Not a square".
-
-
-DEFINITION
-Class:IsItASquare
-Method:isSquare
-Parameters:vector <int>, vector <int>
-Returns:string
-Method signature:string isSquare(vector <int> x, vector <int> y)
-
-
-CONSTRAINTS
--x will contain 4 elements.
--y will contain 4 elements.
--Each element of x will be between 0 and 10,000, inclusive.
--Each element of y will be between 0 and 10,000, inclusive.
--The four points described by x and y will be distinct.
-
-
-EXAMPLES
-
-0)
-{0, 0, 2, 2}
-{0, 2, 0, 2}
-
-Returns: "It's a square"
-
-
-1)
-{0, 1, 5, 6}
-{1, 6, 0, 5}
-
-Returns: "It's a square"
-
-Note that the sides of the square do not have to be parallel to the coordinate axes.
-Also note that the order in which the points are given does not have to be the same as the order in which you would encounter them when following the boundary of the square.
-
-
-2)
-{0, 0, 7, 7}
-{0, 3, 0, 3}
-
-Returns: "Not a square"
-
-
-3)
-{0, 5000, 5000, 10000}
-{5000, 0, 10000, 5000}
-
-Returns: "It's a square"
-
-
-4)
-{1, 2, 3, 4}
-{4, 3, 2, 1}
-
-Returns: "Not a square"
-
-
-5)
-{0, 5, 3, 8}
-{0, 0, 4, 4}
-
-Returns: "Not a square"
+問題
+-4点の座標が与えられる
+-正方形かどうかを求める
 
 */
 // END CUT HERE
