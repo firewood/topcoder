@@ -7,10 +7,11 @@ use List::Util 'max';
 
 sub solve {
   my $n = $_[0];
+  return "INSOMNIA" if $n == 0;
+
   max map {
     my $d = ''.$_, $x;
-    for ($x = $n; index(''.$x, $d) < 0; $x += $n) {
-      ;
+    for ($x = $n; "$x" !~ /$d/; $x += $n) {
     }
     $x;
   } (0..9);
@@ -18,7 +19,7 @@ sub solve {
 
 my $T = <>;
 for (my $t = 1; $t <= $T; $t++) {
-  my $n = <>;
-  my $ans = $n > 0 ? solve($n) : "INSOMNIA";
+  my $n = <> + 0;
+  my $ans = solve($n);
   print "Case #$t: $ans\n";
 }
