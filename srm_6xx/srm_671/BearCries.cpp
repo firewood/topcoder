@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-SRM 671 Div1 Easy (250)
+SRM 671 Div1 Easy (300)
 
 問題
 -1個以上の泣きの顔文字;_;をネットワーク上に送信する
