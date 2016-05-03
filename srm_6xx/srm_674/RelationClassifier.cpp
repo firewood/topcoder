@@ -86,21 +86,10 @@ using namespace std;
 class RelationClassifier {
 public:
 	string isBijection(vector <int> domain, vector <int> range) {
-		bool f = true;
-		set<int> a, b;
-		for (int d : domain) {
-			if (a.find(d) != a.end()) {
-				f = false;
-			}
-			a.insert(d);
-		}
-		for (int r : range) {
-			if (b.find(r) != b.end()) {
-				f = false;
-			}
-			b.insert(r);
-		}
-		return f ? "Bijection" : "Not";
+		set<int> a(domain.begin(), domain.end());
+		set<int> b(range.begin(), range.end());
+		bool ans = domain.size() == a.size() && range.size() == b.size();
+		return ans ? "Bijection" : "Not";
 	}
 
 // BEGIN CUT HERE
