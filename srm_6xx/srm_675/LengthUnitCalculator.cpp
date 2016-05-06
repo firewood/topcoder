@@ -2,92 +2,9 @@
 /*
 SRM 675 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Your task is to write a calculator that will convert between four different length units: inches (in), feet (ft), yards (yd), and miles (mi).
-
-The conversions between these units:
-
-1 ft = 12 in
-1 yd = 3 ft
-1 mi = 1760 yd
-
-You are given an int amount and strings fromUnit and toUnit.
-Compute and return the amount of toUnits that corresponds to amount fromUnits.
-(For example, if amount=41, fromUnit="mi", and toUnit="in", you are supposed to compute the number of inches in 41 miles.)
-
-Note that the result will not necessarily be an integer.
-
-DEFINITION
-Class:LengthUnitCalculator
-Method:calc
-Parameters:int, string, string
-Returns:double
-Method signature:double calc(int amount, string fromUnit, string toUnit)
-
-
-NOTES
--Pay attention to the unusual time limit.
-
-
-CONSTRAINTS
--amount will be between 1 and 1,000, inclusive.
--fromUnit will be one of {"in", "ft", "yd", "mi"}.
--toUnit will be one of {"in", "ft", "yd", "mi"}.
-
-
-EXAMPLES
-
-0)
-1
-"mi"
-"ft"
-
-Returns: 5280.0
-
-We are asked to convert 1 mile into feet.
-From the information in the statement we know that 1 mi = 1760 yd = (1760 * 3) ft = 5280 ft.
-
-
-1)
-1
-"ft"
-"mi"
-
-Returns: 1.893939393939394E-4
-
-Here we have 1 ft = 1/5280 mi, which is approximately 0.000189394 miles.
-
-
-2)
-123
-"ft"
-"yd"
-
-Returns: 41.0
-
-
-3)
-1000
-"mi"
-"in"
-
-Returns: 6.336E7
-
-
-4)
-1
-"in"
-"mi"
-
-Returns: 1.5782828282828283E-5
-
-
-5)
-47
-"mi"
-"mi"
-
-Returns: 47.0
+問題
+-変換前の値と単位、変換後の単位が与えられる
+-変換後の値を求める
 
 */
 // END CUT HERE
