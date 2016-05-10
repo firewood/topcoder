@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-SRM 673 Div1 Easy (250)
+SRM 673 Div1 Easy (300)
 
 問題
 -N頭の熊と馬がいる
