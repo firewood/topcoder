@@ -2,75 +2,8 @@
 /*
 SRM 690 Div2 Easy (250)
 
-PROBLEM STATEMENT
-A string is called a square if it can be created by concatenating two copies of the same string.
-For example, "CANCAN" is a square because it consists of two copies of the string "CAN".
-Other squares include "AA", "ZZZZ", and "BERIBERI".
-The strings "AAAAA" and "HAHAHA" are not squares.
-
-You are given a string S.
-Return "square" (quotes for clarity) if there is a string T such that S = T + T.
-Otherwise, return "not square".
-Note that the return value is case-sensitive.
-
-
-DEFINITION
-Class:DoubleString
-Method:check
-Parameters:string
-Returns:string
-Method signature:string check(string S)
-
-
-CONSTRAINTS
--The length of S will be between 1 and 50, inclusive.
--Each character in S will be an uppercase letter ('A'-'Z').
-
-
-EXAMPLES
-
-0)
-"MAZAIMAZAI"
-
-Returns: "square"
-
-If T is "MAZAI", T+T will be "MAZAIMAZAI". 
-
-
-1)
-"MAMAZAIZAI"
-
-Returns: "not square"
-
-In this case, there is no string T for which T+T will be S.
-
-
-2)
-"IOI"
-
-Returns: "not square"
-
-The length of S is odd, so it's impossible to make S by concatenating the same string twice.
-
-
-3)
-"AA"
-
-Returns: "square"
-
-T will be "A".
-
-
-4)
-"ABCCBA"
-
-Returns: "not square"
-
-
-5)
-"Y"
-
-Returns: "not square"
+–â‘è
+-•¶Žš—ñS‚ª“¯‚¶•¶Žš—ñ‚ð2‚Â‚Â‚È‚°‚½‚à‚Ì‚©‚Ç‚¤‚©”»’è‚·‚é
 
 */
 // END CUT HERE
