@@ -2,78 +2,10 @@
 /*
 SRM 689 Div1 Easy (250)
 
-PROBLEM STATEMENT
-We have a garden that contains some flowers.
-The flowers are arranged into a rectangle with 2 rows and n columns.
-You are given a vector <string> garden that describes our garden.
-The vector <string> garden has two elements, each with n characters.
-Each character in garden represents one flower.
-Different characters in garden represent different colors.
-
-Two flowers are considered adjacent if they are in the same column, or if they are next to each other in the same row.
-Your goal is to produce a garden in which no pair of adjacent flowers shares the same color.
-You may rearrange the flowers in your garden arbitrarily (without changing its shape).
-More precisely, you may swap any two flowers in your garden, and you may do so arbitrarily many times.
-
-If the goal can be reached, return a vector <string> that will encode the resulting garden in the same format as was used for garden.
-If there are multiple solutions, you may return any of them.
-If there is no solution, return an empty vector <string>.
-
-
-DEFINITION
-Class:ColorfulGarden
-Method:rearrange
-Parameters:vector <string>
-Returns:vector <string>
-Method signature:vector <string> rearrange(vector <string> garden)
-
-
-CONSTRAINTS
--garden will contain exactly 2 elements, inclusive.
--Each element in garden will contain between 1 and 50 characters, inclusive.
--Each element in garden will contain the same number of characters.
--Each character in garden will be a lowercase letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-{"aa",
- "bb"}
-
-Returns: {"ab", "ba" }
-
-Swapping garden[0][1] and garden[1][1] produces a valid garden.
-
-
-1)
-{"xxxx",
- "xxxx"}
-
-Returns: { }
-
-No matter what we do, we will end up with the same result, and that is not a valid solution.
-
-
-2)
-{"abcd",
- "abcd"}
-
-Returns: {"abcd", "dcba" }
-
-
-3)
-{"abcdefghijklm",
- "nopqrstuvwxyz"}
-
-Returns: {"abcdefghijklm", "nopqrstuvwxyz" }
-
-
-4)
-{"aaa",
- "aab"}
-
-Returns: { }
+–â‘è
+-‰¡‚Én—ñAc‚É2’i‚Ì¡–Úó‚Ì‰Ô’d‚ª‚ ‚é
+-Še¡–Ú‚Ì‰Ô‚ÌF‚ª—^‚¦‚ç‚ê‚é
+-c‚Ü‚½‚Í‰¡‚É“¯‚¶F‚ª—×‚è‡‚í‚È‚¢‚æ‚¤‚É•À‚×‘Ö‚¦‚é
 
 */
 // END CUT HERE
