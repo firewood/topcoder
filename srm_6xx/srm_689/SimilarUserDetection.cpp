@@ -2,79 +2,10 @@
 /*
 SRM 689 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Each competitor on Topcoder must have a handle.
-Sometimes, different people may choose handles that look too similar to each other.
-For example, consider the handles "TOPCODER" and "T0PCODER".
-These two handles are different: the second character in the first handle is the letter 'O' (big oh),
-while the second character in the second handle is the digit '0' (zero).
-
-In this problem, all handles are nonempty strings.
-Each character in a handle must be a letter ('a'-'z', 'A'-'Z') or a digit ('0'-'9').
-We will consider two groups of characters that look too similar to each other.
-The first group are the characters 'O' (big oh) and '0' (zero) mentioned above.
-The second group are the characters '1' (one), 'l' (lowercase ell), and 'I' (uppercase i).
-
-Strings S and T are called similar if we can change S into T by repeatedly replacing a character by another character from the same group.
-
-You are given the vector <string> handles.
-Return "Similar handles found" if there is at least one pair of similar handles in handles.
-Otherwise, return "Similar handles not found".
-Note that the quotes are for clarity only and that the return value is case sensitive.
-
-
-DEFINITION
-Class:SimilarUserDetection
-Method:haveSimilar
-Parameters:vector <string>
-Returns:string
-Method signature:string haveSimilar(vector <string> handles)
-
-
-CONSTRAINTS
--handles will contain between 2 and 50 elements, inclusive.
--Each element in handles will contain between 1 and 50 characters, inclusive.
--Each character in handles will be '0'-'9', 'a'-'z' or 'A'-'Z'.
-
-
-EXAMPLES
-
-0)
-{"top", "coder", "TOPCODER", "TOPC0DER"}
-
-Returns: "Similar handles found"
-
-"TOPCODER" and "TOPC0DER" are similar.
-
-
-1)
-{"Topcoder", "topcoder", "t0pcoder", "topcOder"}
-
-Returns: "Similar handles not found"
-
-No two of these handles are similar. Note that case matters: the letter 'o' (lowercase oh) is not in the group with 'O' and '0'.
-
-
-2)
-{"same", "same", "same", "different"}
-
-Returns: "Similar handles found"
-
-Any two identical strings are similar.
-
-
-3)
-{"0123", "0I23", "0l23", "O123", "OI23", "Ol23"}
-
-Returns: "Similar handles found"
-
-These six handles are all similar to each other.
-
-
-4)
-{"i23", "123", "456", "789", "000", "o", "O"}
-
-Returns: "Similar handles not found"
+問題
+-いくつかのハンドル名が与えられる
+-Oと0、および、1とlとIは似ているものとする
+-似ている文字を同一視したときに同じハンドル名があるかどうかを求める
 
 */
 // END CUT HERE
