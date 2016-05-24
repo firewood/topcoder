@@ -2,114 +2,13 @@
 /*
 SRM 676 Div1 Medium (450)
 
-PROBLEM STATEMENT
-
-Alice and Bob have a rectangular board divided into a grid with r rows and c columns.
-The grid is described by the vector <string> s.
-Each character of s represents one cell.
-There are four types of cells:
-
-'E' denotes an exit. There may be arbitrarily many exits, possibly zero.
-'T' means the square contains a single token. There may be arbitrarily many tokens, possibly zero.
-'#' denotes an obstacle.
-'.' denotes an empty cell.
-
-Alice and Bob will play a game on this board.
-The game is parameterized by the int k.
-Each token initially has the number k on it.
-The players will take alternating turns, starting with Alice.
-A player's turn consists of the following steps:
-
-The player chooses a single token on the board and moves it one square up, down, left, or right. The token cannot go over the edge of the board and it cannot enter a cell with an obstacle. The token may be moved into a cell that already contains other token(s). During the game, arbitrarily many tokens may share the same cell.
-If this token is on an exit, it disappears from the board.
-Otherwise, subtract one from the number on the token. If the number on the token is zero, remove it from the board. (The numbers on other tokens do not change.)
-
-The first player unable to make a move loses the game.
-
-You are given the vector <string> s and the int k
-Compute the winner of the game, assuming both Alice and Bob play optimally.
-Return the winner's name: either "Alice" or "Bob".
-
-
-DEFINITION
-Class:BoardEscape
-Method:findWinner
-Parameters:vector <string>, int
-Returns:string
-Method signature:string findWinner(vector <string> s, int k)
-
-
-CONSTRAINTS
--r,c will be between 1 and 50, inclusive.
--s will contain exactly r elements, each consisting of c characters.
--Each character of each element of s will be one of 'T', 'E', '#', or '.'.
--k will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{"TE"}
-2
-
-Returns: "Alice"
-
-Alice can move the token directly to the exit on her first move, making Bob unable to move.
-
-
-1)
-{"E#E",
-"#T#",
-"E#E"}
-1000000
-
-Returns: "Bob"
-
-Alice is unable to make the first move in this case.
-
-
-2)
-{"T.T.T.",
-".E.E.E"}
-1
-
-Returns: "Alice"
-
-
-3)
-{"TTE"}
-6
-
-Returns: "Alice"
-
-
-4)
-{"..........................",
-"......TTT..TTT..T...T.....",
-".....T.....T..T.TT.TT.....",
-"......TTT..TTT..T.T.T.....",
-".........T.T.T..T...T.....",
-"......TTT..T..T.T...T.....",
-"..........................",
-"...E#E#E#E#E#E#E#E#E#E#...",
-"..........................",
-"......TTT..TTT...TTT......",
-".....T........T.T.........",
-"......TTT.....T..TTT......",
-".....T...T...T..T...T.....",
-"......TTT....T...TTT......",
-"..........................",
-"...#E#E#E#E#E#E#E#E#E#E...",
-"..........................",
-"....TT...T...T..T.TTT.T...",
-"...T.....T...T..T.T...T...",
-"...T.TT..T...TTTT.TT..T...",
-"...T..T..T...T..T.T.......",
-"....TT...TTT.T..T.T...T...",
-".........................."}
-987654321
-
-Returns: "Bob"
+問題
+-r×cの升目がある
+-出口EとトークンTが置かれている
+-トークンは初期値kを持っていて、上下左右いずれかに動かすと1減る
+-出口と重なるか、値がゼロになるとトークンは消滅する
+-2人で交互に動かすとき、トークンを動かせなくなったほうが負け
+-両者が最適な戦略を取るとき、勝者を求める
 
 */
 // END CUT HERE
