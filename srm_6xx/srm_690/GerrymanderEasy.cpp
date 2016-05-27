@@ -2,9 +2,9 @@
 /*
 SRM 690 Div2 Medium (500)
 
-���
--�e�s�s�ɗL���҂�A[i]�l�A�x���҂�B[i]�l����
--�A������K�ȏ�̓s�s��I�񂾂Ƃ��̎x����B��A�̍ő�l�����߂�
+問題
+-各都市に有権者がA[i]人、支持者がB[i]人いる
+-連続するK個以上の都市を選んだときの支持率B÷Aの最大値を求める
 
 */
 // END CUT HERE
