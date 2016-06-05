@@ -2,83 +2,10 @@
 /*
 SRM 689 Div2 Medium (500)
 
-PROBLEM STATEMENT
-You are given two strings: A and B.
-Each character in A is either '0' or '1'.
-Each character in B is '0', '1', or '?'.
-
-A string C matches B if we can change B into C by changing each '?' in B either to '0' or to '1'.
-Different occurrences of '?' may be changed to different digits.
-For example, C = "0101" matches B = "01??".
-Note that each character in C must be either '0' or '1', there cannot be any '?' remaining.
-
-Consider all possible strings that match B.
-How many of these strings occur as a (contiguous) substring in A?
-Compute and return their number.
-Note that we only count each good string once, even if it has multiple occurrences in A.
-
-
-DEFINITION
-Class:NonDeterministicSubstring
-Method:ways
-Parameters:string, string
-Returns:long long
-Method signature:long long ways(string A, string B)
-
-
-CONSTRAINTS
--A will contain between 1 and 50 characters, inclusive.
--B will contain between 1 and 50 characters, inclusive.
--Each character in A will be '0' or '1'.
--Each character in B will be '0', '1' or '?'.
-
-
-EXAMPLES
-
-0)
-"00010001"
-"??"
-
-Returns: 3
-
-There are four strings that match B: the strings "00", "01", "10", and "11".
-Out of these, the string "11" does not occur in A as a substring.
-The other three do occur, hence the answer is 3.
-
-
-1)
-"00000000"
-"??0??0"
-
-Returns: 1
-
-There are 16 different strings that match B, but out of those only the string "000000" is a substring of A.
-
-
-2)
-"001010101100010111010"
-"???"
-
-Returns: 8
-
-Each of the 8 strings that match B occurs somewhere in A.
-
-
-3)
-"00101"
-"??????"
-
-Returns: 0
-
-Here, the length of B is greater than the length of A.
-Clearly, a string that matches this B cannot be a substring of this A.
-
-
-4)
-"1101010101111010101011111111110001010101"
-"???????????????????????????????????"
-
-Returns: 6
+問題
+-文字0と1だけからなる文字列A、文字0、1、?だけからなる文字列Bがある
+-Bの?を0か1に変更した文字列をCとする
+-CがAの部分文字列となる場合の総数を求める
 
 */
 // END CUT HERE
