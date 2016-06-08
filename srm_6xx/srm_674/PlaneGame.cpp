@@ -2,82 +2,11 @@
 /*
 SRM 674 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Jerry is playing a rather plain computer game. The game is played in the 2D Cartesian plane. At the beginning of the game there are some points in the plane. You are given their coordinates in the vector <int>s x and y. That is, for each valid i there is a point at (x[i], y[i]).
-
-The objective of the game is to make a single shot that will eliminate as many of these points as possible. When Jerry takes the shot, it will eliminate all points that (at that moment) lie on the x-axis and also all points that lie on the y-axis.
-
-Before Jerry takes the shot, he may perform a sequence of zero or more actions. Each action can be of either of the following two types:
-
-He may translate all points by any vector (the same for all points). In other words, he may shift all points in the same direction by the same distance.
-He may rotate all points around the origin by any angle (the same for all points).
-
-
-Note that it is possible that after an action some points will have non-integer coordinates.
-
-Find and return the maximum number of points Jerry can eliminate in one shot.
-
-
-DEFINITION
-Class:PlaneGame
-Method:bestShot
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int bestShot(vector <int> x, vector <int> y)
-
-
-CONSTRAINTS
--x will contain between 1 and 50 elements, inclusive.
--y will contain the same number of elements as x.
--Each element of x and y will be between -1,000,000 and 1,000,000, inclusive.
--No two points will have the same coordinates.
-
-
-EXAMPLES
-
-0)
-{0, 5}
-{0, 5}
-
-Returns: 2
-
-At the beginning of the game there are two points: one at (0, 0) and the other at (5, 5). Jerry can shift both points by 5 in the negative y direction. This will move the points to (0, -5) and (5, 0). Then Jerry can take the shot and eliminate both points. 
-Therefore, the answer is 2.
-
-
-1)
-{0, -1, 1, 1, -1}
-{0, -1, -1, 1, 1}
-
-Returns: 5
-
-
-2)
-{0, 0, 0, 1, -1}
-{0, 1, -1, 0, 0}
-
-Returns: 5
-
-
-3)
-{0, -3, 3, 3, -3, 0, 0, 3, -3}
-{0, -3, -3, 3, 3, 3, -3, 0, 0}
-
-Returns: 5
-
-
-4)
-{0}
-{0}
-
-Returns: 1
-
-
-5)
-{-1000000, -1, 999998, 1, -1001, 1000000, -999999, 999999, 0, 0}
-{1000000, 1, 1000000, -1, -999, 1000000, 0, 0, -999999, 999999}
-
-Returns: 5
+問題
+-二次元座標上に何個かの点がある
+-平行移動または回転ができる
+-任意の移動と回転操作をしたのち、X軸とY軸上の点を一掃する
+-消せる点の個数の最大値を求める
 
 */
 // END CUT HERE
