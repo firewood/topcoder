@@ -170,6 +170,7 @@ class HardProof {
 	int N;
 	int d[50][50];
 	LL vis;
+	LL rvis;
 	int low;
 	int high;
 
@@ -182,15 +183,27 @@ class HardProof {
 		}
 	}
 
+	void rdfs(int n) {
+		rvis |= (1LL << n);
+		for (int i = 0; i < N; ++i) {
+			if ((rvis & (1LL << i)) == 0 && d[i][n] >= low && d[i][n] <= high) {
+				rdfs(i);
+			}
+		}
+	}
+
 	bool check(int low, int high) {
 		this->low = low, this->high = high;
 		LL full = (1LL << N) - 1;
-		for (int i = 0; i < N; ++i) {
-			vis = 0;
-			dfs(i);
-			if (vis != full) {
-				return false;
-			}
+		vis = 0;
+		dfs(0);
+		if (vis != full) {
+			return false;
+		}
+		rvis = 0;
+		rdfs(0);
+		if (rvis != full) {
+			return false;
 		}
 		return true;
 	}
