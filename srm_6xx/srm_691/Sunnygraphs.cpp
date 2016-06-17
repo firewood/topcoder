@@ -2,93 +2,10 @@
 /*
 SRM 691 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Hero has just constructed a very specific graph.
-He started with n isolated vertices, labeled 0 through n-1.
-For each vertex i Hero then chose a vertex a[i] (other than i) and he added an edge that connected i and a[i].
-This way he created a graph with n vertices and n edges.
-Note that if a[x]=y and a[y]=x, the vertices x and y were connected by two different edges.
-
-Hero now wants to perform the following procedure:
-
-Add a new isolated vertex number n.
-Choose a subset M of the original vertices.
-For each x in M, erase an edge between vertices x and a[x].
-For each x in M, add a new edge between vertices x and n.
-
-Hero's goal is to create a final graph in which the vertices 0 and 1 are in the same connected component.
-(I.e., there is a path from one of them to the other.)
-
-In step 2 of the above procedure Hero has 2^n possible subsets to choose from.
-A choice of M is good if it produces a graph with the desired property.
-Count how many of the 2^n possibilities are good choices.
-Return that count as a long long.
-
-
-DEFINITION
-Class:Sunnygraphs
-Method:count
-Parameters:vector <int>
-Returns:long long
-Method signature:long long count(vector <int> a)
-
-
-CONSTRAINTS
--a will contain n elements.
--n will be between 2 and 50, inclusive.
--Each element in a will be between 0 and n - 1, inclusive.
--For each i between 0 and n - 1 holds a[i] != i.
-
-
-EXAMPLES
-
-0)
-{1,0}
-
-Returns: 4
-
-The original graph contained the vertices 0 and 1.
-This pair of vertices was connected by two edges.
-
-Next, Hero added a new vertex 2.
-Then he had to choose one of four possible subsets M:
-
-If he chose M = {}, the resulting graph contained the edges 0-1 and 0-1. The vertices 0 and 1 were connected.
-If he chose M = {0}, the resulting graph contained the edges 0-1 and 0-2. The vertices 0 and 1 were connected.
-If he chose M = {1}, the resulting graph contained the edges 0-1 and 1-2. The vertices 0 and 1 were connected.
-Finally, if he chose M = {0, 1}, the resulting graph contained the edges 0-2 and 1-2. And again, the vertices 0 and 1 were connected: there is a path 0-1-2.
-
-As all four choices of M are good, the correct answer is 4.
-
-
-1)
-{2,2,0}
-
-Returns: 7
-
-Here, the original graph contained the edges 0-2, 0-2, and 1-2.
-For this graph M = {1} is not a good choice.
-This choice produces a graph with edges 0-2, 0-2, and 1-3.
-In this graph the vertices 0 and 1 are not in the same connected component.
-The other seven possible choices of M are all good.
-
-
-2)
-{2,3,0,1}
-
-Returns: 9
-
-
-3)
-{2,2,3,4,3}
-
-Returns: 30
-
-
-4)
-{18,18,20,28,7,27,8,13,40,3,7,21,30,17,13,34,29,16,15,11,0,9,39,36,38,23,24,8,4,9,29,22,35,5,13,23,3,27,34,23,8}
-
-Returns: 2198754820096
+問題
+-0～N-1までのN個の頂点がある
+-各頂点iは、頂点a[i]と辺を持つ
+-0本以上の任意の辺を頂点Nとつなぎ直すとき、頂点0と1が連結である場合の総数を求める
 
 */
 // END CUT HERE
