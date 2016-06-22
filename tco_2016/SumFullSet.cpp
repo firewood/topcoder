@@ -2,80 +2,8 @@
 /*
 TCO 2016 Round 1C Easy (250)
 
-PROBLEM STATEMENT
-
-Let S be a sequence of (not necessarily distinct) integers.
-We say that S is closed under addition if it has the following property:
-For any pair of valid and distinct indices i and j, the number S[i]+S[j] does also occur in the sequence S (one or more times).
-
-Note that the numbers S[i] and S[j] may be equal, only the indices i and j are required to be distinct.
-Also note that from the definition it follows that any 0-element or 1-element sequence is closed under addition,
- as there are no valid pairs of distinct indices into such a sequence.
-
-You are given a sequence of integers in a vector <int> elements.
-Return "closed" (quotes for clarity) if the given sequence is closed under addition.
-Otherwise, return "not closed".
-
-
-DEFINITION
-Class:SumFullSet
-Method:isSumFullSet
-Parameters:vector <int>
-Returns:string
-Method signature:string isSumFullSet(vector <int> elements)
-
-
-CONSTRAINTS
--Number of elements in elements will be between 1 and 50, both inclusive.
--Each element of elements will be between -50 and 50, both inclusive.
-
-
-EXAMPLES
-
-0)
-{-1,0,1}
-
-Returns: "closed"
-
-
-(-1) + 0 = (-1), which does appear in our sequence
-(-1) + 1 = 0, which does appear in our sequence
-0 + 1 = 1, which does appear in our sequence
-hence, our sequence is closed under addition
-
-
-1)
-{-1,1}
-
-Returns: "not closed"
-
-
-2)
-{0,1}
-
-Returns: "closed"
-
-
-3)
-{0,1,1}
-
-Returns: "not closed"
-
-This sequence is not closed under addition because 1+1 = 2, which is not an element of our sequence.
-
-
-4)
-{16,0,43,43,-36,-49,-46,-16,40,34,-43,-24,13,-48,45,19,12,0,43,6,26,-23,50,28,-3,21,46,45,-32,-41,0,-27,42,19,47,-36,-21,-1,5,-21,-28,-43,23,-26,-5,21,-41,16,-37,38}
-
-Returns: "not closed"
-
-
-5)
-{10}
-
-Returns: "closed"
-
-A 1-element sequence is closed under addition by definition.
+問題
+-数の集合Sの全ての二つの要素S[i]とS[j]について、S[i]+S[j]がSの要素かどうかを求める
 
 */
 // END CUT HERE
