@@ -2,82 +2,14 @@
 /*
 TCO 2016 Round 1B Easy (250)
 
-PROBLEM STATEMENT
-
-Vasa likes to construct sequences of numbers. If you tell him a positive integer n,
-he will begin a new sequence by writing the integer n as its first element.
-He will then repeat the following steps:
-
-If the last number in his sequence is a prime, he terminates the sequence.
-If he already wrote n elements without finding a prime, he becomes bored and leaves.
-Otherwise, he computes the next element of the sequence as the sum of squares of digits of the last element.
-For example, 4001 will be followed by 4^2 + 0^2 + 0^2 + 1^2 = 17, and 17 will be followed by 1^2 + 7^2 = 50.
-
-Find out what happens for the given int n. If Vasa eventually becomes bored and leaves, return -1.
-Otherwise, return the length of the generated sequence.
-
-
-DEFINITION
-Class:ExploringNumbers
-Method:numberOfSteps
-Parameters:int
-Returns:int
-Method signature:int numberOfSteps(int n)
-
-
-NOTES
--A prime number is a positive integer with exactly two positive integer divisors: 1 and itself.
- The first few primes are 2, 3, 5, 7, 11. Note that 1 is not a prime.
-
-
-CONSTRAINTS
--n will be between 1 and 10^9, inclusive.
-
-
-EXAMPLES
-
-0)
-5
-
-Returns: 1
-
-The input itself is a prime.
-
-
-1)
-57
-
-Returns: 4
-
-Vasa will write down 57, 74 (= 5^2 + 7^2), 65 (= 7^2 + 4^2), and 61 (= 6^2 + 5^2). Number 61 is a prime.
-
-
-2)
-1
-
-Returns: -1
-
-Vasa begins by writing down the number 1. As 1 is not a prime, he is not done yet. As he already wrote down 1 element of the sequence without finding a prime, he becomes bored and leaves.
-
-
-3)
-6498501
-
-Returns: 2
-
-
-4)
-989113
-
-Returns: 6
-
-
-5)
-12366
-
-Returns: -1
-
-For n=12366 there are no primes among the first 12366 elements of Vasa's sequence.
+問題
+-数Nが与えられる
+-以下のステップを繰り返す
+-数Nを書く
+-Nが素数ならNで終了
+-数をN個書いていれば-1で終了
+-終わりでない場合、Nの各桁の二乗の和をNとする
+-最終結果を求める
 
 */
 // END CUT HERE
