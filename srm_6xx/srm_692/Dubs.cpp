@@ -2,72 +2,8 @@
 /*
 SRM 692 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-A positive integer X is called a double number if its decimal representation (without leading zeroes) has the following properties:
-
-it contains at least two digits
-the two least significant digits are identical
-
-For example, 1488 is a double number, but 3 and 221 are not.
-
-You are given two long longs: L and R. Compute how many double numbers lie between L and R, inclusive. Return their count.
-
-
-DEFINITION
-Class:Dubs
-Method:count
-Parameters:long long, long long
-Returns:long long
-Method signature:long long count(long long L, long long R)
-
-
-CONSTRAINTS
--L will be between 10 and 1,000,000,000,000 (10^12), inclusive.
--R will be between L and 1,000,000,000,000 (10^12), inclusive.
-
-
-EXAMPLES
-
-0)
-10
-10
-
-Returns: 0
-
-The only number in the range [10,10] is 10. It isn't a double number.
-
-
-1)
-10
-20
-
-Returns: 1
-
-The only double number in the range [10,20] is 11.
-
-
-2)
-49
-101
-
-Returns: 6
-
-The double numbers are 55, 66, 77, 88, 99 and 100.
-
-
-3)
-1111111
-111111111
-
-Returns: 11000001
-
-
-4)
-91750002841
-91751522033
-
-Returns: 151920
+問題
+-LからRまでの範囲に、最後の2桁が同じ数が何個あるか求める
 
 */
 // END CUT HERE
