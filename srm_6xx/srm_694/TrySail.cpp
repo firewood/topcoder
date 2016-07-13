@@ -2,76 +2,12 @@
 /*
 SRM 694 Div1 Easy (250)
 
-PROBLEM STATEMENT
-There are N students in your class.
-The strength of each student is a small nonnegative integer.
-You are given these strengths in the vector <int> strength with N elements.
-
-You are going to divide all students into three teams for the boat race "TrySail".
-Each student must be assigned to exactly one of the three teams.
-Teams cannot be empty.
-
-Strangely enough, in this race the strength of a team is the bitwise xor of the strengths of its members.
-You want to maximize the sum of strengths of the three teams.
-Compute and return the largest possible sum of the teams' strengths.
-
-DEFINITION
-Class:TrySail
-Method:get
-Parameters:vector <int>
-Returns:int
-Method signature:int get(vector <int> strength)
-
-
-CONSTRAINTS
--N will be between 3 and 50, inclusive.
--strength will contain exactly N elements.
--Each element of strength will be between 0 and 255, inclusive.
-
-
-EXAMPLES
-
-0)
-{2,3,3}
-
-Returns: 8
-
-There are only three students.
-The only way to create three nonempty teams is to put each student into a different team.
-In that case the sum of teams' strengths will be 2+3+3 = 8.
-
-
-1)
-{7,3,5,2}
-
-Returns: 17
-
-There are 6 ways to make 3 teams:
-・ {0},{1},{2,3}: sum of strengths is 7+3+(5 xor 2) = 17
-・ {0},{2},{1,3}: sum of strengths is 7+5+(3 xor 2) = 13
-・ {0},{3},{1,2}: sum of strengths is 7+2+(3 xor 5) = 15
-・ {1},{2},{0,3}: sum of strengths is 3+5+(7 xor 2) = 13
-・ {1},{3},{0,2}: sum of strengths is 3+2+(7 xor 5) = 7
-・ {2},{3},{0,1}: sum of strengths is 5+2+(7 xor 3) = 11
-Therefore, the answer is 17.
-
-
-2)
-{13,13,13,13,13,13,13,13}
-
-Returns: 26
-
-
-3)
-{114,51,4,191,9,81,0,89,3}
-
-Returns: 470
-
-
-4)
-{108,66,45,82,163,30,83,244,200,216,241,249,89,128,36,28,250,190,70,95,117,196,19,160,255,129,10,109,189,24,22,25,134,144,110,15,235,205,186,103,116,191,119,183,45,217,156,44,97,197}
-
-Returns: 567
+問題
+-N人の生徒がいる
+-各生徒の強さが非負の整数で与えられる
+-3グループにわける
+-各グループの強さは、グループ内の生徒の強さのXORである
+-3グループの強さの最大値を求める
 
 */
 // END CUT HERE
