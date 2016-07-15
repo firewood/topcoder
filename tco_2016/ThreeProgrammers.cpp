@@ -3,97 +3,13 @@
 /*
 TCO 2016 Round 1C Medium (500)
 
-PROBLEM STATEMENT
-
-This problem is about three programmers who work together on a project.
-The programmers' names are Alice, Bob, and Charles.
-We will use 'A', 'B', and 'C' to denote them.
-
-Each day exactly one of the three programmers works on the project.
-The code history is a string that specifies who worked on which day.
-For example, the string "AAC" means that Alice worked on the project for two days in a row and then Charles worked for a day.
-
-Alice is always able to work on the project.
-Each time Bob spends a day working, he needs to take at least one day off before he is able to work again.
-Each time Charles spends a day working, he needs to take at least two days off.
-
-The above information means that not all strings are valid code histories.
-For example, the string "BB" is not a valid code history because Bob cannot work two days in a row.
-
-You are given a string code.
-This may or may not be a valid code history.
-Find any permutation of letters of code that produces a valid code history, and return that code history.
-If there are multiple solutions, you may return any of them.
-If there are no solutions, return "impossible" instead.
-
-
-DEFINITION
-Class:ThreeProgrammers
-Method:validCodeHistory
-Parameters:string
-Returns:string
-Method signature:string validCodeHistory(string code)
-
-
-CONSTRAINTS
--code will contain between 1 and 50 characters, inclusive.
--Each character in code will be one of 'A', 'B', and 'C'.
-
-
-EXAMPLES
-
-0)
-"CAB"
-
-Returns: "BCA"
-
-The input is a valid code history.
-In fact, any permutation of this input is a valid code history, and you may return any of them.
-
-
-1)
-"CBB"
-
-Returns: "BCB"
-
-Bob cannot work on two consecutive days.
-Hence, "BCB" is the only valid code history that is a permutation of the given input.
-
-
-2)
-"BB"
-
-Returns: "impossible"
-
-
-3)
-"BBA"
-
-Returns: "BAB"
-
-
-4)
-"CAC"
-
-Returns: "impossible"
-
-
-5)
-"ACAC"
-
-Returns: "CAAC"
-
-
-6)
-"ACABC"
-
-Returns: "ACABC"
-
-
-7)
-"BAABCABBCCACBAACABAABABBCCAACABCCAACCABCACACCBABAB"
-
-Returns: "BACBABCAACBACABCBACBACABCBACBACABCABCAACBACAACABCA"
+問題
+-A,B,Cの三人がいる
+-Aは毎日働くことができる
+-Bは働いたら少なくとも1日の休みが必要
+-Cは働いたら少なくとも2日の休みが必要
+-A,B,Cからなる働き方の文字列が与えられる
+-条件を満たすように働き方を並べ替える
 
 */
 // END CUT HERE
