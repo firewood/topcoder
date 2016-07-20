@@ -96,64 +96,41 @@ using namespace std;
 typedef vector<int> IntVec;
 
 class BearPasswordLexic {
-	int N;
-	IntVec xx;
-	int cnt[64];
-
-	bool check(int pos, int r) {
-		if (pos == 0) {
-			cnt[0] = r;
-			return r >= 0;
-		}
-		int c = 0;
-		for (int i = pos + 1; i < N; ++i) {
-			c += cnt[i] * (i - pos + 1);
-		}
-		int d = xx[pos] - c;
-		if (d == 0) {
-			return check(pos - 1, r);
-		}
-		if (d < 0) {
-			return false;
-		}
-		int n = (pos + 1) * d;
-		if (n > r) {
-			return false;
-		}
-		cnt[pos] = d;
-		return check(pos - 1, r - n);
-	}
 
 public:
 	string findPassword(vector <int> x) {
-		N = (int)x.size();
-		if (x[0] != N) {
+		int N = (int)x.size();
+		int len = 0;
+		for (int i = N - 1; i >= 0; --i) {
+			for (int j = i + 1; j < N; ++j) {
+				x[i] -= x[j] * (j - i + 1);
+			}
+			len += (i + 1) * x[i];
+			if (x[i] < 0) {
+				return "";
+			}
+		}
+		if (len != N) {
 			return "";
 		}
-		xx = x;
-		memset(cnt, 0, sizeof(cnt));
+
 		string ans;
-		if (check(N - 1, N)) {
-			for (int i = N - 1; i >= 0; --i) {
-				while (cnt[i] > 0) {
-					char f = 'a';
-					if (!ans.empty() && ans.back() == 'a') {
-						int j;
-						for (j = 0; j < i; ++j) {
-							if (cnt[j]) {
-								break;
-							}
-						}
-						if (j < i) {
-							--cnt[j];
-							ans += string(j + 1, 'b');
-						} else {
-							f = 'b';
-						}
-					}
-					--cnt[i];
-					ans += string(i + 1, f);
-				}
+		int high = N - 1, low = 0;
+		bool f = true;
+		while (ans.length() != N) {
+			while (high > 0 && x[high] <= 0) {
+				--high;
+			}
+			if (x[high]-- > 0) {
+				ans += string(high + 1, f ? 'a' : 'b');
+				f = !f;
+			}
+			while (low < (N - 1) && x[low] <= 0) {
+				++low;
+			}
+			if (x[low]-- > 0) {
+				ans += string(low + 1, f ? 'a' : 'b');
+				f = !f;
 			}
 		}
 		return ans;
