@@ -2,85 +2,10 @@
 /*
 SRM 695 Div1 Easy (300)
 
-PROBLEM STATEMENT
-A substring of a string is any non-empty contiguous subsequence of its characters.
-For example, both "abc" and "bcd" are substrings of "abcde", but "ace" is not a substring of "abcde".
-
-A string is called constant if all of its characters are the same.
-For example, "a" and "bbbbb" are constant strings, but "aba" is not a constant string.
-
-Two substrings of the same string are considered distinct if they start or end at a different position.
-For example, the string "ababab" contains three distinct copies of the substring "ab", and the string "aaaa" contains two distinct copies of the substring "aaa".
-
-Bear Limak is creating a new account and he needs to choose a password.
-His password should satisfy the following security requirements:
-
-The password must be a string of length N.
-Each character of the password must be either 'a' or 'b'.
-For each i between 1 and N, inclusive, the password must contain exactly x[i-1] constant substrings of length i.
-
-
-You are given the vector <int> x with N elements.
-Help Limak: find and return a valid password!
-If there are many valid passwords, return the lexicographically smallest of them.
-If there are no valid passwords, return "" (i.e., an empty string).
-
-
-DEFINITION
-Class:BearPasswordLexic
-Method:findPassword
-Parameters:vector <int>
-Returns:string
-Method signature:string findPassword(vector <int> x)
-
-
-NOTES
--N will be between 1 and 50, inclusive.
--x will contain exactly N elements.
--Each element in x will be between 0 and N, inclusive.
-
-
-EXAMPLES
-
-0)
-{5,0,0,0,0}
-
-Returns: "ababa"
-
-Since the given vector <int> x has five elements, the password must contain exactly five characters.
-A password must contain x[0] = 5 constant substrings of length 1, and 0 constant substrings of bigger lengths.
-The only two valid passwords are "ababa" and "babab".
-The first one is smaller lexicographically.
-
-
-1)
-{4,2,1,0}
-
-Returns: "aaab"
-
-
-2)
-{3,1,1}
-
-Returns: ""
-
-
-3)
-{4,3,2,1}
-
-Returns: "aaaa"
-
-
-4)
-{0}
-
-Returns: ""
-
-
-5)
-{4,0,3,2}
-
-Returns: ""
+問題
+-四方向いずれかの移動方向と、移動距離の配列が与えられる
+-与えられた方向に移動したのち、まっすぐ最初の位置に戻る
+-総移動距離を求める
 
 */
 // END CUT HERE
