@@ -16,33 +16,8 @@ N = 2K where K is an integer and 0 <= K <= 4
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <set>
-#include <map>
 
 using namespace std;
-
-static inline int popcount(unsigned int b)
-{
-#ifdef __GNUC__
-	return __builtin_popcount(b);
-#elif _MSC_VER >= 1400
-	return __popcnt(b);
-#else
-	b = (b & 0x55555555) + (b >> 1 & 0x55555555);
-	b = (b & 0x33333333) + (b >> 2 & 0x33333333);
-	b = (b & 0x0F0F0F0F) + (b >> 4 & 0x0F0F0F0F);
-	b += b >> 8;
-	b += b >> 16;
-	return b & 0x3F;
-#endif
-}
-
-typedef vector<int> IntVec;
-typedef set<int> IntSet;
-typedef map<int, IntVec> IntVecMap;
-typedef map<int, IntSet> IntSetMap;
-
-int d[16][16];
 
 int main(int argc, char *argv[])
 {
@@ -51,109 +26,52 @@ int main(int argc, char *argv[])
 	for (int t = 1; t <= T; ++t) {
 		int N;
 		cin >> N;
+		int W[16][16];
+		int dp[5][1 << 16][16];
+		memset(dp, 0x3f, sizeof(dp));
 		for (int i = 0; i < N; ++i) {
 			for (int j = 0; j < N; ++j) {
-				cin >> d[i][j];
+				cin >> W[i][j];
+				dp[0][1 << i][i] = N / 2;
 			}
 		}
-		IntSetMap bw[5], wb[5], lb[5];
-		for (int i = 0; i < N; ++i) {
-			bw[0][1 << i].insert(i);
-		}
-		int bits = 2;
-		for (int n = 1; bits <= N; bits *= 2, ++n) {
-			IntSetMap::const_iterator a;
-			for (a = bw[n - 1].begin(); a != bw[n - 1].end(); ++a) {
-				IntSetMap::const_iterator b;
-				for (b = a, ++b; b != bw[n - 1].end(); ++b) {
-					int c = a->first | b->first;
-					if (popcount(c) == bits) {
-						for (int aa : a->second) {
-							for (int bb : b->second) {
-								if (d[aa][bb]) {
-									bw[n][c].insert(aa);
-									wb[n][aa].insert(c);
-									lb[n][bb].insert(c);
-								} else {
-									bw[n][c].insert(bb);
-									wb[n][bb].insert(c);
-									lb[n][aa].insert(c);
+
+		int k, wr = N / 2;
+		for (k = 0; (1 << k) < N; ++k, wr /= 2) {
+			int x1, y1, x2, y2;
+			for (int c1 = (1 << (1 << k)) - 1; c1 < (1 << N); c1 = (((c1 & ~y1) / x1) >> 1) | y1) {
+				for (int c2 = (1 << (1 << k)) - 1; c2 < (1 << N); c2 = (((c2 & ~y2) / x2) >> 1) | y2) {
+					if ((c1 & c2) == 0) {
+						for (int i = 0; i < N; ++i) {
+							if (c1 & (1 << i)) {
+								int &r = dp[k + 1][c1 | c2][i];
+								r = min(r, dp[k][c1][i]);
+								if (dp[k][c1][i] == wr) {
+									for (int j = 0; j < N; ++j) {
+										if (dp[k][c2][j] == wr && W[i][j]) {
+											r = wr / 2;
+										}
+									}
 								}
 							}
 						}
 					}
+					x2 = c2 & -c2, y2 = c2 + x2;
 				}
+				x1 = c1 & -c1, y1 = c1 + x1;
 			}
 		}
 
 		cout << "Case #" << t << ":" << endl;
-		switch (N) {
-		case 1:
-			cout << "1 1" << endl;
-			break;
-		case 2:
-			if (d[0][1]) {
-				cout << "1 1" << endl;
-				cout << "2 2" << endl;
-			} else {
-				cout << "2 2" << endl;
-				cout << "1 1" << endl;
+		for (int i = 0; i < N; ++i) {
+			int win = dp[k][(1 << N) - 1][i] + 1;
+			int lose = 1;
+			for (int j = 0; j < N; ++j) {
+				if (i != j && !W[i][j]) {
+					lose = N / 2 + 1;
+				}
 			}
-			break;
-		case 4:
-			for (int i = 0; i < N; ++i) {
-				int res[2] = { 1, 1 };
-				if (wb[2][i].size() == 0) {
-					++res[0];
-					if (wb[1][i].size() == 0) {
-						++res[0];
-					}
-				}
-				if (lb[1][i].size() > 0) {
-					res[1] = 3;
-				}
-				cout << res[0] << " " << res[1] << endl;
-			}
-			break;
-		case 8:
-			for (int i = 0; i < N; ++i) {
-				int res[2] = { 1, 1 };
-				if (wb[3][i].size() == 0) {
-					++res[0];
-					if (wb[2][i].size() == 0) {
-						++res[0];
-						if (wb[1][i].size() == 0) {
-							res[0] += 2;
-						}
-					}
-				}
-				if (lb[1][i].size() > 0) {
-					res[1] = 5;
-				}
-				cout << res[0] << " " << res[1] << endl;
-			}
-			break;
-		case 16:
-			for (int i = 0; i < N; ++i) {
-				int res[2] = { 1, 1 };
-				if (wb[4][i].size() == 0) {
-					++res[0];
-					if (wb[3][i].size() == 0) {
-						++res[0];
-						if (wb[2][i].size() == 0) {
-							res[0] += 2;
-							if (wb[1][i].size() == 0) {
-								res[0] += 4;
-							}
-						}
-					}
-				}
-				if (lb[1][i].size() > 0) {
-					res[1] = 9;
-				}
-				cout << res[0] << " " << res[1] << endl;
-			}
-			break;
+			cout << win << " " << lose << endl;
 		}
 	}
 	return 0;
