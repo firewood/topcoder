@@ -132,7 +132,7 @@ public:
 		memset(dp, 0x3f, sizeof(dp));
 		dp[0] = 0;
 		for (int b = 0; b < bm; ++b) {
-			if (dp[b] >= 0) {
+			if (dp[b] < 0x3f3f3f3f) {
 				for (int i = 0; i < 50; ++i) {
 					int a = b | rem[i];
 					if (a != b) {
