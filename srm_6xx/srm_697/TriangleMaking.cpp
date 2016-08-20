@@ -2,74 +2,10 @@
 /*
 SRM 697 Div2 Easy (250)
 
-PROBLEM STATEMENT
-You have three sticks.
-Their current lengths are a, b, and c.
-You can shorten each of those sticks arbitrarily.
-Your goal is to produce three sticks with the following properties:
-
-The length of each stick is a positive integer.
-The three sticks can be used to build a triangle. The triangle must be non-degenerate. (I.e., it must have a positive area.)
-The perimeter of the triangle must be as large as possible.
-
-You are given the ints a, b, and c.
-Compute and return the largest possible perimeter of the triangle constructed from your three sticks.
-
-
-DEFINITION
-Class:TriangleMaking
-Method:maxPerimeter
-Parameters:int, int, int
-Returns:int
-Method signature:int maxPerimeter(int a, int b, int c)
-
-
-NOTES
--The return value is always defined. In other words, for any a, b, and c there is at least one way to build a valid triangle.
-
-
-CONSTRAINTS
--a will be between 1 and 100, inclusive.  
--b will be between 1 and 100, inclusive.  
--c will be between 1 and 100, inclusive.  
-
-
-EXAMPLES
-
-0)
-1
-2
-3
-
-Returns: 5
-
-Shorten the last stick from 3 to 2. There is a triangle with sides (1,2,2). The perimeter of this triangle is 1+2+2 = 5.
-
-
-1)
-2
-2
-2
-
-Returns: 6
-
-Here the optimal solution is to use the three sticks you have without shortening any of them.
-
-
-2)
-1
-100
-1
-
-Returns: 3
-
-
-3)
-41
-64
-16
-
-Returns: 113
+問題
+-長さがa,b,cの3本の棒が与えられる
+-元の長さを超えない整数の長さに短くすることができる
+-3本の棒で作れる三角形の外周の長さの最大値を求める
 
 */
 // END CUT HERE
