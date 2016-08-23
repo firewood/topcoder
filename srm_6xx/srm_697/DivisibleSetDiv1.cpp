@@ -2,70 +2,12 @@
 /*
 SRM 697 Div1 Easy (300)
 
-PROBLEM STATEMENT
-You are given a vector <int> b containing a sequence of n positive integers: b[0], ..., b[n-1].
-We are now looking for another sequence a = {a[0], ..., a[n-1]}.
-This sequence should have the following properties:
-
-The elements of the sequence a should be distinct.
-Each a[i] should be an integer greater than 1.
-For each i, the value a[i]^b[i] (that is, a[i] to the power b[i]) should be divisible by p[i], where p[i] is the product of all other elements of a. (I.e. p[i] = a[0]*a[1]*...*a[i-1]*a[i+1]*...*a[n-1].)
-
-
-Determine whether there is at least one sequence with the desired properties.
-Return "Possible" (quotes for clarity) if such a sequence exists and "Impossible" otherwise.
-
-DEFINITION
-Class:DivisibleSetDiv1
-Method:isPossible
-Parameters:vector <int>
-Returns:string
-Method signature:string isPossible(vector <int> b)
-
-
-CONSTRAINTS
--b will contain between 2 and 50 elements, inclusive.  
--Each element in b will be between 1 and 10, inclusive.  
-
-
-EXAMPLES
-
-0)
-{2,1}
-
-Returns: "Possible"
-
-Here, we have the following requirements:
-
-The values a[0] and a[1] should be distinct positive integers, both greater than 1.
-The value a[0]^2 should be divisible by a[1].
-The value a[1]^1 should be divisible by a[0].
-
-One sequence with the above properties is the sequence a = {2, 4}.
-
-
-1)
-{1,1}
-
-Returns: "Impossible"
-
-In this test case the requirements imply that a[0] must be divisible by a[1] and vice versa.
-This is possible only if a[0] = a[1].
-However, the elements of a must be distinct, so there is no valid sequence.
-
-
-2)
-{7, 7, 7}
-
-Returns: "Possible"
-
-For example, a = {12, 54, 18}.
-
-
-3)
-{5,3,5,4,6,1,3,7,9,6,2,5,4,1,1,9,6,10,10,6,10,7,7,8}
-
-Returns: "Impossible"
+問題
+-N個の正の整数からなる配列bが与えられる
+-以下の条件を全て満たす配列aが存在するかどうかを求める
+-aの要素a[0],a[1],...a[N-1]は全て異なる
+-各要素は1以上の整数
+-a[i]^b[i]は、a[i]以外の全てのaの要素の積で割り切れる
 
 */
 // END CUT HERE
