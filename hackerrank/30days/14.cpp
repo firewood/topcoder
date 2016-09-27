@@ -1,12 +1,6 @@
-//Write MyBook class
-class MyBook : public Book {
-        int _price;
-    public:
-        MyBook(string title, string author, int price)
-            : Book(title, author), _price(price) { }
-        void display() {
-            cout << "Title: " << title << endl;
-            cout << "Author: " << author << endl;
-            cout << "Price: " << _price << endl;
+	// Add your code here
+        Difference(vector<int> e) : elements(e) { }
+        void computeDifference(void) {
+            sort(elements.begin(), elements.end());
+            maximumDifference = elements.back() - elements.front();
         }
-};
