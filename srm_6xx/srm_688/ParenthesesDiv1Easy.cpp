@@ -21,6 +21,9 @@ SRM 688 Div1 Easy (250)
 
 using namespace std;
 
+typedef pair<int, int> II;
+typedef vector<II> IIVec;
+
 class ParenthesesDiv1Easy {
 public:
 	vector <int> correct(string s) {
@@ -29,48 +32,32 @@ public:
 		if (len % 2) {
 			ans.push_back(-1);	
 		} else {
-			vector<int> deleted(len);
-			int closed_cnt = 0, closed_pos = -1, opened_cnt = 0;
+			IIVec v;
+			int opened = 0, last_closed_pos = -1;
 			for (int i = 0; i < len; ++i) {
 				if (s[i] == '(') {
-					++opened_cnt;
-				} else if (opened_cnt) {
-					--opened_cnt;
-					deleted[i] = 1;
-					for (int j = i - 1; j >= 0; --j) {
-						if (!deleted[j]) {
-							deleted[j] = 1;
-							break;
-						}
-					}
+					++opened;
+					v.push_back(II(s[i], i));
+				} else if (opened) {
+					--opened;
+					v.pop_back();
 				} else {
-					++closed_cnt;
-					closed_pos = i;
+					last_closed_pos = (int)v.size();
+					v.push_back(II(s[i], i));
 				}
 			}
-
-			if (closed_pos >= 0) {
+			if (last_closed_pos >= 0) {
+				int rev_pos = v[last_closed_pos].second;
 				ans.push_back(0);
-				ans.push_back(closed_pos);
-				for (int i = 0; i <= (closed_pos / 2); ++i) {
-					swap(deleted[i], deleted[closed_pos - i]);
-					char a = s[i] == '(' ? ')' : '(';
-					char b = s[closed_pos - i] == '(' ? ')' : '(';
-					s[i] = b, s[closed_pos - i] = a;
+				ans.push_back(rev_pos);
+				for (int i = 0; i <= last_closed_pos / 2; ++i) {
+					int a = v[i].second;
+					int b = v[last_closed_pos - i].second;
+					v[i].second = rev_pos - b;
+					v[last_closed_pos - i].second = rev_pos - a;
 				}
-			}
-
-			int total_cnt = closed_cnt + opened_cnt;
-			opened_cnt = 0;
-			for (int i = 0; i < len; ++i) {
-				if (!deleted[i] && s[i] == '(') {
-					++opened_cnt;
-					if (opened_cnt > (total_cnt / 2)) {
-						ans.push_back(i);
-						ans.push_back(len - 1);
-						break;
-					}
-				}
+				ans.push_back(v[v.size() / 2].second);
+				ans.push_back(len - 1);
 			}
 		}
 		return ans;
@@ -140,6 +127,8 @@ public:
 		if ((Case == -1) || (Case == n)) {
 			string Arg0 = "))()()()())())))))))))((((((((()()()()()()))(()()())";
 			//             ))()()()())()))))))))) ((((((((()()()()()()))(()()())";
+			//             (((((((((()(()()()()(( ((((((((()()()()()()))(()()())
+			//             (((((((((  ()(()()()()((((((((((()()()()()()))(()()()) 
 			int Arr1[] = { 0, 21, 11, 51 };
 
 			vector <int> Arg1(Arr1, Arr1 + (sizeof(Arr1) / sizeof(Arr1[0])));
@@ -165,6 +154,7 @@ public:
 // BEGIN CUT HERE
 int main() {
 	ParenthesesDiv1Easy ___test;
+	___test.run_test(5);
 	___test.run_test(-1);
 }
 // END CUT HERE
