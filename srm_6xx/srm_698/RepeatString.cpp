@@ -2,80 +2,10 @@
 /*
 SRM 698 Div1 Easy (250)
 
-PROBLEM STATEMENT
-A string S is called a square if there is some string T such that S = T + T.
-For example, the strings "", aabaab" and "xxxx" are squares, but "a", "aabb" and "aabbaa" are not.
-
-You are given a string s.
-You want to change s into a square.
-You may do the following operations:
-
-Insert a new character anywhere into the string (including its beginning and end).
-Remove a single character.
-Replace a single character by another character.
-
-Please compute and return the smallest number of operations needed to change the given s into a square.
-Note that this is always possible: for example, you can remove all characters (one at a time).
-
-
-DEFINITION
-Class:RepeatString
-Method:minimalModify
-Parameters:string
-Returns:int
-Method signature:int minimalModify(string s)
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive.
--Each character in s will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"aba"
-
-Returns: 1
-
-One of the optimal solutions is to remove the 'b'.
-This changes the given s into the square "aa".
-
-
-1)
-"adam"
-
-Returns: 1
-
-Here, one optimal solution is to change the 'm' to 'd' to get "adad".
-
-
-2)
-"x"
-
-Returns: 1
-
-This time one optimal solution is to append another 'x' to get "xx".
-
-
-3)
-"aaabbbaaaccc"
-
-Returns: 3
-
-For example, we can change this string into "aaabbbaaabbb". Note that this requires three operations, not one.
-
-
-4)
-"repeatstring"
-
-Returns: 6
-
-
-5)
-"aaaaaaaaaaaaaaaaaaaa"
-
-Returns: 0
+問題
+-文字列が二つの文字列の繰り返しになっているとき、平方文字列と呼ぶ
+-1ターンで、1文字挿入、1文字変更、1文字削除、のいずれかの操作を行う
+-文字列sを平方文字列にするための最小ターン数を求める
 
 */
 // END CUT HERE
