@@ -2,105 +2,11 @@
 /*
 SRM 700 Div1 Easy (300)
 
-PROBLEM STATEMENT
-
-Your friend just took part in a popular online programming contest.
-The participants were split across roomCount rooms, with each room containing exactly roomSize contestants.
-We will use n = roomCount * roomSize to denote the total number of contestants.
-
-The contest was such that there were no ties.
-After the contest, each contestant had a distinct rank between 1 and n, inclusive.
-(The contestant with rank 1 is the winner.)
-
-A room winner is the contestant with the best (i.e., smallest) rank in their room.
-
-You do not know the final standings.
-The only thing you know are the ranks of all room winners.
-More precisely, you are given a vector <int> leaders with roomCount elements.
-The i-th element of leaders denotes the rank of the room winner of the i-th room.
-
-Your friend just told you that her rank in this contest was friendPlace.
-
-Return the number of different rooms in which your friend could have competed, given the information you have.
-
-
-DEFINITION
-Class:FindingFriend
-Method:find
-Parameters:int, vector <int>, int
-Returns:int
-Method signature:int find(int roomSize, vector <int> leaders, int friendPlace)
-
-
-NOTES
--The value of n is not explicitly given in the arguments, but can be computed as roomSize times the number of elements in leaders.
-
-
-CONSTRAINTS
--roomSize will be between 1 and 1,000,000,000, inclusive.
--roomCount will be between 1 and 1,000, inclusive.
--Additionally, roomSize and roomCount will be such that n (that is, roomSize times roomCount) will not exceed 1,000,000,000.
--leaders will contain exactly roomCount elements.
--Each element of leaders will be between 1 and n, inclusive.
--All elements of leaders will be distinct.
--It is guaranteed there is at least one distribution of contestants into rooms that is consistent with leaders.
--friendPlace will be between 1 and n, inclusive.
-
-
-EXAMPLES
-
-0)
-2
-{5,1,2}
-4
-
-Returns: 2
-
-We have 6 contestants: 3 rooms with 2 contestants in each of them.
-Your friend finished 4-th.
-Given the information you have, there are only two possible distributions of contestant ranks into rooms:
-
-Room 1: ranks 5 and 6. Room 2: ranks 1 and 3. Room 3: ranks 2 and 4.
-Room 1: ranks 5 and 6. Room 2: ranks 1 and 4. Room 3: ranks 2 and 3.
-
-Your friend has competed either in room 2 or in room 3.
-There are two possible rooms, so the correct return value is 2.
-
-
-1)
-5
-{1,2,3,4,5}
-4
-
-Returns: 1
-
-You know for sure your friend is in room 4, as she is its room winner.
-
-
-2)
-6
-{10,5,1,4,2,20}
-9
-
-Returns: 4
-
-Your friend can be in either of the rooms 2, 3, 4, and 5.
-
-
-3)
-1000000000
-{1}
-700700700
-
-Returns: 1
-
-
-4)
-2
-{3,6,8,1,2}
-10
-
-Returns: 5
+問題
+-友人がプログラミングコンテストに参加している
+-部屋がroomCount個あり、各部屋にはそれぞれroomSize人が割り当てられる
+-各部屋の一位の順位と、友人の順位が与えられる
+-友人が割り当てられた可能性のある部屋の総数を求める
 
 */
 // END CUT HERE
