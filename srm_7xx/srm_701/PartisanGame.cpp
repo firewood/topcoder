@@ -2,89 +2,12 @@
 /*
 SRM 701 Div1 Easy (300)
 
-PROBLEM STATEMENT
-
-Alice and Bob play a game with a pile of stones.
-Initially, there are n stones in the pile.
-The players take alternating turns, Alice goes first.
-
-You are given two vector <int>s: a and b.
-The elements of a are allowed moves for Alice, and the elements of b are allowed moves for Bob.
-
-In each turn, the current player must remove some stones from the pile.
-The number of removed stones must be equal to one of the player's allowed moves.
-If a player cannot take a valid turn, they lose the game.
-
-Assume that both Alice and Bob play the game optimally.
-Return "Alice" if Alice wins, or "Bob" if Bob wins.
-In other words, return "Alice" if and only if the first player has a winning strategy for the given n, a, and b.
-
-
-DEFINITION
-Class:PartisanGame
-Method:getWinner
-Parameters:int, vector <int>, vector <int>
-Returns:string
-Method signature:string getWinner(int n, vector <int> a, vector <int> b)
-
-
-CONSTRAINTS
--n will be between 0 and 1,000,000,000, inclusive.
--all elements of  a  will be distinct.
--all elements of  b  will be distinct.
--all elements of  a  will be between 1 and 5, inclusive.
--all elements of  b  will be between 1 and 5, inclusive.
-
-
-EXAMPLES
-
-0)
-7
-{3, 4}
-{4}
-
-Returns: "Alice"
-
-Alice should take 4 stones from the pile.
-This will leave a pile of only 3 stones.
-In that situation, Bob has no valid move.
-(His only allowed move is 4, but it is not possible to remove 4 stones from a pile of only 3 stones.)
-Thus, Bob loses the game.
-
-
-1)
-10
-{1}
-{4, 3, 2}
-
-Returns: "Bob"
-
-One winning strategy for Bob is to always take 4 stones.
-If Bob follows this strategy, Alice will lose the game during her third turn.
-
-
-2)
-104982
-{2, 3, 4, 5}
-{2, 5}
-
-Returns: "Alice"
-
-
-3)
-999999999
-{4}
-{5}
-
-Returns: "Bob"
-
-
-4)
-1000000000
-{1,2,3,4,5}
-{1,2,3,4,5}
-
-Returns: "Alice"
+問題
+-二人のプレーヤーが、石の山から石を取るゲーム
+-各プレーヤーには個数の配列が与えられる
+-1ターンに、配列のいずれかの個数だけ石を取ることができる
+-石を取れない場合は負け
+-勝つのが先手か後手かを求める
 
 */
 // END CUT HERE
