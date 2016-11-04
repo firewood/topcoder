@@ -2,65 +2,11 @@
 /*
 SRM 701 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-You are given a vector <int> a.
-The elements of a are not necessarily distinct.
-
-You want to rearrange the elements of a into a non-decreasing order.
-What is the smallest possible number of elements you have to move?
-
-Formally, the operation looks as follows:
-
-You select some set of positions in a.
-You permute the elements on the chosen positions arbitrarily.
-
-Compute and return the smallest possible size of the set of selected positions.
-
-
-DEFINITION
-Class:SortingSubsets
-Method:getMinimalSize
-Parameters:vector <int>
-Returns:int
-Method signature:int getMinimalSize(vector <int> a)
-
-
-CONSTRAINTS
--a will contain between 1 and 50 elements, inclusive.  
--Each element of a will be between 1 and 100, inclusive.  
-
-
-EXAMPLES
-
-0)
-{3, 2, 1}
-
-Returns: 2
-
-One can take the first and the last element and swap them.  
-
-
-1)
-{1, 2, 3, 4}
-
-Returns: 0
-
-The array is already sorted, so we can select an empty set of positions.
-
-
-2)
-{4, 4, 4, 3, 3, 3}
-
-Returns: 6
-
-Here all elements must be taken and permuted.  
-
-
-3)
-{11, 11, 49, 7, 11, 11, 7, 7, 11, 49, 11}
-
-Returns: 7
+問題
+-数値の配列aが与えられる
+-昇順に並べ替える
+-任意の個数の要素を選び、選んだ要素は任意の場所に配置できる
+-選ぶ要素数の最小値を求める
 
 */
 // END CUT HERE
