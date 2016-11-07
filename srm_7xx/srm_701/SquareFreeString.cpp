@@ -2,71 +2,9 @@
 /*
 SRM 701 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-We say that a string S is a square if it has the form TT, where T is some non-empty string.
-In other words, a square is a string that is a concatenation of two copies of the same non-empty string.
-For example, the strings "aa", "bbbb", and "beriberi" are squares.
-
-A string is called square-free if none of its substrings is a square.
-For example, the string "abca" is square-free.
-(The substrings of this string are the strings "a", "b", "c", "a", "ab", "bc", "ca", "abc", "bca", and "abca". None of these strings is a square.)
-
-You are given a string s.
-Return "square-free" if s is square-free.
-Otherwise, return "not square-free".
-Note that the return value is case-sensitive.
-
-
-DEFINITION
-Class:SquareFreeString
-Method:isSquareFree
-Parameters:string
-Returns:string
-Method signature:string isSquareFree(string s)
-
-
-CONSTRAINTS
--s will consist only of lowercase English letters ('a'-'z').  
--The length of s will be between 1 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-"bobo"
-
-Returns: "not square-free"
-
-"bobo" = T + T, where T = "bo", so it is not square-free.  
-
-
-1)
-"apple"
-
-Returns: "not square-free"
-
-Substring "pp" is a square.  
-
-
-2)
-"pen"
-
-Returns: "square-free"
-
-"pen" does not contain any substrings that are squares.  
-
-
-3)
-"aydyamrbnauhftmphyrooyq"
-
-Returns: "not square-free"
-
-
-4)
-"qwertyuiopasdfghjklzxcvbnm"
-
-Returns: "square-free"
+問題
+-文字列が二つの文字列の繰り返しになっているとき、平方文字列と呼ぶ
+-文字列sの部分文字列に平方文字列があるかどうかを求める
 
 */
 // END CUT HERE
