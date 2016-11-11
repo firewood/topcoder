@@ -2,109 +2,11 @@
 /*
 SRM 700 Div2 Medium (450)
 
-PROBLEM STATEMENT
-
-You are playing a treasure hunt game.
-The game is played on a rectangular board that is divided into a grid of unit squares.
-You are given the layout of the board in the vector <string> board.
-Each character in board represents one square of the board.
-The meanings of the characters in board:
-
-'O' (capital oh): This square contains a landmark.
-'.': This square is empty.
-'?': You do not know the contents of this square. It may contain a landmark and it may be empty.
-
-A treasure is buried under one of the squares.
-You know something about its location:
-
-The row in which the treasure is buried is between T and B, inclusive, where T is the topmost row that contains a landmark and B is the bottommost row that contains a landmark.
-
-The column in which the treasure is buried is between L and R, inclusive, where L is the leftmost column that contains a landmark and R is the rightmost column that contains a landmark.
-
-Thus, you can narrow your search space to a sub-rectangle of the original grid.
-
-Suppose k is the number of grid squares which are unknown to you.
-In other words, let k be the number of '?' characters in board.
-There are 2^k different boards that correspond to the information you have.
-For each of those boards, compute the number of squares that may contain the treasure.
-Find and return the sum of those 2^k numbers.
-
-
-DEFINITION
-Class:XMarksTheSpot
-Method:countArea
-Parameters:vector <string>
-Returns:int
-Method signature:int countArea(vector <string> board)
-
-
-CONSTRAINTS
--board will have between 1 and 50 elements, inclusive.
--Each element of board will be the same length.
--Each element of board will have between 1 and 50 characters, inclusive.
--Each character of each element of board will be "O", ".", or "?".
--The number of "?" characters among all elements of board is at most 19.
--There will be at least one "O" character among all elements of board.
-
-
-EXAMPLES
-
-0)
-{
-"?.",
-".O"
-}
-
-Returns: 5
-
-If the top left corner is empty, we only have 1 possible location of the treasure: the bottom right corner.
-If the top left corner is a landmark, the treasure can be anywhere in the grid: 4 possible locations.
-The return value is therefore 1 + 4 = 5.
-
-
-1)
-{
-"???",
-"?O?",
-"???"
-}
-
-Returns: 1952
-
-
-2)
-{
-"...?.",
-"?....",
-".O...",
-"..?..",
-"....?"
-}
-
-Returns: 221
-
-
-3)
-{"OOOOOOOOOOOOOOOOOOOOO"}
-
-Returns: 21
-
-
-4)
-{"?????????OO??????????"}
-
-Returns: 9963008
-
-
-5)
-{
-"OOO",
-"O?O",
-"OOO",
-"..."
-}
-
-Returns: 18
+問題
+-升目状の盤面で宝探しゲームをする
+-各升目は、目印がついているか、何もないか、どちらか不明の三通り
+-宝は、最も上にある目印の行から最も下にある目印の行まで、最も左にある目印の列から最も右にある目印の列までのどこかにある
+-どちらか不明のものについて全ての有無のパターンを列挙するとき、宝がある可能性のある面積の総和を求める
 
 */
 // END CUT HERE
