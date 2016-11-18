@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	LL a, b;
 	cin >> a >> b;
 	LL ab = a + b, ga = gcd(a, ab), gb = gcd(b, ab), g = gcd(ga, gb);
-	LL ans = gcd(ab, g * g) * gcd(ab / g, (a / g) * (b / g));
+	LL ans = g * gcd(ab / g, (ga / g) * gb);
 	cout << ans << endl;
 	return 0;
 }
