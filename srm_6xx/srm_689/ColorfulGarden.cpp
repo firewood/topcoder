@@ -29,7 +29,7 @@ public:
 		int cnt[256] = {};
 		for (int i = 0; i < 2; ++i) {
 			for (int j = 0; j < W; ++j) {
-				cnt[garden[i][j]] += 1;
+				cnt[(int)garden[i][j]] += 1;
 			}
 		}
 		IIVec v;
@@ -38,19 +38,18 @@ public:
 				return ans;
 			}
 			if (cnt[i]) {
-				v.push_back(II(-cnt[i], i));
+				v.push_back(II(cnt[i], i));
 			}
 		}
-		sort(v.begin(), v.end());
+		sort(v.rbegin(), v.rend());
 		ans = garden;
-		int pos = 0;
-		for (int i = 0; i < W * 2; ++i) {
-			if (v[pos].first >= 0) {
-				++pos;
+		int row = 0, col = 0;
+		for (II &kv : v) {
+			for (int i = 0; i < kv.first; ++i) {
+				ans[row ^ (col & 1)][col] = kv.second;
+				col = (col + 1) % W;
+				row += col == 0;
 			}
-			int col = i % W, row = (col & 1) ^ (i >= W);
-			ans[row][col] = (char)v[pos].second;
-			v[pos].first += 1;
 		}
 		return ans;
 	}
