@@ -33,6 +33,12 @@ struct modll {
 	modll operator*(const modll &r) { return (x * r.x) % MOD; }
 	modll operator*(int r) { return (x * r) % MOD; }
 	modll operator*=(const modll &r) { return x = (x * r.x) % MOD; }
+	static modll modinv(int a) { return modpow(a, MOD - 2); }
+	static modll modpow(int a, int b) {
+		modll x = a, r = 1;
+		for (; b; b >>= 1, x *= x) if (b & 1) r *= x;
+		return r;
+	}
 };
 
 class DivFreed2 {
