@@ -3,101 +3,11 @@
 
 TCO 2016 Round 2A Easy (400)
 
-Problem Statement
-
-You are given the int[] x: a list containing n integers.
-Each element of x is a positive integer of the form 2^a * 3^b, where a and b are some nonnegative integers.
-The elements of x are not necessarily distinct.
-
-You are going to perform n-1 operations. Each operation will consist of the following steps:
-
-Choose two distinct indices into your list. Let X and Y be the numbers at those indices.
-Remove both of them from the list. (Note that X and Y are allowed to have the same value.)
-Compute one of two possible values: either the greatest common divisor (gcd) of X and Y,
-or the least common multiple (lcm) of X and Y.
-Append the computed value to your list.
-Obviously, after n-1 operations you will be left with a single integer.
-In addition to x you are given the int t.
-You would like to know whether it is possible to perform the sequence of operations on x
-in such a way that the final integer will be t.
-If it is possible, return "Possible", otherwise return "Impossible".
-
-
-Definition
-
-Class:	LCMGCD
-Method:	isPossible
-Parameters:	int[], int
-Returns:	String
-Method signature:	String isPossible(int[] x, int t)
-(be sure your method is public)
-
-
-Constraints
--	x will contain between 1 and 50 elements, inclusive.
--	Each element of x will be between 1 and 10^9, inclusive.
--	t will be between 1 and 10^9, inclusive.
--	t and each element of x will be of the form 2^i*3^j for some nonnegative i,j.
-
-Examples
-0)
-
-{2,3}
-6
-Returns: "Possible"
-We can take the lcm to reach the goal.
-
-
-1)
-
-{4,9}
-6
-Returns: "Impossible"
-We have lcm(4,9) = 36 and gcd(4,9) = 1. It's impossible to get 6.
-
-
-2)
-
-{6,12,24,18,36,72,54,108,216}
-36
-Returns: "Possible"
-
-
-3)
-
-{6,27,81,729}
-6
-Returns: "Impossible"
-
-
-4)
-
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-1
-Returns: "Possible"
-
-
-5)
-
-{72,16,16,16,16,16,27,27,27,27,27,27,27,27,27}
-72
-Returns: "Possible"
-
-
-6)
-
-{100663296, 544195584, 229582512, 59049}
-60466176
-Returns: "Possible"
-Watch out for integer overflow. The intermediate results won't always fit into a 32-bit integer variable.
-
-
-7)
-
-{2,4,8,16,32,64}
-256
-Returns: "Impossible"
+問題
+-2^a×3^bの数からなる配列がある
+-任意の2つの要素を選び、その要素を削除する
+-2つの要素のGCDかLCMを求め、配列に追加する
+-配列の要素が1つになるまで繰り返したとき、値をtにできるかどうかを求める
 
 */
 // END CUT HERE
