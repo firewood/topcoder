@@ -1,6 +1,6 @@
 // BEGIN CUT HERE
 /*
-SRM 691 Div1 Easy (250)
+SRM 691 Div1 Easy (300)
 
 問題
 -0～N-1までのN個の頂点がある
