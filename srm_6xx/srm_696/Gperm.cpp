@@ -58,7 +58,7 @@ public:
 				for (int i = 0; i < 50; ++i) {
 					int a = b | rem[i];
 					if (a != b) {
-						dp[a | b] = min(dp[a | b], dp[b] + edges - popcount(b));
+						dp[a] = min(dp[a], dp[b] + edges - popcount(b));
 					}
 				}
 			}
