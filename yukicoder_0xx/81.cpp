@@ -31,13 +31,15 @@ int main(int argc, char *argv[])
 			b += 10000000000;
 		}
 	}
-	if (a < 0) {
+	if (a < 0 || (a == 0 && b < 0)) {
 		if (b <= 0) {
 			b = -b;
 		} else {
 			a += 1;
 			b = 10000000000 - b;
 		}
+		printf("-");
+		a = -a;
 	} else {
 		if (b < 0) {
 			a -= 1;
