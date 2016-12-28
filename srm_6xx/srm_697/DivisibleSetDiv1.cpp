@@ -14,6 +14,7 @@ SRM 697 Div1 Easy (300)
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <numeric>
 #include <iostream>
 #include <sstream>
 #include <cstring>
@@ -23,29 +24,23 @@ using namespace std;
 typedef vector<int> IntVec;
 
 class DivisibleSetDiv1 {
-	bool possible(IntVec v) {
-		int N = v.size();
-		if (N > 10) {
-			return false;
-		}
-		sort(v.begin(), v.end());
-		reverse(v.begin(), v.end());
-		for (int t = 0; t < 10000; ++t) {
-			int x[16], sum = 0;
-			x[0] = (rand() % 10) + 1, sum = x[0];
-			for (int i = 1; i < N; ++i) {
-				x[i] = x[0] + (rand() % 3) + 1;
-				sum += x[i];
-			}
-			bool f = true;
-			for (int i = 0; i < N; ++i) {
-				if (x[i] * v[i] < (sum - x[i])) {
-					f = false;
-					break;
+	bool possible(IntVec b) {
+		sort(b.rbegin(), b.rend());
+		IntVec a(b.size());
+		iota(a.begin(), a.end(), 1);
+		int sum = accumulate(a.begin(), a.end(), 0);
+		for (int t = 0; t < 1000000; ++t) {
+			bool ok = true;
+			for (int i = 0; i != a.size(); ++i) {
+				if ((a[i] * (b[i] + 1)) < sum) {
+					for (int j = i; j != a.size(); ++j) {
+						++a[j], ++sum;
+					}
+					ok = false;
 				}
-			}
-			if (f) {
-				return true;
+				if (ok) {
+					return true;
+				}
 			}
 		}
 		return false;
