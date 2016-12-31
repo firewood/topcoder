@@ -19,62 +19,25 @@ SRM 700 Div1 Easy (300)
 
 using namespace std;
 
-typedef pair<int, int> II;
-typedef vector<II> IIVec;
-
 class FindingFriend {
-
-	bool possible(int roomSize, vector <int> leaders, int friendPlace, int target_room) {
-		if (leaders[target_room] > friendPlace) {
-			return false;
-		}
-		int rooms = (int)leaders.size();
-		int cnt[1000] = {};
-		IIVec v;
-		for (int i = 0; i != rooms; ++i) {
-			cnt[i] = roomSize;
-			v.push_back(II(leaders[i], i));
-		}
-		sort(v.rbegin(), v.rend());
-		int b = rooms * roomSize + 1;
-		bool fit = false;
-		bool ext = false;
-		for (int i = 0; i != rooms; ++i) {
-			int leader = v[i].first;
-			int room = v[i].second;
-			int bottom = b;
-			int top = b - cnt[room];
-			b = top;
-			if (top < leader) {
-				return false;
-			}
-			if (room == target_room) {
-				return bottom >= friendPlace && leader <= friendPlace;
-			} else {
-				if (top <= friendPlace) {
-					if ((top - 1) < leader) {
-						return false;
-					}
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 
 public:
 	int find(int roomSize, vector <int> leaders, int friendPlace) {
-		int rooms = (int)leaders.size();
-		if (roomSize <= 1 || rooms <= 1) {
-			return 1;
-		}
 		if (std::find(leaders.begin(), leaders.end(), friendPlace) != leaders.end()) {
 			return 1;
 		}
-
-		int ans = 0;
-		for (int i = 0; i != rooms; ++i) {
-			ans += possible(roomSize, leaders, friendPlace, i);
+		sort(leaders.begin(), leaders.end());
+		int rooms = (int)leaders.size();
+		int ans = 1, buffer = 0;
+		for (int i = 1; i < rooms; ++i) {
+			if (friendPlace <= leaders[i]) {
+				break;
+			}
+			buffer += (roomSize - leaders[i] + leaders[i - 1]);
+			if (buffer <= 0) {
+				ans = 0;
+			}
+			++ans;
 		}
 		return ans;
 	}
