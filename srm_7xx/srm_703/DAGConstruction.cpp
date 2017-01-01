@@ -2,82 +2,12 @@
 /*
 SRM 703 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You are given a vector <int> x with n elements.
-Your task is to construct a directed acyclic graph that satisfies all the conditions listed below, or to determine that such a graph does not exist.
-The graph must look as follows:
-
-There are n vertices, numbered 0 through n-1.
-There are no self-loops, and each pair of vertices is connected by at most one edge.
-For each i, the number of vertices reachable from vertex i must be exactly x[i]. Note that each node is reachable from itself.
-
-If there is no such graph exists, return {-1}. (That is, a vector <int> that contains a single element with the value -1.)
-
-If there are multiple such graphs, you may choose any of them.
-Suppose that the graph you chose contains the edges a[0] -> b[0], a[1] -> b[1], and so on.
-Return the following vector <int>: {a[0], b[0], a[1], b[1], a[2], b[2], ...}.
-
-
-DEFINITION
-Class:DAGConstruction
-Method:construct
-Parameters:vector <int>
-Returns:vector <int>
-Method signature:vector <int> construct(vector <int> x)
-
-
-NOTES
--Given a directed graph, vertex y is reachable from vertex x if it is possible to travel from x to y by following a sequence of zero or more directed edges.
-
-
-CONSTRAINTS
--x will contain between 1 and 50 elements, inclusive.
--Each element in x will be between 1 and |x|, inclusive.
-
-
-EXAMPLES
-
-0)
-{2, 1}
-
-Returns: {0, 1 }
-
-We are looking for a graph with two vertices.
-Additionally, we should be able to reach both vertices from vertex 0 and just a single vertex from vertex 1.
-The graph that contains the edge 0 -> 1 has this property.
-
-
-1)
-{1, 1}
-
-Returns: { }
-
-This time the graph should be 2 isolated vertices.
-
-
-2)
-{1, 3, 1}
-
-Returns: {1, 0, 1, 2 }
-
-Note that the directions of edges are unrelated to the vertex numbers.
-In this example, the correct answer is the directed acyclic graph that contains the edges 1 -> 0 and 1 -> 2.
-
-
-3)
-{5,5,5,5,5}
-
-Returns: {-1 }
-
-This time we are supposed to return a graph with 5 vertices in which each vertex is reachable from each vertex.
-This is only possible if the entire graph is strongly connected.
-An acyclic graph on 5 vertices cannot possibly be strongly connected, so we should return {-1}.
-
-
-4)
-{4,2,2,1}
-
-Returns: {0, 1, 0, 2, 1, 3, 2, 3 }
+問題
+-N個の頂点と、それぞれの頂点が持つ値xが与えられる
+-以下の条件を満たす有向グラフを構築せよ
+--閉路は存在しない
+--任意の2頂点間の辺は高々1つ
+--頂点iから到達可能な頂点の数はx[i]個
 
 */
 // END CUT HERE
