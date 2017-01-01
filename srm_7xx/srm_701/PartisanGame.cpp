@@ -45,7 +45,6 @@ public:
 	string getWinner(int n, vector <int> a, vector <int> b) {
 		memset(moves, 0, sizeof(moves));
 		memo[0].clear(), memo[1].clear();
-		memo[0][0] = 0, memo[1][0] = 0;
 		for (int x : a) {
 			moves[0][x] = 1;
 		}
