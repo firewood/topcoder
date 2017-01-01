@@ -62,7 +62,7 @@ public:
 		if (n < 1000) {
 			ans = r[n];
 		} else {
-			for (int f = 500; f >= 1; --f) {
+			for (int f = 333; f >= 1; --f) {
 				if (memcmp(r + f, r + 2 * f, f) == 0) {
 					n = (n % f) + f;
 					break;
