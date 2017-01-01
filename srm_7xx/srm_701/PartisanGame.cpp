@@ -22,41 +22,39 @@ using namespace std;
 
 class PartisanGame {
 
-	map<int, int> memo;
+	int moves[2][6];
+	map<int, int> memo[2];
 
-	int win(int n, int a, int b) {
-		if (n <= 0) {
-			return 0;
-		}
-		int key = (n << 16) | (b << 8) | a;
-		if (memo.find(key) == memo.end()) {
+	int win(int n, int p) {
+		if (memo[p].find(n) == memo[p].end()) {
 			int result = 0;
 			for (int i = 1; i <= 5 && n >= i; ++i) {
-				if ((1 << i) & a) {
-					if (!win(n - i, b, a)) {
+				if (moves[p][i]) {
+					if (!win(n - i, !p)) {
 						result = 1;
 						break;
 					}
 				}
 			}
-			memo[key] = result;
+			memo[p][n] = result;
 		}
-		return memo[key];
+		return memo[p][n];
 	}
 
 public:
 	string getWinner(int n, vector <int> a, vector <int> b) {
-		memo.clear();
-		int aa = 0, bb = 0;
+		memset(moves, 0, sizeof(moves));
+		memo[0].clear(), memo[1].clear();
+		memo[0][0] = 0, memo[1][0] = 0;
 		for (int x : a) {
-			aa |= 1 << x;
+			moves[0][x] = 1;
 		}
 		for (int x : b) {
-			bb |= 1 << x;
+			moves[1][x] = 1;
 		}
 		char r[1000];
 		for (int x = 0; x < 1000; ++x) {
-			r[x] = win(x, aa, bb);
+			r[x] = win(x, 0);
 		}
 		char ans;
 		if (n < 1000) {
