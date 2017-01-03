@@ -55,19 +55,15 @@ public:
 		for (int x = 0; x < 1000; ++x) {
 			r[x] = win(x, 0);
 		}
-		char ans;
-		if (n < 1000) {
-			ans = r[n];
-		} else {
+		if (n >= 1000) {
 			for (int f = 333; f >= 1; --f) {
 				if (memcmp(r + f, r + 2 * f, f) == 0) {
 					n = (n % f) + f;
 					break;
 				}
 			}
-			ans = r[n];
 		}
-		return ans ? "Alice" : "Bob";
+		return r[n] ? "Alice" : "Bob";
 	}
 
 	// BEGIN CUT HERE
