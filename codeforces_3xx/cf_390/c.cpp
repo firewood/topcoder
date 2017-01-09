@@ -3,7 +3,6 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
-#include <queue>
 #include <vector>
 #include <map>
 #include <set>
@@ -14,85 +13,78 @@ using namespace std;
 
 typedef map<string, int> StrIntMap;
 
-void solve(StrIntMap names, vector<string> chats) {
-	string nn[100];
-	for (auto kv : names) {
-		nn[kv.second] = kv.first;
+vector<string> split(const char *delim, const string &words) {
+	vector<string> res;
+	char buffer[65536];
+	strcpy(buffer, words.c_str());
+	char *word = strtok(buffer, delim);
+	while (word != NULL) {
+		res.push_back(word);
+		word = strtok(NULL, delim);
 	}
+	return res;
+}
 
-	vector<string> outputs = chats;
+bool solve(vector<string> &names, vector<string> &chats) {
 	int N = (int)names.size();
 	int C = (int)chats.size();
-	names["?"] = -1;
-	set<int> m[100];
-	int u[102];
-	for (int i = 0; i < 102; ++i) {
-		u[i] = -1;
+
+	StrIntMap name2id;
+	name2id["?"] = -1;
+	for (int i = 0; i != names.size(); ++i) {
+		name2id[names[i]] = i;
 	}
+
+	int user_ids[100];
+	vector<int> user_can[100];
 	for (int i = 0; i < C; ++i) {
-		int pos = chats[i].find(':');
+		int pos = (int)chats[i].find(':');
 		string name = chats[i].substr(0, pos);
-		u[i + 1] = names[name];
-		if (u[i + 1] == -1) {
-			outputs[i] = chats[i].substr(pos);
+		chats[i] = chats[i].substr(pos);
+		user_ids[i] = name2id[name];
+		if (user_ids[i] == -1) {
+			set<int> s;
 			for (int j = 0; j < N; ++j) {
-				m[i].insert(j);
+				s.insert(j);
 			}
-			char w[100];
-			strcpy(w, chats[i].c_str());
-			const char *delim = " .,:!?";
-			char *p = strtok(w, delim);
-			while (p != NULL) {
-				StrIntMap::const_iterator it = names.find(p);
-				if (it != names.end()) {
-					m[i].erase(it->second);
+			if (i > 0) {
+				s.erase(user_ids[i - 1]);
+			}
+			for (auto w : split(" .,:!?", chats[i])) {
+				StrIntMap::const_iterator it = name2id.find(w);
+				if (it != name2id.end()) {
+					s.erase(it->second);
 				}
-				p = strtok(NULL, delim);
 			}
-		}
-	}
-	vector<int> vv[100];
-	for (int i = 0; i < C; ++i) {
-		if (u[i + 1] == -1) {
-			m[i].erase(u[i]);
-			m[i].erase(u[i + 2]);
-			if (m[i].empty()) {
-				cout << "Impossible" << endl;
-				return;
+			if (s.empty()) {
+				return false;
 			}
-			vv[i] = vector<int>(m[i].begin(), m[i].end());
+			user_can[i] = vector<int>(s.begin(), s.end());
 		}
 	}
 
-	int x[102] = { -1 };
 	for (int t = 0; t < 100000; ++t) {
+		int u[100];
 		int i;
 		for (i = 0; i < C; ++i) {
-			int a = u[i + 1];
+			int a = user_ids[i];
 			if (a == -1) {
-				for (int j = 0; j < 10; ++j) {
-					a = vv[i][rand() % vv[i].size()];
-					if (a != x[i]) {
-						break;
-					}
-				}
+				a = user_can[i][rand() % user_can[i].size()];
 			}
-			x[i + 1] = a;
-			if (x[i] == a) {
+			if (i > 0 && u[i - 1] == a) {
 				break;
 			}
+			u[i] = a;
 		}
 		if (i >= C) {
 			for (int i = 0; i < C; ++i) {
-				if (u[i + 1] == -1) {
-					cout << nn[x[i + 1]];
-				}
-				cout << outputs[i] << endl;
+				cout << names[u[i]];
+				cout << chats[i] << endl;
 			}
-			return;
+			return true;
 		}
 	}
-	cout << "Impossible" << endl;
+	return false;
 }
 
 int main(int argc, char *argv[])
@@ -101,7 +93,7 @@ int main(int argc, char *argv[])
 	getline(cin, s);
 	int T = atoi(s.c_str());
 	for (int t = 0; t < T; ++t) {
-		map<string, int> names;
+		vector<string> names, chats;
 		getline(cin, s);
 		int N = atoi(s.c_str());
 		getline(cin, s);
@@ -109,16 +101,17 @@ int main(int argc, char *argv[])
 		for (int i = 0; i < N; ++i) {
 			string name;
 			ss >> name;
-			names[name] = i;
+			names.push_back(name);
 		}
-		vector<string> chats;
 		getline(cin, s);
 		int C = atoi(s.c_str());
 		for (int i = 0; i < C; ++i) {
 			getline(cin, s);
 			chats.push_back(s);
 		}
-		solve(names, chats);
+		if (!solve(names, chats)) {
+			cout << "Impossible" << endl;
+		}
 	}
 	return 0;
 }
