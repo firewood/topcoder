@@ -2,13 +2,13 @@
 /*
 SRM 705 Div1 Medium (450)
 
-å•é¡Œ
--Nå€‹ã®å®¹å™¨ãŒã‚ã‚Šã€ãã‚Œãã‚Œã«é§’ãŒå…¥ã£ã¦ã„ã‚‹
--é§’ã®è¡Œå…ˆã‚’ç¤ºã™è¡¨M[i][j]ãŒã‚ã‚‹
--å„ã‚¿ãƒ¼ãƒ³ã«iã‚’ã²ã¨ã¤é¸ã¶
--å®¹å™¨jã«é§’ãŒå…¥ã£ã¦ã„ã‚Œã°ã€ãã‚Œã‚’M[i][j]ã«ç§»å‹•ã™ã‚‹
--ç§»å‹•ã¯åŒæ™‚ã«è¡Œã†
--é§’ãŒå…¥ã£ã¦ã„ã‚‹å®¹å™¨ã®æ•°ã‚’æœ€å°åŒ–ã™ã‚‹ã¨ãã€10^100ã‚¿ãƒ¼ãƒ³å¾Œã®å®¹å™¨ã®æ•°ã‚’æ±‚ã‚ã‚‹
+–â‘è
+-NŒÂ‚Ì—eŠí‚ª‚ ‚èA‚»‚ê‚¼‚ê‚É‹î‚ª“ü‚Á‚Ä‚¢‚é
+-‹î‚Ìsæ‚ğ¦‚·•\M[i][j]‚ª‚ ‚é
+-Šeƒ^[ƒ“‚Éi‚ğ‚Ğ‚Æ‚Â‘I‚Ô
+-—eŠíj‚É‹î‚ª“ü‚Á‚Ä‚¢‚ê‚ÎA‚»‚ê‚ğM[i][j]‚ÉˆÚ“®‚·‚é
+-ˆÚ“®‚Í“¯‚És‚¤
+-‹î‚ª“ü‚Á‚Ä‚¢‚é—eŠí‚Ì”‚ğÅ¬‰»‚·‚é‚Æ‚«A10^100ƒ^[ƒ“Œã‚Ì—eŠí‚Ì”‚ğ‹‚ß‚é
 
 */
 // END CUT HERE
@@ -34,8 +34,73 @@ unsigned long long __rdtsc() {
 #endif
 
 class MovingTokens {
+	int m;
+	int moves[50][50];
+	int vis[50][50];
+	vector<int> seqs[50][50];
+
+	bool dfs(vector<int> &seq, int a, int b) {
+		if (a == b) {
+			return true;
+		}
+		if (a > b) {
+			swap(a, b);
+		}
+		if (!vis[a][b]) {
+			vis[a][b] = 1;
+			for (int i = 0; i < m; ++i) {
+				if (dfs(seq, moves[i][a], moves[i][b])) {
+					seq.push_back(i);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 public:
 	int move(int n, int m, vector <int> moves) {
+		this->m = m;
+		for (int i = 0; i < m; ++i) {
+			for (int j = 0; j < n; ++j) {
+				this->moves[i][j] = moves[i * n + j];
+			}
+		}
+		for (int i = 0; i < n; ++i) {
+			for (int j = i + 1; j < n; ++j) {
+				memset(vis, 0, sizeof(vis));
+				seqs[i][j].clear();
+				dfs(seqs[i][j], i, j);
+				reverse(seqs[i][j].begin(), seqs[i][j].end());
+			}
+		}
+		vector<int> bin(n, 1);
+		do {
+retry:
+			for (int i = 0; i < n; ++i) {
+				if (bin[i]) {
+					for (int j = i + 1; j < n; ++j) {
+						const vector<int> &seq = seqs[i][j];
+						if (bin[j] && !seq.empty()) {
+							for (int k : seq) {
+								vector<int> next(n);
+								for (int l = 0; l < n; ++l) {
+									if (bin[l]) {
+										next[moves[k * n + l]] = 1;
+									}
+								}
+								bin = next;
+							}
+							goto retry;
+						}
+					}
+				}
+			}
+		} while (false);
+		return accumulate(bin.begin(), bin.end(), 0);
+	}
+
+	int move2(int n, int m, vector <int> moves) {
 		long long start = __rdtsc();
 		int ans = n;
 		while ((__rdtsc() - start) < TC_TIME_LIMIT) {
@@ -57,22 +122,22 @@ public:
 		return ans;
 	}
 
-// BEGIN CUT HERE
+	// BEGIN CUT HERE
 private:
 	template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
 
 	void verify_case(int Case, const int &Expected, const int &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
 
 public:
-	void run_test(int Case) { 
+	void run_test(int Case) {
 		int n = 0;
 
 		// test_case_0
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 2;
 			int Arg1 = 2;
-			int Arr2[] = {0,1,
-0,1};
+			int Arr2[] = { 0,1,
+				0,1 };
 			int Arg3 = 2;
 
 			vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -81,11 +146,11 @@ public:
 		n++;
 
 		// test_case_1
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 2;
 			int Arg1 = 2;
-			int Arr2[] = {0,0,
-1,1};
+			int Arr2[] = { 0,0,
+				1,1 };
 			int Arg3 = 1;
 
 			vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -94,10 +159,10 @@ public:
 		n++;
 
 		// test_case_2
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 3;
 			int Arg1 = 1;
-			int Arr2[] = {0,1,1};
+			int Arr2[] = { 0,1,1 };
 			int Arg3 = 2;
 
 			vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -106,14 +171,14 @@ public:
 		n++;
 
 		// test_case_3
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 2;
 			int Arg1 = 5;
-			int Arr2[] = {0,0,
- 0,0,
- 0,0,
- 1,1,
- 1,1};
+			int Arr2[] = { 0,0,
+				0,0,
+				0,0,
+				1,1,
+				1,1 };
 			int Arg3 = 1;
 
 			vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -122,11 +187,11 @@ public:
 		n++;
 
 		// test_case_4
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 3;
 			int Arg1 = 2;
-			int Arr2[] = {0,2,2,
- 1,1,0};
+			int Arr2[] = { 0,2,2,
+				1,1,0 };
 			int Arg3 = 1;
 
 			vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -146,9 +211,22 @@ public:
 		}
 		n++;
 
+
+		if ((Case == -1) || (Case == n)) {
+			int Arg0 = 4;
+			int Arg1 = 2;
+			int Arr2[] = { 1, 2, 0, 1, 1, 2, 0, 0 };
+			int Arg3 = 3;
+
+			vector <int> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
+			verify_case(n, Arg3, move(Arg0, Arg1, Arg2));
+		}
+		n++;
+
+
 	}
 
-// END CUT HERE
+	// END CUT HERE
 
 };
 
