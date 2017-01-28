@@ -2,81 +2,14 @@
 /*
 SRM 696 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Hero has two arrays, A and B, each containing the same number of integers.
-He wants to change A into an array that will resemble B as closely as possible.
-More precisely, the difference between two arrays of equal length is the number of indices where the two arrays differ.
-Hero wants to minimize the distance between the modified array A and the original array B.
-
-Hero can only modify A by using stickers.
-He has a collection of stickers.
-Each sticker contains a single integer.
-Each sticker can be used to cover a single element of A.
-Hero must use each sticker exactly once, and he cannot use multiple stickers on the same element of A.
-
-You are given the original arrays in the vector <int>s A and B, and the collection of stickers in the vector <int> F.
-Return the smallest possible difference between A and B after all stickers from F have been used to replace some elements of A.
-
-
-DEFINITION
-Class:Arrfix
-Method:mindiff
-Parameters:vector <int>, vector <int>, vector <int>
-Returns:int
-Method signature:int mindiff(vector <int> A, vector <int> B, vector <int> F)
-
-
-CONSTRAINTS
--A will contain between 1 and 50 elements, inclusive.
--A and B will contain the same number of elements.
--Size of F won't be larger than size of A.
--Each element in A, B and F will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,1,1}
-{2,2,2}
-{2}
-
-Returns: 2
-
-
-1)
-{1,1,1}
-{2,2,1}
-{2,2}
-
-Returns: 0
-
-
-2)
-{1,2,3}
-{3,2,1}
-{}
-
-Returns: 2
-
-Hero has no stickers. The given arrays A and B differ on two positions: on 0-based indices 0 and 2.
-
-
-3)
-{2,2,2}
-{2,2,2}
-{1,2,3}
-
-Returns: 2
-
-Note that Hero must use all the stickers. Originally the two arrays are the same, but applying all the stickers creates two differences, regardless of the order in which you use them.
-
-
-4)
-{1,3,3,3}
-{2,3,3,3}
-{2,2}
-
-Returns: 1
+問題
+-配列AとBがある
+-配列の違いとは、値が異なるインデックスの総数である
+-Aを変更してBとの違いを最小化したい
+-いくつかのステッカーがある
+-それぞれのステッカーは値を持っていて、ひとつの要素を一回だけその値にできる
+-一つの要素に複数のステッカーは使用できない
+-ステッカーを全て適用したあと、違いの最小値を求める
 
 */
 // END CUT HERE
