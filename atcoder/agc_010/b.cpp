@@ -1,4 +1,4 @@
-// A. 
+// B. 
 
 #include <iostream>
 #include <algorithm>
