@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 			break;
 		}
 		LL d = left - a + 1;
-		if (d < w) {
+		if (d < w && (a-1) <= (ed-t)) {
 			ans = a - 1;
 			w = d;
 		}
