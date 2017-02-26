@@ -2,74 +2,11 @@
 /*
 SRM 709 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You have an array of integers: the vector <int> A.
-
-When you give the array to Hero, he will execute the following steps:
-
-At the beginning, he will set the variable X to zero.
-For each element Y of A, in the given order, he will set X to (X + (X xor Y)).
-He will announce the final value of the variable X.
-
-
-Before you give the array A to Hero, you are allowed to permute its elements arbitrarily.
-Compute and return the largest possible value that can be announced by Hero.
-
-DEFINITION
-Class:Xscoregame
-Method:getscore
-Parameters:vector <int>
-Returns:int
-Method signature:int getscore(vector <int> A)
-
-
-CONSTRAINTS
--A will contain between 1 and 15 elements, inclusive.
--Each element in A will be between 0 and 50, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,2,3}
-
-Returns: 12
-
-An optimal solution is to rearrange A into the order {3, 1, 2}.
-Given this array, Hero will perform the following steps:
-
-He will set X to zero.
-Then, he will set X to (0 + (0 xor 3)) = 3.
-Then, he will set X to (3 + (3 xor 1)) = 5.
-Finally, he will set X to (5 + (5 xor 2)) = 12, and he will announce the value 12.
-
-
-1)
-{10,0,0,0}
-
-Returns: 80
-
-Here an optimal solution is to leave the array in the original order.
-The variable X will have the values 0, 10, 20, 40, and finally 80.
-
-2)
-{1,1,1,1,1,1}
-
-Returns: 1
-
-
-
-3)
-{1,0,1,0,1,0,1,0}
-
-Returns: 170
-
-
-
-4)
-{50,0,1,0,1,0,1,0,1,0,1,0,1,0,1}
-
-Returns: 830122
+問題
+-配列Aが与えられる
+-Aの各要素Yを任意の順番で選ぶ
+-Xの初期値を0としてX=(X+(X XOR Y))を計算する
+-Xの最大値を求める
 
 */
 // END CUT HERE
