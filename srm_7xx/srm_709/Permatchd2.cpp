@@ -2,95 +2,11 @@
 /*
 SRM 709 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Hero has a simple undirected graph.
-(Simple means that each edge connects two different vertices, and each pair of vertices is connected by at most one edge.)
-
-A graph is considered pretty if it is a simple undirected graph in which each connected component contains an even number of edges.
-
-You are given the adjacency matrix of Hero's graph as a vector <string> graph.
-('Y' means that the two vertices are connected by an edge, 'N' means that they aren't.)
-
-Change Hero's graph into a pretty graph by adding as few edges as possible.
-Return the minimum number of edges you have to add, or -1 if Hero's graph cannot be changed into a pretty graph.
-
-DEFINITION
-Class:Permatchd2
-Method:fix
-Parameters:vector <string>
-Returns:int
-Method signature:int fix(vector <string> graph)
-
-
-NOTES
--Don't forget that the graph you'll obtain after adding the edges must still be simple.
-
-
-CONSTRAINTS
--n will be between 1 and 50, inclusive.
--graph will contain exactly n elements.
--Each element in graph will contain exactly n characters.
--Each character in graph will be either 'N' or 'Y'.
--For all valid i graph[i][i] will be equal to 'N'.
--For all valid i, j graph[i][j] will be equal to graph[j][i].
-
-
-EXAMPLES
-
-0)
-{"NYN",
- "YNN",
- "NNN"}
-
-Returns: 1
-
-This is the adjacency matrix of a simple graph on three vertices.
-Two of the three vertices are connected by an edge.
-Here, an optimal solution is to add one edge that will connect the remaining vertex to one of the other two.
-The resulting graph is a simple graph with a single connected component.
-The connected component contains two edges, which is an even number.
-
-
-1)
-{"NYY",
- "YNN",
- "YNN"}
-
-Returns: 0
-
-
-2)
-{"NYY",
- "YNY",
- "YYN"}
-
-Returns: -1
-
-
-3)
-{"NYYY",
- "YNYY",
- "YYNN",
- "YYNN"}
-
-Returns: 1
-
-
-4)
-{"NYNNNN",
- "YNNNNN",
- "NNNYNN",
- "NNYNNN",
- "NNNNNY",
- "NNNNYN"}
-
-Returns: 3
-
-
-5)
-{"N"}
-
-Returns: 0
+問題
+-N個の頂点からなるグラフがあり、0本以上の辺がある
+-任意の2頂点について、複数の辺は張れない
+-グラフに存在する全ての連結成分の辺の数が偶数になるように辺を追加する
+-最低何本の辺を追加する必要があるかを求める
 
 */
 // END CUT HERE
