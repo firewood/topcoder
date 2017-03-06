@@ -2,66 +2,10 @@
 /*
 SRM 583 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Given is a string num. This string contains the digits of a (possibly large) positive integer.
-For example, num="1147" represents the integer 1147. The string num will not have any leading zeros.
-
-You are allowed to swap one pair of digits in the given number.
-In other words, you may choose a pair of distinct indices i and j, and swap the characters num[i] and num[j].
-Note that you may also leave the original number unchanged.
-The new string must again describe a valid positive integer, i.e., it must not have any leading zeros.
-
-Find and return the string that represents the smallest possible integer that can be obtained.
-
-
-DEFINITION
-Class:SwappingDigits
-Method:minNumber
-Parameters:string
-Returns:string
-Method signature:string minNumber(string num)
-
-
-CONSTRAINTS
--The length of num will be between 2 and 50, inclusive.
--Each character of num will be between '0' and '9', inclusive.
--The first character of num will not be '0'.
-
-
-EXAMPLES
-
-0)
-"596"
-
-Returns: "569"
-
-You can swap num[1] and num[2] to get the minimum integer.
-
-
-1)
-"93561"
-
-Returns: "13569"
-
-
-2)
-"5491727514"
-
-Returns: "1491727554"
-
-
-3)
-"10234"
-
-Returns: "10234"
-
-You can leave the original string num unchanged. Note that the result must not contain leading zeros.
-
-
-4)
-"93218910471211292416"
-
-Returns: "13218910471211292496"
+問題
+-数値が文字列として与えられる
+-任意の2桁の数値を交換して、最小の数値を求める
+-ただし先頭は0とならないこと
 
 */
 // END CUT HERE
