@@ -2,88 +2,11 @@
 /*
 SRM 710 Div2 Easy (250)
 
-PROBLEM STATEMENT
-You are given n stones labeled from 0 to n-1.
-Each stone has an integer value: the value of stone i is value[i].
-Note that some of those values may be negative or zero.
-
-You would like to choose a subset of stones such that the sum of their values is maximized.
-(You are allowed to choose the empty subset. In that case, the sum of the values of the chosen stones is zero.)
-
-This would be an easy problem, but there is a catch: the stone labeled 0 has magical properties.
-If you include this stone into your chosen subset, its entire sum is multiplied by -1.
-(The value of stone 0 still contributes to the sum. See Example 1.)
-
-You are given the vector <int> value containing n elements: the values of your stones.
-Find and return the maximum sum of a subset of stones, given that the sum of any subset that contains stone 0 is negated.
-
-
-DEFINITION
-Class:MagicSubset
-Method:findBest
-Parameters:vector <int>
-Returns:int
-Method signature:int findBest(vector <int> values)
-
-
-NOTES
--The value of n is not given explicitly. Instead, you can determine it as the number of elements in value."
-
-
-CONSTRAINTS
--value will contain between 1 and 50 elements, inclusive.
--Each element of value will be between -100 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,10,4,-6,3}
-
-Returns: 17
-
-There are five stones.
-The magic stone 0 has value 1.
-In this case, it is optimal to ignore the magic stone and to choose only the stones labeled 1, 2, and 4.
-The sum of their values is 10 + 4 + 3 = 17.
-
-
-1)
-{3,-5,1,-6}
-
-Returns: 8
-
-In this case the optimal choice is to take the stones labeled 0, 1, and 3.
-The sum of their values is 3 + (-5) + (-6) = -8.
-However, since we included the magic stone 0, we have to multiply this sum by -1, getting the final value (-8) * (-1) = 8.
-
-
-2)
-{0,0,0,0,0,0,0,0,0}
-
-Returns: 0
-
-Stones can also have value 0.
-
-
-3)
-{-100}
-
-Returns: 100
-
-
-4)
-{100}
-
-Returns: 0
-
-In this case, we don't take any stones.
-
-
-5)
-{-3,1,-4,1,5,-9,2,6,-5,3,5}
-
-Returns: 23
+問題
+-N個の石があり、それぞれの価値が与えられる
+-価値の和が最大となるように、何個かを選ぶ
+-ただし、先頭の石は特別で、先頭の石を含めたときは、全体の和に-1をかける
+-価値の総和の最大値を求める
 
 */
 // END CUT HERE
