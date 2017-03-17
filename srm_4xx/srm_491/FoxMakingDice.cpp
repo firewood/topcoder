@@ -2,70 +2,11 @@
 /*
 SRM 491 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Fox Jiro likes dice. He wants to make his own dice. Each die he wants to make is a cube. Each of the 6 faces has an integer between 1 and N, inclusive. No two faces have same number. Also the following condition must be satisfied: for all faces, the sum of the numbers on opposite faces must be equal and the sum must be greater than or equal to K.
-
-He realized that there are many ways to make such dice. He wants to know how many ways there are. Please help Jiro to make a program that is given two integers N and K and returns the number of different dice satisfying the condition mentioned above.
-
-Two dice are considered the same if you can rotate one to form the other.
-
-
-DEFINITION
-Class:FoxMakingDice
-Method:theCount
-Parameters:int, int
-Returns:long long
-Method signature:long long theCount(int N, int K)
-
-
-NOTES
--The answer will always fit in a signed 64-bit integer.
-
-
-CONSTRAINTS
--N will be between 1 and 1,000, inclusive.
--K will be between 1 and 2,000, inclusive.
-
-
-EXAMPLES
-
-0)
-6
-7
-
-Returns: 2
-
-You can make normal dice. There are two ways to arrange the numbers.
-
-
-1)
-5
-7
-
-Returns: 0
-
-You cannot make 6 sided dice with 5 numbers.
-
-
-2)
-1000
-1
-
-Returns: 20625666000
-
-
-3)
-456
-123
-
-Returns: 879075732
-
-
-4)
-913
-1014
-
-Returns: 4506149340
+問題
+-6面ダイスを作る
+-各面は正の整数で、すべて異なること
+-裏側の数値との合計がK以上であること
+-ありうる組み合わせの総数を求める
 
 */
 // END CUT HERE
