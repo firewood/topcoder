@@ -2,90 +2,22 @@
 /*
 SRM 470 Div1 Easy (250)
 
-PROBLEM STATEMENT
-John and Gogo are playing Doors Game. This game is played in a building containing a single row of N+1 rooms, numbered 0 through N from left to right. One of the rooms is called the trophy room. There's a door between each pair of adjacent rooms. Each door has a color, and there are 16 possible colors (represented by uppercase letters 'A' through 'P'). All doors are initially closed.
-
-Initially, John is in room 0 and Gogo is in room N. The two players alternate turns, and John gets the first turn. On each turn, the current player chooses a color which hasn't yet been chosen from among the 16 possible colors. All doors, if any, with the chosen color are then opened. At this point, if one of the players can reach the trophy room by walking through only open doors, that player wins and the game ends. If both players can reach the trophy room, the game ends in a draw. If neither player can reach the trophy room, the game continues.
-
-Each player will play according to the following strategy:
-Each time a player needs to choose a color, he will make make his choice as follows:
-
-If it's possible for him to choose a color in such a way that he will be able to win no matter what his opponent does, he will choose such a color. If there are several such colors, he will choose the one among them for which the game will end with the fewest total number of colors chosen, assuming that the opponent aims to maximize the number of colors chosen in the game.
-Otherwise, if it's possible for him to choose a color in such a way that he will be able to end the game in a draw no matter what his opponent does, he will choose any such color.
-Otherwise, he will choose a color for which the game will end with the largest total number of colors chosen, assuming that his opponent aims to win while minimizing the total number of colors chosen.
-
-You are given the colors of the doors in the string doors. The i-th character in doors is the color of the door connecting rooms i and i+1. You are also given an int trophy, which denotes the number of the trophy room. If the game ends in a draw, return 0. Otherwise, let X be the number of colors chosen in the game. If John wins, return X. If Gogo wins, return -X.
-
-
-DEFINITION
-Class:DoorsGame
-Method:determineOutcome
-Parameters:string, int
-Returns:int
-Method signature:int determineOutcome(string doors, int trophy)
-
-
-CONSTRAINTS
--doors will contain between 2 and 50 characters, inclusive.
--Each character in doors will be an uppercase letter 'A'-'P'.
--trophy will be between 1 and N-1, inclusive, where N is the number of characters in doors.
-
-
-EXAMPLES
-
-0)
-"ABCD"
-2
-
-Returns: 3
-
-There are five rooms, with the trophy room in the middle. John will win after he chooses color A and B.
-
-
-1)
-"ABCC"
-2
-
-Returns: -2
-
-In this case, Gogo will win by just choosing color C.
-
-
-2)
-"ABABAB"
-3
-
-Returns: 0
-
-When colors A and B have been chosen, both players will be able to reach the trophy room.
-
-
-3)
-"ABAPDCAA"
-5
-
-Returns: -4
-
-
-4)
-"MOCFDCE"
-3
-
-Returns: 5
-
-
-5)
-"ABCCDE"
-3
-
-Returns: 0
-
-
-6)
-"ABCCD"
-3
-
-Returns: 0
+問題
+-N+1個のドアがある
+-2人のプレーヤーが1ターンずつ交互にドアを開ける
+-ひとつだけゴールの部屋が与えられる
+-最初のプレーヤーは左端、もう片方のプレーヤーは右端から、ゴールの部屋まで全てのドアが開いていれば勝利
+-各ドアには色がついている
+-各ターンで色を指定すると、その色のドアが全て開く
+-各プレーヤーは次のような戦略をとる
+  - 相手が何をしても自分が勝つような色がある場合、それを指定する
+  - そのような色が複数ある場合、総選択回数が最小になるように選択する
+  - そのような色がなく、ドローになる色が存在する場合、その色を選択する
+  - それ以外の場合、総選択回数が最大となるように選択する
+-両者が最適な行動を取るとき、総選択回数Xを求める
+-0ならドロー
+-Xターンで先手が勝つならX
+-Xターンで後手が勝つなら-X
 
 */
 // END CUT HERE
