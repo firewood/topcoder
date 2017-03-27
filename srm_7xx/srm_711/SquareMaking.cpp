@@ -2,81 +2,10 @@
 /*
 SRM 711 Div2 Easy (250)
 
-PROBLEM STATEMENT
-You have four sticks.
-Their lengths are a, b, c, and d.
-There is also a stick altering store.
-For one coin they can change (i.e., either increase or decrease) the length of any stick by 1.
-You can use the store as many times as you want.
-
-You would like to build a square out of your four sticks.
-Therefore, you need four sticks that each have the same length.
-Note that the length must be positive.
-
-You are given the ints a, b, c, and d.
-Compute and return the smallest number of coins you need to spend at the store.
-
-
-DEFINITION
-Class:SquareMaking
-Method:getMinimalPrice
-Parameters:int, int, int, int
-Returns:int
-Method signature:int getMinimalPrice(int a, int b, int c, int d)
-
-
-CONSTRAINTS
--a will be between 1 and 1,000,000, inclusive.  
--b will be between 1 and 1,000,000, inclusive.  
--c will be between 1 and 1,000,000, inclusive.  
--d will be between 1 and 1,000,000, inclusive.  
-
-
-EXAMPLES
-
-0)
-5
-6
-5
-5
-
-Returns: 1
-
-Here the optimal solution is to pay 1 coin to decrease b by 1.
-After the change you will have four equally long sticks.
-
-
-1)
-4
-1
-5
-4
-
-Returns: 4
-
-Here the optimal side length is 4.
-Hence, you need to pay the store to increase b three times and to decrease c once.
-The total amount spent at the store will therefore be 4 coins.
-
-
-2)
-2017
-2017
-2017
-2017
-
-Returns: 0
-
-Here you do not need to change sticks at all.
-
-
-3)
-705451
-751563
-608515
-994713
-
-Returns: 432310
+問題
+-長さがa,b,c,dの4本の棒がある
+-長さを1変更するのにコストが1かかる
+-全ての棒を同じ長さにするための最小コストを求める
 
 */
 // END CUT HERE
