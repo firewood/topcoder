@@ -2,62 +2,8 @@
 /*
 SRM 711 Div1 Easy (250)
 
-PROBLEM STATEMENT
-You are given a long long n.
-You are also given an int k that is a positive integer between 1 and 50, inclusive.
-
-Find and return the smallest m such that:
-
-m is greater than or equal to n
-the binary representation of m contains (at least) k consecutive ones
-
-
-DEFINITION
-Class:ConsecutiveOnes
-Method:get
-Parameters:long long, int
-Returns:long long
-Method signature:long long get(long long n, int k)
-
-
-CONSTRAINTS
--n will be beween 0 and 2^50 - 1, inclusive.  
--k will be between 1 and 50, inclusive.  
-
-
-EXAMPLES
-
-0)
-1
-2
-
-Returns: 3
-
-We want the smallest integer that is at least 1 and contains 2 consecutive ones in binary. Clearly the smallest such integer is 3.
-
-
-1)
-5
-2
-
-Returns: 6
-
-The binary representation of the number 5 is 101, which does not contain two consecutive ones.
-The next integer is 6, which is 110 in binary. As this does contain two consecutive ones, the correct return value is 6.
-
-
-2)
-7
-2
-
-Returns: 7
-
-
-3)
-364269800189924
-33
-
-Returns: 364273356242943
+問題
+-N以上で、2進数表記で1がK個連続する最小の数を求める
 
 */
 // END CUT HERE
