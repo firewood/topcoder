@@ -2,65 +2,9 @@
 /*
 SRM 698 Div2 Medium (500)
 
-PROBLEM STATEMENT
-A string S is called a square if there is some string T such that S = T + T.
-For example, the strings "", aabaab" and "xxxx" are squares, but "a", "aabb" and "aabbaa" are not.
-
-You are given a string s.
-Find the longest square string that can be obtained from s by erasing some (possibly none, possibly all) of its characters.
-In other words, we are looking for the longest square that occurs in s as a subsequence.
-Return the length of that square.
-
-Note that the answer is well-defined, as the square "" (the empty string) will always occur in s as a subsequence.
-
-
-DEFINITION
-Class:RepeatStringEasy
-Method:maximalLength
-Parameters:string
-Returns:int
-Method signature:int maximalLength(string s)
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive.
--Each character in s will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"frankfurt"
-
-Returns: 4
-
-The longest square that occurs in "frankfurt" is "frfr". Its length is 4.
-
-
-1)
-"single"
-
-Returns: 0
-
-The letters in the string "single" are all distinct. Hence, the only square that occurs in this string is "". The length of this square is zero.
-
-
-2)
-"singing"
-
-Returns: 6
-
-
-3)
-"aababbababbabbbbabbabb"
-
-Returns: 18
-
-
-4)
-"x"
-
-Returns: 0
+問題
+-文字列が二つの文字列の繰り返しになっているとき、平方文字列と呼ぶ
+-文字列sから何文字か削除して平方文字列にするとき、最大の長さを求める
 
 */
 // END CUT HERE
