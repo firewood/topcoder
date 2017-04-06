@@ -2,78 +2,10 @@
 /*
 SRM 711 Div2 Medium (500)
 
-PROBLEM STATEMENT
-You are given the strings s and t.
-Both strings have the same length.
-
-You are allowed to modify s.
-In each step you may choose two valid indices i and j such that i > j, and change s[i] to s[j].
-For example, if s = "abc", you may choose i=2 and j=0, which will change s to "aba".
-
-Return "Possible" (quotes for clarity) if you can change s into t by a sequence of zero or more steps.
-Otherwise, return "Impossible".
-
-Note that the return values are case-sensitive.
-
-
-DEFINITION
-Class:StringTransform
-Method:isPossible
-Parameters:string, string
-Returns:string
-Method signature:string isPossible(string s, string t)
-
-
-CONSTRAINTS
--s will contain between 1 and 1,000 characters, inclusive. 
--s and t will be of equal length.  
--s will contain only lowercase English letters.  
--t will contain only lowercase English letters.
-
-
-EXAMPLES
-
-0)
-"abc"
-"aba"
-
-Returns: "Possible"
-
-This is the example from the problem statement.
-We can change s into t by changing s[2] to s[0].
-
-
-1)
-"abc"
-"bbc"
-
-Returns: "Impossible"
-
-Note that in each step i must be greater than j.
-You are not allowed to choose i=0 and j=1.
-
-
-2)
-"topcoder"
-"topcoder"
-
-Returns: "Possible"
-
-The two strings are equal, so we don't have to make any changes.
-
-
-3)
-"rdmcxnnbbe"
-"rdrrxrnxbe"
-
-Returns: "Possible"
-
-
-4)
-"rdmcxnnbbe"
-"rdqrxrnxbe"
-
-Returns: "Impossible"
+問題
+-同じ長さの文字列sとtがある
+-iはjより大きいものとして、s[i]をs[j]に変更することができる
+-文字列sを文字列tにすることができるかどうかを求める
 
 */
 // END CUT HERE
