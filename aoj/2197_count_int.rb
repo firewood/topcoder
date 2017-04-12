@@ -1,0 +1,1 @@
+$<.map{|l|n=l.to_i;p (0..1e3).count{|i|(i+2..2e3).any?{|j|j*j+j-i*i-i==n*2}}if n>0}
