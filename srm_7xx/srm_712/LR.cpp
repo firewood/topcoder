@@ -2,113 +2,14 @@
 /*
 SRM 712 Div1 Easy (300)
 
-PROBLEM STATEMENT
-We have a cyclic array A of length n.
-For each valid i, element i-1 the left neighbor of element i.
-Additionally, element n-1 is the left neighbor of element 0.
-
-You are given two vector<long long>s s and t, each with n elements.
-Currently, we have A[i] = s[i] for each valid i.
-Our goal is to have A[i] = t[i] for each valid i.
-
-We can use two operations that modify the contents of A:
-
-Operation L: Each element is increased by the value of its left neighbor.
-Operation R: Each element is increased by the value of its right neighbor.
-
-Note that all changes happen simultaneously. For example, if you use the operation L, the new value of A[7] is computed as the sum of the old value of A[7] and the old value of A[6].
-
-If there is no way to reach the desired goal state, return "No solution".
-Otherwise return any valid way of doing so by using at most 100 operations.
-More precisely, return one valid sequence of operations encoded as a string of 'L's and 'R's.
-
-
-If there are multiple valid solutions, you may return any of them.
-In particular, you are not required to find the shortest valid solution.
-Any valid solution will be accepted as long as its length does not exceed 100.
-We can prove that if there is an valid solution then there must exist one with length at most 100.
-
-
-DEFINITION
-Class:LR
-Method:construct
-Parameters:vector<long long>, vector<long long>
-Returns:string
-Method signature:string construct(vector<long long> s, vector<long long> t)
-
-
-CONSTRAINTS
--s will contain between 2 and 50 elements, inclusive.
--s and t will contain the same number of elements.
--Each element in s will be between 0 and 1,000,000,000,000,000 (10^15) inclusive.
--Each element in t will be between 0 and 1,000,000,000,000,000 (10^15) inclusive.
-
-
-EXAMPLES
-
-0)
-{0,1,0,0,0}
-{0,1,2,1,0}
-
-Returns: "LL"
-
-The first operation L will change A into {0,1,1,0,0} and then the second operation L will produce the array we wanted.
-
-
-1)
-{0,0,0,1}
-{0,1,0,0}
-
-Returns: "No solution"
-
-Even though A is cyclic, the precise indices matter. Here, s and t are two different configurations, and there is no valid way to change this s into this t.
-
-
-2)
-{1,2,3,4,5,6,7,8,9,10}
-{12,24,56,95,12,78,0,100,54,88}
-
-Returns: "No solution"
-
-Regardless of the type and order of operations all elements of A will always remain positive.
-However, t contains a zero.
-Therefore, t cannot be reached.
-
-
-3)
-{1,0,0}
-{11,11,10}
-
-Returns: "RRRRR"
-
-The sequence of five operations R will change the array A as follows: 
-{1,0,0} -> {1,0,1} -> {1,1,2} -> {2,3,3} -> {5,6,5} -> {11,11,10}.
-
-
-4)
-{1,1}
-{562949953421312,562949953421312}
-
-Returns: "RLLLRRRLLRRRLRLRRLLLLRLLRRLRRRLRRLRRLLRRRLLRRRLLL"
-
-We start with A[0] = A[1] = 1, and we want A[0] = A[1] = 2^49.
-We can easily verify that in this case each operation changes A from {x, x} into {2x, 2x}.
-Therefore, any string of exactly 49 'L's and 'R's is a valid answer.
-
-
-5)
-{0,0,0,0,0}
-{0,0,0,1,0}
-
-Returns: "No solution"
-
-
-6)
-{123,456}
-{123,456}
-
-Returns: ""
-
+問題
+-N個の配列Aについてある操作を行う
+-A[i-1]はA[i]の左、A[i+1]はA[i]の右とする
+-A[0]の左はA[N-1]、A[N-1]の右はA[0]とする
+-操作Lは、各Aの要素に、左の要素の値を加算する。加算は一斉に行う。
+-操作Rは、各Aの要素に、右の要素の値を加算する。加算は一斉に行う。
+-配列Aの初期状態Sと、最終状態Tが与えられる
+-Tにするための操作手順を求める
 
 */
 // END CUT HERE
