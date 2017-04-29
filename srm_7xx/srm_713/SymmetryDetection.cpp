@@ -10,8 +10,6 @@ SRM 713 Div2 Easy (250)
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -19,27 +17,6 @@ SRM 713 Div2 Easy (250)
 #include <cstring>
 
 using namespace std;
-
-typedef long long LL;
-
-// BEGIN CUT HERE
-/*
-typedef pair<int, int> II;
-typedef vector<int> IntVec;
-typedef vector<LL> LLVec;
-typedef vector<II> IIVec;
-typedef vector<string> StrVec;
-typedef set<int> IntSet;
-typedef set<LL> LLSet;
-typedef set<II> IISet;
-typedef set<string> StrSet;
-
-int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
-LL gcd(LL a, LL b) { return b ? gcd(b, a % b) : a; }
-#define MOD 1000000007LL
-#define MOD 1000000009LL
-*/
-// END CUT HERE
 
 class SymmetryDetection {
 public:
