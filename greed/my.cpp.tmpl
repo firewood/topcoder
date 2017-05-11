@@ -1,0 +1,45 @@
+${CutBegin}
+/*
+${Contest.Name} - ${Problem.Score}: ${Problem.Name}
+
+${Problem.Description.Intro}
+
+${foreach Problem.Description.Notes note}
+  ${note}
+${end}
+
+${foreach Problem.Description.Constraints cons}
+  ${cons}
+${end}
+*/
+${CutEnd}
+
+#include <algorithm>
+#include <set>
+#include <map>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <cstring>
+
+using namespace std;
+typedef long long LL;
+
+${<if Problem.Description.Modulo}
+  static const int MOD = ${Problem.Description.Modulo};
+${<end}
+
+struct ${ClassName} {
+${<foreach Method.Params p}
+  ${p.Type} ${p.Name};
+${<end}
+  ${Method.ReturnType} ${Method.Name}(${foreach Method.Params p , }${p.Type} _${p.Name}${end}) {
+    ${foreach Method.Params p , }${p.Name} = _${p.Name}${end};
+    return ${Method.ReturnType;zeroval};
+  }
+};
+
+${CutBegin}
+${<TestCode}
+${CutEnd}
