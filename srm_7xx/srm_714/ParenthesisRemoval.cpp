@@ -2,88 +2,12 @@
 /*
 SRM 714 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-Correct parentheses sequences can be defined recursively as follows:
-
-The empty string "" is a correct sequence.
-If "X" and "Y" are correct sequences, then "XY" (the concatenation of X and Y) is a correct sequence.
-If "X" is a correct sequence, then "(X)" is a correct sequence.
-Each correct parentheses sequence can be derived using the above rules.
-
-Examples of correct parentheses sequences include "", "()", "()()()", "(()())", and "(((())))".
-
-You are given a string s that is guaranteed to be a correct parentheses sequence.
-A removal is an action that consists of two steps:
-
-Remove the first opening parenthesis in s.
-Remove one closing parenthesis in s. After you do so, s must again be a correct parentheses sequence.
-
-Compute and return the number of distinct ways in which s can be reduced to an empty string by performing consecutive removals, modulo 10^9+7.
-Two ways are considered distinct if there is a step in which you remove a different closing parenthesis.
-(See Example 1 for clarification.)
-
-
-DEFINITION
-Class:ParenthesisRemoval
-Method:countWays
-Parameters:string
-Returns:int
-Method signature:int countWays(string s)
-
-
-CONSTRAINTS
--s will have between 2 and 2,500 characters, inclusive.
--s will be a correct parentheses sequence.
-
-
-EXAMPLES
-
-0)
-"()()()()()"
-
-Returns: 1
-
-In each removal we have to choose the leftmost closing parenthesis.
-
-
-1)
-"(((())))"
-
-Returns: 24
-
-In each removal we can choose any closing parenthesis we want.
-Note that these count as distint choices, even though all choices lead to the same string.
-Thus, there are 4*3*2*1 = 24 different sequences of removals that change s into an empty string.
-
-
-2)
-"((()()()))"
-
-Returns: 54
-
-Below is one of the 54 possible sequences of removals.
-Remember that in each step we also remove the first opening parenthesis.
-
- Remove the fourth closing parenthesis: "(()()())"
- Remove the second closing parenthesis: "()(())"
- Remove the first closing parenthesis: "(())"
- Remove the second closing parenthesis: "()"
- Remove the first closing parenthesis: ""
-
-
-3)
-"(())(())(())"
-
-Returns: 8
-
-
-4)
-"((((())((((((((((()((((((()))))())))))()))))))))))"
-
-Returns: 948334170
-
-Don't forget about the mod.
+問題
+-括弧だけからなる文字列が与えられる
+-括弧の対応関係を維持したまま、以下の操作を繰り返す
+-左端の1文字を消す
+-括弧の対応関係が成り立つように、どれか1文字消す
+-何通りの消し方ができるかどうかを求める
 
 */
 // END CUT HERE
