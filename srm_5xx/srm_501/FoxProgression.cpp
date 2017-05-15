@@ -1,20 +1,100 @@
-#include <cstdio>
-#include <cmath>
-#include <cstring>
-#include <ctime>
-#include <iostream>
+// BEGIN CUT HERE
+/*
+SRM 501 Div2 Easy (250)
+
+PROBLEM STATEMENT
+Fox Ciel likes sequences of integers. She especially likes sequences that are either an arithmetic progression of integers or a geometric progression of integers with an integer common ratio. She calls these beautiful sequences. An arithmetic progression is a sequence of numbers such that the difference of any two consecutive numbers of the sequence is a constant. A geometric progression is a sequence of numbers where each number after the first is found by multiplying the previous one by a constant non-zero number which is called the common ratio.
+
+Ciel has a sequence of integers. She says that an integer is good if she can obtain a beautiful sequence by appending the integer to the end of the sequence. You are given a vector <int> seq. Calculate the number of good integers for the given sequence. If there are infinitely many good integers, return -1.
+
+DEFINITION
+Class:FoxProgression
+Method:theCount
+Parameters:vector <int>
+Returns:int
+Method signature:int theCount(vector <int> seq)
+
+
+CONSTRAINTS
+-seq will contain between 1 and 50 elements, inclusive.
+-Each element of seq will be between 1 and 500, inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 2, 4, 8}
+
+Returns: 1
+
+This sequence can become a geometric progression with ratio 2 if you append 16.
+
+
+1)
+{5, 3, 1}
+
+Returns: 1
+
+This sequence can become an arithmetic progression with difference -2 if you append -1. Note that neither the difference/ratio nor the appended integer has to be strictly positive.
+
+
+2)
+{1, 1}
+
+Returns: 1
+
+If you append 1, this sequence becomes a geometric progression (with ratio 1) and an arithmetic progression (with ratio 0) simultaneously. Despite the two reasons to call the resulted sequence "beautiful", there is still only one good integer.
+
+
+3)
+{8, 4}
+
+Returns: 1
+
+This sequence can become an arithmetic progression if you append 0. It can also become a geometric progression with ratio 0.5 if you append 2, but progressions with non-integer ratio are not beautiful.
+
+
+4)
+{1}
+
+Returns: -1
+
+Every integer is good for the given sequence.
+
+
+5)
+{4, 8}
+
+Returns: 2
+
+There are two good integers: appending 12 turns this sequence into an arithmetic progression with difference 4, and appending 16 turns it into a geometric progression with ratio 2.
+
+
+6)
+{1, 3, 4}
+
+Returns: 0
+
+This sequence is already neither an arithmetic nor a geometric progression, so nothing that you append can fix it.
+
+*/
+// END CUT HERE
+
 #include <algorithm>
-#include <set>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <string>
 #include <vector>
+#include <queue>
+#include <stack>
+#include <map>
+#include <set>
+#include <iostream>
 #include <sstream>
-#include <fstream>
 
 using namespace std;
-
-typedef long long LL;
-
-typedef pair<int, int> II;
-typedef vector<II> IIVec;
 
 struct FoxProgression {
   int theCount(vector<int> seq) {
@@ -45,112 +125,95 @@ struct FoxProgression {
       }
       return s.size() >= 1000 ? -1 : (int)s.size();
   }
+
+// BEGIN CUT HERE
+private:
+  template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
+
+  void verify_case(int Case, const int &Expected, const int &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
+
+public:
+  void run_test(int Case) { 
+    int n = 0;
+
+    // test_case_0
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {1, 2, 4, 8};
+      int Arg1 = 1;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+    // test_case_1
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {5, 3, 1};
+      int Arg1 = 1;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+    // test_case_2
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {1, 1};
+      int Arg1 = 1;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+    // test_case_3
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {8, 4};
+      int Arg1 = 1;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+    // test_case_4
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {1};
+      int Arg1 = -1;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+    // test_case_5
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {4, 8};
+      int Arg1 = 2;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+    // test_case_6
+    if ((Case == -1) || (Case == n)){
+      int Arr0[] = {1, 3, 4};
+      int Arg1 = 0;
+
+      vector <int> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
+      verify_case(n, Arg1, theCount(Arg0));
+    }
+    n++;
+
+  }
+
+// END CUT HERE
 };
 
-// CUT begin
-ifstream data("FoxProgression.sample");
-
-string next_line() {
-    string s;
-    getline(data, s);
-    return s;
+// BEGIN CUT HERE
+int main() {
+  FoxProgression ___test;
+  ___test.run_test(-1);
 }
-
-template <typename T> void from_stream(T &t) {
-    stringstream ss(next_line());
-    ss >> t;
-}
-
-void from_stream(string &s) {
-    s = next_line();
-}
-
-template <typename T> void from_stream(vector<T> &ts) {
-    int len;
-    from_stream(len);
-    ts.clear();
-    for (int i = 0; i < len; ++i) {
-        T t;
-        from_stream(t);
-        ts.push_back(t);
-    }
-}
-
-template <typename T>
-string to_string(T t) {
-    stringstream s;
-    s << t;
-    return s.str();
-}
-
-string to_string(string t) {
-    return "\"" + t + "\"";
-}
-
-bool do_test(vector<int> seq, int __expected) {
-    time_t startClock = clock();
-    FoxProgression *instance = new FoxProgression();
-    int __result = instance->theCount(seq);
-    double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
-    delete instance;
-
-    if (__result == __expected) {
-        cout << "PASSED!" << " (" << elapsed << " seconds)" << endl;
-        return true;
-    }
-    else {
-        cout << "FAILED!" << " (" << elapsed << " seconds)" << endl;
-        cout << "           Expected: " << to_string(__expected) << endl;
-        cout << "           Received: " << to_string(__result) << endl;
-        return false;
-    }
-}
-
-int run_test(bool mainProcess, const set<int> &case_set, const string command) {
-    int cases = 0, passed = 0;
-    while (true) {
-        if (next_line().find("--") != 0)
-            break;
-        vector<int> seq;
-        from_stream(seq);
-        next_line();
-        int __answer;
-        from_stream(__answer);
-
-        cases++;
-        if (case_set.size() > 0 && case_set.find(cases - 1) == case_set.end())
-            continue;
-
-        cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(seq, __answer)) {
-            passed++;
-        }
-    }
-    if (mainProcess) {
-        cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1493104033;
-        double PT = T / 60.0, TT = 75.0;
-        cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
-        cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
-    }
-    return 0;
-}
-
-int main(int argc, char *argv[]) {
-    cout.setf(ios::fixed, ios::floatfield);
-    cout.precision(2);
-    set<int> cases;
-    bool mainProcess = true;
-    for (int i = 1; i < argc; ++i) {
-        if ( string(argv[i]) == "-") {
-            mainProcess = false;
-        } else {
-            cases.insert(atoi(argv[i]));
-        }
-    }
-    if (mainProcess) {
-        cout << "FoxProgression (250 Points)" << endl << endl;
-    }
-    return run_test(mainProcess, cases, argv[0]);
-}
-// CUT end
+// END CUT HERE
