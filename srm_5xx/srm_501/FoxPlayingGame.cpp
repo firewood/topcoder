@@ -2,112 +2,12 @@
 /*
 SRM 501 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Fox Ciel was very bored, so she invented a single player game. The rules of the game are:
-
-You start with 0 points.
-You make exactly nA+nB moves.
-You have two types of moves available. These are called move A and move B.
-Exactly nA times you will make move A. Exactly nB times you will make move B. The moves can be in any order.
-The moves affect your score in the following ways:
-
-Each time you make move A, you add scoreA to your score.
-Each time you make move B, you multiply your score by scoreB.
-
-You are given int nA, int nB, int paramA and int paramB.  Calculate scoreA and scoreB as follows ("/" denotes exact division, without any rounding):
-scoreA = paramA/1000.0
-scoreB = paramB/1000.0
-Return the maximum possible score after nA+nB moves.
-
-
-DEFINITION
-Class:FoxPlayingGame
-Method:theMax
-Parameters:int, int, int, int
-Returns:double
-Method signature:double theMax(int nA, int nB, int paramA, int paramB)
-
-
-NOTES
--The returned value must have an absolute or relative error less than 1e-9.
-
-
-CONSTRAINTS
--nA will be between 0 and 50, inclusive.
--nB will be between 0 and 50, inclusive.
--paramA will be between -10000 and 10000, inclusive.
--paramB will be between -2000 and 2000, inclusive.
-
-
-EXAMPLES
-
-0)
-5
-4
-3000
-2000
-
-Returns: 240.0
-
-scoreA = 3000/1000 = 3
-scoreB = 2000/1000 = 2
-The optimal order of operations is:
-(3 + 3 + 3 + 3 + 3) * 2 * 2 * 2 * 2 = 240
-
-
-1)
-3
-3
-2000
-100
-
-Returns: 6.0
-
-scoreA = 2000/1000 = 2
-scoreB = 100/1000 = 0.1
-Multiplying the score by scoreB decreases its absolute value, so it's better to do all multiplications before additions. Thus, the optimal order of operations is:
-0 * 0.1 * 0.1 * 0.1 + 2 + 2 + 2 = 6
-
-
-2)
-4
-3
--2000
-2000
-
-Returns: -8.0
-
-Multiplying the score by scoreB increases its absolute value, but given that scoreA is negative, the overall score will be negative as well, so it's better to do multiplications before additions again to keep the absolute value small.
-
-
-3)
-5
-5
-2000
--2000
-
-Returns: 160.0
-
-Multiplication increases the absolute value of the score, but if you do all 5 multiplications after additions, you'll end up with negative score. Thus, the optimal order of operations is:
-(0 * (-2) + 2 + 2 + 2 + 2 + 2) * (-2) * (-2) * (-2) * (-2) = 160
-
-
-4)
-50
-50
-10000
-2000
-
-Returns: 5.62949953421312E17
-
-
-5)
-41
-34
-9876
--1234
-
-Returns: 515323.9982341775
+問題
+-数nA,nB,scoreA,scoreBが与えられる
+-数xに対して、操作Aまたは操作Bが可能である
+-操作AはxにscoreAを加算する
+-操作BはxにscoreBを乗算する
+-初期値0、順不同の操作をしたとき、最大値を求める
 
 */
 // END CUT HERE
