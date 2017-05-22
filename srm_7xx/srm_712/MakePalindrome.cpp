@@ -2,75 +2,10 @@
 /*
 SRM 712 Div2 Medium (500)
 
-PROBLEM STATEMENT
-You have some cards.
-Each card contains a single lowercase letter.
-You are given these letters as the characters of the string card.
-
-A palindrome is a string that reads the same forwards and backwards.
-Examples of palindromes: "eve", "abba", "aaaaaa", and "racecar".
-
-Use the cards you have to spell some palindromes. In particular:
-
-Each card must be used in exactly one of the palindromes.
-The total number of palindromes must be as small as possible.
-
-Return a vector <string> containing the palindromes you built.
-(Each element of the return value should be one of the palindromes.)
-
-A solution always exists.
-If there are multiple optimal solutions, you may choose and output any one of them.
-
-
-DEFINITION
-Class:MakePalindrome
-Method:constructMinimal
-Parameters:string
-Returns:vector <string>
-Method signature:vector <string> constructMinimal(string card)
-
-
-CONSTRAINTS
--card will contain between 1 and 1,000 characters, inclusive.
--Each character in card will be a lowercase English letter ('a'-'z').
-
-
-EXAMPLES
-
-0)
-"abbaa"
-
-Returns: {"ababa" }
-
-We can rearrange all letters into a single palindrome. There are two ways to do so: one is "ababa", the other is "baaab".
-
-
-1)
-"abc"
-
-Returns: {"a", "b", "c" }
-
-This time the only solution is to build three palindromes, each consisting of a single letter. Note that you may return the three strings in any order.
-
-
-2)
-"aaabbbccc"
-
-Returns: {"aba", "bcb", "cac" }
-
-There are other solutions like {"aaa", "bbb", "ccc"}
-
-
-3)
-"topcoder"
-
-Returns: {"oco", "d", "e", "p", "r", "t" }
-
-
-4)
-"z"
-
-Returns: {"z" }
+問題
+-英小文字が1つだけ書かれたカードが何枚かある
+-反転しても同じ文字列になるようにカードをつなげる
+-カードの組が最小になるように構築する
 
 */
 // END CUT HERE
