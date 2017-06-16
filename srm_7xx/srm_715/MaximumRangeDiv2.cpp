@@ -2,81 +2,10 @@
 /*
 SRM 715 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Cat Noku was given a calculator for his birthday.
-The calculator is very simple.
-It can only store a single variable.
-The variable is called X and its initial value is 0.
-The calculator has only two buttons: + and -.
-Pressing + increments X by 1 and pressing - decrements X by 1.
-For example, if X is 4 and Noku presses +, X is incremented to 5.
-
-A string of '+' and '-' characters can be seen as a sequence of instructions to press the corresponding buttons.
-The range of such a sequence of instructions is the difference between the largest and the smallest value stored in X while executing that sequence of instructions, in order.
-
-For example, the range of "+++++++" is 7: the largest value of X is 7 (at the end) and the smallest value is 0 (in the beginning).
-The range of "---" is 3: maximum is 0, minimum is (-3), their difference is 0 - (-3) = 3.
-The range of "+-+-+-" is 1.
-The range of an empty sequence of instructions is 0.
-
-Noku's calculator came with a piece of paper that contained a string s.
-Each character of s was either '+' or '-'.
-Noku will choose and execute any (not necessarily contiguous) subsequence of these characters.
-Help him do so in a way that maximizes the range of the executed sequence.
-
-Compute and return the maximal range of a subsequence of the string s.
-
-
-DEFINITION
-Class:MaximumRangeDiv2
-Method:findMax
-Parameters:string
-Returns:int
-Method signature:int findMax(string s)
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive.
--Each element of s will be '+' or '-'.
-
-
-EXAMPLES
-
-0)
-"+++++++"
-
-Returns: 7
-
-One optimal solution is to skip the fourth instruction (the '+' in the middle of s).
-Thus, the sequence of button presses will be "+----+".
-The value of X will change as follows: 0,1,0,-1,-2,-3,-2.
-The maximum number we see is 1 while the minimum number is -3, so the range is 1 - (-3) = 4.
-
-
-1)
-"+--+--+" 
-
-Returns: 4
-
-One optimal solution is to skip the 4th instruction. Thus, the sequence of button presses will be "+----+". The number we see after each button press is 1,0,-1,-2,-3,-2. The maximum number we see is 1, while the minimum number is -3, so their range is 4.
-
-
-2)
-"++++--------" 
-
-Returns: 8
-
-
-3)
-"-+-+-+-+-+-+" 
-
-Returns: 6
-
-
-4)
-"+"
-
-Returns: 1
+問題
+-プラスかマイナスでできた文字列sが与えられる
+-初期値がゼロで、プラスなら1増加、マイナスなら1減少
+-sの部分文字列によりできる値の差の最大値を求める
 
 */
 // END CUT HERE
