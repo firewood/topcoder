@@ -2,76 +2,10 @@
 /*
 SRM 717 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-A tournament is a directed graph on n vertices that can be obtained by taking an undirected complete graph on n vertices and assigning a direction to each edge.
-The outdegree of a vertex is the number of directed edges that start at that vertex.
-The score of a tournament is the list of the outdegrees of its vertices, in no particular order.
-
-Alice used to have a tournament T but she lost it.
-She only remembers its score.
-You are given the score of T in the vector <int> s.
-
-Determine and return the number of pairs of vertices (u,v) such that in the tournament T the vertex v was reachable from the vertex u.
-Note that each vertex is reachable from itself.
-
-You may assume that the answer can always be uniquely determined.
-
-
-DEFINITION
-Class:ScoresSequence
-Method:count
-Parameters:vector <int>
-Returns:int
-Method signature:int count(vector <int> s)
-
-
-CONSTRAINTS
--s will contain between 1 and 100 elements, inclusive.
--s will be a valid score of some tournament.
-
-
-EXAMPLES
-
-0)
-{2, 0, 1}
-
-Returns: 6
-
-
-There are three vertices. Let's call them A, B, and C, in the order in which they are mentioned in the score.
-As the outdegree of A is 2, the tournament must contain the edges A -> B and A -> C.
-As the outdegree of B is 0, the tournament must also contain the edge C -> B.
-
-There are six pairs of vertices (u,v) such that there is a path from u to v.
-These are the pairs (A,A), (B,B), (C,C), (A,B), (A,C), and (B,C).
-
-
-1)
-{1, 0, 2}
-
-Returns: 6
-
-
-2)
-{1, 1, 1}
-
-Returns: 9
-
-This tournament must clearly be a cycle.
-Hence, each vertex is reachable from each vertex.
-
-
-3)
-{0, 2, 8, 4, 3, 9, 1, 5, 7, 6}
-
-Returns: 55
-
-
-4)
-{22,20,14,13,17,15,12,18,23,15,21,26,33,5,19,9,37,0,25,28,4,12,35,32,25,7,31,6,2,29,10,33,36,27,39,28,40,3,8,38,3}
-
-Returns: 1422
+問題
+-トーナメントとは、完全グラフで、かつ、各辺が有効グラフであるものをいう
+-各頂点の出次数が与えられる
+-到達可能な2頂点の組の総数を求める
 
 */
 // END CUT HERE
