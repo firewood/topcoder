@@ -2,90 +2,10 @@
 /*
 SRM 717 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given a vector <string> t that describes a rectangular table of zeroes and ones.
-Each character in t is either '0' or '1'.
-
-We say that a table is nice if there are two sequences x, y of zeroes and ones such that for each valid pair of indices i, j we have t[i][j] = x[i] xor y[j].
-
-Some technical remarks:
-
-The number of elements in x should be equal to the number of rows of the table, i.e., the number of elements in t.
-The number of elements in y should be equal to the number of columns of the table, i.e., the length of each string in t.
-The operation xor (exclusive or) is defined as follows: 0 xor 0 = 0, 1 xor 1 = 0, 0 xor 1 = 1, and 1 xor 0 = 1.
-
-Verify whether the given table is nice.
-Return "Nice" if it is nice and "Not nice" otherwise.
-Note that the return value is case-sensitive.
-
-
-DEFINITION
-Class:NiceTable
-Method:isNice
-Parameters:vector <string>
-Returns:string
-Method signature:string isNice(vector <string> t)
-
-
-CONSTRAINTS
--t will contain between 1 and 5 elements, inclusive.
--Each element of t will contain between 1 and 5 characters, inclusive.
--All elements of t will contain the same number of characters.
--Each element of t will consist only of characters '0' and '1'.
-
-
-EXAMPLES
-
-0)
-{"01",
- "10"}
-
-Returns: "Nice"
-
-One valid choice is to choose x = y = {1, 0}.
-
-
-1)
-{"01",
- "11"}
-
-Returns: "Not nice"
-
-
-Assume that t is nice.
-The sequences x and y have to satisfy the following constraints:
-
-x[0] xor y[0] = 0
-x[0] xor y[1] = 1
-x[1] xor y[0] = 1
-x[1] xor y[1] = 1
-
-
-From the first constraint we see that x[0] = y[0].
-From the second and the third constraint we can then derive that we must also have x[1] = y[1].
-But then the fourth constraint is not satisfied, which is a contradiction.
-Therefore, this t is not nice.
-
-
-2)
-{"0100",
- "1011",
- "0100"}
-
-Returns: "Nice"
-
-Here, one valid choice is x = {1, 0, 1} and y = {1, 0, 1, 1}.
-
-
-3)
-{"11",
- "10",
- "11",
- "11",
- "11"}
-
-Returns: "Not nice"
+問題
+-0と1からなる行列Tがある
+-ベクトルxとyが与えられる
+-Tの要素(i,j)がx[i] XOR y[j]を満たすかどうかを求める
 
 */
 // END CUT HERE
