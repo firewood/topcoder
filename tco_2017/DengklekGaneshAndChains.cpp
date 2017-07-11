@@ -2,95 +2,12 @@
 /*
 TCO 2017 R2B Easy (300)
 
-PROBLEM STATEMENT
-Dengklek works as a chain maker. He currently owns N chains. Each chain is a circular chain that consists of K links. There is a letter engraved on each link of each chain.
-You are given the vector <string> chains with N elements, each containing exactly K characters. Each element of chains contains the characters written on one of the chains, in order.
-
-Ganesh is Dengklek's best friend. Tomorrow is his birthday. Dengklek wants to give Ganesh a straight (non-circular) chain as a present. He will do so by cutting and then combining some pieces of the chains he currently owns.
-
-More precisely, you are given a vector <int> lengths that contains M elements. Dengklek will construct the new chain as follows:
-
-  At the beginning, the chain for Ganesh is empty.
-  For each i from 0 to M-1:
-  
-    Dengklek will pick one of his circular chains that has not been picked before.
-    Dengklek will cut a contiguous sequence of lengths[i] links from the chain. He will keep the sequence and discard the remaining links. (In particular, if lengths[i] = K, Dengklek just splits the chosen chain at some point of his choice to turn it from a circular to a straight sequence. No links are lost while doing so.)
-    Dengklek will attach the sequence he just produced to the end of the chain for Ganesh.
-
-Note that Dengklek's current chains are circular, so the last link of each chain is adjacent to the first link of that chain. Dengklek may choose a sequence that contains this part of the chain.
-
-Note that Dengklek's chains are not symmetric. This means that Dengklek is not allowed to reverse the order of the links in any of the sequences he chooses.
-
-Return the lexicographically largest possible string that can appear on the chain Dengklek gives to Ganesh.
-
-
-DEFINITION
-Class:DengklekGaneshAndChains
-Method:getBestChains
-Parameters:vector <string>, vector <int>
-Returns:string
-Method signature:string getBestChains(vector <string> chains, vector <int> lengths)
-
-
-NOTES
--Given two distinct strings of the same length, the lexicographically larger one is the one that has a larger character on the first position on which they differ.
-
-
-CONSTRAINTS
--N and K will each be between 1 and 50, inclusive.
--chains will contain exactly N elements.
--Each element of chains will contain exactly K characters.
--Each character of chains will be a lowercase English letter ('a' to 'z').
--M will be between 1 and N, inclusive.
--lengths will contain exactly M elements, inclusive.
--Each element of lengths will be between 1 and K, inclusive.
-
-
-EXAMPLES
-
-0)
-{"topc", "oder", "open", "twob"}
-{2, 1, 3}
-
-Returns: "wotrod"
-
-The optimal solution is as follows:
-
-Dengklek picks "twob" and cuts "wo" from it.
-Dengklek picks "topc" and cuts "t" from it.
-Dengklek picks "oder" and cuts "rod" from it. This is possible because the chain is circular, so 'r' and 'o' are adjacent.
-
-The resulting chain is "wo" + "t" + "rod" = "wotrod".
-
-
-1)
-{"ssh", "she", "see", "sea"}
-{2, 3, 2, 3}
-
-Returns: "ssshesesee"
-
-The optimal solution is as follows:
-
-Dengklek picks "ssh" and cuts "ss" from it.
-Dengklek picks "she" and cuts "she" from it.
-Dengklek picks "sea" and cuts "se" from it.
-Dengklek picks "see" and cuts "see" from it.
-
-The resulting chain is "ss" + "she" + "se" + "see" = "ssshesesee".
-
-
-2)
-{"wri", "ter", "who", "are", "you"}
-{3}
-
-Returns: "you"
-
-
-3)
-{"harus", "imfyo"}
-{5, 5}
-
-Returns: "yoimfushar"
+問題
+-K個のパーツからなる円環上の鎖がN個ある
+-各パーツには文字が1つ書かれている
+-M個の数値からなる配列Lが与えられる
+-各数値について、未使用の鎖をひとつ取り出し、その長さだけ切り出す
+-それらを連結した文字列のうち、辞書順最大のものを求める
 
 */
 // END CUT HERE
