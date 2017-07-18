@@ -2,83 +2,10 @@
 /*
 SRM 718 Div2 Easy (250)
 
-PROBLEM STATEMENT
-The city of Byteland has plans to give the city a new skyline by building n new skyscrapers in a row.
-The skyscrapers will be numbered 0 through n-1 from left to right.
-The height of skyscraper i will be h[i].
-It is guaranteed that all the heights are distinct.
-
-The height profile of a skyline is a sequence of integers that is produced by writing down the numbers of the skyscrapers in the order of their height, starting from the tallest one.
-For example, if the heights of the skyscrapers were {50,20,10,40,30}, the height profile would be {0,3,4,1,2}:
-skyscraper 0 is the tallest one, skyscraper 3 is the second tallest, and so on.
-
-Unfortunately, due to some budget constraints, Byteland can only afford to build n-1 of the planned n skyscrapers.
-A committee is going to choose which one of the n skyscrapers they won't build.
-The remaining n-1 skyscrapers will then receive new numbers: 0 through n-2, again going from left to right.
-
-Different choices by the committee may lead to skylines with different height profiles.
-Compute and return the number of distinct height profiles that can be produced.
-
-
-DEFINITION
-Class:RelativeHeights
-Method:countWays
-Parameters:vector <int>
-Returns:int
-Method signature:int countWays(vector <int> h)
-
-
-CONSTRAINTS
--h will contain between 2 and 50 elements, inclusive.
--Each element of h will be between 1 and 1,000, inclusive.
--Elements of h will be distinct.
-
-
-EXAMPLES
-
-0)
-{1,3,6,10,15,21}
-
-Returns: 1
-
-The committee can choose one of six different skylines:
-
-{3,5,10,15,21}
-{1,5,10,15,21}
-{1,3,10,15,21}
-{1,3,5,15,21}
-{1,3,5,10,21}
-{1,3,5,10,15}
-
-However, all of these skylines have the same height profile: {4,3,2,1,0}.
-
-
-1)
-{4,2,1,3}
-
-Returns: 3
-
-Here, the committee can choose one of four possible skylines: {2,1,3}, {4,1,3}, {4,2,3}, or {4,2,1}.
-The height profiles of these skylines are {2,0,1}, {0,2,1}, {0,2,1}, and {0,1,2}, respectively.
-As the second and the third skyline share the same height profile, there are only three distinct height profiles.
-
-
-2)
-{6,2,352,43,5,44}
-
-Returns: 6
-
-
-3)
-{4,5,6,1,2,3}
-
-Returns: 2
-
-
-4)
-{10,9,7,5,3,1,8,6,4,2}
-
-Returns: 9
+問題
+-N個のビルの高さが与えられる
+-そのうちの一つだけ、予算の都合で建てられないことになった
+-高さ順に順位をつけたとき、順位のつけかたが何通りあるかを求める
 
 */
 // END CUT HERE
