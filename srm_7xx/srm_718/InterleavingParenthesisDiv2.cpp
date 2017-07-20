@@ -2,87 +2,10 @@
 /*
 SRM 718 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Correct parentheses sequences can be defined recursively as follows:
-
-The empty string "" is a correct sequence.
-If "X" and "Y" are correct sequences, then "XY" (the concatenation of X and Y) is a correct sequence.
-If "X" is a correct sequence, then "(X)" is a correct sequence.
-Each correct parentheses sequence can be derived using the above rules.
-
-Examples of correct parentheses sequences include "", "()", "()()()", "(()())", and "(((())))".
-
-You are given two strings s1 and s2.
-Each character in these strings is a parenthesis, but the strings themselves are not necessarily correct sequences of parentheses.
-
-You would like to interleave the two sequences so that they will form a correct parentheses sequence.
-Note that sometimes two different ways of interleaving the two sequences will produce the same final sequence of characters.
-Even if that happens, we count each of the ways separately.
-(See Example 0 for a clarification.)
-
-Compute and return the number of different ways to produce a correct parentheses sequence, modulo 10^9 + 7.
-
-
-DEFINITION
-Class:InterleavingParenthesisDiv2
-Method:countWays
-Parameters:string, string
-Returns:int
-Method signature:int countWays(string s1, string s2)
-
-
-CONSTRAINTS
--s1, s2 will each have between 1 and 50 characters, inclusive.
--Each character of s1, s2 will be either '(' or ')'.
-
-
-EXAMPLES
-
-0)
-"(()"
-"())"
-
-Returns: 19
-
-The 19 ways are:
-
-Here, the red characters come from the first sequence, and the blue characters come from the second sequence.
-
-1)
-")"
-"("
-
-Returns: 1
-
-
-2)
-"((((("
-")))))"
-
-Returns: 42
-
-
-3)
-"()(()"
-"))((())"
-
-Returns: 10
-
-
-4)
-"()()()()()()()()()()()()()()()"
-"()()()()()()()()"
-
-Returns: 493841617
-
-Don't forget about the mod.
-
-
-5)
-"())())))"
-"))(((("
-
-Returns: 0
+問題
+-カッコだけからなる二つの文字列s1とs2が与えられる
+-各文字列について、文字列内の文字の順番をくずさずに、2つの文字列を合併してひとつの文字列にする
+-合併した文字列について、カッコの対応関係が正しいものが何通りあるかを求める
 
 */
 // END CUT HERE
