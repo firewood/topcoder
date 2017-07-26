@@ -2,85 +2,11 @@
 /*
 SRM 717 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-Alice has a string s of lowercase letters.
-The string is written on a wall.
-
-Alice also has a set of cards.
-Each card contains a single letter.
-Alice can take any card and glue it on top of one of the letters of s.
-She may use any subset of cards in this way, possibly none or all of them.
-She is not allowed to glue new letters in front of s or after s, she can only replace the existing letters.
-
-Alice wants to produce the lexicographically largest possible string.
-
-You are given the string s.
-You are also given a string t.
-Each character of t is a letter written on one of the cards.
-Compute and return the lexicographically largest string Alice can produce on the wall while following the rules described above.
-
-
-DEFINITION
-Class:LexmaxReplace
-Method:get
-Parameters:string, string
-Returns:string
-Method signature:string get(string s, string t)
-
-
-NOTES
--Given two distinct strings X and Y of the same length, the lexicographically larger one is the one that has a larger character on the first position on which they differ.
-
-
-CONSTRAINTS
--s will contain between 1 and 50 characters, inclusive.
--t will contain between 1 and 50 characters, inclusive.
--s will contain only lowercase English letters ('a' - 'z').
--t will contain only lowercase English letters ('a' - 'z').
-
-
-EXAMPLES
-
-0)
-"abb"
-"c"
-
-Returns: "cbb"
-
-Alice has a single card.
-This card contains the letter 'c'.
-The optimal solution is to glue it on top of s[0], producing the string "cbb".
-
-
-1)
-"z"
-"f"
-
-Returns: "z"
-
-Here the optimal solution is to do nothing. The card with the letter 'f' will remain unused.
-
-
-2)
-"fedcba"
-"ee"
-
-Returns: "feeeba"
-
-
-3)
-"top"
-"coder"
-
-Returns: "trp"
-
-
-4)
-"xldyzmsrrwzwaofkcxwehgvtrsximxgdqrhjthkgfucrjdvwlr"
-"xfpidmmilhdfzypbguentqcojivertdhshstkcysydgcwuwhlk"
-
-Returns: "zyyyzyxwwwzwvuuttxwtssvtssxrqxppqrontmmllukrkjvwlr"
+問題
+-小文字のアルファベットだけからなる文字列sがある
+-何枚かのカードがあり、それぞれに小文字のアルファベットが書かれている
+-各カードは、sのいずれかの文字に貼りつけることができる
+-得られる辞書順最大の文字列を求める
 
 */
 // END CUT HERE
