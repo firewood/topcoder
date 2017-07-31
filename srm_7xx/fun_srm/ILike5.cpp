@@ -2,86 +2,10 @@
 /*
 Fun SRM 7/29 Easy (300)
 
-PROBLEM STATEMENT
-
-You have certainly seen many tasks that start with some ridiculous made-up story. 
-Well, this one is nothing like that.
-
-Ivan A. is a smart boy.
-He just got a sequence of nonnegative integers as a birthday present.
-You are given this sequence in the vector <int> X.
-
-Ivan A. adores the number 5.
-He thinks that a sequence is pretty if the product of all its elements ends with the digit 5.
-He now wants to change X into a pretty sequence.
-In each step he can choose an element of X and replace one of its digits by any other digit.
-For example, in a single step Ivan A. can change the number 1234 into the number 1734.
-
-Compute and return the minimal number of steps needed to change X into a pretty sequence.
-
-
-DEFINITION
-Class:ILike5
-Method:transformTheSequence
-Parameters:vector <int>
-Returns:int
-Method signature:int transformTheSequence(vector <int> X)
-
-
-NOTES
--It can be shown that any sequence X can be transformed into a pretty sequence in finitely many steps.
--It is allowed to change the leading digit of a number into a zero, but this is never needed in the optimal solution.
-
-
-CONSTRAINTS
--X will contain between 1 and 50 numbers, inclusive.
--Each element of X will be between 0 and 10^6, inclusive.
-
-
-EXAMPLES
-
-0)
-{5, 2, 8, 12}
-
-Returns: 3
-
-One optimal solution looks as follows:
-
-Ivan A. changes the 2 to a 1.
-Ivan A. changes the 8 to a 9.
-Ivan A. changes the last digit of the number 12 from 2 to 9.
-
-After these three steps he will have the sequence {5, 1, 9, 19}.
-The product of its elements is 5 * 1 * 9 * 19 = 855, so this sequence is pretty.
-
-
-1)
-{1555}
-
-Returns: 0
-
-The number already ends in a 5.
-
-
-2)
-{0, 10, 100, 1000, 10000}
-
-Returns: 5
-
-Clearly, Ivan A. must change the last digit in each of these numbers, otherwise the product would end in a 0.
-One optimal solution is to change this sequence into {7, 13, 105, 1005, 10003}.
-
-
-3)
-{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
-
-Returns: 6
-
-
-4)
-{7890, 4861, 65773, 3769, 4638, 46000, 548254, 36185, 115}
-
-Returns: 4
+問題
+-数列Xが与えられる
+-1回の操作で任意の数の任意の桁を書き換えることができる
+-数列の全ての積の一番下の桁が5になるように書き換えるとき、操作回数の最小値を求めよ
 
 */
 // END CUT HERE
