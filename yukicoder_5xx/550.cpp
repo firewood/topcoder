@@ -7,18 +7,17 @@ typedef long long LL;
 typedef pair<LL, LL> LLLL;
 
 LLLL solve(LL a, LL b, LL c) {
-	LL p = 0, q = 0;
 	if (a) {
-		LL d = (LL)(sqrt((double)b * b - 4 * (double)a * c) + 0.1);
-		for (LL e = d; e <= d + 1; ++e) {
-			if (((-b - e) % 2) == 0) {
-				p = (-b - e) / (2 * a);
-				q = (-b + e) / (2 * a);
-				break;
+		LL d = (LL)(sqrt((double)b * b - 4 * (double)a * c));
+		for (LL e = d - 64; e <= d + 64; ++e) {
+			LL x = (-b - e) / (2 * a);
+			LL y = (-b + e) / (2 * a);
+			if (a * x * x + b * x + c == 0 && a * y * y + b * y + c == 0) {
+				return LLLL(x, y);
 			}
 		}
 	}
-	return LLLL(p, q);
+	return LLLL(0, 0);
 }
 
 int main(int argc, char *argv[])
@@ -27,7 +26,7 @@ int main(int argc, char *argv[])
 	cin >> a >> b >> c;
 	LL ans[3];
 	for (LL x = -1000000; x <= 1000000; ++x) {
-	LL p = a + x;
+		LL p = a + x;
 		LL q = b + p * x;
 		if ((c == 0 && (x == 0 || q == 0)) || (x && q && (c % x) == 0 && (c % q) == 0 && abs(c / x + q) <= 1)) {
 			LLLL y = solve(1, p, q);
