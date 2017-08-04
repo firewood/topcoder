@@ -1,100 +1,14 @@
 // BEGIN CUT HERE
 /*
 
-PROBLEM STATEMENT
-A string S is a subsequence of a string T if we can obtain S from T by erasing some (possibly all or none) of its characters. For example, "000" is a subsequence of "01010".
-
-The longest common subsequence (LCS) of two strings A and B is a string C that is a subsequence of each of them and has the largest length among all strings with this property. Let f(A,B) be the length of the LCS of strings A and B. For example, we have f("101", "111000") = 2, f("101", "110011") = 3, and f("00", "1111") = 0.
-
-You are given three small positive integers ab, bc, and ca.
-Please find three strings A, B, C such that:
-
-Each of the strings contains only the characters '0' and '1'.
-The length of each string is between 1 and 1,000, inclusive.
-f(A, B) = ab
-f(B, C) = bc
-f(C, A) = ca
-
-Return a string formed as follows: A + " " + B + " " + C.
-(I.e., the returned string should contain the three strings A, B, C, separated by single spaces.)
-
-You may assume that a solution always exist.
-If there are multiple solutions you may return any of them.
-
-
-DEFINITION
-Class:ConstructLCSEasy
-Method:construct
-Parameters:int, int, int
-Returns:string
-Method signature:string construct(int ab, int bc, int ca)
-
-
-CONSTRAINTS
--ab will be between 1 and 50, inclusive.
--bc will be between 1 and 50, inclusive.
--ca will be between 1 and 50, inclusive.
--ab <= bc <= ca.
-
-
-EXAMPLES
-
-0)
-2
-3
-4
-
-Returns: "1111 101 1010101"
-
-The returned string corresponds to the following solution:
-
-A = "1111"
-B = "101"
-C = "1010101"
-
-We can easily verify that the only LCS of A and B is "11", the only LCS of B and C is "101", and the only LCS of C and A is "1111".
-
-
-1)
-4
-4
-7
-
-Returns: "10101010 1011 1010101"
-
-Another solution is: a = "0000111", b = "0000", c = "0000111".
-
-
-2)
-6
-7
-8
-
-Returns: "10101010 1111010 110101010"
-
-
-3)
-7
-8
-8
-
-Returns: "10101010 010101101 110101001011"
-
-
-4)
-15
-17
-19
-
-Returns: "000100101101111011000 11110111010011101010 100100001010101001010101000011111"
-
-
-5)
-50
-50
-50
-
-Returns: "11111111111111111111111111111111111111111111111111 11111111111111111111111111111111111111111111111111 11111111111111111111111111111111111111111111111111"
+問題
+-文字列から0文字以上の任意の個数の文字を取り除いた文字列を、部分文字列と呼ぶ。
+-文字列Aと文字列Bの最長共通部分列(LCS)は、文字列Aの部分文字列と文字列Bの部分文字列の中で共通なもののうちの最長のものである。
+-文字0か1だけからなる文字列A,B,Cについて、
+-文字列A,BのLCSの長さ
+-文字列B,CのLCSの長さ
+-文字列C,AのLCSの長さ
+-が与えられるので、A,B,Cを求めよ。
 
 */
 // END CUT HERE
