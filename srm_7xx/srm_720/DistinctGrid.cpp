@@ -2,80 +2,10 @@
 /*
 SRM 720 Div1 Medium (450)
 
-PROBLEM STATEMENT
-
-Given the integers n, k, construct an n by n grid of integers where each row and column has at most k distinct integers.
-The returned grid must have the maximum number of distinct integers.
-
-Return your answer as a vector <int> with exactly n * n elements.
-Element i*n+j of your return value denotes the value of the integer in the i-th row and j-th column of the grid.
-
-If there are multiple optimal solutions, you may return any of them.
-The integers in your solution can be arbitrary, as long as they fit into a signed 32-bit integer variable.
-
-
-DEFINITION
-Class:DistinctGrid
-Method:findGrid
-Parameters:int, int
-Returns:vector <int>
-Method signature:vector <int> findGrid(int n, int k)
-
-
-CONSTRAINTS
--n will be between 3 and 50, inclusive.
--k will be between 1 and n/2, inclusive.
-
-
-EXAMPLES
-
-0)
-3
-1
-
-Returns: {0, 0, 0, 0, 0, 0, 0, 0, 0 }
-
-The returned value shown above represents the following grid:
-
-{
-  0,0,0,
-  0,0,0,
-  0,0,0
-}
-
-
-1)
-6
-3
-
-Returns: {1, 0, 0, 0, 0, 2, 0, 3, 0, 0, 4, 0, 0, 0, 5, 6, 0, 0, 0, 0, 7, 8, 0, 0, 0, 9, 0, 0, 10, 0, 11, 0, 0, 0, 0, 12 }
-
-The returned value shown above represents the following grid:
-
-{
-  1,0,0,0,0,2,
-  0,3,0,0,4,0,
-  0,0,5,6,0,0,
-  0,0,7,8,0,0,
-  0,9,0,0,10,0,
-  11,0,0,0,0,12
-}
-
-
-2)
-4
-2
-
-Returns: {123, 999, 999, 999, 999, 999, 999, 456, 999, 789, 999, 999, 999, 999, 240, 999 }
-
-The returned value shown above represents the following grid:
-
-{
-  123,999,999,999,
-  999,999,999,456,
-  999,789,999,999,
-  999,999,240,999
-};
+問題
+-N行N列のマス目がある
+-各行および各桁について、最大K個まで異なる数が使用できる
+-全体として、異なる数の個数が最大となるよう、マス目の数値を構築せよ
 
 */
 // END CUT HERE
