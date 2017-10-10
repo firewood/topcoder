@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int sum[2];
+long long sum[2];
 set<int> g[100000];
 int color[100000];
 
@@ -27,7 +27,7 @@ bool dfs(int node, int c) {
 }
 
 int main(int argc, char *argv[]) {
-	int n, m;
+	long long n, m, ans;
 	cin >> n >> m;
 	for (int i = 0; i < m; ++i) {
 		int a, b;
@@ -36,7 +36,6 @@ int main(int argc, char *argv[]) {
 		g[a].insert(b);
 		g[b].insert(a);
 	}
-	int ans = 0;
 	if (dfs(0, 1)) {
 		ans = sum[0] * sum[1] - m;
 	} else {
