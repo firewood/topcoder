@@ -2,66 +2,11 @@
 /*
 SRM 722 Div2 Easy (250)
 
-PROBLEM STATEMENT
-You are about to go hiking. The trail consists of n segments. Some segments go uphill, others are level, and the remaining ones go downhill.
-
-You are given a vector <int> height with n+1 elements. The elements of height are altitude measurements taken at the beginning of the trail and at the end of each segment.
-
-You are concerned about long uphill climbs. Return the largest number of consecutive trail segments that go uphill.
-
-
-DEFINITION
-Class:HillClimber
-Method:longest
-Parameters:vector <int>
-Returns:int
-Method signature:int longest(vector <int> height)
-
-
-CONSTRAINTS
--height will contain between 2 and 50 elements, inclusive.
--Each element of height will be between 0 and 10000, inclusive.
-
-
-EXAMPLES
-
-0)
-{ 1, 2, 3, 2, 2 }
-
-Returns: 2
-
-At the beginning of this trail there are two consecutive segments of uphill hiking: first we go from altitude 1 to altitude 2, and then we go from altitude 2 to altitude 3.
-
-
-1)
-{ 1, 2, 2, 3 }
-
-Returns: 1
-
-This trail has two uphill segments (1-2 and 2-3) but they are not consecutive.
-
-
-2)
-{ 1, 8, 9, 12 }
-
-Returns: 3
-
-The altitudes that correspond to the answer don't necessarily have to form a proper arithmetic sequence.
-As long as they are increasing, it is an uphill hike.
-
-
-3)
-{ 10, 4, 4, 2 }
-
-Returns: 0
-
-We never actually have any uphill segments here.
-
-
-4)
-{ 10, 8, 4, 9, 11, 14, 15, 3, 7, 8, 10, 6 }
-
-Returns: 4
+問題
+-ハイキングに行く
+-いくつかの地点の高さが与えられる
+-前の地点より高いときを登りと呼ぶ
+-連続する登りの最大数を求めよ
 
 */
 // END CUT HERE
