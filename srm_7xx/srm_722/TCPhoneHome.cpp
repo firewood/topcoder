@@ -2,83 +2,10 @@
 /*
 SRM 722 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Typically, telephone numbers are sequences of digits (0-9) that all have the same length.
-However, some prefixes may be reserved for special purposes.
-This limits the total number of possible full-length telephone numbers that are available for general use in the system.
-
-As an example, in much of the United States and Canada the local telephone numbers are 7 digits long.
-However, dialing 1 starts a special sequence for long distance, dialing 0 connects to the operator, and dialing 911 connects to emergency services.
-Thus, there are fewer than the theoretical 10,000,000 possible valid telephone numbers.
-
-You are given the int digits: the length of the standard telephone numbers in the system.
-You are also given a vector <string> specialPrefixes.
-Each element of specialPrefixes is a string of digits that defines one reserved prefix.
-Standard telephone numbers cannot start with any of the reserved prefixes.
-
-Compute and return the number of different standard telephone numbers in the system.
-
-
-DEFINITION
-Class:TCPhoneHome
-Method:validNumbers
-Parameters:int, vector <string>
-Returns:long long
-Method signature:long long validNumbers(int digits, vector <string> specialPrefixes)
-
-
-CONSTRAINTS
--digits will be between 1 and 17, inclusive.
--specialPrefixes will contain beteween 0 and 50 elements, inclusive.
--The length of each element of specialPrefixes will be between 1 and digits, inclusive.
--Each character of each element of specialPrefixes will be a digit ('0'...'9').
--No two elements of specialPrefixes will be the same.
-
-
-EXAMPLES
-
-0)
-7
-{"0", "1", "911"}
-
-Returns: 7990000
-
-The example from the problem statement.
-
-
-1)
-10
-{"0", "1", "911"}
-
-Returns: 7990000000
-
-Same prefixes, longer numbers.
-
-
-2)
-8
-{"1", "12", "123"}
-
-Returns: 90000000
-
-The sets of numbers reserved by different special prefixes may sometimes overlap.
-For example, in this case the net effect of these three special prefixes is that all numbers that start with "1" are reserved.
-
-
-3)
-9
-{"12", "13", "14"}
-
-Returns: 970000000
-
-
-4)
-3
-{"411"}
-
-Returns: 999
-
-Sometimes a "prefix" is actually a full length phone number that is specially reserved for some reason.
+問題
+-電話番号は、ある桁数の数字からなる
+-いくつかの特定の数字からはじまるブリフィックスは、特別な用途に予約されている
+-桁数とブリフィックスが与えられるので、普通の番号に使える総数を求めよ
 
 */
 // END CUT HERE
