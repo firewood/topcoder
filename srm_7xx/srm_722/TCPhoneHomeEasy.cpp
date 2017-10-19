@@ -2,80 +2,10 @@
 /*
 SRM 722 Div2 Medium (400)
 
-PROBLEM STATEMENT
-Typically, telephone numbers are sequences of digits (0-9) that all have the same length.
-However, some prefixes may be reserved for special purposes.
-This limits the total number of possible full-length telephone numbers that are available for general use in the system.
-
-As an example, in much of the United States and Canada the local telephone numbers are 7 digits long.
-However, dialing 1 starts a special sequence for long distance, dialing 0 connects to the operator, and dialing 911 connects to emergency services.
-Thus, there are fewer than the theoretical 10,000,000 possible valid telephone numbers.
-
-You are given the int digits: the length of the standard telephone numbers in the system.
-You are also given a vector <string> specialPrefixes.
-Each element of specialPrefixes is a string of digits that defines one reserved prefix.
-Standard telephone numbers cannot start with any of the reserved prefixes.
-
-Compute and return the number of different standard telephone numbers in the system.
-
-
-DEFINITION
-Class:TCPhoneHomeEasy
-Method:validNumbers
-Parameters:int, vector <string>
-Returns:int
-Method signature:int validNumbers(int digits, vector <string> specialPrefixes)
-
-
-CONSTRAINTS
--digits will be between 1 and 7, inclusive.
--specialPrefixes will contain beteween 0 and 50 elements, inclusive.
--The length of each element of specialPrefixes will be between 1 and digits, inclusive.
--Each character of each element of specialPrefixes will be a digit ('0'...'9').
--No element of specialPrefixes will itself be a prefix of another element.
-
-
-EXAMPLES
-
-0)
-7
-{ "0", "1", "911" }
-
-Returns: 7990000
-
-This is the example from the problem statement.
-
-
-1)
-5
-{ "0", "1", "911" }
-
-Returns: 79900
-
-Same prefixes, but with shorter phone numbers.
-
-
-2)
-6
-{ "1", "2", "3" }
-
-Returns: 700000
-
-
-3)
-6
-{ "1", "23", "345" }
-
-Returns: 889000
-
-
-4)
-3
-{"411"}
-
-Returns: 999
-
-Sometimes a special "prefix" is actually a full length phone number.
+問題
+-電話番号は、ある桁数の数字からなる
+-いくつかの特定の数字からはじまるブリフィックスは、特別な用途に予約されている
+-桁数とブリフィックスが与えられるので、普通の番号に使える総数を求めよ
 
 */
 // END CUT HERE
