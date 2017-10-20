@@ -69,15 +69,15 @@ void g2(LL v, LL d, LL &l, LL &h) {
 	}
 }
 
-class RememberWords {
-	bool possible(LL d1, LL d2, LL w1, LL w2) {
-		LL p, q, r, s;
-		g2(w1, d1, p, q);
-		g2(w2, d2, r, s);
-		return (abs(p - r) <= 1 || abs(p - s) <= 1 || abs(q - r) <= 1 || abs(q - s) <= 1 ||
-			(p <= r && r <= q) || (p <= s && s <= q));
-	}
+bool possible(LL d1, LL d2, LL w1, LL w2) {
+	LL p, q, r, s;
+	g2(w1, d1, p, q);
+	g2(w2, d2, r, s);
+	return abs(p - r) <= 1 || abs(p - s) <= 1 || abs(q - r) <= 1 || abs(q - s) <= 1 ||
+		(p >= r && p <= s) || (q >= r && q <= s) || (r >= p && r <= q) || (s >= p && s <= q);
+}
 
+class RememberWords {
 public:
 	string isPossible(int d1, int d2, int w1, int w2) {
 		return possible(d1, d2, w1, w2) ? "Possible" : "Impossible";
