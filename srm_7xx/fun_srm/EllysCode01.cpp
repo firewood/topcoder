@@ -3,98 +3,10 @@
 2017 TCO Algorithm Warsaw Regional Round
 Fun SRM Medium (500)
 
-PROBLEM STATEMENT
-Elly came up with an infinite sequence of zeroes and ones.
-The sequence can be incrementally constructed as follows:
-Begin by writing down a zero.
-Then, repeat the following process forever:
-
-Copy the entire sequence, but change each zero into a one and vice versa.
-Append the copy to the current sequence.
-
-The first few iterations of this process look as follows:
-0 → 01 → 0110 → 01101001 → 0110100110010110 → 01101001100101101001011001101001 → …
-The positions in the sequence are numbered sequentially, starting from zero.
-
-To impress Elly you want to write a program which can quickly answer any question of the following type:
-"How many ones are in Elly's sequence at positions from L to R, inclusive?"
-
-You are given the long longs L and R.
-Return the total number of ones whose positions lie in the interval [L, R].
-
-
-DEFINITION
-Class:EllysCode01
-Method:getOnes
-Parameters:long long, long long
-Returns:long long
-Method signature:long long getOnes(long long L, long long R)
-
-
-CONSTRAINTS
--L and R will be between 0 and 10^18, inclusive.
--L will be less than or equal to R.
-
-
-EXAMPLES
-
-0)
-5
-15
-
-Returns: 5
-
-The interval [5, 15] covers the digits 01101[00110010110]1001011001101001. This subsequence contains 5 ones, so the correct answer is 5.
-
-
-1)
-101
-185
-
-Returns: 42
-
-The answer is 42.
-
-
-2)
-0
-0
-
-Returns: 0
-
-The digit at index zero is 0.
-
-
-3)
-1
-1
-
-Returns: 1
-
-The digit at index one is 1.
-
-
-4)
-1337
-1337
-
-Returns: 0
-
-The digit at 1337-th position is 0.
-
-
-5)
-12345
-67890
-
-Returns: 27772
-
-
-6)
-5192834871235435
-954971273487212547
-
-Returns: 474889219307988557
+問題
+-最初にゼロをひとつ書く
+-次に、書いてある全ての数字をビット反転し、付け加える
+-L番目からR番目までの1の数を求めよ
 
 */
 // END CUT HERE
