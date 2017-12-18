@@ -163,44 +163,31 @@ public:
 		int si = 0;
 		int seq[8] = {};
 		for (int i = 0; i < 8; ++i) {
-			bool f = false;
-			for (int j = 0; j < 8; ++j) {
-				if (board[i][j] != '.') {
-					f = true;
-				}
-			}
-			if (f) {
+			if (count(board[i].begin(), board[i].end(), 'R') > 0) {
 				seq[si++] = i;
 			}
 		}
 		vector <int> ans;
+		int rows;
+		int col[8];
 		do {
 			int u[8] = {};
-			int rows = 0;
-			int i;
-			for (i = 0; i < 5; ++i) {
+			rows = 0;
+			for (int i = 0; i < 5; ++i) {
 				int row = seq[i];
-				bool ok = false;
 				for (int j = 0; j < 8; ++j) {
 					if (!u[j] && board[row][j] != '.') {
-						++rows;
-						u[j] = i + 1;
+						u[j] = 1;
+						col[rows++] = j;
 						break;
 					}
 				}
 			}
-			if (rows >= 5) {
-				for (int i = 0; i < 5; ++i) {
-					ans.push_back(seq[i]);
-					for (int j = 0; j < 8; ++j) {
-						if (u[j] == (i + 1)) {
-							ans.push_back(j);
-							break;
-						}
-					}
-				}
-			}
-		} while (ans.empty() && next_permutation(seq, seq + si));
+		} while (rows < 5 && next_permutation(seq, seq + si));
+		for (int i = 0; i < 5; ++i) {
+			ans.push_back(seq[i]);
+			ans.push_back(col[i]);
+		}
 		return ans;
 	}
 
