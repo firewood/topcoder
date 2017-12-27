@@ -80,18 +80,15 @@ using namespace std;
 class StringHalving {
 public:
 	string lexsmallest(string s) {
-		char m = 'z';
-		int f[256] = {};
+		int rindex = -1;
 		for (char c : s) {
-			if (c < m) {
-				m = c;
-			}
-			if (f[c]) {
-				break;
-			}
-			f[c] = 1;
+			rindex = max(rindex, (int)(find(s.rbegin(), s.rend(), c) - s.rbegin()));
 		}
-		return string(1, m);
+		char ans = 'z';
+		for (char c : s.substr(0, s.length() - 1 - rindex)) {
+			ans = min(ans, c);
+		}
+		return string(1, ans);
 	}
 
 // BEGIN CUT HERE
