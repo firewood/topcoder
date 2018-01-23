@@ -2,104 +2,13 @@
 /*
 SRM 727 Div1 Easy (250)
 
-PROBLEM STATEMENT
-Definition: for two strings X and Y, we say that a string X has a subsequence Y if and only if it's possible to remove 0 or more characters in X so that the remaining characters form the string Y.
-For example, "ABCDEFFF" has subsequences "B", "ABFF" and "ABCDEFFF", but doesn't have subsequences "XSFJ", "BA" and "CCDD".
-
-Kids often want to write a letter to Santa but they make a typo and send them to Satan instead.
-We say that the address written on an envelope is good if and only if it has the subsequence "SANTA" but it doesn't have the subsequence "SATAN" - otherwise the letter can be sent to the wrong place!
-
-Limak already wrote a string S as the address.
-It's guaranteed that S doesn't have the subsequence "SATAN", but possibly it doesn't have the subsequence "SANTA" either.
-Your task is to add some (0 or more) characters anywhere into S, including its beginning and end, so that it is a good address, as defined above.
-
-You are given the string S of length up to 1000 consisting of uppercase English letters, representing the currently written address.
-Formally, return any string X that satisifes the following conditions:
-
-X has a subsequence S.
-X has the subsequence "SANTA".
-X doesn't have the subsequence "SATAN".
-X has at most 1050 characters.
-Each character in X must be an uppercase English letter 'A' - 'Z'.
-
-
-DEFINITION
-Class:OnlySanta
-Method:solve
-Parameters:string
-Returns:string
-Method signature:string solve(string S)
-
-
-NOTES
--It can be proved that a valid answer exists for any valid input.
-
-
-CONSTRAINTS
--S will contain between 1 and 1000 characters, inclusive.
--Each character in S will be an uppercase English letter: 'A' - 'Z'.
--S will not have the subsequence "SATAN".
-
-
-EXAMPLES
-
-0)
-"STANA"
-
-Returns: "STANTA"
-
-Limak already wrote "STANA".
-He can add a single character 'T' to obtain "STANTA".
-This string has the subsequence "SANTA" and doesn't have the subsequence "SATAN".
-
-
-1)
-"STN"
-
-Returns: "SANTNA"
-
-Here, one correct solution is to add "AN" between 'S' and 'T' and also add 'A' at the end of the string.
-The returned string is: "S(A)(N)TN(A)", where brackets represent added characters.
-
-
-2)
-"RATSNOOOA"
-
-Returns: "DEARATSNOOOSANTA"
-
-
-3)
-"SXAYNTA"
-
-Returns: "OOOOSOXAYNTOOOOAOOO"
-
-One correct answer is simply "SXAYNTA" because this given string already has the subsequence "SANTA".
-You don't have to minimize the number of added characters though.
-
-
-4)
-"SNTA"
-
-Returns: "SANTA"
-
-
-5)
-"ASNTA"
-
-Returns: "SASNTAS"
-
-
-6)
-"NIELATA"
-
-Returns: "SANIELATAJA"
-
-
-7)
-"X"
-
-Returns: "SSAAXNNTTAA"
-
+問題
+-文字列Xから0文字以上の文字を削除して作れる文字列を部分文字列とする
+-部分文字列としてSATANを含まない文字列Sが与えられる
+-以下の条件を満たす文字列Xを求めよ
+  -Xは部分文字列としてSを含む
+  -Xは部分文字列としてSANTAを含む
+  -Xは部分文字列としてSATANを含まない
 
 */
 // END CUT HERE
