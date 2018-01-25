@@ -2,108 +2,13 @@
 /*
 SRM 726 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Hero and Jack have a rectangular board that is divided into a grid of unit square cells.
-Some of the cells may already be missing from the board.
-
-Turtles like to walk across their board.
-Each turtle will always enter the top left cell of the board and then it will walk to the bottom right cell.
-During the walk the turtle moves in steps, and each step must take the turtle either one cell down or one cell to the right.
-Obviously, a turtle cannot visit a cell that is already missing from the board.
-The sequence of cells visited by a turtle along its walk will be called a turtle path.
-
-We say that a board is turtle-friendly if a turtle can still complete its walk on the board.
-In other words, a turtle-friendly board is a board that contains at least one turtle path.
-In particular, note that a turtle-friendly board must contain both the top left cell and the bottom right cell.
-
-Hero and Jack are now going to play a game with their board.
-They will take alternating turns, with Hero being the first one to play.
-In each turn, the active player has to remove one cell from the board.
-The game continues as long as the board remains turtle-friendly.
-The player who causes the board to stop being turtle-friendly loses the game.
-
-You are given the vector <string> board that represents the initial state of the board:
-the character '.' represents a cell that is still present, the character '#' is a cell that has already been removed.
-It is guaranteed that board represents a turtle-friendly board.
-
-Return "Win" if Hero can win the game regardless of how Jack plays.
-Otherwise, return "Lose".
-
-DEFINITION
-Class:TurtleGame
-Method:getwinner
-Parameters:vector <string>
-Returns:string
-Method signature:string getwinner(vector <string> board)
-
-
-CONSTRAINTS
--board will contain between 2 and 20 elements, inclusive.
--All elements in board will contain the same sumber of characters.
--Each element in board will contain between 2 and 20 characters, inclusive.
--Each character in board will be either '.' or '#'.
--It is guaranteed that there is at least one undestroyed turtle path.
-
-
-EXAMPLES
-
-0)
-{"..",
- ".."}
-
-Returns: "Win"
-
-This board contains two different turtle paths.
-Hero has two moves that don't lose him the game: he can remove either the top right or the bottom left cell.
-Each of these moves will leave only one of the two turtle paths, and Jack will have no valid moves left.
-Jack's move will create a board that is not turtle-friendly, which means that Hero will win the game.
-
-
-1)
-{"...",
- ".#.",
- ".#.",
- "..."}
-
-Returns: "Lose"
-
-Again there are only two turtle paths.
-However, now they are longer.
-Regardless of which cell Hero removes (other than the top left and the bottom right cell), his move will create three cells that can be destroyed "for free".
-Since 3 is an odd number, Jack will be the one to remove the last of these three cells. In the following turn Hero will lose the game.
-
-
-2)
-{".##",
- "..#",
- "#.."}
-
-Returns: "Lose"
-
-
-3)
-{"....",
- "...#",
- "#...",
- "...."}
-
-Returns: "Win"
-
-
-4)
-{"...#.",
- "....#",
- "#....",
- "..##."}
-
-Returns: "Win"
-
-
-5)
-{"..........",
- "........#."}
-
-Returns: "Lose"
+問題
+-盤面が与えられる
+-左下からスタートして、右下がゴール
+-右か下だけ進める
+-二人で交互にひとつずつ升目を通れなくしていく
+-ゴールに到達できない状態になった方が負け
+-先手が勝つかどうかを求めよ
 
 */
 // END CUT HERE
