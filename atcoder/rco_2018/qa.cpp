@@ -1,7 +1,3 @@
-// rco_2018.cpp : コンソール アプリケーションのエントリ ポイントを定義します。
-//
-
-#include "stdafx.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -155,9 +151,9 @@ int main()
 		for (int i = 0; i < k; ++i) {
 			tot -= sv[i].first;
 		}
-		for (int i = 0; i != sv.size(); ++i) {
+//		for (int i = 0; i != sv.size(); ++i) {
 //			cout << " " << -sv[i].first;
-		}
+//		}
 //		cout << " " << tot << endl;
 		if (tot > bests) {
 			besth = h;
