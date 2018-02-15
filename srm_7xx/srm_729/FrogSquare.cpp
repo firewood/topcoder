@@ -126,18 +126,23 @@ class FrogSquare {
 		if (((gx - x)*(gx - x) + (gy - y)*(gy - y)) >= md) {
 			return 1;
 		}
-		int r = 1 << 30;
-		int nxs[] = { 0, x / 2, sz - x / 2 - 1, sz - 1, -1 };
-		int nys[] = { 0, y / 2, sz - y / 2 - 1, sz - 1, -1 };
-		for (int i = 0; nxs[i]>= 0; ++i) {
-			for (int j = 0; nys[j]>=0; ++j) {
-				int nx = nxs[i], ny = nys[j];
-				if (d < vis[nx][ny] && ((nx - x)*(nx - x) + (ny - y)*(ny - y)) >= md) {
-					r = min(r, 1 + dfs(nx, ny, d + 1));
+		int m = 1 << 30;
+		int p = ceil(sqrt(max(0, md - y * y)));
+		int q = ceil(sqrt(max(0, md - (sz - 1 - y) * (sz - 1 - y))));
+		int r = ceil(sqrt(max(0, md - x * x)));
+		int s = ceil(sqrt(max(0, md - (sz - 1 - x) * (sz - 1 - x))));
+		static const int TERM = 1 << 30;
+		int nxs[] = { 0, x - p, x + p, x - q, x + q, sz - 1, TERM };
+		int nys[] = { 0, y - r, y + r, y - s, y + s, sz - 1, TERM };
+		for (int i = 0; nxs[i] != TERM; ++i) {
+			for (int j = 0; nys[j] != TERM; ++j) {
+				int nx = max(0, min(sz - 1, nxs[i])), ny = max(0, min(sz - 1, nys[j]));
+				if (d < 4 && d < vis[nx][ny] && ((nx - x)*(nx - x) + (ny - y)*(ny - y)) >= md) {
+					m = min(m, 1 + dfs(nx, ny, d + 1));
 				}
 			}
 		}
-		return r;
+		return m;
 	}
 
 public:
@@ -230,47 +235,6 @@ public:
 
 
 		if ((Case == -1) || (Case == n)) {
-			int Arg0 = 13;
-			int Arg1 = 13;
-			int Arg2 = 0;
-			int Arg3 = 8;
-			int Arg4 = 11;
-			int Arg5 = 12;
-			int Arg6 = 3;
-
-			verify_case(n, Arg6, minimalJumps(Arg0, Arg1, Arg2, Arg3, Arg4, Arg5));
-		}
-		n++;
-
-
-		if ((Case == -1) || (Case == n)) {
-			int Arg0 = 26;
-			int Arg1 = 26;
-			int Arg2 = 19;
-			int Arg3 = 21;
-			int Arg4 = 6;
-			int Arg5 = 23;
-			int Arg6 = 4;
-
-			verify_case(n, Arg6, minimalJumps(Arg0, Arg1, Arg2, Arg3, Arg4, Arg5));
-		}
-		n++;
-
-
-		if ((Case == -1) || (Case == n)) {
-			int Arg0 = 238;
-			int Arg1 = 264;
-			int Arg2 = 23;
-			int Arg3 = 23;
-			int Arg4 = 220;
-			int Arg5 = 29;
-			int Arg6 = 4;
-
-			verify_case(n, Arg6, minimalJumps(Arg0, Arg1, Arg2, Arg3, Arg4, Arg5));
-		}
-		n++;
-
-		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 436;
 			int Arg1 = 479;
 			int Arg2 = 396;
@@ -278,6 +242,20 @@ public:
 			int Arg4 = 356;
 			int Arg5 = 395;
 			int Arg6 = 4;
+
+			verify_case(n, Arg6, minimalJumps(Arg0, Arg1, Arg2, Arg3, Arg4, Arg5));
+		}
+		n++;
+
+
+		if ((Case == -1) || (Case == n)) {
+			int Arg0 = 20;
+			int Arg1 = 12;
+			int Arg2 = 4;
+			int Arg3 = 8;
+			int Arg4 = 15;
+			int Arg5 = 8;
+			int Arg6 = 2;
 
 			verify_case(n, Arg6, minimalJumps(Arg0, Arg1, Arg2, Arg3, Arg4, Arg5));
 		}
