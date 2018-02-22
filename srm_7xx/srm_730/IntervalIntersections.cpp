@@ -2,83 +2,12 @@
 /*
 SRM 730 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-For any x ? y the interval [x,y] contains all real numbers between x and y, inclusive.
-The length of the interval [x,y] is y-x.
-Two intervals intersect if they have at least one number in common.
-
-You are given the ints x1, y1, x2, and y2.
-These are the endpoints of two intervals: [x1,y1] and [x2,y2].
-We are looking for an interval [a,b] that intersects both given intervals.
-Return the smallest possible length of the interval [a,b].
-
-
-DEFINITION
-Class:IntervalIntersections
-Method:minLength
-Parameters:int, int, int, int
-Returns:int
-Method signature:int minLength(int x1, int y1, int x2, int y2)
-
-
-CONSTRAINTS
--x1,y1,x2,y2 will be between 1 and 10^6, inclusive.
--x1 will be less than or equal to y1.
--x2 will be less than or equal to y2.
-
-
-EXAMPLES
-
-0)
-3
-6
-1
-2
-
-Returns: 1
-
-The two given intervals are [3,6] and [1,2]. The unique shortest interval that intersects both of them is the interval [2,3]. Its length is 3-2 = 1.
-
-
-1)
-1
-2
-3
-6
-
-Returns: 1
-
-The same two intervals as in Example 0, only in different order. The correct return value is the same.
-
-
-2)
-1
-10
-2
-5
-
-Returns: 0
-
-In this test case the optimal length of the interval [a,b] is 0. Examples of such intervals include [2,2] and [4,4].
-
-
-3)
-4
-5
-1
-4
-
-Returns: 0
-
-
-4)
-1
-1
-1000000
-1000000
-
-Returns: 999999
+問題
+- 閉区間[x,y]はxとyの間の全ての実数を含む。
+- 閉区間の長さはy-xである。
+- 二つの閉区間について、一つでも共通の数が含まれれば、交差しているものとする。
+- 二つの閉区間[x1,y1]と[x2,y2]が与えられる。
+- 二つの閉区間の両方に交差する閉区間[a,b]の長さを求めよ。
 
 */
 // END CUT HERE
