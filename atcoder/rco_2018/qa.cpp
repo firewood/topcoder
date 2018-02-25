@@ -6,6 +6,24 @@
 
 using namespace std;
 
+#ifdef _DEBUG
+static const int pre_max_hists = 10;
+static const int pre_max_cmd_length = 10;
+static const int max_hists = 20;
+static const int max_cmd_length = 20;
+#else
+static const int pre_max_hists = 200;
+static const int pre_max_cmd_length = 5;
+static const int max_hists = 80;
+static const int max_cmd_length = 2500;
+#endif
+static const int pre_penalty = -100;
+static const int penalty = -100;
+
+static const string cc = "UDLR";
+static const int dx[] = { 0,0,-1,1 };
+static const int dy[] = { -1,1,0,0 };
+
 struct Map {
 	int x;
 	int y;
@@ -28,57 +46,25 @@ struct History {
 	}
 };
 
-int n;
-int k;
-int h;
-int w;
-int t;
-
-int main()
-{
-	cin >> n >> k >> h >> w >> t;
-	vector<Map> maps(n);
+vector<History> gen_command(const vector<Map> &maps, int max_hists, int max_cmd_length, int stack_penalty) {
+	int n = (int)maps.size();
+	int h = maps[0].b.size();
 	History org;
 	org.x = vector<int>(n);
 	org.y = vector<int>(n);
 	org.vis.resize(n);
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < h; ++j) {
-			string s;
-			cin >> s;
-			s += string(50, '#');
-			Map &m = maps[i];
-			m.b[j] = s.substr(0, 50);
-			if (m.x < 0) {
-				m.x = s.find('@');
-				if (m.x >= 0) {
-					m.y = j;
-					org.x[i] = m.x;
-					org.y[i] = m.y;
-				}
-			}
-			
+			org.x[i] = maps[i].x;
+			org.y[i] = maps[i].y;
 		}
 	}
 
 	vector<History> hists;
 	hists.push_back(org);
-
-	static const string cc = "UDLR";
-	static const int dx[] = { 0,0,-1,1 };
-	static const int dy[] = { -1,1,0,0 };
-#ifdef _DEBUG
-	static const int max_hists = 5;
-	static const int max_cmd_length = 10;
-#else
-	static const int max_hists = 30;
-	static const int max_cmd_length = 2500;
-#endif
 	while (hists[0].cmds.size() < max_cmd_length) {
 		vector<History> next;
 		for (int h = 0; h != hists.size(); ++h) {
-			++h;
-			--h;
 			for (int d = 0; d < 4; ++d) {
 				History hist = hists[h];
 				int score = hist.score;
@@ -88,7 +74,7 @@ int main()
 						switch (maps[i].b[ny][nx]) {
 						case 'x':
 							nx = -1;
-							score -= 10;
+							score += stack_penalty;
 							break;
 						case '#':
 							nx = hist.x[i], ny = hist.y[i];
@@ -114,6 +100,33 @@ int main()
 		}
 		hists = next;
 	}
+
+	return hists;
+}
+
+int main()
+{
+	int n, k, h, w, t;
+	cin >> n >> k >> h >> w >> t;
+	vector<Map> maps(n);
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < h; ++j) {
+			string s;
+			cin >> s;
+			s += string(50, '#');
+			Map &m = maps[i];
+			m.b[j] = s.substr(0, 50);
+			if (m.x < 0) {
+				m.x = s.find('@');
+				if (m.x >= 0) {
+					m.y = j;
+				}
+			}
+
+		}
+	}
+
+	vector<History> hists = gen_command(maps, pre_max_hists, pre_max_cmd_length, pre_penalty);
 
 	int besth, bests = -1;
 	vector<int> bestm(k);
@@ -151,10 +164,6 @@ int main()
 		for (int i = 0; i < k; ++i) {
 			tot -= sv[i].first;
 		}
-//		for (int i = 0; i != sv.size(); ++i) {
-//			cout << " " << -sv[i].first;
-//		}
-//		cout << " " << tot << endl;
 		if (tot > bests) {
 			besth = h;
 			bests = tot;
@@ -163,6 +172,13 @@ int main()
 			}
 		}
 	}
+
+	vector<Map> selected;
+	for (int i = 0; i < k; ++i) {
+		selected.push_back(maps[bestm[i]]);
+	}
+	hists = gen_command(selected, max_hists, min(t, max_cmd_length), penalty);
+
 	for (int i = 0; i < k; ++i) {
 		if (i) {
 			cout << " ";
@@ -170,10 +186,10 @@ int main()
 		cout << bestm[i];
 	}
 	cout << endl;
-	for (int d : hists[besth].cmds) {
+	for (int d : hists[0].cmds) {
 		cout << cc[d];
 	}
 	cout << endl;
-    return 0;
-}
 
+	return 0;
+}
