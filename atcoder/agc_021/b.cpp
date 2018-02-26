@@ -23,7 +23,7 @@ long double cross(const Point &O, const Point &A, const Point &B) {
 	return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
 }
 
-vector<Point> convex_hull(vector<Point> P)
+vector<Point> convex_hull(vector<Point> &P)
 {
 	int n = (int)P.size(), k = 0;
 	if (n <= 2) {
@@ -39,8 +39,7 @@ vector<Point> convex_hull(vector<Point> P)
 		while (k >= t && cross(H[k - 2], H[k - 1], P[i]) <= 0) k--;
 		H[k++] = P[i];
 	}
-	H.resize(k - 1);
-	return H;
+	return vector<Point>(H.begin(), H.begin() + k - 1);
 }
 
 long double rad(const Point &a, const Point &b, const Point &c) {
@@ -61,21 +60,18 @@ int main(int argc, char *argv[])
 		cin >> p[i].y;
 		p[i].i = i;
 	}
-	vector<long double> res(n, 1.0 / n);
-	if (n >= 3) {
-		res = vector<long double>(n);
-		vector<Point> ch = convex_hull(p);
-		if (ch.size() <= 2) {
-			for (int i = 0; i != ch.size(); ++i) {
-				res[ch[i].i] = 1.0 / ch.size();
-			}
-		} else {
-			for (int i = 0; i != ch.size(); ++i) {
-				int prev = (i - 1 + ch.size()) % ch.size();
-				int next = (i + 1) % ch.size();
-				long double r = rad(ch[prev], ch[i], ch[next]);
-				res[ch[i].i] = (M_PI - r) / (2 * M_PI);
-			}
+	vector<long double> res(n);
+	vector<Point> ch = convex_hull(p);
+	if (ch.size() <= 2) {
+		for (int i = 0; i != ch.size(); ++i) {
+			res[ch[i].i] = 1.0 / ch.size();
+		}
+	} else {
+		for (int i = 0; i != ch.size(); ++i) {
+			int prev = (i - 1 + ch.size()) % ch.size();
+			int next = (i + 1) % ch.size();
+			long double r = rad(ch[prev], ch[i], ch[next]);
+			res[ch[i].i] = (M_PI - r) / (2 * M_PI);
 		}
 	}
 	for (int i = 0; i < n; ++i) {
