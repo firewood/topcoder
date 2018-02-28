@@ -2,107 +2,14 @@
 /*
 SRM 730 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given a rooted tree with n nodes.
-The nodes are labeled from 0 to n-1.
-Node 0 is the root.
-Each node of the tree has at most two children.
-
-You are given the description of the tree: the vector <int>s p and w.
-The vector <int> p has n-1 elements.
-For each valid i, node p[i] is the parent of node (i+1).
-You may assume that for each i we have p[i] ? i.
-The vector <int> w has n elements.
-For each valid i, w[i] is the weight of node i.
-
-The vector <int> w has a special property: it is non-decreasing.
-That is, for each valid i we have w[i-1] ? w[i].
-
-All nodes of the tree are currently empty.
-You are now going to play a game with the tree and an unlimited supply of stones.
-The game is played in turns.
-In each turn you can either remove a single stone from anywhere into a tree, or you can place a single stone onto a node of the tree.
-However, there is a restriction on placing the stones:
-you may only place a stone onto a node if all of its children currently have stones placed on them.
-(Note that this means that you can always place a stone onto any leaf of the tree.)
-
-The weight of a given state of the game is equal to the sum of weights of nodes with stones.
-
-You win the game by placing a stone onto the root of the tree.
-You want to win the game.
-If there are multiple ways to do so, you prefer a way for which the maximum weight of a state during the game is minimized.
-Compute and return this weight.
-In other words, compute and return the smallest W for which there is a way to win the game such that during the game the total weight of nodes with stones never exceeds W.
-
-
-DEFINITION
-Class:StonesOnATree
-Method:minStones
-Parameters:vector <int>, vector <int>
-Returns:int
-Method signature:int minStones(vector <int> p, vector <int> w)
-
-
-CONSTRAINTS
--p will have between 1 and 999 elements, inclusive. (Thus, the number of nodes is between 2 and 1,000, inclusive.)
--The i-th element of p will be between 0 and i, inclusive.
--In the given tree each node will have at most two children. In other words, each value will appear in p at most twice.
--w will have exactly len(p)+1 elements.
--Each element of w will be 1 and 10^5, inclusive.
--Elements of w will be non-decreasing.
-
-
-EXAMPLES
-
-0)
-{0,1,2,3}
-{1,2,2,4,4}
-
-Returns: 8
-
-There are five nodes in a line. 
-Here, one optimal solution is as follows:
-
- Place stone on node 4 (weight = 4). 
- Place stone on node 3 (weight = 8). 
- Remove stone from node 4 (weight = 4). 
- Place stone on node 2 (weight = 6). 
- Place stone on node 1 (weight = 8). 
- Remove stone from node 2 (weight = 6). 
- Place stone on node 0 (weight = 7). 
-
-The maximum weight over all states is 8. It can be shown there is no other sequence of moves that has a smaller maximum weight.
-
-
-1)
-{0,0}
-{1,2,3}
-
-Returns: 6
-
-In order to be able to place a stone onto node 0 we have to place stones onto both of its children. Thus, at the end of the game each of these three nodes will have a stone.
-
-
-2)
-{0}
-{100000,100000}
-
-Returns: 200000
-
-
-3)
-{0,0,1,1,2,2}
-{1,1,1,1,1,1,1}
-
-Returns: 4
-
-
-4)
-{0,0,1,2,3,4,4,2,1,3,6,7}
-{1,2,3,4,5,6,6,7,8,8,8,9,10}
-
-Returns: 22
+問題
+-N個の頂点からなる木がある
+-各頂点iには重みw[i]がある
+-1ターンに、一つ石を置くか、一つの石を取り除ける
+-子を持つ頂点には、全ての子に石が置かれているときだけ石を置ける
+-葉には常に石を置ける
+-根に石を置いたらゴール
+-ゴールまでの全ての状態における重みの合計の最大値を最小化するとき、その値を求める
 
 */
 // END CUT HERE
