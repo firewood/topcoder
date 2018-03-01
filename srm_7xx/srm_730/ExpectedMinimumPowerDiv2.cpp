@@ -2,82 +2,11 @@
 /*
 SRM 730 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-You are given two positive ints: n and x.
-
-You are going to choose x distinct integers, each between 1 and n, inclusive.
-The choice will be made uniformly at random.
-That is, each of the possible x-element subsets of the integers 1 to n is equally likely to be chosen.
-
-Let S be the smallest integer among the x chosen ones.
-Compute and return the expected value of 2^S.
-In other words, determine the average value of 2 to the power of S, where the average is taken over all possible choices of the x distinct integers.
-
-
-DEFINITION
-Class:ExpectedMinimumPowerDiv2
-Method:findExp
-Parameters:int, int
-Returns:double
-Method signature:double findExp(int n, int x)
-
-
-NOTES
--Your answer will be accepted if the absolute or relative error is at most 1e-9.
-
-
-CONSTRAINTS
--n will be between 1 and 50, inclusive.
--x will be between 1 and n, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-4
-
-Returns: 2.0
-
-The only possible situation is that you will choose (1, 2, 3, 4). In this case, the minimum is 1, and the expected value is 2^1 = 2. 
-
-
-1)
-3
-2
-
-Returns: 2.6666666666666665
-
-There are three equally likely scenarios: you will select either {1,2} or {1,3} or {2,3}. The corresponding values of S are 1, 1, and 2, respectively. Thus, the average value of 2^S is (2^1 + 2^1 + 2^2) / 3 = 8 / 3 = 2.6666666
-
-
-2)
-3
-1
-
-Returns: 4.666666666666667
-
-
-3)
-10
-4
-
-Returns: 8.076190476190476
-
-
-4)
-50
-25
-
-Returns: 9.906688596554163
-
-
-5)
-50
-1
-
-Returns: 4.503599627370492E13
+問題
+-正の整数nとxが与えられる
+-1からnまでのx個の異なる数を選ぶ
+-x個の数の中の最小値をSとする
+-2^Sの期待値を求めよ
 
 */
 // END CUT HERE
