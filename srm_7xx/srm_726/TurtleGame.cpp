@@ -108,90 +108,26 @@ Returns: "Lose"
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
-#include <map>
-#include <unordered_map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
 #include <cstring>
-#include <bitset>
 
 using namespace std;
 
-typedef bitset<400> Bits;
-
 class TurtleGame {
-	int h;
-	int w;
-	unordered_map<Bits, int> cmemo;
-	unordered_map<Bits, int> memo;
-	Bits corner;
-
-	bool check(const Bits &b) {
-		if (cmemo[b]) {
-			return cmemo[b] - 1 != 0;
-		}
-		Bits c;
-		c[0] = 1;
-		for (int i = 0; i < h; ++i) {
-			for (int j = 0; j < w; ++j) {
-				int k = i * w + j;
-				if ((i || j) && !b[k]) {
-					if ((i && c[k - w]) || (j && c[k - 1])) {
-						c[k] = 1;
-					}
-				}
-			}
-		}
-		cmemo[b] = c[h * w - 1] + 1;
-		return cmemo[b] - 1 != 0;
-	}
-
-	bool win(Bits &b) {
-		if (memo[b]) {
-			return memo[b] - 1 != 0;
-		}
-		for (int i = 0; i < h; ++i) {
-			for (int j = 0; j < w; ++j) {
-				int k = i * w + j;
-				if (!corner[k] && !b[k]) {
-					b[k] = 1;
-					if (check(b)) {
-						if (!win(b)) {
-							b[k] = 0;
-							memo[b] = 2;
-							return true;
-						}
-					}
-					b[k] = 0;
-				}
-			}
-		}
-		memo[b] = 1;
-		return false;
-	}
-
 public:
 	string getwinner(vector <string> board) {
-		h = (int)board.size();
-		w = (int)board[0].length();
-		cmemo.clear();
-		memo.clear();
-		corner = Bits();
-		corner[0] = 1, corner[h * w - 1] = 1;
-		Bits b;
+		int h = (int)board.size();
+		int w = (int)board[0].length();
+		int cnt = 0;
 		for (int i = 0; i < h; ++i) {
 			for (int j = 0; j < w; ++j) {
-				if (board[i][j] == '#') {
-					b[i * w + j] = 1;
-				}
+				cnt += board[i][j] == '#';
 			}
 		}
-		return win(b) ? "Win" : "Lose";
+		return (h * w - (h + w - 1) - cnt) % 2 ? "Win" : "Lose";
 	}
 
 // BEGIN CUT HERE
@@ -304,7 +240,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	TurtleGame ___test;
-	___test.run_test(1);
 	___test.run_test(-1);
 }
 // END CUT HERE
