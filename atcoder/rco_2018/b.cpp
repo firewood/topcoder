@@ -4,7 +4,6 @@
 #include <sstream>
 #include <vector>
 #include <set>
-#include <map>
 #include <sys/stat.h>
 
 using namespace std;
@@ -17,7 +16,6 @@ long double D;
 vector<string> q;
 
 int main(int argc, const char * argv[]) {
-    cout.precision(10);
     string filename = argv[1] ? argv[1] : "";
     struct stat _stat;
     if (stat(filename.c_str(), &_stat) == 0) {
@@ -26,13 +24,33 @@ int main(int argc, const char * argv[]) {
     cin >> N >> M >> Q;
 
     S = string(N, 'a');
-	D = 4.8;
+	D = 4.75;
     bool ok = false;
     while (!ok) {
-        for (int i = 0; i < N; ++i) {
-            S[i] = 'a' + (rand() % 26);
-        }
-        random_shuffle(S.begin(), S.end());
+		int counts[27][26] = {};
+		char prev = 26;
+		for (int i = 0; i < N; ++i) {
+			long double sum = 0, prob[26] = {};
+			for (int j = 0; j < 26; ++j) {
+				if (prev != j) {
+					prob[j] = 1.0 / (counts[prev][j] + 1);
+					sum += prob[j];
+				}
+			}
+			const long double rm = 1.0 / ((long double)RAND_MAX + 1);
+			long double r = (sum * rand()) * rm;
+			for (int j = 0; j < 26; ++j) {
+				if (prev != j) {
+					r -= prob[j];
+					if (r <= 0) {
+						S[i] = 'a' + j;
+						counts[prev][j] += 1;
+						prev = j;
+						break;
+					}
+				}
+			}
+		}
         string x = S + S;
         set<string> s;
         ok = true;
