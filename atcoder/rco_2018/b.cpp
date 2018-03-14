@@ -83,31 +83,30 @@ int main(int argc, const char * argv[]) {
         q.push_back(s);
     }
 
+	long double dp[6001][8] = {};
+	long double P = 1.0 / D, PR = 1.0 - P;
+	for (int i = 0; i != ss.length(); ++i) {
+		dp[i][M] = 1.0;
+	}
 	for (int i = 0; i < Q; ++i) {
-		int pos[8] = {};
-		int mn = 1 << 30;
-		int mni = 0;
-		string target = q[i];
-		for (int i = 1; i < (int)ss.length(); ++i) {
-			for (int j = M; j >= 0; --j) {
-				if (ss[i] == target[j]) {
-					if (j == 0) {
-						pos[j] = i;
-					} else if (pos[j] < pos[j - 1]) {
-						pos[j] = pos[j - 1];
-						if (j == M - 1) {
-							int len = i - pos[j] + 1;
-							if (len < mn) {
-								mn = len;
-								mni = pos[j];
-							}
-						}
-					}
+		int mxi = -1;
+		long double mx = 0;
+		const string &target = q[i];
+		for (int j = S.length() + (int)(M * D); j >= 0; --j) {
+			for (int k = M - 1; k >= 0; --k) {
+				dp[j][k] = PR * dp[j + 1][k];
+				if (ss[j] == target[k]) {
+					dp[j][k] += P * dp[j + 1][k + 1];
 				}
 			}
+			if (dp[j][0] > mx) {
+				mxi = j;
+				mx = dp[j][0];
+			}
 		}
-		cout << ((int)(mni - D * 0.5 + N) % N) << endl;
-    }
+		cout << mxi << endl;
+	}
+
     fflush(stdout);
     return 0;
 }
