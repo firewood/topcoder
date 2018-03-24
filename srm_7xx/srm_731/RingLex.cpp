@@ -2,90 +2,10 @@
 /*
 SRM 731 Div2 Easy (250)
 
-PROBLEM STATEMENT
-Hero has an infinite periodic string t.
-You are given the string s that is the period of Hero's string.
-For example, if s = "abc", Hero's actual string is t = "abcabcabcabc..."
-
-Let n be the length of string s.
-Hero is now going to use the infinite string t to generate a new n-character string by doing the following steps:
-
-He will choose an offset: a non-negative integer x.
-He will choose the length of a step: a prime number p that is less than n.
-The new string will consists of the first n characters we can read in the string t if we start at the index x and after each character we move p positions to the right.
-
-Formally, Hero's new string will consist of the following characters, in order:
-t[x], t[x + p], t[x + 2*p], ..., t[x + (n-1)*p].
-
-Find and return the lexicographically smallest string Hero can produce.
-
-
-DEFINITION
-Class:RingLex
-Method:getmin
-Parameters:string
-Returns:string
-Method signature:string getmin(string s)
-
-
-NOTES
--Given two distinct strings of the same length, the lexicographically smaller one is the one that has a smaller character at the first position where they differ.
--A positive integer p is a prime if it has exactly two distinct divisors: 1 and p. Note that the number 1 is not a prime.
-
-
-CONSTRAINTS
--s will contain between 3 and 50 characters, inclusive.
--Each character in s will be between 'a' and 'z', inclusive.
-
-
-EXAMPLES
-
-0)
-"cba"
-
-Returns: "abc"
-
-Hero should choose the offset x=2 and the step p=2. The resulting string is t[2]+t[4]+t[6] = 'a'+'b'+'c' = "abc".
-
-
-1)
-"acb"
-
-Returns: "abc"
-
-Here, Hero should choose x=0 and p=2.
-
-
-2)
-"abacaba"
-
-Returns: "aaaabcb"
-
-
-3)
-"aaabb"
-
-Returns: "aabab"
-
-
-4)
-"azzzabbb"
-
-Returns: "abazabaz"
-
-Note that Hero cannot choose x=0 and p=4, because 4 is not a prime number.
-
-
-5)
-"abbaac"
-
-Returns: "aaaaaa"
-
-
-6)
-"fsdifyhsoe"
-
-Returns: "dehifsfsoy"
+問題
+-長さNの文字列Sを無限に繰り返した文字列Tがある
+-N未満の素数Pをひとつ選び、文字列Tの位置Xから、X+P、X+2Pというように、Pずつ増やした位置でN個の文字を選ぶ
+-この操作でできる辞書順最小の文字列を求めよ
 
 */
 // END CUT HERE
