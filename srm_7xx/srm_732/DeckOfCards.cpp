@@ -94,65 +94,30 @@ This deck is not perfect. For example, the presence of cards (1, 'h') and (3, 'c
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
 #include <map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
-#include <cstring>
 
 using namespace std;
 
-typedef long long LL;
-
-// BEGIN CUT HERE
-/*
 typedef pair<int, int> II;
-typedef vector<int> IntVec;
-typedef vector<LL> LLVec;
-typedef vector<II> IIVec;
-typedef vector<string> StrVec;
-typedef set<int> IntSet;
-typedef set<LL> LLSet;
-typedef set<II> IISet;
-typedef set<string> StrSet;
-
-int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
-LL gcd(LL a, LL b) { return b ? gcd(b, a % b) : a; }
-#define MOD 1000000007LL
-#define MOD 1000000009LL
-*/
-// END CUT HERE
 
 class DeckOfCards {
 
 	bool check(int n, vector <int> value, string suit) {
-		if (n == 1) {
-			return true;
+		map<II, int> m;
+		for (int i = 0; i < n; ++i) {
+			m[II(value[i], suit[i])] += 1;
+			if (m[II(value[i], suit[i])] >= 2) {
+				return false;
+			}
 		}
 		for (int i = 0; i < n; ++i) {
 			for (int j = i + 1; j < n; ++j) {
-				if (value[i] == value[j] && suit[i] == suit[j]) {
+				if (!m[II(value[i], suit[j])] || !m[II(value[j], suit[i])]) {
 					return false;
-				}
-				if (value[i] != value[j] && suit[i] != suit[j]) {
-					bool a = false, b = false;
-					for (int k = 0; k < n; ++k) {
-						if (k != i && k != j) {
-							if (value[i] == value[k] && suit[j] == suit[k]) {
-								a = true;
-							}
-							if (value[j] == value[k] && suit[i] == suit[k]) {
-								b = true;
-							}
-						}
-					}
-					if (!a || !b) {
-						return false;
-					}
 				}
 			}
 		}
