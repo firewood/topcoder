@@ -180,10 +180,12 @@ struct UnionFind {
 };
 
 class TileFlippingGame {
+	vector<int> nodes;
 	set<int> g[400];
 
 public:
 	int HowManyMoves(int n, int m, vector <string> X) {
+		nodes.clear();
 		UnionFind common(n*m), neighbor(n*m);
 		const int dx[4] = { -1,1,0,0 };
 		const int dy[4] = { 0,0,-1,1 };
@@ -194,33 +196,39 @@ public:
 					for (int d = 0; d < 4; ++d) {
 						int r = i + dy[d], c = j + dx[d];
 						if (r >= 0 && r < n && c >= 0 && c < m && X[r][c] == X[i][j]) {
+							neighbor.unite(i * m + j, r * m + c);
 							common.unite(i * m + j, r * m + c);
 						}
 					}
 				}
 			}
 		}
-		vector<int> nodes;
 		for (int i = 0; i < n; ++i) {
 			for (int j = 0; j < m; ++j) {
 				if (X[i][j] != 'e') {
 					int p = common.root(i * m + j);
 					if (p == i * m + j) {
 						nodes.push_back(p);
-						for (int d = 0; d < 4; ++d) {
-							int r = i + dy[d], c = j + dx[d];
-							if (r >= 0 && r < n && c >= 0 && c < m && X[r][c] != 'e' && X[i][j] != X[r][c]) {
-								int q = common.root(r * m + c);
-								neighbor.unite(p, q);
-								g[p].insert(q);
-								g[q].insert(p);
-							}
+					}
+					for (int d = 0; d < 4; ++d) {
+						int r = i + dy[d], c = j + dx[d];
+						if (r >= 0 && r < n && c >= 0 && c < m && X[r][c] != 'e' && X[i][j] != X[r][c]) {
+							int q = common.root(r * m + c);
+							neighbor.unite(p, q);
+							g[p].insert(q);
+							g[q].insert(p);
 						}
 					}
 				}
 			}
 		}
-		int gdist[2][400] = {};
+		int mcost[2][400] = {};
+		for (int node : nodes) {
+			if (neighbor.root(node) == node) {
+				mcost[0][node] = 1 << 30;
+				mcost[1][node] = 1 << 30;
+			}
+		}
 		for (int node : nodes) {
 			int vis[400] = {};
 			vis[node] = 1;
@@ -229,9 +237,9 @@ public:
 				vis[next] = 1;
 				q.push_back(next);
 			}
-			int dist = 0;
+			int cost = 0;
 			while (q.size()) {
-				++dist;
+				++cost;
 				vector<int> nq;
 				for (int v : q) {
 					for (int next : g[v]) {
@@ -245,17 +253,14 @@ public:
 			}
 			bool white = X[node / m][node % m] == 'w';
 			int nr = neighbor.root(node);
-			gdist[white][nr] = max(gdist[white][nr], (dist + 1) / 2);
-			gdist[!white][nr] = max(gdist[!white][nr], 1 + dist / 2);
-
-			// b  0    bw   1 bwb 1 bwbw 2
-			// b  1  bw  1   bwb  2
+			mcost[white][nr] = min(mcost[white][nr], cost + (cost % 2));
+			mcost[!white][nr] = min(mcost[!white][nr], cost + !(cost % 2));
 		}
 		int cost[2] = {};
 		for (int i = 0; i < 2; ++i) {
 			for (int j = 0; j < n * m; ++j) {
 				if (neighbor.root(j) == j) {
-					cost[i] += gdist[i][j];
+					cost[i] += mcost[i][j];
 				}
 			}
 		}
