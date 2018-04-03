@@ -2,94 +2,13 @@
 /*
 SRM 732 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-You found a deck of slightly non-traditional playing cards.
-Each card has a value and a suit.
-The value of each card is a positive integer, and the suit is a lowercase English letter ('a'-'z').
-We will use (v, s) to denote a card with value v and suit s.
-
-You want to know whether the deck is perfect.
-A perfect deck has two properties:
-
-All cards in the deck are distinct. (I.e., no two cards share both value and suit.)
-For any two cards (v1, s1) and (v2, s2) in the deck, the deck also contains the cards (v1, s2) and (v2, s1).
-
-You are given the following data:
-
-an int n: the number of cards in the deck
-a vector <int> value with n elements: the values of the cards in the deck
-a string suit  with n elements: the suits of the cards in the deck
-
-More precisely, for each valid i, (value[i], suit[i]) is one of the cards in the deck.
-
-Return "Perfect" if the deck is perfect and "Not perfect" otherwise.
-Note that the quotes are only for clarity and that the return value is case-sensitive.
-
-
-DEFINITION
-Class:DeckOfCards
-Method:IsValid
-Parameters:int, vector <int>, string
-Returns:string
-Method signature:string IsValid(int n, vector <int> value, string suit)
-
-
-CONSTRAINTS
--n will be between 1 and 50, inclusive.
--value will contain exactly n elements.
--Each element of value will be between 1 and 1,000,000,000, inclusive.
--suit will be of length n exactly.
--Suit will only contain lower-case alphabets ('a'-'z').
-
-
-EXAMPLES
-
-0)
-1
-{10}
-"z"
-
-Returns: "Perfect"
-
-There is only one card in the deck: (10, 'z').
-The deck is obviously perfect.
-
-
-1)
-3
-{1,2,3}
-"hhh"
-
-Returns: "Perfect"
-
-
-2)
-4
-{2,3,2,3}
-"hcch"
-
-Returns: "Perfect"
-
-
-3)
-3
-{1,1,1}
-"hch"
-
-Returns: "Not perfect"
-
-This deck is not perfect because it contains two copies of the card (1, 'h').
-
-
-4)
-4
-{1,2,3,4}
-"hhcc"
-
-Returns: "Not perfect"
-
-This deck is not perfect. For example, the presence of cards (1, 'h') and (3, 'c') implies that the cards (3, 'h') and (1, 'c') should also be in the deck, but both of them are missing.
+問題
+-数値と、aからzまでのどれかのマークが書かれたカードがある
+-値v、マークがsの1枚のカードを(v,s)と表す
+-何枚かのカードのセットが与えられる
+-以下の条件を満たすかどうかを調べよ
+  -任意の2枚のカードについて、少なくとも値かマークのどちらかが異なる
+  -任意の2枚のカード(v1,s1)と(v2,s2)について、(v1,s2)と(v2,s1)というカードが存在する
 
 */
 // END CUT HERE
