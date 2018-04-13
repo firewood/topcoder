@@ -2,90 +2,10 @@
 /*
 SRM 731 Div2 Medium (500)
 
-PROBLEM STATEMENT
-Hero is going to give a dancing class.
-Exactly n students already signed up for the class.
-Hero doesn't know the genders of those students, so he makes the simplifying assumption that each student is either a boy or a girl with equal probability, and that these random choices are mutually independent.
-
-During the class there will be k times when Hero needs to choose one boy and one girl for the demonstration of a new dance move.
-Hero is happy if he is able to choose k distinct boy-girl pairs for those demonstrations.
-(The same person can be chosen multiple times, as long as it is always with a different partner.)
-
-Hero now wonders what is the probability that he will be happy.
-Return "High" if the probability is strictly more than 50%, "Low" if it is strictly less than 50%, and "Equal" if it is exactly 50%.
-Note that the return value is case-sensitive.
-
-
-DEFINITION
-Class:DancingClass
-Method:checkOdds
-Parameters:int, int
-Returns:string
-Method signature:string checkOdds(int n, int k)
-
-
-CONSTRAINTS
--n will be between 1 and 500, inclusive.
--k will be between 1 and 500, inclusive.
-
-
-EXAMPLES
-
-0)
-2
-1
-
-Returns: "Equal"
-
-There are n=2 participants and Hero needs to choose k=1 boy-girl pair.
-
-With probability 50% one participant is a boy and the other is a girl, which will make Hero happy.
-
-With probability 50% both participants have the same gender, and in that case Hero will be unhappy.
-Hence, the probability that Hero will be happy is exactly 50 percent.
-
-
-1)
-3
-2
-
-Returns: "High"
-
-Now there are three participants and Hero needs to form two distinct boy-girl pairs.
-
-With probability 1/8 all three participants are boys, and with probability 1/8 all three of them are girls.
-In those cases Hero will be unhappy.
-In all remaining cases Hero can form exactly two pairs, which is enough to make him happy.
-
-Thus, the probability of Hero being happy is 3/4, and therefore we should return "High".
-
-
-2)
-4
-4
-
-Returns: "Low"
-
-
-3)
-500
-500
-
-Returns: "High"
-
-
-4)
-40
-397
-
-Returns: "Low"
-
-
-5)
-1
-1
-
-Returns: "Low"
+問題
+-N人の生徒がいる
+-男女一人ずつ、同じペアにならないようにK回選ぶことができるときを良い状態とする
+-男女の生起確率が等しいとき、良い状態である確率を求めよ
 
 */
 // END CUT HERE
