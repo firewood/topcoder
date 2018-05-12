@@ -7,9 +7,9 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	string s;
-	cin >> s;
-	int ans = 700 + 100 * count(s.begin(), s.end(), 'o');
-	cout << ans << endl;
+	int a, b, x;
+	cin >> a >> b >> x;
+	bool ans = x >= a && x <= (a + b);
+	cout << (ans ? "YES" : "NO") << endl;
 	return 0;
 }
