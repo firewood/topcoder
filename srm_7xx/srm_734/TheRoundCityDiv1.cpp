@@ -2,89 +2,9 @@
 /*
 SRM 734 Div1 Easy (300)
 
-PROBLEM STATEMENT
-John and Brus have found a nice horizontal plane and they built a round city somewhere on the plane.
-The center of the city is at coordinates (0, 0).
-This point is left empty.
-There is a house at each other lattice point that is at most r units away from the city center.
-That is, the lattice point (x, y) other than (0, 0) contains a house if and only if sqrt(x*x + y*y) ? r.
-
-John and Brus are wondering how many houses are visible from the city center.
-A house is visible if and only if there are no other houses on the line segment connecting the house and the city center.
-(For the purpose of this definition, each house is a single point.)
-
-You are given the int r.
-Return the number of houses that are visible from the city center.
-
-
-DEFINITION
-Class:TheRoundCityDiv1
-Method:find
-Parameters:int
-Returns:long long
-Method signature:long long find(int r)
-
-
-CONSTRAINTS
--r will be between 1 and 1,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-
-Returns: 4
-
-There are four houses in the city: at (0, 1), (0, -1), (1, 0), and (-1, 0).
-All four of them are visible from the city center.
-
-
-1)
-2
-
-Returns: 8
-
-There are twelve houses in the city: 
-
-(0, 1), (0, -1), (1, 0), (-1, 0), 
-
-(1, 1), (1, -1), (-1, 1), (-1, -1),
-
-(0, 2), (0, -2), (2, 0), (-2, 0), 
-
-The last four are not visible from the city center. For example, (0, 2) is not visible because (0, 1) is on the line segment from (0, 2) to the city center.
-
-
-2)
-3
-
-Returns: 16
-
-There are twenty-eight houses in the city:
-
-(0, 1), (0, -1), (1, 0), (-1, 0), 
-
-(0, 2), (0, -2), (2, 0), (-2, 0), (1, 1), (1, -1), (-1, 1), (-1, -1),
-
-(0, 3), (0, -3), (3, 0), (-3, 0), (1, 2), (1, -2), (-1, 2), (-1, -2),
-
-(2, 1), (2, -1), (-2, 1), (-2, -1), (2, 2), (2, -2), (-2, 2), (-2, -2).
-
-
-Twelve of them:
-
-(0, 2), (0, -2), (2, 0), (-2, 0),
-
-(0, 3), (0, -3), (3, 0), (-3, 0), (2, 2), (2, -2), (-2, 2), (-2, -2)
-
-are not visible from the city center.
-
-
-3)
-47
-
-Returns: 4176
+問題
+-二次元平面上の格子点を考える
+-原点から距離がR以内の格子点のうち、原点からの直線状に他の格子点が存在しないものの個数を求めよ
 
 */
 // END CUT HERE
