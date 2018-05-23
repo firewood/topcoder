@@ -2,80 +2,11 @@
 /*
 TCO18 Fun Round Poland Easy (250)
 
-PROBLEM STATEMENT
-A new social network automatically matches people together based upon a shared interest. A list of interests for each member of the social network is given in the vector <string> interests. Each element represents the interests of a single member: each character ('A'-'Z') represents a different interest. Two individuals become friends if they have at least one interest in common. Return the average number of friends each member has.
-
-
-DEFINITION
-Class:SocialNetwork
-Method:averageFriends
-Parameters:vector <string>
-Returns:double
-Method signature:double averageFriends(vector <string> interests)
-
-
-NOTES
--Your return value must have an absolute or a relative error at most 10^(-9).
-
-
-CONSTRAINTS
--interests will contain between 2 and 50 elements, inclusive.
--Each character in each element of interests will be an uppercase English letter ('A'-'Z').
--The characters in each element of interests will be distinct.
-
-
-EXAMPLES
-
-0)
-{"A", "A"}
-
-Returns: 1.0
-
-Two people who share a common interest. Thus, they each have one friend, and the average number of
-friends is therefore also 1.
-
-
-1)
-{"ABC", "DE", "FGHIJ"}
-
-Returns: 0.0
-
-Three people with no common interests.
-
-
-2)
-{"ABC", "DE", "FGHIJA"}
-
-Returns: 0.6666666666666666
-
-This is almost the same situation as Example #1 but now two of the people share a common interests.
-Now these three people have 1, 0, and 1 friends, respectively. The average number of friends is
-(1+0+1)/3 = 2/3 = 0.6666666667.
-
-
-3)
-{"AB", "AC", "AD", "AE", "BCDE"}
-
-Returns: 4.0
-
-All of these people are friends with each other, even though there is no single topic they would all
-be interested in.
-
-
-4)
-{"ABCDE", "BCDEF"}
-
-Returns: 1.0
-
-Even if people share multiple common interests, they are only friends once.
-
-
-5)
-{"", "", "", ""}
-
-Returns: 0.0
-
-Four grumpy people who are not interested in anything.
+問題
+-N人それぞれの興味分野がアルファベットで表されている
+-同じアルファベットは同じ興味分野を示す
+-一つ以上の共通の興味分野を持つ人を友達とする
+-友達の数の期待値を求めよ
 
 */
 // END CUT HERE
