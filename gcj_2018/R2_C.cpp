@@ -1,5 +1,5 @@
 // Google Code Jam 2018 Round 2
-// Problem C. 
+// Problem C. Costume Change
 
 #include <iostream>
 #include <sstream>

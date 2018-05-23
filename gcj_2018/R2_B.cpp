@@ -1,5 +1,5 @@
 // Google Code Jam 2018 Round 2
-// Problem B. 
+// Problem B. Graceful Chainsaw Jugglers
 
 #include <iostream>
 #include <sstream>
