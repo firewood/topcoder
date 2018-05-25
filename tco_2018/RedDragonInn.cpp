@@ -2,70 +2,12 @@
 /*
 TCO18 R1A Easy (250)
 
-PROBLEM STATEMENT
-
-Red Dragon Inn is a board game in which the players' characters spend time in an inn brawling and drinking.
-
-At any moment each character has some gold coins.
-If a character has "too much fun" during the game, they pass out.
-When that happens, the gold they have is divided between the inn and all other characters who are left standing.
-This works as follows:
-
-The inn takes half of the coins, rounded up to the nearest integer.
-The remaining coins, if any, are split evenly among the remaining characters.
-The remaining coins, if any, are taken by the inn again. (This occurs whenever in step 2 the number of coins isn't divisible by the number of players.)
-
-A character just passed out.
-Let C be the number of coins they had.
-You do not know the value of C.
-You are given the int N: the number of characters who are still standing.
-You are also given the int X: the number of gold coins each of those characters received when the C coins were split between the inn and the players.
-Determine and return the largest possible value of C.
-
-
-DEFINITION
-Class:RedDragonInn
-Method:maxGold
-Parameters:int, int
-Returns:int
-Method signature:int maxGold(int N, int X)
-
-
-CONSTRAINTS
--N will be between 2 and 100, inclusive.
--X will be between 1 and 100,000, inclusive.
-
-
-EXAMPLES
-
-0)
-3
-2
-
-Returns: 17
-
-The process of dividing 17 coins between the inn and three characters looks as follows:
-
-First, the inn gets 9 coins (half of all coins, rounded up).
-Next, the remaining 8 coins are divided between the three characters. This means that each of them gets 2 coins (i.e., 8/3, rounded down).
-Finally, the inn takes the 2 coins that were left over.
-
-It can be shown that 17 is the largest initial amount of coins for which the players receive two coins each.
-For example, when dividing 18 coins the inn takes 9 and then each player takes 3.
-
-
-1)
-8
-13
-
-Returns: 223
-
-
-2)
-42
-1234
-
-Returns: 103739
+問題
+-宿屋にN人いて、コインがC枚ある
+-半分(端数切り上げ)のコインを宿屋が取る
+-残りのコインのうち、Nで割り切れる部分を、N人に均等にわける
+-残りを宿屋が取る
+-各人の取り分がX枚だったとき、Cの最大値を求めよ
 
 */
 // END CUT HERE
