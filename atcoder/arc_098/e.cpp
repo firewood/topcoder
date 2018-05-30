@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		}
 		if (x.size() >= q) {
 			sort(x.begin(), x.end());
-			ans = min(ans, x[q - 1] - a[i]);
+			ans = min(ans, x[q - 1] - x[0]);
 		}
 	}
 	cout << ans << endl;
