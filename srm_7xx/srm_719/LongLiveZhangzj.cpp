@@ -9,10 +9,8 @@ SRM 719 Div2 Easy (250)
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
 #include <numeric>
 #include <string>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -23,12 +21,9 @@ using namespace std;
 class LongLiveZhangzj {
 public:
 	int donate(vector <string> speech, vector <string> words) {
-		set<string> w(words.begin(), words.end());
-		int ans = 0;
-		for (const string &s : speech) {
-			ans += w.find(s) != w.end();
-		}
-		return ans;
+    return accumulate(speech.begin(), speech.end(), 0, [&](int sum, const string &s) {
+        return sum + (find(words.begin(), words.end(), s) != words.end());
+    });
 	}
 
 // BEGIN CUT HERE
