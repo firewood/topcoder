@@ -1,79 +1,10 @@
 /*
 TCO18 R2A Easy (250)
 
-PROBLEM STATEMENT
-An arithmetic sequence of length n is a sequence y[0], y[1], ..., y[n-1] such that for each i we have y[i] = y[0] + i*d, where d is some constant.
-For example, {4,5,6,7}, {1,1,1,1,1}, and {7,5,3} are arithmetic sequences.
-
-You are given a sequence of n positive integers: x[0], x[1], ..., x[n-1].
-You are allowed to change this sequence.
-More precisely, you may perform arbitrarily many steps.
-In each step you may choose any element of the sequence and change it to any integer value.
-(Note that the new value is not required to be positive.)
-The cost of each change is equal to the absolute difference between the old and the new value.
-
-You are given the vector <int> x.
-Compute and return the smallest total cost of changing x into an arithmetic sequence of integers.
-
-
-DEFINITION
-Class:ArithmeticSequenceDiv1
-Method:findMinCost
-Parameters:vector <int>
-Returns:int
-Method signature:int findMinCost(vector <int> x)
-
-
-CONSTRAINTS
--x will contain betwee 1 and 100 elements, inclusive.
--Each element of x will be between 1 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-{1,3,2}
-
-Returns: 2
-
-One optimal solution is to change this sequence into {1,2,3}.
-Changing x[1] from 3 to 2 costs abs(3-2) = 1.
-Changing x[2] from 2 to 3 costs abs(2-3) = 1.
-Thus, the total cost is 2.
-
-
-1)
-{1,1,1,2,3,4,5}
-
-Returns: 3
-
-Here an optimal solution is to change x[0] from 1 to -1 (cost 2) and then change x[1] from 1 to 0 (cost 1).
-
-
-2)
-{1,2,3,4}
-
-Returns: 0
-
-This is already an arithmetic sequence, so the cheapest solution is to do nothing.
-
-
-3)
-{1,5,2,5}
-
-Returns: 5
-
-
-4)
-{11,33,22}
-
-Returns: 17
-
-
-5)
-{1, 3, 5, 7, 2, 4, 6}
-
-Returns: 12
+問題
+-等差数列Yは、y[i] = y[0] × i を満たす
+-数列Xが与えられる
+-Xを等差数列にするために、何個の数値を書き換える必要があるか求めよ
 
 */
 
