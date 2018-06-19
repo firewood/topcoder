@@ -2,73 +2,10 @@
 /*
 TCO18 R1A Hard (1000)
 
-PROBLEM STATEMENT
-Deadfish+ is a programming language with only 4 commands. All commands modify a single register. The register is initially set to zero, and during the execution of a program it can store an arbitrarily large integer value. The commands are:
-
-"i" - increment the value,
-
-"d" - decrement the value,
-
-"s" - square the value, and
-
-"p" - sort the digits of the number into non-increasing order (i.e., biggest to smallest).
-
-For example, "p" changes 4070 to 7400, and it changes -4070 to -7400 (the minus sign is preserved).
-
-You are given an int N. Return the minimal number of commands necessary to make the register hold the number N.
-
-
-DEFINITION
-Class:Deadfish
-Method:shortestCode
-Parameters:int
-Returns:int
-Method signature:int shortestCode(int N)
-
-
-CONSTRAINTS
--N will be between 1 and 200,000, inclusive.
-
-
-EXAMPLES
-
-0)
-3
-
-Returns: 3
-
-The fastest way to get to 3 is "iii" - three increments.
-
-
-1)
-5
-
-Returns: 4
-
-One fastest way to get a 5 is "iisi": two increments to get a 2, square to get a 4 and one more increment.
-Another optimal way is "ddsi": two decrements change the register to -2, squaring that gives 4, and the final increment changes it to 5.
-
-
-2)
-15
-
-Returns: 5
-
-The fastest way to get 15 is "iissd". The value in the register will change as follows: 0, 1, 2, 4, 16, 15.
-
-
-3)
-61
-
-Returns: 5
-
-The fastest way to get 61 is "iissp". The value in the register will change as follows: 0, 1, 2, 4, 16, 61.
-
-
-4)
-200000
-
-Returns: 207
+問題
+-加算、減算、2乗、値の10進表記をソート、という4つのコマンドが実行できる
+-値の初期値は0である
+-値をNにするための手数の最小値を求めよ
 
 */
 // END CUT HERE
