@@ -26,17 +26,20 @@ int main(int argc, char *argv[]) {
 	if (s == 1LL) {
 		ans = n;
 	}
-	for (LL b = 2; b <= 10000; ++b) {
+	if (s == n) {
+		ans = n + 1;
+	}
+	LL m = sqrt(n);
+	for (LL b = 2; b <= m; ++b) {
 		if (check(b, n) == s) {
 			ans = min(ans, b);
 		}
 	}
-	for (LL d = 2; d <= 5; ++d) {
-		LL q = (LL)pow(n, 1.0 / d);
-		for (LL b = max(2LL, q - 100); b <= q + 100; ++b) {
-			if (check(b, n) == s) {
-				ans = min(ans, b);
-			}
+	for (LL p = 1; p < m; ++p) {
+		LL b = (n - s) / p + 1;
+		LL q = s - p;
+		if (b >= m && q >= 0 && q < b && n == (p * b + q)) {
+			ans = min(ans, b);
 		}
 	}
 	cout << (ans == (1LL << 60) ? -1 : ans) << endl;
