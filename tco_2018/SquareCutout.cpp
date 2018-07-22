@@ -2,88 +2,11 @@
 /*
 TCO18 Round 3B Easy (250)
 
-PROBLEM STATEMENT
-
-There once was an infinite plane called Xanadu. The plane was divided into a grid of unit square cells.
-The entire plane was white, with one exception: a black square.
-More precisely, for some unknown positive integer N there was an N times N square that consisted of N^2 black cells.
-
-Your friend recently showed you a rectangle. She claims that she cut it out of the Xanadu plane,
-and that she was cutting along grid lines while doing so. Verify her story.
-
-You are given the vector <string> cutout that represents a rectangular bitmap.
-The character '.' represents a white cell and the character '#' represents a black cell.
-
-If the bitmap can represent a part of the Xanadu plane, return the smallest N that is consistent with cutout.
-Otherwise, return zero.
-
-
-DEFINITION
-Class:SquareCutout
-Method:verify
-Parameters:vector <string>
-Returns:int
-Method signature:int verify(vector <string> cutout)
-
-
-CONSTRAINTS
--cutout will contain between 1 and 50 elements, inclusive.
--Each element of cutout will contain between 1 and 50 characters, inclusive.
--Each element of cutout will contain the same number of elements.
--Each character of each element of cutout will be either '.' or '#'.
-
-
-EXAMPLES
-
-0)
-{".....",
- "..##.",
- "..##.",
- ".....",
- "....."}
-
-Returns: 2
-
-This is very clearly a cutout that contains the entire square. The length of its side is 2.
-
-1)
-{"...",
- "..."}
-
-Returns: 1
-
-It is possible that this is a cutout made from Xanadu. The square was simply somewhere else. The smallest size it can have is 1.
-
-2)
-{".....",
- ".###.",
- ".#.#.",
- ".###.",
- "....."}
-
-Returns: 0
-
-This cutout is definitely not from Xanadu. The square must be filled completely.
-
-3)
-{"..####",
- "..####",
- "......"}
-
-Returns: 4
-
-We may see the bottom left corner of a square. The square is at least 4x4. It may be even bigger, but 4 is the smallest size that matches what we see.
-
-4)
-{"..#..",
- ".###.",
- "#####",
- ".###.",
- "..#.."}
-
-Returns: 0
-
-This is not a square. This is also not a part of any larger square.
+問題
+-Xanaduと呼ばれる無限の大きさの2次元グリッドがある
+-一か所だけ正方形の形で黒く塗りつぶされていて、そのほかの部分は白である
+-Xanaduの一部分を切り取った盤面が与えられる
+-もしXanaduとしての条件を満たす場合、正方形の最小の大きさを求めよ
 
 */
 // END CUT HERE
