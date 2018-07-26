@@ -2,59 +2,10 @@
 /*
 TCO18 R3A Easy (250)
 
-PROBLEM STATEMENT
-Alice and Bob are playing a simple game. They take alternating turns writing the digits of a positive integer, from the left to the right. Alice starts. The number is not allowed to start with a zero, hence Alice must choose one of the digits 1 through 9 as her first move.
-
-The game ends when the number has exactly length digits. Bob wins the game if that number is divisible by divisor. Alice wins in all other cases.
-
-You are given the ints length and divisor. Return the name of the player who wins if both of them play the game optimally.
-
-
-DEFINITION
-Class:LeftToRightGame
-Method:whoWins
-Parameters:int, int
-Returns:string
-Method signature:string whoWins(int length, int divisor)
-
-
-CONSTRAINTS
--length will be between 1 and 1000, inclusive.
--divisor will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-4
-10
-
-Returns: "Bob"
-
-Alice and Bob are creating a 4-digit number. Bob wins if the number ends up being divisible by 10. As he is the one who will write down the last digit of the number, he has a very obvious winning strategy.
-
-
-1)
-3
-1000
-
-Returns: "Alice"
-
-A positive three-digit integer will never be divisible by 1000. Alice wins this game regardless of how she and Bob play it.
-
-
-2)
-2
-3
-
-Returns: "Bob"
-
-
-3)
-147
-47
-
-Returns: "Alice"
+問題
+-2人で数を左から1桁ずつlength桁まで書いていくゲームを行う
+-length桁になったとき、divisorで割り切れれば後手の勝ち、そうでなければ先手の勝ち
+-両者が最適な戦略を取ったときにどちらが勝つか求めよ
 
 */
 // END CUT HERE
