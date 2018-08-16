@@ -101,15 +101,15 @@ const int MOD = 998244353;
 struct modll {
 	long long v;
 	modll() : v(0) { }
-	modll(long long _v) : v(_v) { }
+	modll(long long _v) : v(_v >= 0 ? _v : _v + MOD) { }
 	long long operator+(const modll &r) const { return (v + r.v) % MOD; }
-	long long operator-(const modll &r) const { return (v + MOD - r.v) % MOD; }
+	long long operator-(const modll &r) const { return (v - r.v + MOD) % MOD; }
 	long long operator*(const modll &r) const { return (v * r.v) % MOD; }
 	modll operator+=(const modll &r) { v = (v + r.v) % MOD; return *this; }
-	modll operator-=(const modll &r) { v = (v + MOD - r.v) % MOD; return *this; }
+	modll operator-=(const modll &r) { v = (v - r.v + MOD) % MOD; return *this; }
 	modll operator*=(const modll &r) { v = (v * r.v) % MOD; return *this; }
 //	friend modll operator+(int l, const modll &r) { return (l + r.v) % MOD; }
-//	friend modll operator-(int l, const modll &r) { return (l + MOD - r.v) % MOD; }
+//	friend modll operator-(int l, const modll &r) { return (l - r.v + MOD) % MOD; }
 //	friend modll operator*(int l, const modll &r) { return (l * r.v) % MOD; }
 	static long long modinv(int a) { return modpow(a, MOD - 2); }
 	static long long modpow(int a, int b) {
@@ -201,6 +201,7 @@ public:
 		}
 		n++;
 
+
 		if ((Case == -1) || (Case == n)) {
 			string Arg0 = "123456789123456789123456789123456";
 			int Arg1 = 938843585;
@@ -209,6 +210,13 @@ public:
 		}
 		n++;
 
+		if ((Case == -1) || (Case == n)) {
+			string Arg0 = "998244353";
+			int Arg1 = 215087324;
+
+			verify_case(n, Arg1, sumRotations(Arg0));
+		}
+		n++;
 
 	}
 
