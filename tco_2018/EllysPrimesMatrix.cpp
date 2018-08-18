@@ -2,82 +2,9 @@
 /*
 TCC India 2018 Qualification Round Medium (500)
 
-PROBLEM STATEMENT
-Elly has a matrix of digits. You are given this matrix in the vector <string> matrix.
-
-Elly calls a prime number hidden in the matrix if it can be created by taking exactly one digit from each row of the matrix and concatenating them (in the order from the first row to the last).
-
-How many distinct prime numbers are hidden in her matrix?
-
-
-DEFINITION
-Class:EllysPrimesMatrix
-Method:getCount
-Parameters:vector <string>
-Returns:int
-Method signature:int getCount(vector <string> matrix)
-
-
-NOTES
--A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Please note that the number 1 itself is not a prime.
--Numbers with leading zeroes are allowed in this problem.
-
-
-CONSTRAINTS
--matrix will contain between 1 and 7 elements, inclusive.
--Each element of matrix will have length between 1 and 7, inclusive.
--All elements of matrix will have equal length.
--Each character in matrix will be a digit ('0'-'9').
-
-
-EXAMPLES
-
-0)
-{"5943",
- "1728",
- "3451"}
-
-Returns: 11
-
-The prime numbers contained in the matrix are: 571, 523, 521, 911, 971, 983, 421, 313, 311, 373, and 383.
-
-
-1)
-{"123",
- "456",
- "789",
- "012",
- "248"}
-
-Returns: 0
-
-Even numbers are very rarely prime. (The only even prime number is 2.)
-
-
-2)
-{"11111",
- "11111",
- "11111",
- "11111",
- "13579"}
-
-Returns: 3
-
-Note that you should find the number of distinct primes that are hidden in the grid. There are only three primes hidden in this grid: 11113, 11117, and 11119. Each of them can be constructed in multiple ways, but we only count each of them once.
-
-
-3)
-{"315509",
- "712846",
- "666371",
- "123456",
- "789012",
- "059437",
- "149573"}
-
-Returns: 17575
-
-Some of the primes hidden in the matrix may have leading zeroes. For example, one of the primes in this matrix is 0811777.
+問題
+-数値の行列が与えられる
+-各行から数値を1桁ずつ選ぶとき、異なる素数が何個できるか求めよ
 
 */
 // END CUT HERE
