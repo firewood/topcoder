@@ -2,55 +2,13 @@
 /*
 TCC India 2018 Qualification Round Easy (250)
 
-PROBLEM STATEMENT
-
-You are playing a game of darts.
-The target in this particular game looks as follows:
-
-There are F regular sectors. These are worth 1, 2, ..., F points.
-There are F "double points" sectors. These are worth 2, 4, ..., 2*F points.
-There are F "triple points" sectors. These are worth 3, 6, ..., 3*F points.
-There is the bullseye in the middle of the target. The bullseye consists of two sectors: the outer bullseye (worth 25 points) and the inner bullseye (worth 50 points).
-
-You have three darts. What is the largest total number of points you can get if you hit three different sectors?
-
-
-DEFINITION
-Class:SimpleDarts
-Method:highestScore
-Parameters:int
-Returns:int
-Method signature:int highestScore(int F)
-
-
-CONSTRAINTS
--F will be between 1 and 100, inclusive.
-
-
-EXAMPLES
-
-0)
-20
-
-Returns: 171
-
-A regular dartboard has numbers 1 through 20. If we want to produce the highest score we can by hitting three distinct sectors, we should hit the triple-20, triple-19, and triple-18 for a total of 3*20 + 3*19 + 3*18 = 171 points.
-
-
-1)
-1
-
-Returns: 78
-
-This tiny target has only five sectors. These are worth 1, 2, 3, 25, and 50 points. Clearly the optimal solution is to score 3 + 25 + 50 = 78 points.
-
-
-2)
-9
-
-Returns: 102
-
-Now the optimal play is to hit the inner bullseye (50), the outer bullseye (25), and the triple-9 (27 points).
+問題
+-ダーツの区間がF個ある
+-通常のマトは1,2,3,...F点である
+-2倍のマトは2,4,6,...2×F点である
+-3倍のマトは3,6,9,...3×F点である
+-中心部には25点と50点のエリアがある
+-3回投げて全て違う場所に当たった時の合計の最大値を求めよ
 
 */
 // END CUT HERE
