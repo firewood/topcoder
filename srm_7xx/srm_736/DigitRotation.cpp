@@ -2,87 +2,10 @@
 /*
 SRM 736 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given a string X that contains the digits of a large positive integer, with X[0] being the most significant digit of the number.
-
-A 3-rotation is performed as follows:
-
-Select any three numbers a < b < c that are all valid indices into X.
-Form a new number by rotating the digits at those three indices: the digit from index a goes to index b, the one from b goes to c, and the one from c goes to a.
-
-For example, if X = "25749", one possible 3-rotation looks as follows:
-
-We select the indices a=0, b=3, and c=4.
-We rotate the three digits, producing the new number "95724".
-
-Two 3-rotations are considered distinct if they use different triples of indices.
-Note that distinct 3-rotations may sometimes produce the same result.
-A 3-rotation is considered valid if the resulting number doesn't have any leading zeros.
-
-Consider all valid 3-rotations of the given number X. Report the sum of all their results, modulo 998244353. 
-
-
-DEFINITION
-Class:DigitRotation
-Method:sumRotations
-Parameters:string
-Returns:int
-Method signature:int sumRotations(string X)
-
-
-CONSTRAINTS
--X will contain between 1 and 500 characters, inclusive.
--Each character of X will be a digit ('0'-'9').
--X[0] will not be '0'.
-
-
-EXAMPLES
-
-0)
-"123"
-
-Returns: 312
-
-There is only one valid 3-rotation. It produces the number 312.
-
-
-1)
-"3570"
-
-Returns: 10407
-
-There are four possible 3-rotations, but only two of them are valid. The other two produce a number with a leading zero. For example, selecting the indices (0,1,3) is not a valid 3-rotation, as it produces the result "0375".
-
-The two valid 3-rotations produce the numbers 7350 and 3057, respectively. The answer is their sum.
-
-
-2)
-"5545"
-
-Returns: 21208
-
-In this case there are four 3-rotations, and all four of them are valid. Note that two of them yield the same result: the number 5554. 
-The other two produce the results 4555 and 5545.
-Therefore, the answer is 4555 + 5545 + 5554 + 5554.
-
-Also note that the rotation with indices 0,1,3 is valid, even though it leaves the number unchanged. 
-
-
-3)
-"1283749218734901238749213847902"
-
-Returns: 867286291
-
-Do not forget to take the answer modulo 998244353.
-
-
-4)
-"4"
-
-Returns: 0
-
-The sum of an empty set is zero.
+問題
+-巨大な数Xが与えられる
+-Xの三つのインデックスa, b, cを選ぶ (ただしa < b < cとする)
+-X[a]を位置bに、X[b]を位置cに、X[c]を位置aに移動したもののうち、先頭が0でないものの合計値を求めよ
 
 */
 // END CUT HERE
