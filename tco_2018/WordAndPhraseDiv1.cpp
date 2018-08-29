@@ -2,99 +2,12 @@
 /*
 TCO18 Fun Round Beijing Medium (500)
 
-PROBLEM STATEMENT
-
-In this problem, 
-a word is a string with the following properties:
-
-Each of its characters is a lowercase English letter ('a'-'z'), a digit ('0'-'9'), or an underscore ('_').
-The string is non-empty and it does not begin with a digit.
-
-For instance, "ax3d", "com", "_3x_9", and "_" are all words, but "x.f", "", and "3xf" are not words.
-
-A phrase is a string that can be obtained by concatenating a non-empty sequence of words while placing a single period ('.') between each pair of words.
-Formally:
-
-A word is a phrase.
-If P is a phrase and W is a word, P + '.' + W is also a phrase.
-No other strings are phrases.
-
-For instance, "ax3d.com._x3x_9" is a phrase that was produced by concatenating three words: "ax3d", "com", and "_x3x_9".
-The strings "abc" and "_._" are also phrases.
-However, "", ".", "com..com", "com.3def", "..com", and "3xdf" are not phrases.
-
-You are given a word w.
-We are looking for all possible phrases with the following property: if you replace every period in the phrase by an underscore, you will obtain the given word w.
-Compute and return the number of such phrases, modulo 10^9 + 7.
-
-
-DEFINITION
-Class:WordAndPhraseDiv1
-Method:findNumberOfPhrases
-Parameters:string
-Returns:int
-Method signature:int findNumberOfPhrases(string w)
-
-
-CONSTRAINTS
--w will contain between 1 and 1,000 characters, inclusive.
--Each character in w will be a lowercase English letter, a digit, or an underscore.
--The first character of w will not be a digit.
-
-
-EXAMPLES
-
-0)
-"tco_topcoder_com"
-
-Returns: 4
-
-There are four phrases that turn into "tco_topcoder_com" when we replace each period by an underscore:
-
-tco_topcoder_com
-tco_topcoder.com
-tco.topcoder_com
-tco.topcoder.com
-
-
-1)
-"tcotopcodercom"
-
-Returns: 1
-
-The only matching phrase is the word itself.
-
-
-2)
-"_tco18_admin_id_is_secret"
-
-Returns: 16
-
-A phrase cannot begin with a period.
-
-
-3)
-"____"
-
-Returns: 3
-
-This w consists of four consecutive underscores. The three matching patterns are "____", "_.__", and "__._".
-
-
-4)
-"a0_a1_a2_a3_a4_a5_a6_a7_a8_a9_a0_a1_a2_a3_a4_a5_a6_a7_a8_a9_a0_a1_a2_a3_a4_a5_a6_a7_a8_a9_a0"
-
-Returns: 73741817
-
-Remember to use the modular arithmetics in your calculations. The exact number of matching phrases in this test case is obviously 2^30.
-
-
-5)
-"d0_0b"
-
-Returns: 1
-
-This is a word, but changing the underscore to a period does not make it a valid phrase - remember that a word cannot start with a digit.
+問題
+-数字で始まらない1文字以上の文字列を単語とする
+-単語と単語、または単語とフレーズをピリオドで結合したものをフレーズとする
+-英数字とアンダースコアからなる文字列Wが与えられる
+-Wの任意のアンダースコアをピリオドに置き換えることができる
+-有効なフレーズの総数を求めよ
 
 */
 // END CUT HERE
