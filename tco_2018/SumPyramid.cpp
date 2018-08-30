@@ -2,84 +2,10 @@
 /*
 TCO18 R4 Easy (250)
 
-PROBLEM STATEMENT
-
-A sum pyramid is a two-dimensional arrangement of numbers into a pyramid-like shape in which each number (except for the numbers in the bottom row) is the sum of the two numbers that are diagonally below its place.
-Here's an example of a sum pyramid:
-
-      25
-   12   13
- 7    5    8
-
-Note that 12 = 7+5, 13 = 5+8, and 25 = 12+13.
-
-Each row of the sum pyramid is called a level. The sum pyramid shown above has three levels. Note that the number of elements in the bottom row is equal to the number of levels.
-
-You are given the ints levels and top. Consider all sum pyramids with the following properties:
-
-All numbers in the pyramid are nonnegative integers.
-The pyramid has levels levels.
-The number on the top of the pyramid is top.
-
-Compute and return the number of such pyramids, modulo 10^9 + 7.
-
-
-DEFINITION
-Class:SumPyramid
-Method:countPyramids
-Parameters:int, int
-Returns:int
-Method signature:int countPyramids(int levels, int top)
-
-
-CONSTRAINTS
--levels will be between 1 and 1000, inclusive.
--top will be between 0 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-47
-
-Returns: 1
-
-In this case the only valid pyramid is just the single number 47.
-
-
-1)
-2
-10
-
-Returns: 11
-
-Three of the eleven valid pyramids:
-
-
-  10       10        10
-10  0     4  6      1  9
-
-
-2)
-3
-2
-
-Returns: 4
-
-The four pyramids look as follows:
-
-
-  2       2       2       2
- 2 0     1 1     1 1     0 2
-2 0 0   1 0 1   0 1 0   0 0 2
-
-
-3)
-5
-7
-
-Returns: 18
+問題
+-1個,2個,3個,...と各段にピラミッド上に数値を並べる
+-下の段の2つの数値の合計が上の段の数値となる
+-levels段のピラミッドで、最上部の数値がtopとなるものが何通りあるか求めよ
 
 */
 // END CUT HERE
