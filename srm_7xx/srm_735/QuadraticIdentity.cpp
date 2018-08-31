@@ -2,65 +2,11 @@
 /*
 SRM 735 Div1 Medium (500)
 
-PROBLEM STATEMENT
-
-Bob likes playing with numbers.
-Recently he found out that (252 mod 100) = (625 mod 100) = 25, and that 162 mod 20 = 16. 
-Mathematically speaking, 25 is a fixed point of squaring modulo 100 and 16 is a fixed point of squaring modulo 20.
-Bob now wonders whether he just got incredibly lucky, or whether there are many numbers like that.
-
-For a given modulus m, find all fixed points of the function f(x) = x2 mod m.
-
-Let A be an array that contains all the distinct values x such that 0 <= x < m and x = (x2 mod m), sorted in increasing order.
-Compute the array A.
-If A has at most 500 elements, return it.
-
-Otherwise, to keep the output reasonably small, we will compress A as follows:
-While A has strictly more than 500 elements, repeatedly discard all elements whose indices are odd.
-(Each iteration of this cycle reduces A to approximately half of its previous length.)
-Once A has 500 or fewer elements, return it.
-For example, if the actual array A has 1011 elements, you would return an array with 253 elements.
-These would be the elements that had indices 0, 4, 8, 12, ... in the original array A.
-
-
-DEFINITION
-Class:QuadraticIdentity
-Method:getFixedPoints
-Parameters:long long
-Returns:vector<long long>
-Method signature:vector<long long> getFixedPoints(long long m)
-
-
-NOTES
--It can be shown that under the constraints of the problem there are never more than 105 fixed points.
-
-
-CONSTRAINTS
--m will be between 1 and 1015, inclusive.
-
-
-EXAMPLES
-
-0)
-20
-
-Returns: {0, 1, 5, 16 }
-
-The values 0 and 1 are fixed points for squaring modulo any m >= 2. We can easily verify that (52 mod 20) = (25 mod 20) = 5, hence 5 is also a fixed point of squaring modulo 20. The fourth one is mentioned in the problem statement.
-
-We can also verify that no other numbers between 0 and 19, inclusive, have this property. For example, (72 mod 20) = (49 mod 20) = 9, and 7 is not 9, hence 7 is not a fixed point in this case.
-
-
-1)
-4262046602
-
-Returns: {0, 1, 27391046, 152613648, 180004693, 333799345, 361190390, 513804038, 541195083, 621181264, 648572309, 801185957, 828577002, 941255910, 968646955, 982371654, 1009762699, 1121260603, 1148651648, 1162376347, 1189767392, 1302446300, 1329837345, 1482450993, 1509842038, 1589828219, 1617219264, 1769832912, 1797223957, 1951018609, 1978409654, 2103632256, 2131023301, 2131023302, 2158414347, 2283636949, 2311027994, 2464822646, 2492213691, 2644827339, 2672218384, 2752204565, 2779595610, 2932209258, 2959600303, 3072279211, 3099670256, 3113394955, 3140786000, 3252283904, 3279674949, 3293399648, 3320790693, 3433469601, 3460860646, 3613474294, 3640865339, 3720851520, 3748242565, 3900856213, 3928247258, 4082041910, 4109432955, 4234655557 }
-
-
-2)
-7
-
-Returns: {0, 1 }
+問題
+-(25^2 mod 100) = (625 mod 100) = 25である。
+-すなわち、100を法としたとき25は二乗の固定点である。
+-mを法とする二乗の固定点を全て求めよ。
+-ただし答えの総数が500個を超えるときは、500個以下になるまで、奇数のインデックスの値を繰り返し捨てること。
 
 */
 // END CUT HERE
