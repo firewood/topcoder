@@ -2,100 +2,12 @@
 /*
 TCC India 2018 Qualification Round Hard (1000)
 
-PROBLEM STATEMENT
-
-Elly has a beautiful flowerpot with roses on her window sill. Whenever it rains outside, Elly remembers that she hasn't watered her roses in a while. However, now that it rains, maybe the rain will water them for her! To make sure the roses get watered properly, Elly watches the whole situation carefully and records where the individual raindrops fall.
-
-For simplicity, we will consider the flowerpot to be a closed line segment of length L. (One endpoint of the segment has coordinate 0, the other has coordinate L, and both endpoints belong to the segment.) 
-Each raindrop will fall onto some point of this segment.
-The coordinate of each raindrop will be an integer.
-
-The flowerpot is considered properly watered if each possible closed interval of length D or more already received at least one raindrop. Note that this includes intervals that start and end at non-integer coordinates.
-
-You are given the ints L and D.
-You are also given four other ints: N, P1, M, and A.
-These describe the rainfall.
-N drops fell onto our line segment. (The drops fell sequentially, i.e., one at a time.)
-The first raindrop landed on coordinate P1.
-For each of the following raindrops you can compute the coordinate where it dropped as follows:
-Let P_prev be the coordinate of the previous raindrop.
-Then the coordinate of the current raindrop is (P_prev * M + A) modulo (L + 1).
-
-Find and return the smallest K such that Elly's flowerpot was properly watered after the first K raindrops.
-If the entire rainfall was not enough to water the flowerpot properly, return -1 instead.
-
-
-DEFINITION
-Class:EllysRain
-Method:getTime
-Parameters:int, int, int, int, int, int
-Returns:int
-Method signature:int getTime(int L, int D, int N, int P1, int M, int A)
-
-
-CONSTRAINTS
--L will be between 2 and 1,000,000,000, inclusive.
--D will be between 1 and L-1, inclusive.
--N will be between 1 and 1,000,000, inclusive.
--P1, M, and A will each be between 0 and L, inclusive.
-
-
-EXAMPLES
-
-0)
-23
-7
-12
-14
-13
-5
-
-Returns: 9
-
-We have a flowerpot of length L = 23, and we are waiting until each closed interval of length D = 7 or more gets hit by a raindrop.
-
-There are N = 12 raindrops. Using the formula from the problem statement we can compute that their coordinates are 14, 19, 12, 17, 10, 15, 8, 13, 6, 11, 4, 9 (in this order).
-
-First eight raindrops are not enough. For example, there is a completely dry interval of length 7.3 that starts at coordinate 0.4 and ends at coordinate 7.7.
-
-On the other hand, the first nine raindrops are already enough. Thus, the correct return value is 9.
-
-
-1)
-10
-4
-5
-5
-2
-6
-
-Returns: -1
-
-This flowerpot has length 10. There are 5 raindrops, and each of them falls on the same coordinate: at 5. We need to water every interval of length 4 or more, but after the last raindrop the interval [6,10] is still all dry. Thus, the flowerpot is still not watered properly and we should return -1.
-
-
-2)
-10
-5
-5
-5
-2
-6
-
-Returns: 1
-
-Sometimes a single drop of water is all Elly's cactuses need.
-
-
-3)
-1000000
-1337
-123456
-424242
-13
-42
-
-Returns: 8484
+問題
+-長さLの花壇がある。
+-花壇に雨粒が何回か落ちる
+-前回の雨粒の位置をP_prevとすると、次の雨粒の位置Pは (P_prev * M + A) modulo (L + 1) である
+-雨粒が落ちた点から距離D以内を濡れたものと見なす
+-花壇のすべての場所が濡れるのに必要な最小の時間を求めよ
 
 */
 // END CUT HERE
