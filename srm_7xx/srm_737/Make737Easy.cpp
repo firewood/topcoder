@@ -2,62 +2,9 @@
 /*
 SRM 737 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-This problem has a non-standard time limit: 8 seconds.
-
-You are given a string S.
-Each character of S is either '3' or '7'.
-Compute and return the number of 737-triples in this string.
-
-An ordered triple (i,j,k) is called a 737-triple if and only if:
-
-i, j, k are valid indices into S
-i < j < k
-S[i] = '7', S[j] = '3', and S[k] = '7'.
-
-
-DEFINITION
-Class:Make737Easy
-Method:count
-Parameters:string
-Returns:int
-Method signature:int count(string S)
-
-
-CONSTRAINTS
--S will contain between 1 and 373 characters, inclusive.
--Each character of S will be either '3' or '7'.
-
-
-EXAMPLES
-
-0)
-"737"
-
-Returns: 1
-
-The only 737-triple in this string corresponds to the zero-based indices (0,1,2).
-
-
-1)
-"777333"
-
-Returns: 0
-
-As we must have i < j < k, this string does not contain any 737-triples.
-
-
-2)
-"773377"
-
-Returns: 8
-
-
-3)
-"73737"
-
-Returns: 4
+問題
+- 文字列Sが与えられる
+- i < j < kとして、S[i]が7、S[j]が3、S[k]が7となる総数を求めよ
 
 */
 // END CUT HERE
