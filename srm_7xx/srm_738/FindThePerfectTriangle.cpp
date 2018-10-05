@@ -2,82 +2,9 @@
 /*
 SRM 738 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given the ints perimeter and area.
-Your task is to find a triangle with the following properties:
-
-The coordinates of each vertex are integers between 0 and 3000, inclusive.
-The perimeter of the triangle must be exactly perimeter, and its area must be exactly area.
-
-If there are multiple solutions, you may choose any of them.
-Return a vector <int> with six elements: {x1, y1, x2, y2, x3, y3}, where (x1, y1), (x2, y2), and (x3, y3) are the coordinates of the vertices of your triangle.
-If there is no solution, return an empty vector <int> instead.
-
-
-DEFINITION
-Class:FindThePerfectTriangle
-Method:constructTriangle
-Parameters:int, int
-Returns:vector <int>
-Method signature:vector <int> constructTriangle(int area, int perimeter)
-
-
-CONSTRAINTS
--area will be between 1 and 1,000,000, inclusive.
--perimeter will be between 1 and 1000, inclusive.
-
-
-EXAMPLES
-
-0)
-6
-11
-
-Returns: { }
-
-There are no valid triangles with area 6 and perimeter 11.
-
-
-1)
-6
-12
-
-Returns: {1, 1, 1, 4, 5, 4 }
-
-The example output describes a right triangle with vertices at (1, 1), (1, 4) and (5, 4).
-Its sides have lengths 3, 4, and 5, hence its perimeter is 12.
-The area of the triangle is (3*4)/2 = 6.
-
-
-2)
-37128
-882
-
-Returns: {137, 137, 273, 410, 1, 410 }
-
-
-3)
-12
-18
-
-Returns: {1, 1, 4, 5, 1, 9 }
-
-In this test case our solution constructed an isosceles triangle with vertices at (1, 1), (4, 5) and (1, 9).
-
-
-4)
-18096
-928
-
-Returns: {1, 1, 1, 88, 417, 88 }
-
-
-5)
-1000000
-1000
-
-Returns: { }
+問題
+-三角形の辺の長さの合計perimeterと面積areaが与えられる
+-3点の座標(x1, y1), (x2, y2), (x3, y3)すべてが0以上3000以下の整数にできるとき、それを求めよ
 
 */
 // END CUT HERE
