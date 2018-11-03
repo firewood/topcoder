@@ -2,66 +2,9 @@
 /*
 SRM 741 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given a digit string S and a positive integer X.
-We are going to erase some (possibly none, but not all) characters of S.
-While doing so, we have the following goals:
-
-The string formed by the remaining characters (in their original order) cannot begin with the digit '0'.
-When that string is converted to a number, its value must be strictly greater than the given X.
-
-Two ways of erasing characters are different if there is an index i such that S[i] got erased in exactly one of the two ways.
-
-Compute and return the number of ways in which we can erase some characters and achieve the goals stated above.
-
-
-DEFINITION
-Class:DigitStringDiv1
-Method:count
-Parameters:string, int
-Returns:long long
-Method signature:long long count(string S, int X)
-
-
-CONSTRAINTS
--S will contain between 1 and 47 characters, inclusive.
--Each character of S will be a digit ('0'-'9').
--X will be between 0 and 777,444,111, inclusive.
-
-
-EXAMPLES
-
-0)
-"0"
-1
-
-Returns: 0
-
-
-1)
-"101"
-9
-
-Returns: 3
-
-We can produce one of the strings "10", "11", and "101".
-
-
-2)
-"471"
-47
-
-Returns: 2
-
-
-3)
-"2222"
-97
-
-Returns: 5
-
-We have one way to produce the string "2222" and four ways to produce the string "222".
+問題
+-文字列Sと数値Xが与えられる
+-Sから0個以上の文字を取り除いてできる文字列のうち、先頭が0でなくXより大きいものの個数を求めよ
 
 */
 // END CUT HERE
