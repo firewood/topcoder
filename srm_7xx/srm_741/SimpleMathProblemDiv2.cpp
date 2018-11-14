@@ -107,15 +107,11 @@ public:
 			for (LL prime : primes) {
 				if (i < prime * prime) {
 					primes.push_back(i);
-					int prev = 0;
-					for (LL j = i; ; j *= i) {
-						LL y = min(j * i, x);
-						LL z = (y - prev) / i;
-						ans += (LL)j * z;
+					LL prev = 0;
+					for (LL j = i; j <= x; j *= i) {
+						LL y = min(j * i - 1, x) / i;
+						ans += (y - prev) * j;
 						prev = y;
-						if (j * i >= X) {
-							break;
-						}
 					}
 					break;
 				}
