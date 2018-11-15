@@ -2,70 +2,13 @@
 /*
 SRM 741 Div2 Medium (500)
 
-PROBLEM STATEMENT
-The function g(n, p) is defined for all positive integers n and all primes p. Its definition is as follows:
-
-if n is not divisible by p:
-    g(n,p) = 0
-otherwise:
-    g(n,p) = the largest power of p that does not exceed n
-
-The function f(n) is defined for all positive integers as follows: f(n) is the sum of g(n,p) over all primes p.
-
-You are given an int X.
-Compute and return the exact value of the sum f(1) + f(2) + ... + f(X).
-
-
-DEFINITION
-Class:SimpleMathProblemDiv2
-Method:calculate
-Parameters:int
-Returns:long long
-Method signature:long long calculate(int X)
-
-
-NOTES
--You may assume (and also see from the Examples) that the largest possible output fits into a long long.
-
-
-CONSTRAINTS
--X will be between 1 and 444,777, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-
-Returns: 0
-
-
-1)
-8
-
-Returns: 36
-
-Note that f(6) = 7, because g(6,2) = 4 and g(6,3) = 3.
-
-If you think that g(6,2) should be 2, please go back and re-read the definition of g more carefully.
-
-
-2)
-15
-
-Returns: 128
-
-
-3)
-77444
-
-Returns: 3296580744
-
-
-4)
-444777
-
-Returns: 111293895799
+問題
+-関数g(n, p)は任意の整数nと素数pで以下のように定義される。
+  - nがpで割り切れないとき、g(n,p)は0
+  - そうでないとき、g(n,p)はnを超えない最大のpの累乗
+-関数f(n)は、全ての素数pについてのg(n,p)の総和である
+-数Xが与えられる
+-f(1) + f(2) + ... + f(X)を求めよ
 
 */
 // END CUT HERE
