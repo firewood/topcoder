@@ -17,15 +17,13 @@ struct Node {
 class LRUCache {
 	int top;
 	int tail;
-	int used;
 	vector<Node> nodes;
 	deque<int> pool;
-	unordered_map<int, int> m;
+	unordered_map<int, int> key_to_index;
 public:
 	LRUCache(int capacity) {
 		top = -1;
 		tail = -1;
-		used = 0;
 		nodes.resize(capacity);
 		for (int i = 0; i < capacity; ++i) {
 			pool.push_back(i);
@@ -33,43 +31,40 @@ public:
 	}
 
 	int get(int key) {
-		if (m.find(key) == m.end()) {
+		if (key_to_index.find(key) == key_to_index.end()) {
 			return -1;
 		}
-		int index = m[key];
+		int index = key_to_index[key];
 		int value = nodes[index].value;
 		put(key, value);
 		return value;
 	}
 
 	void put(int key, int value) {
-		if (m.find(key) != m.end()) {
-			remove(m[key]);
+		if (key_to_index.find(key) != key_to_index.end()) {
+			remove(key_to_index[key]);
 		}
-		if (used >= nodes.size()) {
+		if (pool.empty()) {
 			remove(top);
 		}
-		int n = pool.back();
+		int index = pool.back();
 		pool.pop_back();
 		if (tail >= 0) {
-			nodes[tail].next = n;
+			nodes[tail].next = index;
 		} else {
-			top = n;
+			top = index;
 		}
-		nodes[n].prev = tail;
-		nodes[n].next = -1;
-		nodes[n].key = key;
-		nodes[n].value = value;
-		tail = n;
-		++used;
-		m[key] = n;
+		nodes[index].prev = tail;
+		nodes[index].next = -1;
+		nodes[index].key = key;
+		nodes[index].value = value;
+		tail = index;
+		key_to_index[key] = index;
 	}
 
 	void remove(int index) {
-		if (index < 0) {
-			return;
-		}
-		m.erase(nodes[index].key);
+		assert(index >= 0);
+		key_to_index.erase(nodes[index].key);
 		int prev = nodes[index].prev, next = nodes[index].next;
 		if (prev >= 0) {
 			nodes[prev].next = next;
@@ -81,7 +76,6 @@ public:
 		} else {
 			tail = prev;
 		}
-		--used;
 		pool.push_back(index);
 	}
 };
