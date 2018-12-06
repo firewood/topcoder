@@ -2,107 +2,11 @@
 /*
 SRM 742 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-You have a 50 times 50 chessboard. Both rows and columns of the chessboard are numbered from 0 to 49, inclusive.
-
-A queen is a chess piece that attacks all cells that are in the same row, in the same column, or on the same diagonal.
-In this problem we will be using at most sixteen queens.
-
-Some queens are already placed on the board.
-You are given their coordinates in the vector <int>s row and col.
-More precisely, for each valid i there is a queen on the cell (row[i], col[i]).
-These queens are placed in such a way that no two of them attack each other.
-
-You want to place add additional queens onto the chessboard in such a way that in the final configuration no two queens will attack each other.
-Find any one valid solution.
-
-Return a vector <int> with the coordinates of the added queens.
-More precisely, if you want to place queens onto the cells (r0, c0), (r1, c1), and so on, return the vector <int> { r0, c0, r1, c1, ... }.
-
-
-DEFINITION
-Class:SixteenQueens
-Method:addQueens
-Parameters:vector <int>, vector <int>, int
-Returns:vector <int>
-Method signature:vector <int> addQueens(vector <int> row, vector <int> col, int add)
-
-
-NOTES
--For the given constraints a solution always exists. Any valid solution will be accepted.
-
-
-CONSTRAINTS
--row will have between 0 and 16 elements, inclusive.
--Each element of row will be between 0 and 49, inclusive.
--col will have the same number of elements as row.
--Each element of col will be between 0 and 49, inclusive.
--The queens described by row and col stand on distinct cells and they do not attack each other.
--add will be between 0 and 16, inclusive.
--The number of elements in row plus the value of add will be at most 16.
-
-
-EXAMPLES
-
-0)
-{3}
-{5}
-1
-
-Returns: {0, 0 }
-
-There is a queen at (3,5). We are asked to add one more queen. In the example output shown above we place it at (0,0).
-
-
-1)
-{0}
-{1}
-1
-
-Returns: {4, 7 }
-
-There is a queen at (0,1). This time we cannot place the second queen at (0,0) because the two queens would attack each other.
-
-
-2)
-{0}
-{1}
-3
-
-Returns: {4, 7, 15, 0, 49, 49 }
-
-Adding three queens.
-
-
-3)
-{14, 19}
-{3, 47}
-0
-
-Returns: { }
-
-The easiest inputs are those where you don't have to add any new queens.
-
-
-4)
-{}
-{}
-2
-
-Returns: {0, 0, 1, 2 }
-
-There can be zero queens on the board before you start adding the new ones.
-
-
-5)
-{1,2,3}
-{7,2,19}
-1
-
-Returns: {0, 1 }
-
-There are three queens already on the board: at (1,7), (2,2), and (3,19). Our solution proposes to put the fourth queen onto the cell (0,1). There are many other valid solutions, and any of those will be accepted as well.
+問題
+- 50×50のチェス盤がある
+- 何か所かにクイーンが置いてある
+- それぞれのクイーンは、他のクイーンと干渉してはならない
+- 追加でadd個のクイーンを配置せよ
 
 */
 // END CUT HERE
