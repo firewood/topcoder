@@ -103,7 +103,7 @@ public:
 			}
 			for (auto kv : m) {
 				if (kv.first) {
-					if (kv.first == f / 2) {
+					if (kv.first == f - kv.first) {
 						if (kv.second % 2) {
 							return false;
 						}
