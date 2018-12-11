@@ -2,73 +2,10 @@
 /*
 SRM 743 Div1 Easy (300)
 
-PROBLEM STATEMENT
-
-If S is a sequence of 2*n integers, its pairing is a sequence of n integers obtained by splitting S into n pairs of consecutive elements and taking the sum of each pair.
-
-For example, the pairing of S = { 4, 7, 0, 3, 1, 1 } is the sequence { 4+7, 0+3, 1+1 } = { 11, 3, 2 }.
-
-You are given a vector <int> A consisting of 2*n positive integers.
-You are going to perform the following steps:
-
-Create a new sequence B that is a permutation of A.
-Find the sequence C that is the pairing of B.
-Compute the greatest common divisor of all elements of C and denote it g.
-
-Find and return the largest possible value of g (over all possible choices of B).
-
-
-DEFINITION
-Class:MaximizingGCD
-Method:maximumGCDPairing
-Parameters:vector <int>
-Returns:int
-Method signature:int maximumGCDPairing(vector <int> A)
-
-
-CONSTRAINTS
--A will containt between 2 and 30 elements, inclusive.
--A will contain an even number of elements.
--Each element of A will be between 1 and 1,000,000,000, inclusive.
-
-
-EXAMPLES
-
-0)
-{5, 4, 13, 2}
-
-Returns: 6
-
-A way to obtain output 6 is to set B = { 4, 2, 5, 13 }. Then, the pairing of B is C = { 4+2, 5+13 } = { 6, 18 }. Finally, the GCD of the elements of C is 6.
-
-
-1)
-{26, 23}
-
-Returns: 49
-
-In this case C equals { 49 } for any choice of B.
-
-
-2)
-{100, 200, 300, 500, 1100, 700}
-
-Returns: 100
-
-In this example any choice of B leads to the output of 100.
-
-
-3)
-{46, 78, 133, 92, 1, 23, 29, 67, 43, 111, 3908, 276, 13, 359, 20, 21}
-
-Returns: 4
-
-
-4)
-{16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 
-65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608}
-
-Returns: 16400
+問題
+- 2n個の整数がある
+- 2個ずつ取り出してn個のペアを作る
+- n個の数のGCDの最大値を求めよ
 
 */
 // END CUT HERE
