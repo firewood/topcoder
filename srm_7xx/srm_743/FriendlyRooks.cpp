@@ -2,94 +2,10 @@
 /*
 SRM 743 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-You have a rectangular chessboard divided into unit squares. Each square is either empty or contains a rook. You are given the vector <string> board describing which squares of the board contain rooks. If board[i][j] equals 'R', there is a rook on the square in row i, column j. If board[i][j] equals '.', the corresponding square is empty.
-
-We say that two rooks attack each other if and only if all the following conditions are satisfied:
-
-The rooks are of different colors.
-They are in the same row or in the same column.
-There are no other rooks between them.
-
-You are going to color all the rooks. We say that a coloring of rooks is friendly if no two rooks attack each other. You want to produce a friendly coloring. What is the maximum number of distinct colors you may use?
-
-
-DEFINITION
-Class:FriendlyRooks
-Method:getMinFriendlyColoring
-Parameters:vector <string>
-Returns:int
-Method signature:int getMinFriendlyColoring(vector <string> board)
-
-
-CONSTRAINTS
--board will contain between 1 and 20 elements, inclusive.
--Each element of board will contain between 1 and 20 characters, inclusive.
--All the elements of board will contain the same number of characters.
--Each character of each element of board will be 'R' or '.'.
-
-
-EXAMPLES
-
-0)
-{".R.R",
- "R.R.",
- ".R.R"}
-
-Returns: 2
-
-The friendly coloring shown below uses two colors (denoted 1 and 2). We can show that there is no friendly coloring with more than two colors.
-
-.1.1
-2.2.
-.1.1
-
-
-1)
-{"RRRRRRRRRRRRRRR"}
-
-Returns: 1
-
-All rooks must share the same color.
-
-
-2)
-{"...............",
- "...............",
- "...............",
- "...............",
- "...............",
- "..............."}
-
-Returns: 0
-
-
-3)
-{"....R..........",
- ".R...........R.",
- "....R..........",
- ".R........R....",
- "....R..........",
- "....R.....R...."}
-
-Returns: 1
-
-
-4)
-{"R.........R",
- ".R.......R.",
- "..R.....R..",
- "...R...R...",
- "....R.R....",
- ".....R.....",
- "....R.R....",
- "...R...R...",
- "..R.....R..",
- ".R.......R.",
- "R.........R"}
-
-Returns: 6
+問題
+- チェス盤に何個かのルークが置かれている
+- 同じ列または同じ行のルークは同じ色でなければならない
+- 最大何色に塗れるか求めよ
 
 */
 // END CUT HERE
