@@ -2,71 +2,10 @@
 /*
 SRM 744 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-We are looking at the first quadrant of an infinite square grid. Its rows and columns are numbered starting from zero. Each cell (r,c) contains the number (max(r,c) mod 3).
-
-Compute and return the sum of all cells (r,c) such that r1 <= r <= r2 and c1 <= c <= c2.
-
-
-DEFINITION
-Class:ModularQuadrant
-Method:sum
-Parameters:int, int, int, int
-Returns:long long
-Method signature:long long sum(int r1, int r2, int c1, int c2)
-
-
-CONSTRAINTS
--0 <= r1 <= r2 <= 10^9.
--0 <= c1 <= c2 <= 10^9.
-
-
-EXAMPLES
-
-0)
-0
-2
-1
-4
-
-Returns: 13
-
-We want rows 0 through 2 and columns 1 through 4. The corresponding part of the grid looks as follows:
-
-2201
-1201
-1201
-
-
-1)
-2
-2
-0
-7
-
-Returns: 10
-
-Now we are computing the sum of a single row that looks as follows:
-
-22201201
-
-
-2)
-4
-8
-0
-5
-
-Returns: 37
-
-
-222222
-111111
-000000
-222222
-111112
-
+問題
+- 無限の升目がある
+- 各升目にはmax(r,c) mod 3が書かれている
+- r1 <= r <= r2 かつ c1 <= c <= c2 を満たす全ての升目の数値の合計を求めよ
 
 */
 // END CUT HERE
