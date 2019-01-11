@@ -2,73 +2,8 @@
 /*
 SRM 744 Div2 Medium (500)
 
-PROBLEM STATEMENT
-
-	Sequence (d1, d2, d3, ..., dt) is a digit representation of X (with no leading zeros) if the i-th digit of X is di. In particular, d1 is the most and dt is the least significant digit of X. For instance, the digit representation of X = 576 is (5, 7, 6).
-
-
-	We say that an integer X is magic-square iff:
-
-
-	X is a square of an integer, i.e., X = Y2 for some integer Y.
-	For the digit representation (d1, d2, d3, ..., dt) of X it holds d1 < d2 > d3 < d4, and so on. That is, for each odd i < t it holds di < di + 1, and for each even i < t it holds di > di + 1.
-
-
-	Given A and B, output how many magic-square integers between A and B there are.
-
-
-DEFINITION
-Class:MagicNumbersAgain
-Method:count
-Parameters:long long, long long
-Returns:int
-Method signature:int count(long long A, long long B)
-
-
-CONSTRAINTS
--B will be between 1 and 10,000,000,000, inclusive.
--A will be between 1 and B, inclusive.
-
-
-EXAMPLES
-
-0)
-1
-64
-
-Returns: 7
-
-The magic numbers between 1 and 64 are: 1, 4, 9, 16, 25, 36, and 49. Although 64 is a square of an integer (64=8*8), 64 is not a magic number as its first digit is not smaller than its second one.
-
-
-1)
-50
-60
-
-Returns: 0
-
-Between 50 and 60 there are no integers that are squares of other integers, hence in this range can not exist magic numbers neither.
-
-
-2)
-121
-121
-
-Returns: 1
-
-
-3)
-5679
-1758030
-
-Returns: 73
-
-
-4)
-1304164
-2000000
-
-Returns: 14
+問題
+- A以上B以下の平方数のうち、10進数表記して偶数番目の桁の数字が奇数番目の桁の数字よりも大きいものの個数を求めよ。
 
 */
 // END CUT HERE
