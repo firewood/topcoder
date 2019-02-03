@@ -96,8 +96,6 @@ Returns: 6
 #include <cmath>
 #include <numeric>
 #include <string>
-#include <map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -105,26 +103,29 @@ Returns: 6
 
 using namespace std;
 
+#ifdef __GNUC__
+#define int128_t __int128
+#else
+#include <boost/multiprecision/cpp_int.hpp>
+typedef boost::multiprecision::int128_t int128_t;
+#endif
+
 typedef long long LL;
 
 class FightMonsterDiv1 {
-	bool possible(LL hp, LL attack, int level, LL duration, LL t) {
+	bool possible(int128_t hp, int128_t attack, int128_t level, int128_t duration, int128_t t) {
 		if (t <= 1) {
 			return t * attack >= hp;
 		}
-		LL a = ((t - 1) * t) / 2;
-		LL b = (a / 100) * level;
-		if ((hp + 2 * attack) / attack < (t + b)) {
-			return true;
-		}
-		LL m = (attack * level) / 100;
+		int128_t a = ((t - 1) * t) / 2;
+		int128_t m = (attack * level) / 100;
 		if (hp <= (t * attack + a * m)) {
 			return true;
 		}
 		--t;
-		LL d = min(duration, t);
-		a = (max(0LL, (t - 1)) * t) / 2;
-		b = ((max(0LL, t - 1 - d)) * (t - d)) / 2;
+		int128_t d = min(duration, t);
+		a = ((t - 1) * t) / 2;
+		int128_t b = ((t - 1 - d) * (t - d)) / 2;
 		return hp <= ((t + d * 4) * attack + (a + (a - b) * 4) * m);
 	}
 
