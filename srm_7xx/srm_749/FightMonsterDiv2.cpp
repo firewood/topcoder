@@ -2,66 +2,11 @@
 /*
 SRM 749 Div2 Easy (250)
 
-PROBLEM STATEMENT
-
-Hero is fighting against a monster.
-
-Hero's basic attack deals attack points of damage.
-Hero also has a special skill that gradually increases the amount of damage he deals when attacking the same monster multiple times in a row.
-Hero has level skill points in this skill.
-The effect of the skill is such that in each of the following attacks the damage is increased by level percent of the damage dealt by the basic attack.
-In other words, if Hero already attacked the monster n times, the next attack after that will deal attack + n * (level percent of attack) damage.
-
-Hero is going to attack the monster duration times in a row. Calculate and return the total amount of damage he will deal.
-
-
-DEFINITION
-Class:FightMonsterDiv2
-Method:damageDealt
-Parameters:long long, long long, long long
-Returns:long long
-Method signature:long long damageDealt(long long attack, long long level, long long duration)
-
-
-CONSTRAINTS
--attack will be between 100 and 100,000, inclusive.
--attack will be a multiple of 100.
--level will be between 0 and 100, inclusive.
--duration will be between 1 and 100,000, inclusive.
-
-
-EXAMPLES
-
-0)
-100
-10
-3
-
-Returns: 330
-
-The first attack will deal 100 damage.
-The second attack will deal 100 + 10 = 110 damage.
-The third attack will deal 110 + 10 = 120 damage.
-
-
-1)
-100
-0
-5
-
-Returns: 500
-
-With level = 0, the increment is zero and thus each of the five attacks will deal 100 damage.
-
-
-2)
-100000
-100
-100000
-
-Returns: 500005000000000
-
-This is the largest possible input. Watch out for integer overflow.
+問題
+- モンスターと戦っている
+- 基本攻撃力はattackである
+- 1回攻撃するたびに、攻撃力が基本攻撃力のlevelパーセント上がる
+- duration回攻撃するとき、合計の攻撃力を求めよ
 
 */
 // END CUT HERE
