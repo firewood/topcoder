@@ -14,6 +14,10 @@
 using namespace std;
 using namespace std::chrono;
 
+typedef pair<double, int> DI;
+typedef pair<int, int> II;
+typedef pair<double, II> DII;
+
 int n;
 vector<int> x, y;
 vector< vector<double> > dists;
@@ -71,10 +75,7 @@ static double calc_target_dist() {
 	return rsum / rcnt;
 }
 
-void gen(double target_dist) {
-	typedef pair<double, int> DI;
-	typedef pair<int, int> II;
-	typedef pair<double, II> DII;
+vector<int> initial_list(double target_dist) {
 	vector< vector<DI> > ddiffs(n);
 	for (int i = 0; i < n; ++i) {
 		for (int j = i + 1; j < n; ++j) {
@@ -100,30 +101,30 @@ void gen(double target_dist) {
 		}
 	}
 	conn[prev] = start_node;
-	int zc = 0;
-	double avg;
+	return conn;
+}
+
+double gen(double avg, vector<int> &conn) {
 	vector<DI> dd(n);
-//	const int takes = n;
-	while (!is_timed_out()) {
-		avg = 0;
-		for (int i = 0; i < n; ++i) {
-			avg += dists[i][conn[i]];
-			dd[i].second = i;
-		}
-		avg /= n;
+	bool f = true;
+	double score;
+	while (f && !is_timed_out()) {
+		f = false;
+		score = 0;
 		for (int i = 0; i < n; ++i) {
 			dd[i].first = fabs(dists[i][conn[i]] - avg);
 			dd[i].first = dd[i].first * dd[i].first;
+			dd[i].second = i;
+			score += dd[i].first;
 		}
-//		sort(dd.rbegin(), dd.rend());
-		for (int t = 0; t < 1000; ++t) {
+		for (int t = 0; t < 20000; ++t) {
 			int p = _rand() % n, q = _rand() % n;
 			int a = dd[p].second, b = conn[a];
 			int c = dd[q].second, d = conn[c];
 			if (a != c) {
 				double x = fabs(dists[a][c] - avg), y = fabs(dists[b][d] - avg);
 				if (x * x + y * y < dd[p].first + dd[q].first) {
-				prev = d;
+					int prev = d;
 					int curr = b;
 					while (curr != d) {
 						int next = conn[curr];
@@ -132,19 +133,13 @@ void gen(double target_dist) {
 						curr = next;
 					}
 					conn[a] = c;
-					++zc;
+					f = true;
 					break;
 				}
 			}
 		}
 	}
-//	cout << zc << "," << avg << endl;
-	prev = start_node;
-	for (int i = 0; i < n; ++i) {
-		int next = conn[prev];
-		cout << next << endl;
-		prev = next;
-	}
+	return score;
 }
 
 int main(int argc, const char * argv[]) {
@@ -162,6 +157,22 @@ int main(int argc, const char * argv[]) {
 		}
 	}
 	double target_dist = calc_target_dist();
-	gen(target_dist);
+	vector<int> conn = initial_list(target_dist);
+	vector<int> best_conn;
+	double best_score = 1e10;
+	for (double d = target_dist - 5; d < target_dist + 5; d += 0.01) {
+		double score = gen(d, conn);
+		if (score < best_score) {
+//			fprintf(stderr, "d: %.2f, score: %.2f\n", d, score);
+			best_score = score;
+			best_conn = conn;
+		}
+	}
+	int prev = 0;
+	for (int i = 0; i < n; ++i) {
+		int next = best_conn[prev];
+		cout << next << endl;
+		prev = next;
+	}
 	return 0;
 }
