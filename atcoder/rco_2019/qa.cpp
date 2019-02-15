@@ -14,31 +14,26 @@
 using namespace std;
 using namespace std::chrono;
 
-static uint32_t _x = 2463534242;
+int n;
+vector<int> x, y;
+vector< vector<double> > dists;
 
 static const int TIME_LIMIT = 2000;
 auto start_time = high_resolution_clock::now();
 int past() {
-	return duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count();
+	return (int)(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count());
 }
 bool is_timed_out() {
 	return past() > (TIME_LIMIT - 250);
 }
 
-int n;
-vector<int> x, y;
-double target_dist;
-
-vector< vector<int> > connected;
-
-
+static uint32_t _x = 2463534242;
 static void xorshift32_seed(uint32_t seed)
 {
 	if (seed != 0) {
 		_x = seed;
 	}
 }
-
 static uint32_t xorshift32(void)
 {
 	_x ^= (_x << 13);
@@ -46,20 +41,18 @@ static uint32_t xorshift32(void)
 	_x ^= (_x << 15);
 	return _x;
 }
-
 static __inline uint32_t _rand() {
 	return xorshift32();
 }
 
-static void calc_target_dist() {
-	vector<double> dists;
+static double calc_target_dist() {
+	vector<double> flat_dists;
 	for (int i = 0; i < n; ++i) {
 		for (int j = i + 1; j < n; ++j) {
-			double dx = x[i] - x[j], dy = y[i] - y[j];
-			dists.push_back(sqrt(dx * dx + dy * dy));
+			flat_dists.push_back(dists[i][j]);
 		}
 	}
-	sort(dists.begin(), dists.end());
+	sort(flat_dists.begin(), flat_dists.end());
 	int rcnt = 0;
 	double rsum = 0;
 	for (double range = 15; range <= 25; range += 1) {
@@ -67,161 +60,90 @@ static void calc_target_dist() {
 		double mv;
 		size_t mx = 0;
 		for (double low = 10; low <= 300; low += 2) {
-			size_t cnt = lower_bound(dists.begin(), dists.end(), low + range) - lower_bound(dists.begin(), dists.end(), low);
+			size_t cnt = lower_bound(flat_dists.begin(), flat_dists.end(), low + range) - lower_bound(flat_dists.begin(), flat_dists.end(), low);
 			if (cnt >= mx) {
 				mx = cnt;
 				mv = low;
 			}
 		}
 		rsum += mv + range / 2;
-//		cout << "RANGE: " << range << ", LOW: " << mv << ", MID: " << (mv + range/2) << ", CNT: " << mx << endl;
 	}
-	target_dist = rsum / rcnt;
-//	cout << "TARGET_DIST: " << target_dist << endl;
+	return rsum / rcnt;
 }
 
 void gen(double target_dist) {
-	typedef bitset<200> BS;
-	typedef pair<int, vector<int> > IVI;
-	unordered_map<BS, IVI> m[10][200];
-
 	typedef pair<double, int> DI;
-	vector< vector<DI> > dists(n);
-	vector< vector<double> > rawdists(n, vector<double>(n));
+	typedef pair<int, int> II;
+	typedef pair<double, II> DII;
+	vector< vector<DI> > ddiffs(n);
 	for (int i = 0; i < n; ++i) {
 		for (int j = i + 1; j < n; ++j) {
-			double dx = x[i] - x[j], dy = y[i] - y[j];
-			double d = sqrt(dx * dx + dy * dy);
-			double dd = fabs(target_dist - d);
-			rawdists[i][j] = rawdists[j][i] = dd;
-			if (dd <= 30) {
-				dists[i].push_back(DI(dd, j));
-				dists[j].push_back(DI(dd, i));
-			}
+			double d = fabs(dists[i][j] - target_dist);
+			ddiffs[i].push_back(DI(d, j));
+			ddiffs[j].push_back(DI(d, i));
 		}
 	}
 	for (int i = 0; i < n; ++i) {
-		sort(dists[i].begin(), dists[i].end());
+		sort(ddiffs[i].begin(), ddiffs[i].end());
 	}
-#ifdef _DEBUG
-	const int GENS = 10;
-#else
-	const int GENS = 500;
-#endif
-	for (int st = 0; st < n; ++st) {
-		for (int i = 0; i < GENS; ++i) {
-			BS bs;
-			bs[st] = true;
-			vector<int> v(1, st);
-			int prev = st;
-			for (int j = 0; j < 10; ++j) {
-				const vector<DI> &di = dists[prev];
-				int next = -1;
-				for (int k = 0; k < 40; ++k) {
-					const DI &r = di[_rand() % di.size()];
-					if (!bs[r.second]) {
-						next = r.second;
-						break;
+	vector<int> conn(n, -1);
+	int start_node = 0;
+	int prev = start_node;
+	for (int i = 0; i < n - 1; ++i) {
+		for (auto kv : ddiffs[prev]) {
+			int next = kv.second;
+			if (conn[next] < 0) {
+				conn[prev] = next;
+				prev = next;
+				break;
+			}
+		}
+	}
+	conn[prev] = start_node;
+	int zc = 0;
+	double avg;
+	vector<DI> dd(n);
+//	const int takes = n;
+	while (!is_timed_out()) {
+		avg = 0;
+		for (int i = 0; i < n; ++i) {
+			avg += dists[i][conn[i]];
+			dd[i].second = i;
+		}
+		avg /= n;
+		for (int i = 0; i < n; ++i) {
+			dd[i].first = fabs(dists[i][conn[i]] - avg);
+			dd[i].first = dd[i].first * dd[i].first;
+		}
+//		sort(dd.rbegin(), dd.rend());
+		for (int t = 0; t < 1000; ++t) {
+			int p = _rand() % n, q = _rand() % n;
+			int a = dd[p].second, b = conn[a];
+			int c = dd[q].second, d = conn[c];
+			if (a != c) {
+				double x = fabs(dists[a][c] - avg), y = fabs(dists[b][d] - avg);
+				if (x * x + y * y < dd[p].first + dd[q].first) {
+				prev = d;
+					int curr = b;
+					while (curr != d) {
+						int next = conn[curr];
+						conn[curr] = prev;
+						prev = curr;
+						curr = next;
 					}
-				}
-				if (next < 0) {
+					conn[a] = c;
+					++zc;
 					break;
 				}
-				bs[next] = true;
-				v.push_back(next);
-				prev = next;
-				m[j][st][bs] = IVI(next, v);
 			}
 		}
 	}
-
-	int node = 0;
-	BS used, none;
-	vector<int> t;
-	for (auto kv : m[9][node]) {
-		used = kv.first;
-		t = kv.second.second;
-		node = t.back();
-		used[node] = false;
-		break;
-	}
-	int mx = 9;
-	while (true) {
-		for (int i = 5; i >= 0; --i) {
-			for (auto kv : m[i][node]) {
-				if ((used & kv.first) == 0) {
-					used |= kv.first;
-					for (int n : kv.second.second) {
-						if (n != node) {
-							t.push_back(n);
-						}
-					}
-					node = t.back();
-					used[node] = false;
-//					cout << "SZ: " << t.size() << endl;
-					goto next;
-				}
-			}
-			int rnode = t.front();
-			BS rused = used;
-			rused[node] = true;
-			rused[rnode] = false;
-			for (auto kv : m[i][rnode]) {
-				if ((rused & kv.first) == 0) {
-					reverse(t.begin(), t.end());
-					used = rused;
-					used |= kv.first;
-					for (int n : kv.second.second) {
-						if (n != rnode) {
-							t.push_back(n);
-						}
-					}
-					node = t.back();
-					used[node] = false;
-//					cout << "RSZ: " << t.size() << endl;
-					goto next;
-				}
-			}
-		}
-		break;
-	next:
-		;
-	}
-
-	vector<int> remains;
-	remains.push_back(node);
-	used[node] = true;
-	int rcnt = 0;
+//	cout << zc << "," << avg << endl;
+	prev = start_node;
 	for (int i = 0; i < n; ++i) {
-		if (!used[i]) {
-			++rcnt;
-			remains.push_back(i);
-		}
-	}
-	remains.push_back(t.front());
-	vector<int> best = remains;
-	double bs = 1e20;
-#ifdef _DEBUG
-	for (int tt = 0; tt < 1000; ++tt) {
-#else
-	while (!is_timed_out()) {
-#endif
-		random_shuffle(remains.begin() + 1, remains.begin() + 1 + rcnt);
-		double s = 0;
-		for (int i = 1; i <= rcnt; ++i) {
-			double d = rawdists[remains[i - 1]][remains[i]];
-			s += d * d;
-		}
-		if (s < bs) {
-			bs = s;
-			best = remains;
-		}
-	}
-	for (int i = 0; i < rcnt; ++i) {
-		t.push_back(remains[i + 1]);
-	}
-	for (int i = 0; i < n; ++i) {
-		cout << t[i] << endl;
+		int next = conn[prev];
+		cout << next << endl;
+		prev = next;
 	}
 }
 
@@ -232,7 +154,14 @@ int main(int argc, const char * argv[]) {
 	for (int i = 0; i < n; ++i) {
 		cin >> x[i] >> y[i];
 	}
-	calc_target_dist();
+	dists = vector< vector<double> >(n, vector<double>(n));
+	for (int i = 0; i < n; ++i) {
+		for (int j = i + 1; j < n; ++j) {
+			int dx = x[i] - x[j], dy = y[i] - y[j];
+			dists[i][j] = dists[j][i] = sqrt(dx * dx + dy * dy);
+		}
+	}
+	double target_dist = calc_target_dist();
 	gen(target_dist);
 	return 0;
 }
