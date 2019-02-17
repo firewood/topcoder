@@ -104,6 +104,7 @@ vector<int> initial_list(double target_dist) {
 	return conn;
 }
 
+// 2-opt TSP
 double gen(double avg, vector<int> &conn) {
 	vector<DI> dd(n);
 	bool f = true;
