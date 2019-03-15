@@ -10,6 +10,13 @@ using namespace std;
 typedef long long LL;
 
 static LL f(LL x) {
+#if 1
+	LL r = 0;
+	for (LL i = max(0LL, ((x - 4) | 3) + 1); i <= x; ++i) {
+		r ^= i;
+	}
+	return r;
+#else
 	switch (x & 3) {
 	case 0:
 		return x;
@@ -20,6 +27,7 @@ static LL f(LL x) {
 	default:
 		return 0;
 	}
+#endif
 }
 
 int main(int argc, char *argv[]) {
