@@ -2,13 +2,11 @@
 
 #include <iostream>
 #include <algorithm>
-#include <numeric>
 #include <sstream>
 #include <cstdio>
 #include <cstdlib>
 #include <vector>
-#include <set>
-#include <map>
+#include <bitset>
 
 using namespace std;
 
@@ -19,32 +17,30 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < N; ++i) {
 		cin >> A[i];
 	}
-	int ans = 0;
-	if (K <= 400) {
+	sort(A.begin(), A.end());
+	int left = -1, right = N;
+	while (right - left > 1) {
+		int mid = (left + right) / 2;
+		bitset<5001> sum;
+		sum[0] = 1;
 		for (int i = 0; i < N; ++i) {
-			int f[2][400] = { 1 };
-			int p = 0, q = 1;
-			for (int j = 0; j < N; ++j) {
-				if (i == j) {
-					continue;
-				}
-				int m = K - A[j];
-				for (int k = 0; k < K; ++k) {
-					if (f[p][k]) {
-						f[q][k] = 1;
-						if (k < m) {
-							f[q][k + A[j]] = 1;
-						}
-					}
-				}
-				p = !p, q = !q;
-			}
-			int u = accumulate(&(f[p][0]) + max(0, K - A[i]), &(f[p][0]) + K, 0);
-			if (!u) {
-				++ans;
+			if (i != mid) {
+				sum |= sum << A[i];
 			}
 		}
+		int nes = A[mid] >= K;
+		for (int i = K - A[mid]; !nes && i < K; ++i) {
+			if (sum[i]) {
+				nes = 1;
+			}
+		}
+		if (nes) {
+			right = mid;
+		} else {
+			left = mid;
+		}
 	}
+	int ans = left + 1;
 	cout << ans << endl;
 	return 0;
 }
