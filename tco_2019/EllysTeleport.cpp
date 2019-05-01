@@ -124,8 +124,6 @@ Watch out for overflows when generating the heights!
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -137,77 +135,46 @@ using namespace std;
 typedef long long LL;
 
 class EllysTeleport {
-	vector<int> e;
-	vector<int> h;
-	vector<int> p;
-	vector<bool> vis;
-	vector<int> memo;
-
-	int dfs(int node) {
-		if (node < 0) return 0;
-		int& r = memo[node];
-		if (!vis[node]) {
-			vis[node] = true;
-			r = 0;
-			r = 1 + dfs(e[node]);
-		}
-		return r;
-	}
 
 public:
 	int getMax(int N, int H1, int A, int B, int P, int Q, int M) {
-		h.clear();
-		LL a = H1;
-		for (int i = 0; i < N; ++i) {
-			h.push_back(a);
-			a = (a * A) + B;
-			a %= M;
+		vector<LL> h({ H1 });
+		for (int i = 1; i < N; ++i) {
+			h.push_back((h[i - 1] * A + B) % M);
 		}
 		sort(h.begin(), h.end());
 
-		e = vector<int>(N, -1);
-		p = vector<int>(N, -1);
-		vis = vector<bool>(N);
-		memo = vector<int>(N);
-		int low = h[0];
+		vector<int> e(N, -1);
 		for (int i = 0; i < N; ++i) {
-			int next = (int)((h[i] * (LL)P + Q) % M);
-			if (next < low) continue;
-			int pos = min(N - 1, (int)(lower_bound(h.begin(), h.end(), next) - h.begin()));
-			if (pos > 0 && h[pos] > next) {
-				--pos;
-			}
-			if (i != pos) {
-				p[pos] = i;
-				e[i] = pos;
-			}
+			LL next = (int)((h[i] * P + Q) % M);
+			e[i] = (int)(upper_bound(h.begin(), h.end(), next) - h.begin() - 1);
 		}
 
 		int ans = 0;
 		for (int i = 0; i < N; ++i) {
-			if (p[i] < 0) {
-				vis = vector<bool>(N);
-				ans = max(ans, dfs(i));
+			vector<int> vis(N);
+			int cnt = 0;
+			for (int node = i; node >= 0 && !vis[node]; node = e[node]) {
+				++cnt;
+				vis[node] = true;
 			}
-		}
-		for (int i = 0; i < N; ++i) {
-			ans = max(ans, dfs(i));
+			ans = max(ans, cnt);
 		}
 		return ans;
 	}
 
 // BEGIN CUT HERE
 private:
-	template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
+	template <typename T> string print_array(const vector<T>& V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
 
-	void verify_case(int Case, const int &Expected, const int &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
+	void verify_case(int Case, const int& Expected, const int& Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
 
 public:
-	void run_test(int Case) { 
+	void run_test(int Case) {
 		int n = 0;
 
 		// test_case_0
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 11;
 			int Arg1 = 9;
 			int Arg2 = 17;
@@ -222,7 +189,7 @@ public:
 		n++;
 
 		// test_case_1
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 8;
 			int Arg1 = 17;
 			int Arg2 = 23;
@@ -237,7 +204,7 @@ public:
 		n++;
 
 		// test_case_2
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 15;
 			int Arg1 = 42;
 			int Arg2 = 114;
@@ -252,7 +219,7 @@ public:
 		n++;
 
 		// test_case_3
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 10;
 			int Arg1 = 71;
 			int Arg2 = 54;
@@ -267,7 +234,7 @@ public:
 		n++;
 
 		// test_case_4
-		if ((Case == -1) || (Case == n)){
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 1000;
 			int Arg1 = 1337;
 			int Arg2 = 706135;
