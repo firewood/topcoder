@@ -14,37 +14,49 @@ typedef pair<II, II> IIII;
 
 II solve(vector<IIII> p, int q) {
 	II ans(q, q);
-	int n = (int)p.size();
-	if (q <= 100) {
-		int m[102][102] = {};
+	{
+		vector<int> cnt(q + 1);
 		for (auto x : p) {
 			II st = x.first;
 			II dir = x.second;
-			if (dir.first) {
-				for (int i = st.first + dir.first; i >= 0 && i <= q; i += dir.first) {
-					for (int j = 0; j <= q; ++j) {
-						m[i][j] += 1;
-					}
-				}
-			} else {
-				for (int i = st.second + dir.second; i >= 0 && i <= q; i += dir.second) {
-					for (int j = 0; j <= q; ++j) {
-						m[j][i] += 1;
-					}
-				}
+			if (dir.first < 0) {
+				cnt[0] += 1;
+				cnt[st.first] -= 1;
+			}
+			if (dir.first > 0) {
+				cnt[st.first + 1] += 1;
 			}
 		}
-		int mx = -1;
+
+		int sum = 0, mx = -1;
 		for (int i = 0; i <= q; ++i) {
-			for (int j = 0; j <= q; ++j) {
-				mx = max(mx, m[i][j]);
+			sum += cnt[i];
+			if (sum > mx) {
+				mx = sum;
+				ans.first = i;
 			}
 		}
+	}
+	{
+		vector<int> cnt(q + 1);
+		for (auto x : p) {
+			II st = x.first;
+			II dir = x.second;
+			if (dir.second < 0) {
+				cnt[0] += 1;
+				cnt[st.second] -= 1;
+			}
+			if (dir.second > 0) {
+				cnt[st.second + 1] += 1;
+			}
+		}
+
+		int sum = 0, mx = -1;
 		for (int i = 0; i <= q; ++i) {
-			for (int j = 0; j <= q; ++j) {
-				if (m[i][j] == mx) {
-					return II(i, j);
-				}
+			sum += cnt[i];
+			if (sum > mx) {
+				mx = sum;
+				ans.second = i;
 			}
 		}
 	}
