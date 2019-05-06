@@ -2,66 +2,11 @@
 /*
 SRM 752 Div1 Easy (250)
 
-PROBLEM STATEMENT
-
-You are given the string comparisons with n characters.
-Each character in comparisons is one of '<', '>', '=', and '!'.
-These represent the relations "is less than", "is greater than", "equals", and "does not equal", respectively.
-
-A positive integer X with n+1 digits (and with no leading zeros) is said to match the given comparisons if all the relations are true for pairs of consecutive digits of X, in order.
-For example, suppose comparisons is "<<=!".
-One integer that matches these comparisons is 14770.
-This is because 1<4, 4<7, 7=7, and 7!=0.
-
-If no (n+1)-digit integer matches all the given comparisons, return an empty string.
-Otherwise return a string with the digits of the smallest such number.
-
-
-DEFINITION
-Class:ReconstructNumber
-Method:smallest
-Parameters:string
-Returns:string
-Method signature:string smallest(string comparisons)
-
-
-CONSTRAINTS
--comparisons will have between 0 and 2000 characters, inclusive.
--Each character in comparisons will be one of "<>=!".
-
-
-EXAMPLES
-
-0)
-">=!<"
-
-Returns: "10012"
-
-We have 1 > 0, 0 = 0, 0 != 1, and 1 < 2. There are other numbers that match these comparisons, but this one is the smallest of them all. 
-
-
-1)
-"====!===="
-
-Returns: "1111100000"
-
-
-2)
-""
-
-Returns: "1"
-
-
-3)
-">>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-
-Returns: ""
-
-
-4)
-"><<>><=<=>=>"
-
-Returns: "1012101122110"
+問題
+- N文字の演算子が与えられる
+- 演算子は'<', '>', '=', '!'のいずれかである
+- 各演算子は、隣り合う1桁の数値同士の関係を示す
+- 先頭が0でなく、演算子の条件を全て満たすN+1桁の数値のうち、最小のものを求めよ
 
 */
 // END CUT HERE
@@ -85,19 +30,13 @@ public:
 		for (int i = len - 1; i >= 0; --i) {
 			for (int j = 0; j <= 9; ++j) {
 				for (int k = 0; k <= 9; ++k) {
-					if (comparisons[i] == '<' && j < k && !dp[i + 1][k].empty()) {
-						dp[i][j] = string(1, '0' + j) + dp[i + 1][k];
-						break;
+					if (dp[i + 1][k].empty()) {
+						continue;
 					}
-					if (comparisons[i] == '>' && j > k && !dp[i + 1][k].empty()) {
-						dp[i][j] = string(1, '0' + j) + dp[i + 1][k];
-						break;
-					}
-					if (comparisons[i] == '=' && j == k && !dp[i + 1][k].empty()) {
-						dp[i][j] = string(1, '0' + j) + dp[i + 1][k];
-						break;
-					}
-					if (comparisons[i] == '!' && j != k && !dp[i + 1][k].empty()) {
+					if ((comparisons[i] == '<' && j < k) ||
+							(comparisons[i] == '>' && j > k) ||
+							(comparisons[i] == '=' && j == k) ||
+							(comparisons[i] == '!' && j != k)) {
 						dp[i][j] = string(1, '0' + j) + dp[i + 1][k];
 						break;
 					}
