@@ -15,6 +15,18 @@ using namespace std;
 
 typedef long long LL;
 
+vector<LL> sim(vector<LL>& v, int t) {
+	vector<LL> r = v;
+	for (int i = 1; i <= t; ++i) {
+		for (int j = 0; j < 6; ++j) {
+			if ((i % (j + 1)) == 0) {
+				r[j] = (r[j] + 1) % 64;
+			}
+		}
+	}
+	return r;
+}
+
 vector<LL> get_ints() {
 	vector<LL> r;
 	string s;
@@ -33,45 +45,30 @@ vector<LL> get_ints() {
 }
 
 bool solve(int W) {
-	vector<LL> r(6);
-	for (int qq = 0; qq < W; ++qq) {
-		cout << (qq + 1) << endl;
+	vector<LL> cnt(6), chk(6);
+	{
+		cout << 185 << endl;
 		fflush(stdout);
 		vector<LL> res = get_ints();
 		assert(res.size() == 1);
-		r[qq] = res[0];
+		cnt[3] = res[0] >> 46 & 127;
+		cnt[4] = (res[0] >> 37) & 127;
+		cnt[5] = (res[0] >> 30) & 127;
 	}
-	vector<LL> cnt(6), chk(6);
-	for (LL x = 0; x <= 100; ++x) {
-		cnt[0] = x;
-		cnt[1] = r[1] - r[0] - x * 2;
-		cnt[2] = r[2] - r[1] - x * 4;
-		cnt[3] = r[3] - r[2] - x * 8 - cnt[1] * 2;
-		cnt[4] = r[4] - r[3] - x * 16;
-		cnt[5] = r[0] - x * 2 - cnt[1] - cnt[2] - cnt[3] - cnt[4];
-		bool ok = true;
-		chk = cnt;
-		for (int y = 0; y < 6; ++y) {
-			if (cnt[y] < 0 || cnt[y] > 100) {
-				ok = false;
-			}
-			chk[0] *= 2;
-			if (y==1||y==3||y==5)chk[1] *= 2;
-			if (y==2||y==5)chk[2] *= 2;
-			if (y==3)chk[3] *= 2;
-			if (y==4)chk[4] *= 2;
-			if (y == 5)chk[5] *= 2;
-			LL sum = 0;
-			for (int z = 0; z < 6; ++z) {
-				sum += chk[z];
-			}
-			if (sum != r[y]) {
-				ok = false;
-			}
-		}
-		if (ok) {
-			break;
-		}
+	{
+		cout << 40 << endl;
+		fflush(stdout);
+		vector<LL> res = get_ints();
+		assert(res.size() == 1);
+		cnt[0] = res[0] >> 40;
+		cnt[1] = (res[0] >> 20) & 127;
+		cnt[2] = ((res[0] - (cnt[3] << 10) - (cnt[4] << 8) - (cnt[5] << 6) )  >> 13) & 127;
+	}
+	for (int qq = 2; qq < W; ++qq) {
+		cout << 1 << endl;
+		fflush(stdout);
+		vector<LL> res = get_ints();
+		assert(res.size() == 1);
 	}
 
 	for (int i = 0; i < 6; ++i) {
@@ -87,6 +84,18 @@ bool solve(int W) {
 }
 
 int main(int argc, char *argv[]) {
+/*
+	vector<LL> temp(6, 0);
+	for (int i = 1; i <= 200; ++i) {
+		vector<LL> x = sim(temp, i);
+		cerr << "DAY:" << i << " ";
+		for (int j = 0; j < 6; ++j) {
+			cerr << " " << x[j];
+		}
+		cerr << endl;
+	}
+//*/
+
 #if defined(_WIN32) && defined(_DEBUG)
 	Sleep(5000);
 #endif
@@ -94,7 +103,6 @@ int main(int argc, char *argv[]) {
 	vector<LL> x = get_ints();
 	assert(x.size() == 2);
 	int T = x[0], W = x[1];
-//	fprintf(stderr, "T: %d, N: %d, M: %d\n", T, N, M);
 	for (int t = 0; t < T; ++t) {
 		if (!solve(W)) {
 			break;
