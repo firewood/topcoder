@@ -1,4 +1,4 @@
-// Google Code Jam 2019 
+// Google Code Jam 2019 Round 1A
 // Problem C. Alien Rhyme
 
 #include <iostream>

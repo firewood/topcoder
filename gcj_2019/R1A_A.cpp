@@ -1,5 +1,5 @@
-// Google Code Jam 2019 
-// Problem A
+// Google Code Jam 2019 Round 1A
+// Problem A. Pylons
 
 #include <iostream>
 #include <sstream>
@@ -19,7 +19,7 @@ vector<II> solve(int r, int c) {
 		int px = -1, py = -1, j;
 		for (j = r * c - 1; j >= 0; --j) {
 			int x, y, k;
-			for (k = 1000; k > 0; --k) {
+			for (k = 2000; k > 0; --k) {
 				x = rand() % c;
 				y = rand() % r;
 				if (!used[y][x] && x != px && y != py && (x + y) != (px + py) && (x - y) != (px - py)) {
