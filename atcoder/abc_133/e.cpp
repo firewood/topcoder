@@ -4,7 +4,6 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
-#include <set>
 
 using namespace std;
 
@@ -38,24 +37,18 @@ modll ans;
 vector<vector<int>> edges;
 vector<int> vis;
 
-void dfs(int node, int p, LL pps) {
+void dfs(int node, int cnt) {
 	vis[node] = 1;
-	if (p < 0) {
-		ans *= k;
-	} else {
-		ans *= (k - pps - 1);
-	}
-	LL cnt = p >= 0;
+	ans *= (k - cnt);
+	cnt = cnt > 0;
 	for (int next : edges[node]) {
 		if (!vis[next]) {
-			dfs(next, node, cnt);
-			++cnt;
+			dfs(next, ++cnt);
 		}
 	}
 }
 
 int main(int argc, char *argv[]) {
-	ans = 1;
 	cin >> n >> k;
 	edges.clear();
 	edges.resize(n);
@@ -67,7 +60,8 @@ int main(int argc, char *argv[]) {
 		edges[a].push_back(b);
 		edges[b].push_back(a);
 	}
-	dfs(0, -1, {});
+	ans = 1;
+	dfs(0, 0);
 	cout << ans << endl;
 	return 0;
 }
