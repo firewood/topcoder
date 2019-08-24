@@ -97,78 +97,68 @@ Returns: {0, 2, 3, 5 }
 
 using namespace std;
 
-typedef pair<int, int> II;
-
 class FixedPointReversals {
 public:
 vector <int> sort(vector <int> A, int fixed) {
-    vector<int> a, ans;
-    a = A;
-    std::sort(a.begin(), a.end());
-    if (A[fixed] == a[fixed]) {
-        int n = a.size();
-        vector<II> v;
+    int n = A.size();
+    vector<int> ans;
+    vector<pair<int, int>> v;
+    for (int i = 0; i < n; ++i) {
+        v.push_back({A[i], i});
+    }
+    std::sort(v.begin(), v.end());
+    if (A[fixed] == v[fixed].first) {
         vector<int> w(n);
-        for (int i = 0; i < n; ++i) {
-            v.push_back(II(A[i], i));
-        }
-        std::sort(v.begin(), v.end());
         for (int i = 0; i < n; ++i) {
             w[v[i].second] = i;
         }
         if (w[fixed] != fixed) {
-            int pos = std::find(w.begin(), w.end(), fixed) - w.begin();
-            swap(w[pos], w[fixed]);
+            swap(w[fixed], w[std::find(w.begin(), w.end(), fixed) - w.begin()]);
         }
+
+        auto reverse = [&](int a, int b) {
+            ans.push_back(a);
+            ans.push_back(b + 1);
+            std::reverse(w.begin() + a, w.begin() + b + 1);
+        };
+
         int rcnt = 0;
         for (int i = fixed - 1; i >= 0; --i) {
             if (w[i] < fixed) {
                 for (int j = 0; j < i; ++j) {
                     if (w[j] > fixed) {
-                        ans.push_back(j);
-                        ans.push_back(i + 1);
-                        std::reverse(w.begin() + j, w.begin() + i + 1);
+                        reverse(j, i);
                         break;
                     }
                 }
             }
-            if (w[i] > fixed) {
-                ++rcnt;
-            }
+            rcnt += w[i] > fixed;
         }
         for (int i = fixed + 1; i < n; ++i) {
             if (w[i] > fixed) {
                 for (int j = n - 1; j > i; --j) {
                     if (w[j] < fixed) {
-                        ans.push_back(i);
-                        ans.push_back(j + 1);
-                        std::reverse(w.begin() + i, w.begin() + j + 1);
+                        reverse(i, j);
                         break;
                     }
                 }
             }
         }
         if (rcnt) {
-            ans.push_back(fixed - rcnt);
-            ans.push_back(fixed + rcnt + 1);
-            std::reverse(w.begin() + fixed - rcnt, w.begin() + fixed + rcnt + 1);
+            reverse(fixed - rcnt, fixed + rcnt);
         }
         for (int i = fixed - 1; i >= 0; --i) {
             int pos = std::find(w.begin(), w.end(), i) - w.begin();
             assert(pos >= 0 && pos < fixed);
             if (i != pos) {
-                ans.push_back(pos);
-                ans.push_back(i + 1);
-                std::reverse(w.begin() + pos, w.begin() + i + 1);
+                reverse(pos, i);
             }
         }
         for (int i = fixed + 1; i < n; ++i) {
             int pos = std::find(w.begin(), w.end(), i) - w.begin();
             assert(pos > fixed && pos < n);
             if (i != pos) {
-                ans.push_back(i);
-                ans.push_back(pos + 1);
-                std::reverse(w.begin() + i, w.begin() + pos + 1);
+                reverse(i, pos);
             }
         }
     } else {
