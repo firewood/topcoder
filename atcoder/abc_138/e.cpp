@@ -23,20 +23,18 @@ int main(int argc, char* argv[]) {
 		last[s[i] - 'a'] = i;
 	}
 	LL pos = 0;
-	int fix = 0;
 	for (char c : t) {
 		LL curr = pos % n;
-		LL next = next_pos[curr][c - 'a'];
-		if (next < 0) {
-			pos = -2;
-			break;
+		if (c != s[curr]) {
+			LL next = next_pos[curr][c - 'a'];
+			if (next < 0) {
+				pos = -1;
+				break;
+			}
+			pos += (next + n - curr) % n;
 		}
-		pos += (next + n - curr) % n;
-		if (curr == next) {
-			pos += fix;
-		}
-		fix = n;
+		++pos;
 	}
-	cout << (pos + 1) << endl;
+	cout << pos << endl;
 	return 0;
 }
