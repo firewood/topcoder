@@ -95,11 +95,7 @@ Returns: 545426737
 */
 // END CUT HERE
 #include <algorithm>
-#include <cmath>
-#include <numeric>
 #include <string>
-#include <map>
-#include <set>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -143,7 +139,7 @@ public:
 			int curr = t & 1, prev = curr ^ 1;
 			memset(dp[curr], 0, sizeof(dp[0]));
 			for (int i = 0; i <= winsNeeded; ++i) {
-				LL awr = wr[t % 3];
+				LL awr = wr[t & 3];
 				LL bwr = 100 - awr;
 				for (int j = 1; j <= 20; ++j) {
 					awr = min(100LL, awr + 5);
@@ -158,6 +154,7 @@ public:
 		modll ans = 0;
 		for (int j = 1; j <= 20; ++j) {
 			ans += dp[0][0][winsNeeded][j];
+			ans += dp[0][1][winsNeeded][j];
 		}
 		return ans;
 	}
@@ -227,6 +224,17 @@ public:
 		}
 		n++;
 
+
+		if ((Case == -1) || (Case == n)) {
+			int Arg0 = 2;
+			int Arg1 = 1;
+			int Arg2 = 99;
+			int Arg3 = 600;
+
+			verify_case(n, Arg3, winProbability(Arg0, Arg1, Arg2));
+		}
+		n++;
+
 	}
 
 // END CUT HERE
@@ -236,12 +244,6 @@ public:
 // BEGIN CUT HERE
 int main() {
 	HockeyPlayoff ___test;
-	___test.run_test(0);
-	___test.run_test(1);
-//	___test.run_test(2);
-//	___test.run_test(3);
-//	___test.run_test(4);
-//	___test.run_test(5);
 	___test.run_test(-1);
 }
 // END CUT HERE
