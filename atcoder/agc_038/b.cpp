@@ -15,42 +15,31 @@ int main(int argc, char* argv[]) {
 		int n = -1, k = -1;
 		cin >> n >> k;
 		if (n <= 0 || k <= 0) break;
-		vector<int> p(n), g(n);
+		vector<int> p(n + 1, n), conseq(n);
 		for (int i = 0; i < n; ++i) {
 			cin >> p[i];
 		}
-		int last = 1 << 30, cnt = 0;
+		int cnt = 0, ans = 0;
 		for (int i = n - 1; i >= 0; --i) {
-			if (p[i] < last) {
-				++cnt;
-			} else {
-				cnt = 1;
+			if (p[i] >= p[i + 1]) {
+				cnt = 0;
 			}
-			g[i] = cnt;
-			last = p[i];
+			conseq[i] = ++cnt;
+			if (conseq[i] >= k) {
+				ans = 1;
+			}
 		}
-		set<int> s;
-		s.insert(p[0]);
-		int ans = 0;
-		for (int i = 1; i < k; ++i) {
-			s.insert(p[i]);
-		}
-		ans += g[0] < k;
-		int sf = g[0] >= k;
+		set<int> s(p.begin(), p.begin() + k);
+		ans += conseq[0] < k;
 		for (int i = k; i < n; ++i) {
 			int low = *(s.begin());
 			s.erase(p[i - k]);
 			int high = *(s.rbegin());
 			if ((low != p[i - k]) || (p[i] < high)) {
-				if (g[i - k + 1] < k) {
-					++ans;
-				} else {
-					sf = 1;
-				}
+				ans += conseq[i - k + 1] < k;
 			}
 			s.insert(p[i]);
 		}
-		ans += sf;
 		cout << ans << endl;
 	}
 	return 0;
