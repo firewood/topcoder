@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 		int ans = 0;
 		for (int i = 1; i < len; ++i) {
 			int cnt = 0;
-			for (int j = 0; i + j <= len; ++j) {
+			for (int j = 0; i + j < len; ++j) {
 				if (s[j] == s[i + j]) {
 					ans = max(ans, ++cnt);
 					if (cnt >= i) {
