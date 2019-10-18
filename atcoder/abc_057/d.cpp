@@ -35,9 +35,9 @@ int main(int argc, char* argv[]) {
 		double avg = accumulate(v.begin(), v.begin() + a, 0.0) / a;
 		cout << avg << endl;
 		LL ans = 0;
-		if (v.front() == v.back()) {
+		if (v[0] == v[a - 1]) {
 			for (int i = a; i <= b; ++i) {
-				ans += C[n][i];
+				ans += C[m[v[a - 1]]][i];
 			}
 		} else {
 			for (int i = a - 1; i >= 0; --i) {
