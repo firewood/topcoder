@@ -11,10 +11,13 @@ typedef long long LL;
 
 int main(int argc, char* argv[]) {
 	const LL INF = 1LL << 60;
-	while (true) {
+#ifdef _MSC_VER
+	while (true)
+#endif
+	{
 		LL n = -1, k = -1;
 		cin >> n >> k;
-		if (n <= 0 || k < 0) break;
+		if (n <= 0 || k < 0) return 0;
 		vector<LL> a(n), f(n);
 		for (int i = 0; i < n; ++i) {
 			cin >> a[i];

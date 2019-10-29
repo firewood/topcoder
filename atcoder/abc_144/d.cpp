@@ -12,10 +12,13 @@ typedef long double LD;
 
 int main(int argc, char* argv[]) {
 	cout.precision(10);
-	while (true) {
+#ifdef _MSC_VER
+	while (true)
+#endif
+	{
 		LD a = -1, b = -1, x = -1, ans;
 		cin >> a >> b >> x;
-		if (a <= 0 || b <= 0 || x <= 0) break;
+		if (a <= 0 || b <= 0 || x <= 0) return 0;
 		LD f = a * a * b, h = f * 0.5;
 		if (x >= f) {
 			ans = 0;
