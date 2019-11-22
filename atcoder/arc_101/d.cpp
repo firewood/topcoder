@@ -50,6 +50,7 @@ int main(int argc, char* argv[]) {
 			BIT bit(n * 2 + 1);
 			long long sum = n + 1, cnt = 0, need = (long long)n * (n + 1) / 4 + 1;
 			bit.add(sum, 1);
+			// inversion number
 			for (int i = 0; i < n; ++i) {
 				sum += a[i] > mid ? 1 : -1;
 				cnt += bit.sum(2 * n) - bit.sum(sum);
