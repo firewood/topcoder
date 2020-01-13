@@ -1,10 +1,10 @@
-// D.
-
-#include <sstream>
 #include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <vector>
+#include <numeric>
 #include <cmath>
+#include <cassert>
 
 using namespace std;
 
@@ -53,29 +53,18 @@ modll combination(LL n, LL r) {
 	return (fact[n] * inv[r]) * inv[n - r];
 }
 
-int main(int argc, char *argv[])
-{
-	int n, m;
-	cin >> n >> m;
-	int mx = sqrt(m);
-	vector<int> b;
-	for (int i = 2; i <= mx; ++i) {
-		if ((m % i) == 0) {
-			int cnt = 0;
-			while ((m % i) == 0) {
-				++cnt;
-				m /= i;
-			}
-			b.push_back(cnt);
-		}
+
+int main(int argc, char* argv[]) {
+	modll x = 100;
+	vector<int> r;
+	for (int i = 0; i < 100; ++i) {
+		r.push_back(rand() + 2);
+		x *= r.back();
 	}
-	if (m > 1) {
-		b.push_back(1);
+	for (int a : r) {
+		x /= a;
 	}
-	modll ans = 1;
-	for (int x : b) {
-		ans *= combination(x + n - 1, x);
-	}
-	cout << ans << endl;
+	assert(x == 100);
+
 	return 0;
 }
