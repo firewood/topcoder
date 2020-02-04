@@ -101,7 +101,7 @@ public:
 		int x = 0;
 		curr[x] = 0;
 		for (int i = 0; i < 10000000; ++i) {
-		if (query == x) {
+			if (query == x) {
 				return i;
 			}
 			if (prev[x] >= 0 && curr[x] >= 0) {
@@ -110,7 +110,7 @@ public:
 				x = defaultValue;
 			}
 			prev[x] = curr[x];
-			curr[x] = i;
+			curr[x] = i + 1;
 		}
 		return -1;
 	}
@@ -178,6 +178,15 @@ public:
 
 
 		if ((Case == -1) || (Case == n)) {
+			int Arg0 = 0;
+			int Arg1 = 513;
+			int Arg2 = 2514;
+
+			verify_case(n, Arg2, findValue(Arg0, Arg1));
+		}
+		n++;
+
+		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 449;
 			int Arg1 = 6830;
 			int Arg2 = 1261723;
@@ -185,7 +194,6 @@ public:
 			verify_case(n, Arg2, findValue(Arg0, Arg1));
 		}
 		n++;
-
 
 		if ((Case == -1) || (Case == n)) {
 			int Arg0 = 500;
