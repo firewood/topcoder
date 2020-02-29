@@ -29,9 +29,9 @@ static __inline uint32_t _rand() {
 
 // connect a -> b and c -> d
 __inline void swap_edges(vector<int>& seq, int a, int b, int c, int d) {
-	int x = c, y = b, N = (int)seq.size();
-	if (y - x > a + N - d) {
-		x = d, y = a + N;
+	int x = d, y = b, N = (int)seq.size();
+	if (y - x > a + N - c) {
+		x = c, y = a + N;
 	}
 	while (x < y) {
 		swap(seq[x < N ? x : x - N], seq[y < N ? y : y - N]);
@@ -53,8 +53,8 @@ void two_opt(const vector<Point>& points, vector<int>& seq, int turns) {
 		int a = _rand() % N, b = _rand() % N;
 		if (a == b) continue;
 		if (a > b) swap(a, b);
-		int c = (a + 1) % N, d = (b + 1) % N;
-		if (dist[seq[a]][seq[b]] + dist[seq[c]][seq[d]] + 1e-9 < dist[seq[a]][seq[c]] + dist[seq[b]][seq[d]]) {
+		int d = (a + 1) % N, c = (b + 1) % N;
+		if (dist[seq[a]][seq[b]] + dist[seq[c]][seq[d]] + 1e-9 < dist[seq[a]][seq[d]] + dist[seq[b]][seq[c]]) {
 			swap_edges(seq, a, b, c, d);
 		}
 	}
