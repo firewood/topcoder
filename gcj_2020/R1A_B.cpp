@@ -1,31 +1,24 @@
 // Google Code Jam 2020 Round 1A
-// Problem B.
+// Problem B. Pascal Walk
 
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <map>
 #include <set>
-#include <unordered_set>
-#include <unordered_map>
 #include <cstring>
 #include <algorithm>
 
 using namespace std;
 
 typedef pair<int, int> II;
-typedef unordered_map<int, vector<II>> Q;
 
 vector<II> solve(int n) {
-	if (n <= 1 || n > 1000) {
-		return { {0,0} };
-	}
-	const size_t M = 100;
+	const size_t M = 33;
 	vector<vector<int>> p(M);
-	vector<Q> prev_rq(1);
 	p[0] = { 1 };
-	prev_rq[0][1].push_back(II(0, 0));
-	for (int i = 1; i < M; ++i) {
+	int sum = 1, i;
+	set<II> s;
+	for (i = 1; i < M; ++i) {
 		vector<int>& prev = p[i - 1];
 		vector<int>& curr = p[i];
 		curr.resize(i + 1);
@@ -37,78 +30,32 @@ vector<II> solve(int n) {
 			}
 			curr[j] = a + b;
 		}
-		vector<Q> next_rq(i + 1);
-		vector<Q> rrq(i + 1);
-		for (int j = 0; j <= i; ++j) {
-			if (curr[j] < 0) continue;
-			Q& q = next_rq[j];
-			if (j > 0) {
-				for (auto kv : prev_rq[j - 1]) {
-					vector<II> v = kv.second;
-					v.emplace_back(II(i, j));
-					q[curr[j] + kv.first] = v;
-				}
-				for (auto kv : next_rq[j - 1]) {
-					if (q.find(curr[j] + kv.first) == q.end() || kv.second.size() + 1 < q[curr[j] + kv.first].size()) {
-						vector<II> v = kv.second;
-						v.emplace_back(II(i, j));
-						q[curr[j] + kv.first] = v;
-					}
-				}
-			}
-			if (j < i) {
-				for (auto kv : prev_rq[j]) {
-					if (q.find(curr[j] + kv.first) == q.end() || kv.second.size() + 1 < q[curr[j] + kv.first].size()) {
-						vector<II> v = kv.second;
-						v.emplace_back(II(i, j));
-						q[curr[j] + kv.first] = v;
-					}
-				}
-			}
+		if (sum + curr[i / 2] > n) {
+			--i;
+			break;
 		}
-/*
-		for (int j = i; j >= 0; --j) {
-			if (curr[j] < 0) continue;
-			Q& q = rrq[j];
-			if (j > 0) {
-				for (auto kv : prev_rq[j - 1]) {
-					vector<II> v = kv.second;
-					v.emplace_back(II(i, j));
-					q[curr[j] + kv.first] = v;
-				}
-			}
-			if (j < i) {
-				for (auto kv : prev_rq[j]) {
-					if (q.find(curr[j] + kv.first) == q.end() || kv.second.size() + 1 < q[curr[j] + kv.first].size()) {
-						vector<II> v = kv.second;
-						v.emplace_back(II(i, j));
-						q[curr[j] + kv.first] = v;
-					}
-				}
-				for (auto kv : rrq[j + 1]) {
-					if (q.find(curr[j] + kv.first) == q.end() || kv.second.size() + 1 < q[curr[j] + kv.first].size()) {
-						vector<II> v = kv.second;
-						v.emplace_back(II(i, j));
-						q[curr[j] + kv.first] = v;
-					}
-				}
-			}
-			for (auto kv : q) {
-				if (next_rq[j].find(kv.first) == next_rq[j].end() || kv.second.size() < next_rq[j][kv.first].size()) {
-					next_rq[j][kv.first] = kv.second;
-				}
-			}
-		}
-*/
-		for (int j = 0; j <= i; ++j) {
-			Q& q = next_rq[j];
-			if (q.find(n) != q.end()) {
-				return q[n];
-			}
-		}
-		prev_rq = next_rq;
+		sum += curr[i / 2];
+		s.emplace(II(i, i / 2));
 	}
-	return {};
+	for (; i > 0; --i) {
+		int dir = i % 2 ? 1 : -1;
+		if (sum + p[i][i / 2 + dir] <= n) {
+			sum += p[i][i / 2 + dir];
+			s.emplace(II(i, i / 2 + dir));
+		}
+	}
+	vector<II> ans;
+	ans.emplace_back(II(0, 0));
+	for (int i = 1; i < M; ++i) {
+		for (int j = 1; j >= 0; --j) {
+			int dir = i % 2 ? 1 : -1;
+			II key(i, i / 2 + dir * j);
+			if (s.find(key) != s.end()) {
+				ans.push_back(key);
+			}
+		}
+	}
+	return ans;
 }
 
 int main(int argc, char* argv[]) {
