@@ -50,6 +50,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 		} else {
+			// 桁DP
 			int dp[10000] = {1};
 			MOD = p;
 			modll d = 1, x = 0;
