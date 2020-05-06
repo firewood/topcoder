@@ -4,60 +4,31 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
-#include <set>
 
 using namespace std;
-typedef long long LL;
-typedef pair<int, int> II;
 
-int n, a, b, c;
+int n;
 vector<int> h;
 vector<int> ans;
 
-bool dfs(int d, int a, int b, int c) {
+bool dfs(int d, vector<int> &r) {
 	if (d == n) {
 		return true;
 	}
-	if ((h[d] & 1) != 0 && a > 0) {
-		if (h[d] & 2) {
-			ans[d] = 1;
-			if (dfs(d + 1, a - 1, b + 1, c)) {
-				return true;
+	for (int i = 0; i < (int)r.size(); ++i) {
+		if ((h[d] & (1 << i)) != 0 && r[i] > 0) {
+			--r[i];
+			for (int j = 0; j < (int)r.size(); ++j) {
+				if (i != j && (h[d] & (1 << j)) != 0) {
+					ans[d] = j;
+					++r[j];
+					if (dfs(d + 1, r)) {
+						return true;
+					}
+					--r[j];
+				}
 			}
-		}
-		if (h[d] & 4) {
-			ans[d] = 2;
-			if (dfs(d + 1, a - 1, b, c + 1)) {
-				return true;
-			}
-		}
-	}
-	if ((h[d] & 2) != 0 && b > 0) {
-		if (h[d] & 1) {
-			ans[d] = 0;
-			if (dfs(d + 1, a + 1, b - 1, c)) {
-				return true;
-			}
-		}
-		if (h[d] & 4) {
-			ans[d] = 2;
-			if (dfs(d + 1, a, b - 1, c + 1)) {
-				return true;
-			}
-		}
-	}
-	if ((h[d] & 4) != 0 && c > 0) {
-		if (h[d] & 1) {
-			ans[d] = 0;
-			if (dfs(d + 1, a + 1, b, c - 1)) {
-				return true;
-			}
-		}
-		if (h[d] & 4) {
-			ans[d] = 1;
-			if (dfs(d + 1, a, b + 1, c - 1)) {
-				return true;
-			}
+			++r[i];
 		}
 	}
 	return false;
@@ -70,27 +41,24 @@ int main(int argc, char* argv[]) {
 #endif
 	{
 		n = -1;
-		cin >> n >> a >> b >> c;
+		vector<int> r(3);
+		cin >> n >> r[0] >> r[1] >> r[2];
 		if (n < 0) return 0;
-		h.resize(n);
+		h = vector<int>(n);
 		ans.resize(n);
 		for (int i = 0; i < n; ++i) {
 			string s;
 			cin >> s;
-			if (s == "AB") {
-				h[i] = 3;
-			}
-			if (s == "AC") {
-				h[i] = 5;
-			}
-			if (s == "BC") {
-				h[i] = 6;
+			for (int j = 0; j < (int)r.size(); ++j) {
+				if (s.find('A' + j) != string::npos) {
+					h[i] |= 1 << j;
+				}
 			}
 		}
-		if (dfs(0, a, b, c)) {
+		if (dfs(0, r)) {
 			cout << "Yes" << endl;
 			for (int j = 0; j < n; ++j) {
-				cout << (char('A' + ans[j])) << endl;
+				cout << char('A' + ans[j]) << endl;
 			}
 		} else {
 			cout << "No" << endl;
