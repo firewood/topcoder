@@ -38,24 +38,6 @@ struct modll {
 	}
 };
 
-modll combination(LL n, LL r) {
-	static modll fact[MAX_N + 1], inv[MAX_N + 1];
-	if (!fact[0]) {
-		fact[0] = 1;
-		for (int i = 1; i <= MAX_N; ++i) {
-			fact[i] = fact[i - 1] * i;
-		}
-		inv[MAX_N] = modll::modinv(fact[MAX_N]);
-		for (int i = MAX_N; i >= 1; --i) {
-			inv[i - 1] = inv[i] * i;
-		}
-	}
-	if (r > n) {
-		return 0;
-	}
-	return (fact[n] * inv[r]) * inv[n - r];
-}
-
 LL gcd(LL a, LL b) { return b ? gcd(b, a % b) : a; }
 
 int main(int argc, char* argv[]) {
@@ -63,12 +45,10 @@ int main(int argc, char* argv[]) {
 	while (true)
 #endif
 	{
-		LL n = -1, a, b;
+		LL n = -1, a, b, zc = 0;
 		cin >> n;
 		if (n < 0) return 0;
 		map<LLLL, LL> m;
-		map<LLLL, LL> zm;
-		LL zc = 0;
 		for (int i = 0; i < n; ++i) {
 			cin >> a >> b;
 			LL g = gcd(a, b);
@@ -83,8 +63,7 @@ int main(int argc, char* argv[]) {
 				a /= g, b /= g;
 			}
 			if (a < 0) {
-				a = -a;
-				b = -b;
+				a = -a, b = -b;
 			}
 			m[LLLL(a, b)] += 1;
 		}
@@ -93,34 +72,20 @@ int main(int argc, char* argv[]) {
 		for (auto kv : m) {
 			if (s.find(kv.first) != s.end()) continue;
 			s.insert(kv.first);
-			LLLL dis(kv.first.second, -kv.first.first);
+			LL c = kv.first.second, d = -kv.first.first;
+			if (c < 0) {
+				c = -c, d = -d;
+			}
+			LLLL dis(c, d);
 			auto it = m.find(dis);
-			LL dc = 0;
+			modll x = modll::modpow(2, kv.second);
 			if (it != m.end()) {
-				dc += it->second;
 				s.insert(dis);
+				x += modll::modpow(2, it->second) - 1;
 			}
-			dis = LLLL(-kv.first.second, kv.first.first);
-			it = m.find(dis);
-			if (it != m.end()) {
-				dc += it->second;
-				s.insert(dis);
-			}
-			if (dc > 0) {
-				modll x = modll::modpow(2, kv.second);
-				modll y = modll::modpow(2, dc);
-				x -= 1;
-				y -= 1;
-				x += y;
-				x += 1;
-				ans *= x;
-			} else {
-//				cout << kv.first.first << " " << kv.first.second << endl;
-				ans *= modll::modpow(2, kv.second);
-			}
+			ans *= x;
 		}
-		ans -= 1;
-		ans += zc;
+		ans += zc - 1;
 		cout << ans << endl;
 	}
 	return 0;
