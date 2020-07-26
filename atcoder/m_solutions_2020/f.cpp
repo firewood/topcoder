@@ -11,61 +11,47 @@ using namespace std;
 
 const int INF = 1 << 30;
 
-int solve(vector<int> x, vector<int> y, vector<string> dir) {
+int solve(int n, vector<int> x, vector<int> y, vector<string> dir) {
 	int ans = INF;
-	int n = (int)x.size();
-	map<int, set<int>> a, b, v, h;
+	map<int, set<int>> d, v;
 	for (int i = 0; i < n; ++i) {
-		if (dir[i] == "L") {
-			a[x[i] - y[i]].insert(x[i]);
-			h[y[i]].insert(x[i]);
-		}
 		if (dir[i] == "R") {
-			b[x[i] + y[i]].insert(x[i]);
+			d[x[i] + y[i]].insert(y[i]);
 		}
 		if (dir[i] == "D") {
 			v[x[i]].insert(y[i]);
 		}
 	}
 	for (int i = 0; i < n; ++i) {
-		if (dir[i] == "R") {
-			if (h.find(y[i]) != h.end()) {
-				set<int>& s = h[y[i]];
-				auto it = s.lower_bound(x[i]);
+		if (dir[i] == "U") {
+			int key = x[i] + y[i];
+			if (d.find(key) != d.end()) {
+				set<int>& s = d[key];
+				auto it = s.lower_bound(y[i]);
 				if (it != s.end()) {
-					ans = min(ans, (*it - x[i]) * 5);
+					ans = min(ans, (*it - y[i]) * 10);
 				}
 			}
-		}
-		if (dir[i] != "U") {
-			continue;
-		}
-		int key = x[i] - y[i];
-		if (a.find(key) != a.end()) {
-			set<int>& s = a[key];
-			auto it = s.lower_bound(x[i]);
-			if (it != s.end()) {
-				ans = min(ans, (*it - x[i]) * 10);
-			}
-		}
-		key = x[i] + y[i];
-		if (b.find(key) != b.end()) {
-			set<int>& s = b[key];
-			auto it = s.lower_bound(x[i]);
-			if (it != s.begin()) {
-				--it;
-				ans = min(ans, (x[i] - *it) * 10);
-			}
-		}
-		if (v.find(x[i]) != v.end()) {
-			set<int>& s = v[x[i]];
-			auto it = s.lower_bound(y[i]);
-			if (it != s.end()) {
-				ans = min(ans, (*it - y[i]) * 5);
+			if (v.find(x[i]) != v.end()) {
+				set<int>& s = v[x[i]];
+				auto it = s.lower_bound(y[i]);
+				if (it != s.end()) {
+					ans = min(ans, (*it - y[i]) * 5);
+				}
 			}
 		}
 	}
 	return ans;
+}
+
+void rotate(int n, vector<int> &x, vector<int> &y, vector<string> &dir) {
+	map<string, string> t;
+	t["D"] = "R", t["U"] = "L", t["L"] = "D", t["R"] = "U";
+	for (int i = 0; i < n; ++i) {
+		int nx = -y[i];
+		y[i] = x[i], x[i] = nx;
+		dir[i] = t[dir[i]];
+	}
 }
 
 int main(int argc, char* argv[]) {
@@ -83,18 +69,10 @@ int main(int argc, char* argv[]) {
 		for (int i = 0; i < n; ++i) {
 			cin >> x[i] >> y[i] >> dir[i];
 		}
-		ans = solve(x, y, dir);
-		map<string, string> t;
-		t["D"] = "U";
-		t["U"] = "D";
-		t["L"] = "R";
-		t["R"] = "L";
-		for (int i = 0; i < n; ++i) {
-			x[i] = -x[i];
-			y[i] = -y[i];
-			dir[i] = t[dir[i]];
+		for (int i = 0; i < 4; ++i) {
+			ans = min(ans, solve(n, x, y, dir));
+			rotate(n, x, y, dir);
 		}
-		ans = min(ans, solve(x, y, dir));
 		if (ans == INF) {
 			cout << "SAFE" << endl;
 		} else {
