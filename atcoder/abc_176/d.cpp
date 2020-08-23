@@ -3,85 +3,50 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
-#include <vector>
 #include <numeric>
-#include <set>
+#include <vector>
+#include <queue>
 
 using namespace std;
 
-static const int dx[4] = { -1,1,0,0 };
-static const int dy[4] = { 0,0,-1,1 };
+typedef pair<int, int> II;
+typedef pair<int, II> III;
 
-int h;
-int w;
-
-void dfs(int y, int x, int g, vector<string> &b, vector<vector<int>>& vis) {
-	vis[y][x] = g;
-	for (int dir = 0; dir < 4; ++dir) {
-		int ny = y + dy[dir], nx = x + dx[dir];
-		if (ny >= 0 && ny < h && nx >= 0 && nx < w) {
-			if (b[ny][nx] != '#' && vis[ny][nx] < 0) {
-				dfs(ny, nx, g, b, vis);
-			}
-		}
-	}
-}
+static const int INF = 1 << 30;
 
 int main(int argc, char* argv[]) {
-	int sh, sw, eh, ew, ans;
+	int h, w, sh, sw, eh, ew, ans = -1;
 	cin >> h >> w >> sh >> sw >> eh >> ew;
 	--sh, --sw, --eh, --ew;
 	vector<string> b(h);
 	for (int i = 0; i < h; ++i) {
 		cin >> b[i];
 	}
-	vector<vector<int>> vis(h, vector<int>(w, -1));
-	int g = 0;
-	for (int r = 0; r < h; ++r) {
-		for (int c = 0; c < w; ++c) {
-			if (b[r][c] != '#' && vis[r][c] < 0) {
-				dfs(r, c, g++, b, vis);
-			}
+	priority_queue<III, vector<III>, greater<>> q;
+	q.emplace(III(0, II(sh, sw)));
+	vector<vector<int>> min_cost(h, vector<int>(w, INF));
+	min_cost[sh][sw] = 0;
+	while (!q.empty()) {
+		III top = q.top();
+		int cost = top.first, y = top.second.first, x = top.second.second;
+		if (y == eh && x == ew) {
+			ans = cost;
+			break;
 		}
-	}
-	vector<set<int>> e(g);
-	for (int r = 0; r < h; ++r) {
-		for (int c = 0; c < w; ++c) {
-			if (b[r][c] != '#') {
-				for (int dy = -2; dy <= 2; ++dy) {
-					for (int dx = -2; dx <= 2; ++dx) {
-						int y = r + dy, x = c + dx;
-						if (y >= 0 && y < h && x >= 0 && x < w) {
-							if (vis[y][x] >= 0 && vis[r][c] != vis[y][x]) {
-								e[vis[r][c]].emplace(vis[y][x]);
-								e[vis[y][x]].emplace(vis[r][c]);
-							}
-						}
+		q.pop();
+		for (int dy = -2; dy <= 2; ++dy) {
+			for (int dx = -2; dx <= 2; ++dx) {
+				int ny = y + dy, nx = x + dx;
+				if (ny >= 0 && ny < h && nx >= 0 && nx < w && b[ny][nx] != '#') {
+					int next_cost = cost + (abs(ny - y) + abs(nx - x) != 1);
+					if (next_cost < min_cost[ny][nx]) {
+						min_cost[ny][nx] = next_cost;
+						q.emplace(III(next_cost, II(ny, nx)));
 					}
 				}
 			}
 		}
 	}
-	vector<int> q;
-	vector<int> vg(g);
-	q.emplace_back(vis[sh][sw]);
-	vg[vis[sh][sw]] = 1;
-	for (ans = 0; !q.empty(); ++ans) {
-		vector<int> nq;
-		for (int next : q) {
-			if (next == vis[eh][ew]) {
-				cout << ans << endl;
-				return 0;
-			}
-			for (int a : e[next]) {
-				if (vg[a] == 0) {
-					vg[a] = 1;
-					nq.emplace_back(a);
-				}
-			}
-		}
-		q = nq;
-	}
-	cout << -1 << endl;
+	cout << ans << endl;
 	return 0;
 }
