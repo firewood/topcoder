@@ -1,7 +1,9 @@
+#ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wunused-result"
 #pragma GCC target("avx2")
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
+#endif
 
 #include <algorithm>
 #include <cmath>
@@ -9,10 +11,10 @@
 #include <iostream>
 #include <sstream>
 #include <numeric>
-#include <vector>
-#include <set>
 #include <map>
+#include <set>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -22,6 +24,9 @@ typedef pair<LL, LL> II;
 typedef pair<LL, II> III;
 typedef priority_queue<III, vector<III>, greater<>> Queue;
 static const LL INF = 1LL << 60;
+
+LL gcd(LL a, LL b) { return b ? gcd(b, a % b) : a; }
+LL lcm(LL a, LL b) { return (a / gcd(a, b)) * b; }
 
 {% if mod %}
 static const long long MOD = {{ mod }};
