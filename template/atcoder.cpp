@@ -83,8 +83,20 @@ void solve({{ formal_arguments }}) {
 	LL ans = 0;
 	{% endif %}
 {% endif %}
+{% if hw %}
 
-
+	int sy = -1, sx = -1, ey = -1, ex = -1;
+	for (int i = 0; i < H; i++) {
+		if (sy < 0) {
+			sx = (int)s[i].find('S');
+			if (sx >= 0) sy = i;
+		}
+		if (ey < 0) {
+			ex = (int)s[i].find('G');
+			if (ex >= 0) ey = i;
+		}
+	}
+{% endif %}
 
 
 
