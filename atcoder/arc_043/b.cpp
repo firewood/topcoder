@@ -1,41 +1,72 @@
-// B. 
+#ifdef __GNUC__
+#pragma GCC diagnostic ignored "-Wunused-result"
+#pragma GCC target("avx2")
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
+#endif
 
-#include <iostream>
 #include <algorithm>
+#include <cmath>
+#include <cstring>
+#include <iostream>
 #include <sstream>
+#include <numeric>
+#include <map>
+#include <set>
+#include <queue>
+#include <vector>
 
 using namespace std;
-const int MOD = 1000000007;
 
-int main(int argc, char *argv[])
-{
-	int N, D[100000], dp[6][100000] = {};
-	cin >> N;
-	for (int i = 0; i < N; ++i) {
-		cin >> D[i];
-		dp[0][i] = 1;
+typedef long long LL;
+
+static const long long MOD = 1000000007;
+
+struct modll {
+	long long x;
+	modll() { }
+	modll(int _x) : x(_x) { }
+	operator int() const { return (int)x; }
+	modll operator+(int y) { return (x + y + MOD) % MOD; }
+	modll operator+=(int y) { x = (x + y + MOD) % MOD; return *this; }
+	modll operator-(int y) { return (x - y + MOD) % MOD; }
+	modll operator-=(int y) { x = (x - y + MOD) % MOD; return *this; }
+	modll operator*(int y) { return (x * y) % MOD; }
+	modll operator*=(int y) { x = (x * y) % MOD; return *this; }
+	modll operator/(int y) { return (x * modpow(y, MOD - 2)) % MOD; }
+	modll operator/=(int y) { x = (x * modpow(y, MOD - 2)) % MOD; return *this; }
+	static modll modinv(int a) { return modpow(a, MOD - 2); }
+	static modll modpow(int a, int b) {
+		modll x = a, r = 1;
+		for (; b; b >>= 1, x *= x) if (b & 1) r *= x;
+		return r;
 	}
+};
 
-	if (N > 3000) {
-		cout << "-1" << endl;
-		return 0;
-	}
-
-	sort(D, D + N);
-	for (int i = 1; i <= 3; ++i) {
-		for (int j = 0; j < N; ++j) {
-			for (int k = 0; k < j; ++k) {
-				if (D[k] * 2 > D[j]) {
-					break;
-				}
-				dp[i][j] = (dp[i][j] + dp[i - 1][k]) % MOD;
+void solve(long long N, std::vector<int> &D) {
+	sort(D.begin(), D.end());
+	vector<vector<modll>> dp(D.back() + 1, vector<modll>(4, 0));
+	for (int i = 0, d = 1; d <= D.back(); ++d) {
+		dp[d] = dp[d - 1];
+		while (i < N && D[i] == d) {
+			++i;
+			dp[d][0] += 1;
+			for (int j = 0; j < 3; ++j) {
+				dp[d][j + 1] += dp[d / 2][j];
 			}
 		}
 	}
-	int ans = 0;
-	for (int i = 0; i < N; ++i) {
-		ans = (ans + dp[3][i]) % MOD;
-	}
+	modll ans = dp[D.back()][3];
 	cout << ans << endl;
+}
+
+int main() {
+    long long N;
+	std::cin >> N;
+	std::vector<int> D(N);
+	for (int i = 0; i < N; i++) {
+		std::cin >> D[i];
+	}
+	solve(N, D);
 	return 0;
 }
