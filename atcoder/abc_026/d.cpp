@@ -21,7 +21,6 @@ using namespace std;
 typedef long double LD;
 
 void solve(LD A, LD B, LD C) {
-	cout.precision(20);
 	auto evaluate = [&](LD t) -> LD {
 		return A * t + B * sinl(C * t * M_PI);
 	};
@@ -38,9 +37,8 @@ void solve(LD A, LD B, LD C) {
 }
 
 void solve_B(LD A, LD B, LD C) {
-	cout.precision(20);
 	auto evaluate = [&](LD t) -> LD {
-		return A * t + B * sin(C * t * M_PI) - 100.0;
+		return A * t + B * sinl(C * t * M_PI) - 100.0;
 	};
 	LD ans = 0;
 	for (LD left = 0, right = 0.1; right <= 256; right += 0.01) {
@@ -61,6 +59,7 @@ void solve_B(LD A, LD B, LD C) {
 }
 
 int main() {
+	cout.precision(20);
 	int A, B, C;
 	cin >> A >> B >> C;
 	solve(A, B, C);
