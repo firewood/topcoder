@@ -1,53 +1,75 @@
-// C.
+#ifdef __GNUC__
+#pragma GCC diagnostic ignored "-Wunused-result"
+#pragma GCC target("avx2")
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
+#endif
 
+#include <algorithm>
+#include <cmath>
+#include <cstring>
 #include <iostream>
 #include <sstream>
-#include <cstdio>
-#include <cstring>
+#include <numeric>
+#include <map>
+#include <set>
+#include <queue>
+#include <vector>
 
 using namespace std;
 
-static const int MOD = 1000000007;
+typedef long long LL;
+
+static const long long MOD = 1000000007;
+static const size_t MAX_N = 1000001;
 
 struct modll {
 	long long x;
 	modll() { }
-	modll(long long _x) : x(_x) { }
+	modll(int _x) : x(_x) { }
 	operator int() const { return (int)x; }
-	modll operator+(const modll &r) { return (x + r.x) % MOD; }
-	modll operator+=(const modll &r) { return x = (x + r.x) % MOD; }
-	modll operator-(const modll &r) { return (x + MOD - r.x) % MOD; }
-	modll operator-=(const modll &r) { return x = (x + MOD - r.x) % MOD; }
-	modll operator*(const modll &r) { return (x * r.x) % MOD; }
-	modll operator*(int r) { return (x * r) % MOD; }
-	modll operator*=(const modll &r) { return x = (x * r.x) % MOD; }
-	modll inverse() {
-		modll r = 1;
-		modll a = x;
-		int b = MOD - 2;
-		while (b) {
-			if (b & 1) {
-				r *= a;
-			}
-			a *= a;
-			b >>= 1;
-		}
+	modll operator+(int y) { return (x + y + MOD) % MOD; }
+	modll operator+=(int y) { x = (x + y + MOD) % MOD; return *this; }
+	modll operator-(int y) { return (x - y + MOD) % MOD; }
+	modll operator-=(int y) { x = (x - y + MOD) % MOD; return *this; }
+	modll operator*(int y) { return (x * y) % MOD; }
+	modll operator*=(int y) { x = (x * y) % MOD; return *this; }
+	modll operator/(int y) { return (x * modpow(y, MOD - 2)) % MOD; }
+	modll operator/=(int y) { x = (x * modpow(y, MOD - 2)) % MOD; return *this; }
+	static modll modinv(int a) { return modpow(a, MOD - 2); }
+	static modll modpow(int a, int b) {
+		modll x = a, r = 1;
+		for (; b; b >>= 1, x *= x) if (b & 1) r *= x;
 		return r;
 	}
 };
 
-int main(int argc, char *argv[])
-{
-	int W, H;
-	cin >> W >> H;
-	--W, --H;
-	modll ans = 1;
-	for (int i = H + 1; i <= W + H; ++i) {
-		ans *= i;
+modll combination(LL n, LL r) {
+	static modll fact[MAX_N + 1], inv[MAX_N + 1];
+	if (!fact[0]) {
+		fact[0] = 1;
+		for (int i = 1; i <= MAX_N; ++i) {
+			fact[i] = fact[i - 1] * i;
+		}
+		inv[MAX_N] = modll::modinv(fact[MAX_N]);
+		for (int i = MAX_N; i >= 1; --i) {
+			inv[i - 1] = inv[i] * i;
+		}
 	}
-	for (int i = 1; i <= W; ++i) {
-		ans *= modll(i).inverse();
+	if (r > n) {
+		return 0;
 	}
+	return (fact[n] * inv[r]) * inv[n - r];
+}
+
+void solve(long long W, long long H) {
+	modll ans = combination(W + H - 2, H - 1);
 	cout << ans << endl;
+}
+
+int main() {
+	long long W, H;
+	std::cin >> W >> H;
+	solve(W, H);
 	return 0;
 }
