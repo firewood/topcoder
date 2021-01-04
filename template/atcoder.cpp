@@ -1,11 +1,5 @@
-#ifdef __GNUC__
-#pragma GCC diagnostic ignored "-Wunused-result"
-#pragma GCC target("avx2")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
-#endif
-
 #include <algorithm>
+#include <cctype>
 #include <cmath>
 #include <cstring>
 #include <iostream>
