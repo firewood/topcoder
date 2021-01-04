@@ -32,6 +32,7 @@ public:
 	SegmentTree() : val(SIZE * 2, DEF_VAL) { }
 	void update(long long i, const T &value) {
 		i += SIZE;
+//		val[i] = Compare(val[i], value);
 		val[i] = value;
 		while (i > 1) i >>= 1, val[i] = Compare(val[i * 2], val[i * 2 + 1]);
 	}
