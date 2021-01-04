@@ -19,7 +19,13 @@ static const int QUERY_LOOPS = 10000;
 #define ASSERT(exp) if (!(exp)) return false
 #endif
 
-template<typename T, long long SIZE, T DEF_VAL, const T& Compare(const T&, const T&)>
+template<typename T> inline T minimum(const T & a, const T & b) { return min(a, b); }
+template<typename T> inline T maximum(const T & a, const T & b) { return max(a, b); }
+template<typename T> inline T logicalAnd(const T& a, const T& b) { return a & b; }
+template<typename T> inline T logicalOr(const T& a, const T& b) { return a | b; }
+template<typename T> inline T exclusiveOr(const T& a, const T& b) { return a ^ b; }
+
+template<typename T, long long SIZE, T DEF_VAL, T Compare(const T&, const T&)>
 class SegmentTree {
 	vector<T> val;
 public:
@@ -51,8 +57,9 @@ public:
 		return find_rightmost_index(a, b, value, l, (l + r) / 2, i * 2);
 	}
 };
-typedef SegmentTree<long long, 1 << 18, 1LL << 60, min> MinSegTree;
-typedef SegmentTree<long long, 1 << 18,         0, max> MaxSegTree;
+typedef SegmentTree<long long, 1 << 18, 1LL << 60, minimum<LL>> MinSegTree;
+typedef SegmentTree<long long, 1 << 18,         0, maximum<LL>> MaxSegTree;
+typedef SegmentTree<long long, 1 << 18,         0, exclusiveOr<LL>> XorSegTree;
 
 bool test() {
 	for (int t = 0; t < LOOPS; ++t) {
@@ -159,7 +166,7 @@ bool test() {
 
 	for (int t = 0; t < LOOPS; ++t) {
 		vector<int> v(N);
-		SegmentTree<int, N, 1 << 30, min> st;
+		SegmentTree<int, N, 1 << 30, minimum<int>> st;
 		for (int i = 0; i < N; ++i) {
 			v[i] = i + 1;
 		}
@@ -178,7 +185,7 @@ bool test() {
 
 	for (int t = 0; t < LOOPS; ++t) {
 		vector<int> v(N);
-		SegmentTree<int, N, 0, max> st;
+		SegmentTree<int, N, 0, maximum<int>> st;
 		for (int i = 0; i < N; ++i) {
 			v[i] = i + 1;
 		}
