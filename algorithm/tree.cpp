@@ -10,14 +10,10 @@ typedef long long LL;
 
 #ifdef _MSC_VER
 #include <intrin.h>
-inline uint32_t __builtin_clz(unsigned long value)
-{
-	unsigned long leading_zero = 0;
-	_BitScanReverse(&leading_zero, value);
-	return 31 - leading_zero;
-}
-#endif
+inline uint32_t calc_log_size(uint32_t size) { unsigned long i; _BitScanReverse(&i, size); return i + 1; }
+#else
 inline uint32_t calc_log_size(unsigned long size) { return 32 - __builtin_clz(size); }
+#endif
 
 struct Tree {
 	int _size;
@@ -26,16 +22,13 @@ struct Tree {
 	vector<vector<int>> _edges;
 	vector<int> _depths;
 	vector<vector<int>> _dbltbl;
+	vector<int> _offset;
+	vector<int> _count;
 
-	Tree(const vector<int>& parents) : _size((int)parents.size()) {
-		build_edges_from_parents(parents);
-		build_doubling_table();
-	}
+	Tree(int size) : _root(0), _size(size), _edges(size) { }
 
-	void build_edges_from_parents(const vector<int> &parents) {
-		_edges = vector<vector<int>>(_size);
-		_depths = vector<int>(_size);
-		for (int i = 0; i < _size; ++i) {
+	void build_edges_from_parents(const vector<int>& parents) {
+		for (int i = 0; i < parents.size(); ++i) {
 			if (parents[i] < 0) {
 				_root = i;
 			} else {
@@ -44,23 +37,50 @@ struct Tree {
 		}
 	}
 
-	void get_depth(int parent, int node, int depth) {
-		_dbltbl[0][node] = parent;
-		_depths[node] = depth;
-		for (int next : _edges[node]) {
-			if (next != parent) get_depth(node, next, depth + 1);
+	void build_edges_from_siblings(const vector<int>& siblings) {
+		for (int i = 0; i < siblings.size(); ++i) {
+			_edges[i + 1].emplace_back(siblings[i]);
+			_edges[siblings[i]].emplace_back(i + 1);
 		}
 	}
 
-	void build_doubling_table() {
+	void build_order_table() {
+		_offset = vector<int>(_size);
+		_count = vector<int>(_size);
+		int order = 0;
+		get_children_size(-1, _root, order);
+	}
+
+	void build_depth() {
 		_log_size = calc_log_size(_size);
 		_dbltbl = vector<vector<int>>(_log_size, vector<int>(_size));
+		_depths = vector<int>(_size);
 		get_depth(-1, _root, 0);
+	}
+
+	void build_doubling_table() {
+		if (_depths.empty()) build_depth();
 		for (int k = 1; k < _log_size; ++k) {
 			for (int i = 0; i < _size; ++i) {
 				int j = _dbltbl[k - 1][i];
 				_dbltbl[k][i] = j < 0 ? -1 : _dbltbl[k - 1][j];
 			}
+		}
+	}
+
+	void get_children_size(int parent, int node, int& order) {
+		_offset[node] = order++;
+		for (int next : _edges[node]) {
+			if (next != parent) get_children_size(node, next, order);
+		}
+		_count[node] = order - _offset[node];
+	}
+
+	void get_depth(int parent, int node, int depth) {
+		_dbltbl[0][node] = parent;
+		_depths[node] = depth;
+		for (int next : _edges[node]) {
+			if (next != parent) get_depth(node, next, depth + 1);
 		}
 	}
 
@@ -81,7 +101,18 @@ struct Tree {
 	}
 };
 
-bool test() {
+bool test1() {
+	//	assert(calc_log_size(0) == 0);
+	assert(calc_log_size(1) == 1);
+	assert(calc_log_size(2) == 2);
+	assert(calc_log_size(3) == 2);
+	assert(calc_log_size(4) == 3);
+	assert(calc_log_size(8) == 4);
+	assert(calc_log_size(16) == 5);
+	return true;
+}
+
+bool test2() {
 	const int N = 256;
 	vector<int> parents(N);
 
@@ -89,7 +120,9 @@ bool test() {
 		for (int i = 0; i < N; ++i) {
 			parents[i] = i == N - 1 ? -1 : i + 1;
 		}
-		Tree tree(parents);
+		Tree tree(N);
+		tree.build_edges_from_parents(parents);
+		tree.build_doubling_table();
 		for (int i = 0; i < 1000; ++i) {
 			int a = rand() % N, b = rand() % N;
 			int c = tree.lca(a, b);
@@ -99,7 +132,9 @@ bool test() {
 
 	{
 		iota(parents.begin(), parents.end(), -1);
-		Tree tree(parents);
+		Tree tree(N);
+		tree.build_edges_from_parents(parents);
+		tree.build_doubling_table();
 		for (int i = 0; i < 1000; ++i) {
 			int a = rand() % N, b = rand() % N;
 			int c = tree.lca(a, b);
@@ -111,5 +146,6 @@ bool test() {
 }
 
 int main(int argc, char* argv[]) {
-	cout << (test() ? "OK" : "FAILED") << endl;
+	cout << (test1() ? "OK" : "FAILED") << endl;
+	cout << (test2() ? "OK" : "FAILED") << endl;
 }
