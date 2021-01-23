@@ -13,32 +13,21 @@
 using namespace std;
 
 typedef long long LL;
+typedef pair<LL, LL> II;
 
 void solve(long long N, long long C, std::vector<long long> &a, std::vector<long long> &b, std::vector<long long> &c) {
-	vector<int> aseq(N), bseq(N);
-	iota(aseq.begin(), aseq.end(), 0);
-	iota(bseq.begin(), bseq.end(), 0);
-	sort(aseq.begin(), aseq.end(), [&](int lhs, int rhs) {
-		return a[lhs] < a[rhs];
-	});
-	sort(bseq.begin(), bseq.end(), [&](int lhs, int rhs) {
-		return b[lhs] < b[rhs];
-	});
-	set<LL> days;
+	vector<II> events;
 	for (int i = 0; i < N; i++) {
-		days.insert(a[i]);
-		days.insert(++b[i]);
+		events.emplace_back(II(a[i], c[i]));
+		events.emplace_back(II(b[i] + 1, -c[i]));
 	}
-	LL ans = 0, sum = 0, last_day = 0, ai = 0, bi = 0;
-	for (LL day : days) {
+	sort(events.begin(), events.end());
+	LL ans = 0, sum = 0, last_day = 0;
+	for (auto kv : events) {
+		LL day = kv.first;
 		ans += min(sum, C) * (day - last_day);
 		last_day = day;
-		while (ai < N && a[aseq[ai]] == day) {
-			sum += c[aseq[ai++]];
-		}
-		while (bi < N && b[bseq[bi]] == day) {
-			sum -= c[bseq[bi++]];
-		}
+		sum += kv.second;
 	}
 	cout << ans << endl;
 }
