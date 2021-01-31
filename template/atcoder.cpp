@@ -16,12 +16,8 @@ typedef long long LL;
 typedef long double LD;
 typedef pair<LL, LL> II;
 typedef pair<LL, II> III;
-typedef priority_queue<III, vector<III>, greater<>> Queue;
+
 static const LL INF = 1LL << 60;
-
-LL gcd(LL a, LL b) { return b ? gcd(b, a % b) : a; }
-LL lcm(LL a, LL b) { return (a / gcd(a, b)) * b; }
-
 {% if mod %}
 static const long long MOD = {{ mod }};
 static const size_t MAX_N = 1000001;
@@ -64,13 +60,14 @@ modll combination(LL n, LL r) {
 	}
 	return (fact[n] * inv[r]) * inv[n - r];
 }
-
 {% endif %}
 {% if prediction_success %}
-void solve({{ formal_arguments }}) {
+
 {% if yes_str %}
+bool solve({{ formal_arguments }}) {
 	bool ans = false;
 {% else %}
+LL solve({{ formal_arguments }}) {
 	{% if mod %}
 	modll ans = 0;
 	{% else %}
@@ -94,21 +91,27 @@ void solve({{ formal_arguments }}) {
 
 
 
-{% if yes_str %}
-	cout << (ans ? "{{ yes_str }}" : "{{ no_str }}") << endl;
-{% else %}
-	cout << ans << endl;
-{% endif %}
+	return ans;
 }
-
 {% endif %}
+
 int main() {
 {% if prediction_success %}
     {{input_part}}
-	solve({{ actual_arguments }});
+{% if yes_str %}
+	cout << (solve({{ actual_arguments }}) ? "{{ yes_str }}" : "{{ no_str }}") << endl;
 {% else %}
-	LL ans = 0;
+	cout << solve({{ actual_arguments }}) << endl;
+{% endif %}
+{% else %}
+	LL N, M, ans = 0;
 
+	cin >> N >> M;
+
+	std::vector<long long> X(N), Y(N);
+	for (int i = 0; i < N; i++) {
+		std::cin >> X[i] >> Y[i];
+	}
 
 
 
