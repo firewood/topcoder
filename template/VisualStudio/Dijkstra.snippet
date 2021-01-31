@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Dijkstra</Title>
+      <Shortcut>Dijkstra</Shortcut>
+      <Description>Dijkstra</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Code Language="cpp">
+        <![CDATA[struct Dijkstra {
+	vector<vector<pair<long long, long long>>> edges;
+
+	Dijkstra(long long size) : edges(size) { }
+
+	void add_edges(std::vector<long long>& A, std::vector<long long>& B) {
+		for (int i = 0; i < A.size(); ++i) {
+			add_edge(A[i], B[i]);
+		}
+	}
+
+	void add_edges(std::vector<long long>& A, std::vector<long long>& B, std::vector<long long>& C) {
+		for (int i = 0; i < A.size(); ++i) {
+			add_edge(A[i], B[i], C[i]);
+		}
+	}
+
+	void add_edge(long long a, long long b, long long c = 1) {
+		edges[a].push_back({ b, c });
+		edges[b].push_back({ a, c });
+	}
+
+	vector<long long> get_min_costs(long long start) {
+		vector<long long> min_costs(edges.size(), 1LL << 60);
+		priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, greater<>> q;
+		min_costs[start] = 0;
+		q.emplace(make_pair(0, start));
+		while (!q.empty()) {
+			pair<long long, long long> top = q.top();
+			q.pop();
+			long long cost = top.first, node = top.second;
+			if (cost > min_costs[node]) continue;
+			for (auto kv : edges[top.second]) {
+				long long next_node = kv.first;
+				long long next_cost = top.first + kv.second;
+				if (next_cost < min_costs[next_node]) {
+					min_costs[next_node] = next_cost;
+					q.emplace(make_pair(next_cost, next_node));
+				}
+			}
+		}
+		return min_costs;
+	}
+};
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
