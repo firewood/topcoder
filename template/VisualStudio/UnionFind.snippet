@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>UnionFind</Title>
+      <Shortcut>UnionFind</Shortcut>
+      <Description>UnionFind</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Code Language="cpp">
+        <![CDATA[struct UnionFind {
+	std::vector<int> _parent;
+	std::vector<int> _size;
+	UnionFind(int size) : _parent(size, -1), _size(size, 1) { }
+	void unite(int a, int b) {
+		int ra = root(a), rb = root(b); if (ra == rb) { return; }
+		if (_size[ra] < _size[rb]) swap(ra, rb);
+		_parent[rb] = ra, _size[ra] += _size[rb];
+	}
+	int root(int a) {
+		int p = _parent[a];
+		if (p < 0) { return a; }
+		while (_parent[p] >= 0) { p = _parent[p]; }
+		return _parent[a] = p;
+	}
+	int size(int a) { return _size[root(a)]; }
+};
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

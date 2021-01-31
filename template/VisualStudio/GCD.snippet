@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>GCD</Title>
+      <Shortcut>GCD</Shortcut>
+      <Description>GCD</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Code Language="cpp">
+        <![CDATA[long long gcd(long long a, long long b) { return b ? gcd(b, a % b) : a; }
+long long lcm(long long a, long long b) { return (a / gcd(a, b)) * b; }
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
