@@ -84,7 +84,19 @@ struct Tree {
 		}
 	}
 
-	// �ŏ����ʑc��: Lowest Common Ancestor
+	void get_distance(int parent_node, int node, int dist, int& max_dist_node, int& max_dist) {
+		if (dist > max_dist) {
+			max_dist_node = node;
+			max_dist = dist;
+		}
+		for (auto next_node : _edges[node]) {
+			if (next_node != parent_node) {
+				get_distance(node, next_node, dist + 1, max_dist_node, max_dist);
+			}
+		}
+	}
+
+	// 最小共通祖先: Lowest Common Ancestor
 	int lca(int a, int b) {
 		assert(_log_size > 0 && !_dbltbl.empty());
 		if (_depths[a] > _depths[b]) swap(a, b);
@@ -98,6 +110,14 @@ struct Tree {
 			}
 		}
 		return _dbltbl[0][a];
+	}
+
+	// 直径を求める
+	int get_diameter() {
+		int start = 0, max_dist = 0;
+		get_distance(-1, start, 0, start, max_dist);
+		get_distance(-1, start, 0, start, max_dist);
+		return max_dist;
 	}
 };
 
