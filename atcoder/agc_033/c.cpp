@@ -18,23 +18,24 @@ struct Tree {
 
 	Tree(int size) : _size(size), _edges(size) { }
 
-	void get_distance(int n, int d, vector<int> &dist) {
-		dist[n] = d;
-		for (auto next : _edges[n]) {
-			if (dist[next] < 0) {
-				get_distance(next, d + 1, dist);
+	void get_distance(int parent_node, int node, int dist, int& max_dist_node, int& max_dist) {
+		if (dist > max_dist) {
+			max_dist_node = node;
+			max_dist = dist;
+		}
+		for (auto next_node : _edges[node]) {
+			if (next_node != parent_node) {
+				get_distance(node, next_node, dist + 1, max_dist_node, max_dist);
 			}
 		}
 	}
 
 	// 直径を求める
 	int get_diameter() {
-		vector<int> dist(_size, -1);
-		get_distance(0, 0, dist);
-		int start = (int)(max_element(dist.begin(), dist.end()) - dist.begin());
-		fill(dist.begin(), dist.end(), -1);
-		get_distance(start, 0, dist);
-		return *max_element(dist.begin(), dist.end());
+		int start = 0, max_dist = 0;
+		get_distance(-1, start, 0, start, max_dist);
+		get_distance(-1, start, 0, start, max_dist);
+		return max_dist;
 	}
 };
 
