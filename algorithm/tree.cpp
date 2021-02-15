@@ -113,10 +113,11 @@ struct Tree {
 	}
 
 	// 直径を求める
-	int get_diameter() {
-		int start = 0, max_dist = 0;
-		get_distance(-1, start, 0, start, max_dist);
-		get_distance(-1, start, 0, start, max_dist);
+	int get_diameter(int &start, int &end) {
+		int max_dist = 0;
+		get_distance(-1, 0, 0, start, max_dist);
+		get_distance(-1, start, 0, end, max_dist);
+		if (start > end) swap(start, end);
 		return max_dist;
 	}
 };

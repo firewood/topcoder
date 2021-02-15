@@ -1,11 +1,5 @@
-#ifdef __GNUC__
-#pragma GCC diagnostic ignored "-Wunused-result"
-#pragma GCC target("avx2")
-#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")
-#endif
-
 #include <algorithm>
+#include <cctype>
 #include <cmath>
 #include <cstring>
 #include <iostream>
@@ -18,60 +12,52 @@
 
 using namespace std;
 
-typedef pair<int, int> II;
+struct Tree {
+	int _size;
+	vector<vector<int>> _edges;
 
-vector<vector<int>> edges;
-vector<int> visited;
+	Tree(int size) : _size(size), _edges(size) { }
 
-int st, ed, max_dist;
-
-// 木の直径
-II dfs(int n) {
-	visited[n] = 1;
-	vector<II> v;
-	for (int next : edges[n]) {
-		if (!visited[next]) {
-			v.emplace_back(dfs(next));
-		}
-	}
-	sort(v.rbegin(), v.rend());
-	if (v.size() >= 2) {
-		int dist = v[0].first + v[1].first;
+	void get_distance(int parent_node, int node, int dist, int& max_dist_node, int& max_dist) {
 		if (dist > max_dist) {
+			max_dist_node = node;
 			max_dist = dist;
-			st = v[0].second;
-			ed = v[1].second;
+		}
+		for (auto next_node : _edges[node]) {
+			if (next_node != parent_node) {
+				get_distance(node, next_node, dist + 1, max_dist_node, max_dist);
+			}
 		}
 	}
-	if (v.empty()) {
-		return { 1, n };
-	}
-	return { v[0].first + 1, v[0].second };
-}
 
-void solve(int N, std::vector<int> &A, std::vector<int> &B) {
-	edges = vector<vector<int>>(N);
-	max_dist = -1;
-	for (int i = 0; i < A.size(); ++i) {
-		edges[A[i]].emplace_back(B[i]);
-		edges[B[i]].emplace_back(A[i]);
+	// 直径を求める
+	int get_diameter(int& start, int& end) {
+		int max_dist = 0;
+		get_distance(-1, 0, 0, start, max_dist);
+		get_distance(-1, start, 0, end, max_dist);
+		if (start > end) swap(start, end);
+		return max_dist;
 	}
-	visited = vector<int>(N);
-	II r = dfs(0);
-	if (r.first > max_dist) {
-		st = 0;
-		ed = r.second;
+};
+
+void solve(int N, std::vector<int>& A, std::vector<int>& B) {
+	Tree tree(N);
+	for (int i = 0; i < N - 1; i++) {
+		tree._edges[A[i]].emplace_back(B[i]);
+		tree._edges[B[i]].emplace_back(A[i]);
 	}
-	cout << st + 1 << " " << ed + 1 << endl;
+	int start, end;
+	tree.get_diameter(start, end);
+	cout << start + 1 << " " << end + 1 << endl;
 }
 
 int main() {
-    int N;
+	int N;
 	std::cin >> N;
 	std::vector<int> A(N - 1), B(N - 1);
-	for (int i = 0; i < N-1; i++) {
+	for (int i = 0; i < N - 1; i++) {
 		std::cin >> A[i] >> B[i];
-		A[i]--, B[i]--;
+		--A[i], --B[i];
 	}
 	solve(N, A, B);
 	return 0;

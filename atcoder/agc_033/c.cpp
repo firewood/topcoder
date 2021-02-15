@@ -31,28 +31,29 @@ struct Tree {
 	}
 
 	// 直径を求める
-	int get_diameter() {
-		int start = 0, max_dist = 0;
-		get_distance(-1, start, 0, start, max_dist);
-		get_distance(-1, start, 0, start, max_dist);
+	int get_diameter(int &start, int &end) {
+		int max_dist = 0;
+		get_distance(-1, 0, 0, start, max_dist);
+		get_distance(-1, start, 0, end, max_dist);
 		return max_dist;
 	}
 };
 
-bool solve(int N, std::vector<int> &a, std::vector<int> &b) {
+bool solve(int N, std::vector<int>& a, std::vector<int>& b) {
 	Tree tree(N);
 	for (int i = 0; i < N - 1; i++) {
 		tree._edges[a[i]].emplace_back(b[i]);
 		tree._edges[b[i]].emplace_back(a[i]);
 	}
-	return tree.get_diameter() % 3 != 1;
+	int start, end;
+	return tree.get_diameter(start, end) % 3 != 1;
 }
 
 int main() {
-    int N;
+	int N;
 	std::cin >> N;
-	std::vector<int> a(N-1), b(N-1);
-	for (int i = 0; i < N-1; i++) {
+	std::vector<int> a(N - 1), b(N - 1);
+	for (int i = 0; i < N - 1; i++) {
 		std::cin >> a[i] >> b[i];
 		--a[i], --b[i];
 	}
