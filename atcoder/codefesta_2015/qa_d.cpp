@@ -1,44 +1,58 @@
-#include <iostream>
 #include <algorithm>
+#include <cctype>
+#include <cmath>
+#include <cstring>
+#include <iostream>
+#include <sstream>
+#include <numeric>
+#include <map>
+#include <set>
+#include <queue>
 #include <vector>
 
 using namespace std;
 
-int N, M;
-int X[100000];
+typedef long long LL;
 
-bool possible(int t) {
-	int right = 0;
-	for (int i = 0; i < M; ++i) {
-		int d = X[i] - (right + 1);
-		if (d > t) {
-			return false;
+LL solve(long long N, long long M, std::vector<long long> &X) {
+	LL left = -1, right = N * 2;
+	auto possible = [&](LL t) -> bool {
+		LL left = 1;
+		for (int i = 0; i < M; i++) {
+			LL r = X[i];
+			if (r > left) {
+				LL d = r - left;
+				if (d > t) return false;
+				left = max(r + (t - d * 2), r + (t - d) / 2) + 1;
+			} else {
+				LL d = left - r;
+				if (d > t) return false;
+				left = r + t + 1;
+			}
+			if (left > N) {
+				return true;
+			}
 		}
-		if (d > 0) {
-			right = max(X[i] + max(0, (t - d) / 2), right + 1 + max(0, t - d));
+		return false;
+	};
+	while (right - left > 1) {
+		LL mid = (left + right) / 2;
+		if (possible(mid)) {
+			right = mid;
 		} else {
-			right = max(right, X[i] + t);
+			left = mid;
 		}
 	}
-	return right >= N;
+	return right;
 }
 
-int main(int argc, char *argv[])
-{
-	cin >> N >> M;
-	for (int i = 0; i < M; ++i) {
-		cin >> X[i];
+int main() {
+    long long N, M;
+	std::cin >> N >> M;
+	std::vector<long long> X(M);
+	for (int i = 0; i < M; i++) {
+		std::cin >> X[i];
 	}
-
-	int low = -1, high = N * 2;
-	while (high - low > 1) {
-		int med = (low + high) / 2;
-		if (possible(med)) {
-			high = med;
-		} else {
-			low = med;
-		}
-	}
-	cout << high << endl;
+	cout << solve(N, M, X) << endl;
 	return 0;
 }
