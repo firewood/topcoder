@@ -14,48 +14,47 @@
 
 using namespace std;
 
+typedef pair<int, int> II;
+inline II make_key(int a, int b) {
+	return make_pair(min(a, b), max(a, b));
+}
+
 int solve(int N, int M, std::vector<int> &A, std::vector<int> &B, std::vector<char> &C) {
-	vector<vector<pair<int, char>>> edges(N);
+	vector<vector<int>> v(26);
 	for (int i = 0; i < M; i++) {
-		edges[A[i]].emplace_back(make_pair(B[i], C[i]));
-		edges[B[i]].emplace_back(make_pair(A[i], C[i]));
+		v[C[i] - 'a'].emplace_back(i);
 	}
-	vector<pair<int, string>> fq, rq;
-	fq.emplace_back(make_pair(0, ""));
-	rq.emplace_back(make_pair(N - 1, ""));
-	unordered_set<string> prev;
-	prev.insert("");
-	for (int i = 0; i < N * 2; ++i) {
-		vector<pair<int, string>> nfq, nrq;
-		unordered_set<string> next_fs, next_rs;
-		vector<unordered_set<string>> m(N);
-		for (auto kv : fq) {
-			if (prev.find(kv.second) == prev.end()) continue;
-			for (auto next : edges[kv.first]) {
-				string s = kv.second + next.second;
-				next_fs.insert(s);
-				m[next.first].insert(s);
-				nfq.emplace_back(make_pair(next.first, kv.second + next.second));
+	map<II, set<II>> m;
+	set<II> adj;
+	for (int ch = 0; ch < 26; ++ch) {
+		for (int i = 0; i < v[ch].size(); ++i) {
+			int a = A[v[ch][i]], c = B[v[ch][i]];
+			adj.emplace(make_key(a, c));
+			for (int j = i + 1; j < v[ch].size(); ++j) {
+				int b = A[v[ch][j]], d = B[v[ch][j]];
+				m[make_key(a, b)].insert(make_key(c, d));
+				m[make_key(a, d)].insert(make_key(b, c));
+				m[make_key(b, c)].insert(make_key(a, d));
+				m[make_key(c, d)].insert(make_key(a, b));
 			}
 		}
-		for (auto kv : rq) {
-			if (prev.find(kv.second) == prev.end()) continue;
-			for (auto next : edges[kv.first]) {
-				string s = kv.second + next.second;
-				if (next_fs.find(s) == next_fs.end()) continue;
-				if (m[kv.first].find(s) != m[kv.first].end()) {
-					return s.length() * 2 - 1;
+	}
+	set<II> q;
+	q.emplace(II(0, N - 1));
+	for (int i = 0; i < M && !q.empty(); ++i) {
+		set<II> nq;
+		for (auto x : q) {
+			if (adj.find(x) != adj.end()) {
+				return i * 2 + 1;
+			}
+			for (auto y : m[x]) {
+				if (y.first == y.second) {
+					return (i + 1) * 2;
 				}
-				next_rs.insert(s);
-				nrq.emplace_back(make_pair(next.first, kv.second + next.second));
-				if (m[next.first].find(s) != m[next.first].end()) {
-					return s.length() * 2;
-				}
+				nq.insert(y);
 			}
 		}
-		fq = nfq;
-		rq = nrq;
-		prev = next_rs;
+		q = nq;
 	}
 	return -1;
 }
