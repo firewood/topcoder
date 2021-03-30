@@ -15,52 +15,54 @@
 using namespace std;
 
 typedef pair<int, int> II;
-inline II make_key(int a, int b) {
-	return make_pair(min(a, b), max(a, b));
-}
 
-int solve(int N, int M, std::vector<int> &A, std::vector<int> &B, std::vector<char> &C) {
-	vector<vector<int>> v(26);
+int solve(int N, int M, std::vector<int>& A, std::vector<int>& B, std::vector<char>& C) {
+	vector<vector<pair<int, char>>> edges(N);
 	for (int i = 0; i < M; i++) {
-		v[C[i] - 'a'].emplace_back(i);
+		edges[A[i]].emplace_back(make_pair(B[i], C[i]));
+		edges[B[i]].emplace_back(make_pair(A[i], C[i]));
 	}
-	map<II, set<II>> m;
-	set<II> adj;
-	for (int ch = 0; ch < 26; ++ch) {
-		for (int i = 0; i < v[ch].size(); ++i) {
-			int a = A[v[ch][i]], c = B[v[ch][i]];
-			adj.emplace(make_key(a, c));
-			for (int j = i + 1; j < v[ch].size(); ++j) {
-				int b = A[v[ch][j]], d = B[v[ch][j]];
-				m[make_key(a, b)].insert(make_key(c, d));
-				m[make_key(a, d)].insert(make_key(b, c));
-				m[make_key(b, c)].insert(make_key(a, d));
-				m[make_key(c, d)].insert(make_key(a, b));
-			}
-		}
-	}
-	set<II> q;
-	q.emplace(II(0, N - 1));
-	for (int i = 0; i < M && !q.empty(); ++i) {
-		set<II> nq;
-		for (auto x : q) {
-			if (adj.find(x) != adj.end()) {
-				return i * 2 + 1;
-			}
-			for (auto y : m[x]) {
-				if (y.first == y.second) {
-					return (i + 1) * 2;
+	vector<vector<int>> visited(N, vector<int>(N));
+	vector<II> q;
+	q.emplace_back(II(0, N - 1));
+	int ans = 1 << 30;
+	for (int c = 2; !q.empty(); c += 2) {
+		vector<II> nq;
+		for (auto f : q) {
+			int f_from = f.first;
+			int r_from = f.second;
+			for (auto fe : edges[f_from]) {
+				int f_to = fe.first;
+				int f_color = fe.second;
+				if (f_to == r_from) {
+					ans = min(ans, c - 1);
 				}
-				nq.insert(y);
+				for (auto re : edges[r_from]) {
+					int r_to = re.first;
+					int r_color = re.second;
+//					if (f_from == r_to) {
+//						ans = min(ans, c - 1);
+//					}
+					if (f_color != r_color) continue;
+					if (f_to == r_to) {
+						ans = min(ans, c);
+					}
+					II key(f_to, r_to);
+					if (!visited[f_to][r_to]) {
+						visited[f_to][r_to] = 1;
+						nq.emplace_back(II(f_to, r_to));
+					}
+				}
 			}
 		}
+		if (ans < 1 << 30) return ans;
 		q = nq;
 	}
 	return -1;
 }
 
 int main() {
-    int N, M;
+	int N, M;
 	std::cin >> N >> M;
 	std::vector<int> A(M), B(M);
 	std::vector<char> C(M);
