@@ -35,7 +35,7 @@ struct modll {
 	}
 };
 
-modll combination(LL n, LL r) {
+modll combination_fast(int n, int r) {
 	static modll fact[MAX_N + 1], inv[MAX_N + 1];
 	if (!fact[0]) {
 		fact[0] = 1;
@@ -53,6 +53,24 @@ modll combination(LL n, LL r) {
 	return (fact[n] * inv[r]) * inv[n - r];
 }
 
+modll combination(int n, int r) {
+	if (r > n) return 0;
+	r = min(r, n - r);
+	if (r == 0) return 1;
+	if (r == 1) return n;
+	if (r == 2) return (((long long)n * (n - 1)) / 2) % MOD;
+	modll a = 1, b = 1;
+	for (int i = 0; i < r; ++i) {
+		a *= n - i;
+		b *= i + 1;
+	}
+	return a * modll::modinv(b);
+}
+
+// 重複組合せ
+modll nHr(int n, int r) {
+	return combination(n + r - 1, r);
+}
 
 int main(int argc, char* argv[]) {
 	modll x = 100;
@@ -65,6 +83,12 @@ int main(int argc, char* argv[]) {
 		x /= a;
 	}
 	assert(x == 100);
+
+	for (int a = 1; a <= 100; ++a) {
+		for (int b = 1; b <= 100; ++b) {
+			assert(combination(a, b) == combination_fast(a, b));
+		}
+	}
 
 	return 0;
 }
