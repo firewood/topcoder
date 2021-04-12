@@ -44,6 +44,13 @@ struct Tree {
 		}
 	}
 
+	void build_edges(const vector<int>& a, const vector<int>& b) {
+		for (int i = 0; i < a.size(); ++i) {
+			_edges[a[i]].emplace_back(b[i]);
+			_edges[b[i]].emplace_back(a[i]);
+		}
+	}
+
 	void build_order_table() {
 		_offset = vector<int>(_size);
 		_count = vector<int>(_size);
