@@ -21,42 +21,28 @@ extension Sequence {
     }
 }
 
-func solve(_ S:[String]) {
-    let (S1, S2, S3) = (S[0], S[1], S[2])
-    precondition(1 <= S1.count && S1.count <= 10)
-    precondition(1 <= S2.count && S2.count <= 10)
-    precondition(1 <= S3.count && S3.count <= 10)
-
-    let existingAlphabets = Array(Set((S1 + S2 + S3).map { String($0) }))
-    if existingAlphabets.count > 10 {
-        print("UNSOLVABLE")
-        return
+func solve(_ S:[String]) -> [Int] {
+    let uniqueCharacters = Set(S[0] + S[1] + S[2])
+    if uniqueCharacters.count > 10 {
+        return []
     }
-    var table = Array<String>(repeating: "", count: 128)
-    var answer: [Int] = []
-    for sequence in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].permutations() {
-        for i in 0..<existingAlphabets.count {
-            table[Int(existingAlphabets[i].first!.asciiValue!)] = sequence[i]
-        }
-        let s1String = S1.map { table[Int($0.asciiValue!)] }.joined()
-        let s2String = S2.map { table[Int($0.asciiValue!)] }.joined()
-        let s3String = S3.map { table[Int($0.asciiValue!)] }.joined()
-        if s1String.prefix(1) == "0" || s2String.prefix(1) == "0" || s3String.prefix(1) == "0" {
+    let sequences = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let table = Dictionary(uniqueKeysWithValues: zip(uniqueCharacters, sequences))
+    let S1 = S[0].map { table[$0]! }
+    let S2 = S[1].map { table[$0]! }
+    let S3 = S[2].map { table[$0]! }
+    for sequences in sequences.permutations() {
+        if sequences[S1[0]] == 0 || sequences[S2[0]] == 0 || sequences[S3[0]] == 0 {
             continue
         }
-        let s1 = Int(s1String)!
-        let s2 = Int(s2String)!
-        let s3 = Int(s3String)!
-        if s1 + s2 == s3 {
-            answer = [s1, s2, s3]
-            break
+        let n1 = S1.reduce(0) { $0 * 10 + sequences[$1] }
+        let n2 = S2.reduce(0) { $0 * 10 + sequences[$1] }
+        let n3 = S3.reduce(0) { $0 * 10 + sequences[$1] }
+        if n1 + n2 == n3 {
+            return [n1, n2, n3]
         }
     }
-    if answer.isEmpty {
-        print("UNSOLVABLE")
-    } else {
-        answer.forEach { print($0) }
-    }
+    return []
 }
 
 func main() {
@@ -74,11 +60,16 @@ func main() {
 	for _ in 0..<3 {
 		S.append(nextToken())
 	}
-    solve(S);
+    let answer = solve(S)
+    if answer.isEmpty {
+        print("UNSOLVABLE")
+    } else {
+        answer.forEach { print($0) }
+    }
 }
 
 #if REDIRECT
-let testcase = 1
+let testcase = 5
 _ = freopen("in_\(testcase).txt", "r", stdin)
 #endif
 
