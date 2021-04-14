@@ -1,65 +1,77 @@
 import Foundation
 
-extension Sequence {
-    func permutations() -> [[Element]] {
-        func _permutations<T>(of values: [T], indices: Range<Int>, result: inout [[T]]) {
-            if indices.isEmpty {
-                result.append(values)
-                return
-            }
-            var values = values
-            for i in indices {
-                values.swapAt(indices.lowerBound, i)
-                _permutations(of: values, indices: (indices.lowerBound + 1) ..< indices.upperBound, result: &result)
+struct PermutationSequence<Element: Comparable>: Sequence, IteratorProtocol {
+    private var nextElements: [Element]?
+
+    init<Elements: Sequence>(elements: Elements) where Elements.Element == Element {
+        self.nextElements = Array(elements)
+    }
+
+    mutating func next() -> [Element]? {
+        defer {
+            if let elements = nextElements {
+                var i = elements.count - 2
+                while i >= 0, elements[i] >= elements[i + 1] {
+                    i -= 1
+                }
+                if i < 0 {
+                    nextElements = nil
+                } else {
+                    var j = elements.count - 1
+                    while elements[i] >= elements[j] {
+                        j -= 1
+                    }
+                    nextElements!.swapAt(i, j)
+                    nextElements![(i + 1)...].reverse()
+                }
             }
         }
+        return nextElements
+    }
+}
 
-        var result: [[Element]] = []
-        let values = Array(self)
-        _permutations(of: values, indices: values.indices, result: &result)
-        return result
+extension Sequence where Element: Comparable {
+    var permutations: PermutationSequence<Element> {
+        PermutationSequence(elements: self)
     }
 }
 
 func solve(_ S:[String]) -> [Int] {
-    let uniqueCharacters = Set(S[0] + S[1] + S[2])
+    let uniqueCharacters = Set(S.joined())
     if uniqueCharacters.count > 10 {
         return []
     }
-    let sequences = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    let table = Dictionary(uniqueKeysWithValues: zip(uniqueCharacters, sequences))
-    let S1 = S[0].map { table[$0]! }
-    let S2 = S[1].map { table[$0]! }
-    let S3 = S[2].map { table[$0]! }
-    for sequences in sequences.permutations() {
-        if sequences[S1[0]] == 0 || sequences[S2[0]] == 0 || sequences[S3[0]] == 0 {
+    let digits = 0 ..< 10
+    let characterToIndex = Dictionary(uniqueKeysWithValues: zip(uniqueCharacters, digits))
+    let indices = S.map { $0.map { characterToIndex[$0]! } }
+    for sequences in digits.permutations {
+        guard indices.allSatisfy({ sequences[$0[0]] != 0 }) else {
             continue
         }
-        let n1 = S1.reduce(0) { $0 * 10 + sequences[$1] }
-        let n2 = S2.reduce(0) { $0 * 10 + sequences[$1] }
-        let n3 = S3.reduce(0) { $0 * 10 + sequences[$1] }
-        if n1 + n2 == n3 {
-            return [n1, n2, n3]
+        let numbers = indices.map { $0.reduce(0) { $0 * 10 + sequences[$1] } }
+        if numbers[0] + numbers[1] == numbers[2] {
+            return numbers
         }
     }
     return []
 }
 
 func main() {
-    var tokenIndex = 0
-    var tokenBuffer = [String]()
-    func nextToken() -> String {
+    var tokenIndex = 0, tokenBuffer = [String]()
+    func readString() -> String {
         if tokenIndex >= tokenBuffer.count {
             tokenIndex = 0
             tokenBuffer = readLine()!.split(separator: " ").map { String($0) }
         }
-        tokenIndex += 1
-        return tokenBuffer[tokenIndex - 1]
+        defer { tokenIndex += 1 }
+        return tokenBuffer[tokenIndex]
     }
+    func readInt() -> Int { Int(readString())! }
+    func readDouble() -> Double { Double(readString())! }
     var S = [String]()
-	for _ in 0..<3 {
-		S.append(nextToken())
-	}
+    for _ in 0..<3 {
+        S.append(readString())
+    }
     let answer = solve(S)
     if answer.isEmpty {
         print("UNSOLVABLE")
@@ -68,9 +80,9 @@ func main() {
     }
 }
 
-#if REDIRECT
-let testcase = 5
-_ = freopen("in_\(testcase).txt", "r", stdin)
+#if DEBUG
+let caseNumber = 1
+_ = freopen("in_\(caseNumber).txt", "r", stdin)
 #endif
 
 main()
