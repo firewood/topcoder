@@ -33,10 +33,38 @@ set<string> dfs(int N) {
 	return r;
 }
 
+vector<string> enumerate(int N) {
+	vector<string> ans;
+	string s(N, '(');
+	while (true) {
+		int c = 0;
+		for (int i = 0; i < N; ++i) {
+			if (s[i] == '(') {
+				++c;
+			} else if (--c < 0) {
+				break;
+			}
+		}
+		if (c == 0) {
+			ans.emplace_back(s);
+		}
+		for (int i = N - 1; i >= 0; --i) {
+			if (s[i] == '(') {
+				s[i] = ')';
+				break;
+			}
+			s[i] = '(';
+			if (i == 0) {
+				return ans;
+			}
+		}
+	}
+}
+
 int main() {
 	int N;
 	std::cin >> N;
-	for (auto s : dfs(N)) {
+	for (auto s : enumerate(N)) {
 		cout << s << endl;
 	}
 	return 0;
