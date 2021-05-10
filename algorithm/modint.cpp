@@ -35,6 +35,46 @@ struct modint {
 	}
 };
 
+struct Matrix {
+	size_t size;
+	vector<vector<modint>> e;
+
+	Matrix(size_t size_) {
+		size = size_;
+		e = vector<vector<modint>>(size, vector<modint>(size, 0));
+	}
+
+	void setIdentity() {
+		for (size_t i = 0; i < size; ++i) {
+			e[i][i] = 1;
+		}
+	}
+
+	Matrix mul(const Matrix& a) {
+		Matrix r(size);
+		for (size_t i = 0; i < size; ++i) {
+			for (size_t j = 0; j < size; ++j) {
+				for (size_t k = 0; k < size; ++k) {
+					r.e[i][j] += e[i][k] * a.e[k][j];
+				}
+			}
+		}
+		return r;
+	}
+
+	Matrix pow(LL x) {
+		Matrix r(size), b = *this;
+		r.setIdentity();
+		for (; x > 0; x >>= 1) {
+			if (x & 1) {
+				r = r.mul(b);
+			}
+			b = b.mul(b);
+		}
+		return r;
+	}
+};
+
 modint combination_fast(int n, int r) {
 	if (r > n) return 0;
 	static modint fact[TABLE_SIZE + 1], inv[TABLE_SIZE + 1];
