@@ -10,20 +10,20 @@
     <Snippet>
       <Code Language="cpp">
         <![CDATA[struct Tree {
-	int _size;
-	vector<vector<int>> _edges;
-	vector<int> _vis;
+	int64_t _size;
+	vector<vector<int64_t>> _edges;
+	vector<int64_t> _vis;
 
-	Tree(int size) : _size(size), _edges(size), _vis(size) { }
+	Tree(int64_t size) : _size(size), _edges(size), _vis(size) { }
 
-	void build_edges(const vector<int>& a, const vector<int>& b) {
-		for (int i = 0; i < a.size(); ++i) {
+	void build_edges(const vector<int64_t>& a, const vector<int64_t>& b) {
+		for (int64_t i = 0; i < a.size(); ++i) {
 			_edges[a[i]].emplace_back(b[i]);
 			_edges[b[i]].emplace_back(a[i]);
 		}
 	}
 
-	void dfs(int n) {
+	void dfs(int64_t n) {
 		_vis[n] += 1;
 
 		$end$

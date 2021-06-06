@@ -10,40 +10,40 @@
     <Snippet>
       <Code Language="cpp">
         <![CDATA[struct Dijkstra {
-	vector<vector<pair<long long, long long>>> edges;
+	vector<vector<pair<int64_t, int64_t>>> edges;
 
-	Dijkstra(long long size) : edges(size) { }
+	Dijkstra(int64_t size) : edges(size) { }
 
-	void add_edges(std::vector<long long>& A, std::vector<long long>& B) {
+	void add_edges(std::vector<int64_t>& A, std::vector<int64_t>& B) {
 		for (int i = 0; i < A.size(); ++i) {
 			add_edge(A[i], B[i]);
 		}
 	}
 
-	void add_edges(std::vector<long long>& A, std::vector<long long>& B, std::vector<long long>& C) {
+	void add_edges(std::vector<int64_t>& A, std::vector<int64_t>& B, std::vector<int64_t>& C) {
 		for (int i = 0; i < A.size(); ++i) {
 			add_edge(A[i], B[i], C[i]);
 		}
 	}
 
-	void add_edge(long long a, long long b, long long c = 1) {
+	void add_edge(int64_t a, int64_t b, int64_t c = 1) {
 		edges[a].push_back({ b, c });
 		edges[b].push_back({ a, c });
 	}
 
-	vector<long long> get_min_costs(long long start) {
-		vector<long long> min_costs(edges.size(), 1LL << 60);
-		priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, greater<>> q;
+	vector<int64_t> get_min_costs(int64_t start) {
+		vector<int64_t> min_costs(edges.size(), 1LL << 60);
+		priority_queue<pair<int64_t, int64_t>, vector<pair<int64_t, int64_t>>, greater<>> q;
 		min_costs[start] = 0;
 		q.emplace(make_pair(0, start));
 		while (!q.empty()) {
-			pair<long long, long long> top = q.top();
+			pair<int64_t, int64_t> top = q.top();
 			q.pop();
-			long long cost = top.first, node = top.second;
+			int64_t cost = top.first, node = top.second;
 			if (cost > min_costs[node]) continue;
 			for (auto kv : edges[top.second]) {
-				long long next_node = kv.first;
-				long long next_cost = top.first + kv.second;
+				int64_t next_node = kv.first;
+				int64_t next_cost = top.first + kv.second;
 				if (next_cost < min_costs[next_node]) {
 					min_costs[next_node] = next_cost;
 					q.emplace(make_pair(next_cost, next_node));

@@ -10,23 +10,23 @@
     <Snippet>
       <Code Language="cpp">
         <![CDATA[class BIT {
-	std::vector<long long> bit;
-	long long size;
+	std::vector<int64_t> bit;
+	int64_t size;
 public:
 	BIT() { }
-	BIT(long long sz) { init(sz); }
-	void init(long long sz) {
-		bit = std::vector<long long>((size = sz) + 1);
+	BIT(int64_t sz) { init(sz); }
+	void init(int64_t sz) {
+		bit = std::vector<int64_t>((size = sz) + 1);
 	}
-	long long sum(long long i) {
-		LL s = 0;
+	int64_t sum(int64_t i) {
+		int64_t s = 0;
 		while (i > 0) {
 			s += bit[i];
 			i -= i & -i;
 		}
 		return s;
 }
-	void add(long long i, long long x) {
+	void add(int64_t i, int64_t x) {
 		while (i <= size) {
 			bit[i] += x;
 			i += i & -i;
