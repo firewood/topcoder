@@ -12,37 +12,35 @@
 
 using namespace std;
 
-typedef long long LL;
-typedef pair<LL, LL> II;
+typedef pair<int64_t, int64_t> II;
 
-void solve(long long N, std::vector<long long>& A) {
-	LL ans = 0;
-	vector<II> v;
-	for (LL i = 0; i < N; i++) {
-		v.emplace_back(II(A[i], i));
+int64_t solve(int64_t N, std::vector<int64_t>& A) {
+	int64_t ans = 0;
+	deque<II> q;
+	A.emplace_back(0);
+	for (int i = 0; i <= N; ++i) {
+		int64_t a = A[i], pos = i;
+		while (!q.empty()) {
+			int64_t value = q.front().first, index = q.front().second;
+			if (value <= a) {
+				break;
+			}
+			q.pop_front();
+			pos = index;
+			ans = max(ans, (i - index) * value);
+		}
+		q.push_front({ a, pos });
 	}
-	sort(v.begin(), v.end());
-	set<LL> s;
-	s.insert(-1);
-	s.insert(N);
-	for (auto kv : v) {
-		LL i = kv.second;
-		LL x = kv.first;
-		auto next = s.lower_bound(i), prev = next;
-		--prev;
-		ans = max(ans, (*next - *prev - 1) * x);
-		s.insert(i);
-	}
-	cout << ans << endl;
+	return ans;
 }
 
 int main() {
-	long long N;
+	int64_t N;
 	std::cin >> N;
-	std::vector<long long> A(N);
+	std::vector<int64_t> A(N);
 	for (int i = 0; i < N; i++) {
 		std::cin >> A[i];
 	}
-	solve(N, A);
+	cout << solve(N, A) << endl;
 	return 0;
 }
