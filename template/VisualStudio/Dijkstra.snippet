@@ -10,40 +10,46 @@
     <Snippet>
       <Code Language="cpp">
         <![CDATA[struct Dijkstra {
-	vector<vector<pair<int64_t, int64_t>>> edges;
+	int64_t size;
+	vector<int64_t> edge_from;
+	vector<int64_t> edge_to;
+	vector<int64_t> edge_cost;
+	vector<vector<int64_t>> edge_index;
 
-	Dijkstra(int64_t size) : edges(size) { }
+	Dijkstra(int64_t size_) : size(size_), edge_cost(size_, 1), edge_index(size_) { }
 
-	void add_edges(std::vector<int64_t>& A, std::vector<int64_t>& B) {
-		for (int i = 0; i < A.size(); ++i) {
-			add_edge(A[i], B[i]);
+	void build_unidirectional_edges(std::vector<int64_t>& from, std::vector<int64_t>& to, std::vector<int64_t> cost = {}) {
+		edge_from = from;
+		edge_to = to;
+		edge_cost = !cost.empty() ? cost : std::vector<int64_t>(from.size(), 1);
+		for (int i = 0; i < from.size(); ++i) {
+			edge_index[from[i]].emplace_back(i);
 		}
 	}
 
-	void add_edges(std::vector<int64_t>& A, std::vector<int64_t>& B, std::vector<int64_t>& C) {
-		for (int i = 0; i < A.size(); ++i) {
-			add_edge(A[i], B[i], C[i]);
+	void build_bidirectional_edges(std::vector<int64_t>& from, std::vector<int64_t>& to, std::vector<int64_t> cost = {}) {
+		edge_from = from;
+		edge_to = to;
+		edge_cost = !cost.empty() ? cost : std::vector<int64_t>(from.size(), 1);
+		for (int i = 0; i < from.size(); ++i) {
+			edge_index[from[i]].emplace_back(i);
+			edge_index[to[i]].emplace_back(i);
 		}
-	}
-
-	void add_edge(int64_t a, int64_t b, int64_t c = 1) {
-		edges[a].push_back({ b, c });
-		edges[b].push_back({ a, c });
 	}
 
 	vector<int64_t> get_min_costs(int64_t start) {
-		vector<int64_t> min_costs(edges.size(), 1LL << 60);
+		vector<int64_t> min_costs(size, 1LL << 60);
 		priority_queue<pair<int64_t, int64_t>, vector<pair<int64_t, int64_t>>, greater<>> q;
 		min_costs[start] = 0;
 		q.emplace(make_pair(0, start));
 		while (!q.empty()) {
-			pair<int64_t, int64_t> top = q.top();
+			auto top = q.top();
 			q.pop();
 			int64_t cost = top.first, node = top.second;
 			if (cost > min_costs[node]) continue;
-			for (auto kv : edges[top.second]) {
-				int64_t next_node = kv.first;
-				int64_t next_cost = top.first + kv.second;
+			for (auto ei : edge_index[node]) {
+				int64_t next_node = edge_to[ei];
+				int64_t next_cost = cost + edge_cost[ei];
 				if (next_cost < min_costs[next_node]) {
 					min_costs[next_node] = next_cost;
 					q.emplace(make_pair(next_cost, next_node));
