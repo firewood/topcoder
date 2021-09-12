@@ -105,64 +105,71 @@ Note that you can also flip the panes, not just rotate them.
 
 using namespace std;
 
+vector <string> rotate(const vector <string>& a) {
+	if (a.empty()) {
+		return a;
+	}
+	int h = a.size(), w = a[0].length();
+	vector <string> b(w, string(h, ' '));
+	for (int r = 0; r < w; ++r) {
+		for (int c = 0; c < h; ++c) {
+			b[r][c] = a[c][w - r - 1];
+		}
+	}
+	return b;
+}
+
+vector <string> flip(const vector <string>& a) {
+	int h = a.size();
+	vector <string> b(h);
+	for (int r = 0; r < h; ++r) {
+		b[r] = a[r];
+		reverse(b[r].begin(), b[r].end());
+	}
+	return b;
+}
+
+int count_defects(const vector <string>& a, const vector <string>& b) {
+	int cnt = 0;
+	int h = a.size(), w = a[0].length();
+	for (int i = 0; i < h; ++i) {
+		for (int j = 0; j < w; ++j) {
+			cnt += a[i][j] != '.' || b[i][j] != '.';
+		}
+	}
+	return cnt;
+}
+
 class LayeredGlass {
 	int sz;
-
-	vector <string> rotate(vector <string> &a) {
-		vector <string> b = a;
-		for (int i = 0; i < sz; ++i) {
-			for (int j = 0; j < sz; ++j) {
-				b[j][sz - i - 1] = a[i][j];
-			}
-		}
-		return b;
-	}
-
-	vector <string> flip(vector <string> &a) {
-		vector <string> b = a;
-		for (int i = 0; i < sz; ++i) {
-			b[sz - i - 1] = a[i];
-		}
-		return b;
-	}
-
-	int count(vector <string> &a, vector <string> &b) {
-		int cnt = 0;
-		for (int i = 0; i < sz; ++i) {
-			for (int j = 0; j < sz; ++j) {
-				cnt += a[i][j] != '.' || b[i][j] != '.';
-			}
-		}
-		return cnt;
-	}
 
 public:
 	int minDefects(vector <string> a, vector <string> b) {
 		sz = (int)a.size();
 		int ans = 1 << 30;
 		for (int i = 0; i < 4; ++i) {
-			ans = min({ ans, count(a, b), count(flip(a), b) });
+			ans = min({ ans, count_defects(a, b), count_defects(flip(a), b) });
 			a = rotate(a);
 		}
 		return ans;
 	}
 
-// BEGIN CUT HERE
+	// BEGIN CUT HERE
 private:
-	template <typename T> string print_array(const vector<T> &V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
+	template <typename T> string print_array(const vector<T>& V) { ostringstream os; os << "{ "; for (typename vector<T>::const_iterator iter = V.begin(); iter != V.end(); ++iter) os << '\"' << *iter << "\","; os << " }"; return os.str(); }
 
-	void verify_case(int Case, const int &Expected, const int &Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
+	void verify_case(int Case, const int& Expected, const int& Received) { cerr << "Test Case #" << Case << "..."; if (Expected == Received) cerr << "PASSED" << endl; else { cerr << "FAILED" << endl; cerr << "\tExpected: \"" << Expected << '\"' << endl; cerr << "\tReceived: \"" << Received << '\"' << endl; } }
 
 public:
-	void run_test(int Case) { 
+	void run_test(int Case) {
 		int n = 0;
 
 		// test_case_0
-		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"X.",
- ".."};
-			string Arr1[] = {"..",
- ".X"};
+		if ((Case == -1) || (Case == n)) {
+			string Arr0[] = { "X.",
+ ".." };
+			string Arr1[] = { "..",
+ ".X" };
 			int Arg2 = 1;
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -172,13 +179,13 @@ public:
 		n++;
 
 		// test_case_1
-		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"...",
+		if ((Case == -1) || (Case == n)) {
+			string Arr0[] = { "...",
  "..X",
- "..."};
-			string Arr1[] = {"X..",
+ "..." };
+			string Arr1[] = { "X..",
  "...",
- "..."};
+ "..." };
 			int Arg2 = 2;
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -188,13 +195,13 @@ public:
 		n++;
 
 		// test_case_2
-		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"...",
+		if ((Case == -1) || (Case == n)) {
+			string Arr0[] = { "...",
  "...",
- "..."};
-			string Arr1[] = {"...",
+ "..." };
+			string Arr1[] = { "...",
  ".XX",
- "..."};
+ "..." };
 			int Arg2 = 2;
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -204,13 +211,13 @@ public:
 		n++;
 
 		// test_case_3
-		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {".XX",
+		if ((Case == -1) || (Case == n)) {
+			string Arr0[] = { ".XX",
  "...",
- "..."};
-			string Arr1[] = {"X..",
+ "..." };
+			string Arr1[] = { "X..",
  "...",
- "X.."};
+ "X.." };
 			int Arg2 = 3;
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -220,15 +227,15 @@ public:
 		n++;
 
 		// test_case_4
-		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"XX..",
+		if ((Case == -1) || (Case == n)) {
+			string Arr0[] = { "XX..",
  "X...",
  "XX..",
- "X..."};
-			string Arr1[] = {"XXXX",
+ "X..." };
+			string Arr1[] = { "XXXX",
  "X.X.",
  "....",
- "...."};
+ "...." };
 			int Arg2 = 6;
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
@@ -239,7 +246,7 @@ public:
 
 	}
 
-// END CUT HERE
+	// END CUT HERE
 
 };
 
