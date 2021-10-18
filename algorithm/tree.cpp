@@ -1,12 +1,12 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <queue>
 #include <vector>
 #include <numeric>
 #include <cassert>
 
 using namespace std;
-typedef long long LL;
 
 #ifdef _MSC_VER
 #include <intrin.h>
@@ -48,6 +48,12 @@ struct Tree {
 		for (int i = 0; i < a.size(); ++i) {
 			_edges[a[i]].emplace_back(b[i]);
 			_edges[b[i]].emplace_back(a[i]);
+		}
+	}
+
+	void build_unidirection_edges(const vector<int>& a, const vector<int>& b) {
+		for (int i = 0; i < a.size(); ++i) {
+			_edges[a[i]].emplace_back(b[i]);
 		}
 	}
 
@@ -126,6 +132,32 @@ struct Tree {
 		get_distance(-1, start, 0, end, max_dist);
 		if (start > end) swap(start, end);
 		return max_dist;
+	}
+
+	vector<int> topological_sort() {
+		vector<int> result, count(_size);
+		priority_queue<int, vector<int>, greater<>> q;
+		for (auto edges : _edges) {
+			for (auto e : edges) {
+				count[e]++;
+			}
+		}
+		for (int i = 0; i < _size; i++) {
+			if (count[i] == 0) {
+				q.push(i);
+			}
+		}
+		while (!q.empty()) {
+			int node = q.top();
+			q.pop();
+			result.push_back(node);
+			for (auto e : _edges[node]) {
+				if (--count[e] == 0) {
+					q.push(e);
+				}
+			}
+		}
+		return result;
 	}
 };
 
