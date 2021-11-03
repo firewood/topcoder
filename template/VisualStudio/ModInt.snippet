@@ -28,7 +28,7 @@ struct modint {
 	static modint modinv(int a) { return modpow(a, MOD - 2); }
 	static modint modpow(int a, int b) {
 		modint x = a, r = 1;
-		for (; b; b >>= 1, x *= x) if (b & 1) r *= x;
+		for (; b > 0; b >>= 1, x *= x) if (b & 1) r *= x;
 		return r;
 	}
 };
