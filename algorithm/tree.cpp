@@ -64,11 +64,12 @@ struct Tree {
 		get_children_size(-1, _root, order);
 	}
 
-	void build_depth() {
-		_log_size = calc_log_size(_size);
-		_dbltbl = vector<vector<int>>(_log_size, vector<int>(_size));
-		_depths = vector<int>(_size);
-		get_depth(-1, _root, 0);
+	void get_children_size(int parent, int node, int& order) {
+		_offset[node] = order++;
+		for (int next : _edges[node]) {
+			if (next != parent) get_children_size(node, next, order);
+		}
+		_count[node] = order - _offset[node];
 	}
 
 	void build_doubling_table() {
@@ -81,12 +82,11 @@ struct Tree {
 		}
 	}
 
-	void get_children_size(int parent, int node, int& order) {
-		_offset[node] = order++;
-		for (int next : _edges[node]) {
-			if (next != parent) get_children_size(node, next, order);
-		}
-		_count[node] = order - _offset[node];
+	void build_depth() {
+		_log_size = calc_log_size(_size);
+		_dbltbl = vector<vector<int>>(_log_size, vector<int>(_size));
+		_depths = vector<int>(_size);
+		get_depth(-1, _root, 0);
 	}
 
 	void get_depth(int parent, int node, int depth) {
@@ -123,6 +123,10 @@ struct Tree {
 			}
 		}
 		return _dbltbl[0][a];
+	}
+
+	int get_distance_by_lca(int a, int b) {
+		return _depths[a] + _depths[b] - _depths[lca(a, b)] * 2;
 	}
 
 	// 直径を求める
