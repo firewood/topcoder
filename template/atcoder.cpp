@@ -19,7 +19,7 @@ typedef pair<int64_t, II> III;
 static const int64_t INF = 1LL << 60;
 {% if mod %}
 static const int64_t MOD = {{ mod }};
-static const size_t MAX_N = 1000001;
+static const size_t TABLE_SIZE = 1000000;		// 1e6
 
 struct modint {
 	int64_t x;
@@ -40,24 +40,40 @@ struct modint {
 		for (; b > 0; b >>= 1, x *= x) if (b & 1) r *= x;
 		return r;
 	}
+	static modint permutation(int n, int r);
+	static modint combination(int n, int r);
+	static modint nHr(int n, int r);
 };
 
-modint combination(int64_t n, int64_t r) {
-	static modint fact[MAX_N + 1], inv[MAX_N + 1];
+static vector<modint> fact(TABLE_SIZE + 1, 0), inv(TABLE_SIZE + 1, 0);
+
+static __inline void build_fact_table() {
 	if (!fact[0]) {
 		fact[0] = 1;
-		for (int i = 1; i <= MAX_N; ++i) {
+		for (int i = 1; i <= TABLE_SIZE; ++i) {
 			fact[i] = fact[i - 1] * i;
 		}
-		inv[MAX_N] = modint::modinv(fact[MAX_N]);
-		for (int i = MAX_N; i >= 1; --i) {
+		inv[TABLE_SIZE] = modint::modinv(fact[TABLE_SIZE]);
+		for (int i = TABLE_SIZE; i >= 1; --i) {
 			inv[i - 1] = inv[i] * i;
 		}
 	}
-	if (r > n) {
-		return 0;
-	}
+}
+
+modint modint::permutation(int n, int r) {
+	if (r > n) return 0;
+	build_fact_table();
+	return fact[n] * inv[n - r];
+}
+
+modint modint::combination(int n, int r) {
+	if (r > n) return 0;
+	build_fact_table();
 	return (fact[n] * inv[r]) * inv[n - r];
+}
+
+modint modint::nHr(int n, int r) {
+	return combination(n + r - 1, r);
 }
 {% endif %}
 {% if prediction_success %}
@@ -95,10 +111,6 @@ int64_t solve({{ formal_arguments }}) {
 {% endif %}
 
 int main() {
-#if DEBUG || _DEBUG
-	freopen("in.txt", "r", stdin);
-//	freopen("in_1.txt", "r", stdin);
-#endif
 {% if prediction_success %}
 	{{input_part}}
 {% if yes_str %}
