@@ -8,14 +8,13 @@
 
 using namespace std;
 
-typedef long long LL;
 typedef long double LD;
-const LL MOD = 1000000007;
+const int64_t MOD = 1000000007;
 const LD EPS = 1e-10;
-static const size_t TABLE_SIZE = 1000000;
+static const size_t TABLE_SIZE = 1000000;		// 1e6
 
 struct modint {
-	long long x;
+	int64_t x;
 	modint() { }
 	modint(int _x) : x(_x) { }
 	operator int() const { return (int)x; }
@@ -30,10 +29,59 @@ struct modint {
 	static modint modinv(int a) { return modpow(a, MOD - 2); }
 	static modint modpow(int a, int b) {
 		modint x = a, r = 1;
-		for (; b; b >>= 1, x *= x) if (b & 1) r *= x;
+		for (; b > 0; b >>= 1, x *= x) if (b & 1) r *= x;
 		return r;
 	}
+	static modint permutation(int n, int r);
+	static modint combination(int n, int r);
+	static modint nHr(int n, int r);
 };
+
+static vector<modint> fact(TABLE_SIZE + 1, 0), inv(TABLE_SIZE + 1, 0);
+
+static __inline void build_fact_table() {
+	if (!fact[0]) {
+		fact[0] = 1;
+		for (int i = 1; i <= TABLE_SIZE; ++i) {
+			fact[i] = fact[i - 1] * i;
+		}
+		inv[TABLE_SIZE] = modint::modinv(fact[TABLE_SIZE]);
+		for (int i = TABLE_SIZE; i >= 1; --i) {
+			inv[i - 1] = inv[i] * i;
+		}
+	}
+}
+
+modint modint::permutation(int n, int r) {
+	if (r > n) return 0;
+	build_fact_table();
+	return fact[n] * inv[n - r];
+}
+
+modint modint::combination(int n, int r) {
+	if (r > n) return 0;
+	build_fact_table();
+	return (fact[n] * inv[r]) * inv[n - r];
+}
+
+// 重複組合せ
+modint modint::nHr(int n, int r) {
+	return combination(n + r - 1, r);
+}
+
+modint combination_slow(int n, int r) {
+	if (r > n) return 0;
+	r = min(r, n - r);
+	if (r == 0) return 1;
+	if (r == 1) return n;
+	if (r == 2) return (((long long)n * (n - 1)) / 2) % MOD;
+	modint a = 1, b = 1;
+	for (int i = 0; i < r; ++i) {
+		a *= n - i;
+		b *= i + 1;
+	}
+	return a * modint::modinv(b);
+}
 
 struct Matrix {
 	size_t size;
@@ -62,7 +110,7 @@ struct Matrix {
 		return r;
 	}
 
-	Matrix pow(LL x) {
+	Matrix pow(int64_t x) {
 		Matrix r(size), b = *this;
 		r.setIdentity();
 		for (; x > 0; x >>= 1) {
@@ -74,45 +122,6 @@ struct Matrix {
 		return r;
 	}
 };
-
-modint combination_fast(int n, int r) {
-	if (r > n) return 0;
-	static modint fact[TABLE_SIZE + 1], inv[TABLE_SIZE + 1];
-	if (!fact[0]) {
-		fact[0] = 1;
-		for (int i = 1; i <= TABLE_SIZE; ++i) {
-			fact[i] = fact[i - 1] * i;
-		}
-		inv[TABLE_SIZE] = modint::modinv(fact[TABLE_SIZE]);
-		for (int i = TABLE_SIZE; i >= 1; --i) {
-			inv[i - 1] = inv[i] * i;
-		}
-	}
-	return (fact[n] * inv[r]) * inv[n - r];
-}
-
-modint combination_slow(int n, int r) {
-	if (r > n) return 0;
-	r = min(r, n - r);
-	if (r == 0) return 1;
-	if (r == 1) return n;
-	if (r == 2) return (((long long)n * (n - 1)) / 2) % MOD;
-	modint a = 1, b = 1;
-	for (int i = 0; i < r; ++i) {
-		a *= n - i;
-		b *= i + 1;
-	}
-	return a * modint::modinv(b);
-}
-
-inline modint combination(int n, int r) {
-	return combination_fast(n, r);
-}
-
-// 重複組合せ
-modint nHr(int n, int r) {
-	return combination(n + r - 1, r);
-}
 
 int main(int argc, char* argv[]) {
 	modint x = 100;
@@ -128,7 +137,7 @@ int main(int argc, char* argv[]) {
 
 	for (int a = 0; a <= 100; ++a) {
 		for (int b = 0; b <= 100; ++b) {
-			assert(combination_fast(a, b) == combination_slow(a, b));
+			assert(modint::combination(a, b) == combination_slow(a, b));
 		}
 	}
 
