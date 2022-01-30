@@ -9,11 +9,14 @@
     </Header>
     <Snippet>
       <Code Language="cpp">
-        <![CDATA[for (int i = 0; i < N; ++i) {
-	if (i) cout << " ";
-	cout << ans[i];
+        <![CDATA[cout << ans.size() << endl;
+if (!ans.empty()) {
+	for (size_t i = 0; i < ans.size(); ++i) {
+		if (i) cout << " ";
+		cout << ans[i];
+	}
+	cout << endl;
 }
-cout << endl;
 ]]>
       </Code>
     </Snippet>
