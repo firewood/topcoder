@@ -29,6 +29,9 @@ static inline int popcount(unsigned int b) {
 
 vector<int> pc;
 map<int, set<int>> memo;
+vector<vector<int>> a;
+vector<int> used;
+int ans = 0;
 
 set<int>& get(int b) {
 	set<int>& r = memo[b];
@@ -45,11 +48,32 @@ set<int>& get(int b) {
 	return r;
 }
 
+void dfs(int x, int remain) {
+	if (remain == 0) {
+		ans = max(ans, x);
+	} else {
+		for (int i = 0; i < used.size(); ++i) {
+			if (!used[i]) {
+				used[i] = 1;
+				for (int j = i + 1; j < used.size(); ++j) {
+					if (!used[j]) {
+						used[j] = 1;
+						dfs(x ^ a[i][j], remain - 2);
+						used[j] = 0;
+					}
+				}
+				used[i] = 0;
+				break;
+			}
+		}
+	}
+}
+
 int main() {
-	int ans = 0, N;
+	int N;
 	cin >> N;
 	int N2 = N * 2, bm = 1 << N2;
-	vector<vector<int>> a(N2, vector<int>(N2));
+	a = vector<vector<int>>(N2, vector<int>(N2));
 	for (int i = 0; i < N2; ++i) {
 		for (int j = i + 1; j < N2; ++j) {
 			cin >> a[i][j];
@@ -65,6 +89,10 @@ int main() {
 			memo[b].insert(a[i][j]);
 		}
 	}
+#if 1
+	used = vector<int>(N2);
+	dfs(0, N2);
+#else
 	if (N <= 4) {
 		vector<int> seq(N2);
 		iota(seq.begin(), seq.end(), 0);
@@ -88,6 +116,7 @@ int main() {
 			}
 		}
 	}
+#endif
 	cout << ans << endl;
 	return 0;
 }
