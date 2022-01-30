@@ -9,6 +9,7 @@
 #include <set>
 #include <queue>
 #include <vector>
+#include <random>
 
 using namespace std;
 
@@ -135,12 +136,14 @@ int main() {
 
 #ifdef _DEBUG
 	{
+		std::random_device seed_gen;
+		std::mt19937 engine(seed_gen());
 		for (int i = 0; i < 1000; ++i) {
 			int N = 4 + (rand() % 4);
 			std::vector<int> seq(N);
 			iota(seq.begin(), seq.end(), 0);
 			std::vector<int> goal = seq;
-			random_shuffle(seq.begin(), seq.end());
+			shuffle(seq.begin(), seq.end(), engine);
 			std::vector<int> prev = seq;
 			set<II> s;
 			for (int i = 0; i < N + 2; ++i) {
