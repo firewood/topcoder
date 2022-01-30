@@ -49,6 +49,7 @@
 			if (cost > min_costs[node]) continue;
 			for (auto ei : edge_index[node]) {
 				int64_t next_node = edge_to[ei];
+				if (next_node == node) next_node = edge_from[ei];
 				int64_t next_cost = cost + edge_cost[ei];
 				if (next_cost < min_costs[next_node]) {
 					min_costs[next_node] = next_cost;
