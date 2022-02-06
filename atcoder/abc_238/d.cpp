@@ -14,7 +14,7 @@ using namespace std;
 
 bool solve(int64_t a, int64_t s) {
 	s -= a * 2;
-	return s >= 0 && (s & ~a) == s;
+	return s >= 0 && (s & a) == 0;
 }
 
 int main() {
