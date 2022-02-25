@@ -15,8 +15,8 @@ using namespace std;
 typedef pair<int64_t, int64_t> II;
 
 bool solve(std::vector<int64_t> x, std::vector<int64_t> y) {
-	set<II> a, b;
-	auto g = [&](int64_t x, int64_t y, set<II>& s) {
+	auto g = [&](int64_t x, int64_t y) {
+		set<II> s;
 		for (int64_t i = -2; i <= 2; ++i) {
 			for (int64_t j = -2; j <= 2; ++j) {
 				if (abs(i * j) == 2) {
@@ -24,9 +24,9 @@ bool solve(std::vector<int64_t> x, std::vector<int64_t> y) {
 				}
 			}
 		}
+		return s;
 	};
-	g(x[0], y[0], a);
-	g(x[1], y[1], b);
+	set<II> a = g(x[0], y[0]), b = g(x[1], y[1]);
 	for (auto kv : a) {
 		if (b.find(kv) != b.end()) {
 			return true;
