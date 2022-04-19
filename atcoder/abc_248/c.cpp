@@ -47,11 +47,7 @@ int64_t solve(int64_t N, int64_t M, int64_t K) {
 		}
 		dp = next;
 	}
-	modint ans = 0;
-	for (int i = 0; i <= K; ++i) {
-		ans += dp[i];
-	}
-	return ans;
+	return accumulate(dp.begin(), dp.begin() + K + 1, modint(0));
 }
 
 int main() {
