@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Prime</Title>
+      <Shortcut>Prime</Shortcut>
+      <Description>Prime</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Code Language="cpp">
+        <![CDATA[vector<int64_t> primes = { 2 };
+for (int i = 3; i <= 1000003; i += 2) {
+	for (int prime : primes) {
+		if (i < prime * prime) {
+			primes.push_back(i);
+			break;
+		}
+		if ((i % prime) == 0) {
+			break;
+		}
+	}
+}
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
