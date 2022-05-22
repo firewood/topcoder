@@ -12,44 +12,61 @@
         <![CDATA[struct Dijkstra {
 	int64_t size;
 	vector<int64_t> edge_costs;
-	vector<vector<pair<int64_t, int64_t>>> edges;
+	vector<vector<pair<int, int>>> edges;
+	vector<int> used_edges;
+	vector<int64_t> min_costs;
 
 	Dijkstra(int64_t size_) : size(size_), edges(size) { }
 
 	void build_unidirectional_edges(std::vector<int64_t>& from, std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {
 		edge_costs = !costs.empty() ? costs : std::vector<int64_t>(from.size(), 1);
-		for (int i = 0; i < from.size(); ++i) {
-			edges[from[i]].emplace_back(make_pair(to[i], i));
+		for (size_t i = 0; i < from.size(); ++i) {
+			edges[from[i]].emplace_back(make_pair(int(to[i]), int(i)));
 		}
 	}
 
 	void build_bidirectional_edges(std::vector<int64_t>& from, std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {
 		edge_costs = !costs.empty() ? costs : std::vector<int64_t>(from.size(), 1);
-		for (int i = 0; i < from.size(); ++i) {
-			edges[from[i]].emplace_back(make_pair(to[i], i));
-			edges[to[i]].emplace_back(make_pair(from[i], i));
+		for (size_t i = 0; i < from.size(); ++i) {
+			edges[from[i]].emplace_back(make_pair(int(to[i]), int(i)));
+			edges[to[i]].emplace_back(make_pair(int(from[i]), int(i)));
 		}
 	}
 
-	vector<int64_t> get_min_costs(int64_t start) {
-		vector<int64_t> min_costs(size, 1LL << 60);
-		priority_queue<pair<int64_t, int64_t>, vector<pair<int64_t, int64_t>>, greater<>> q;
-		min_costs[start] = 0;
-		q.emplace(make_pair(0, start));
-		while (!q.empty()) {
-			int64_t cost = q.top().first, node = q.top().second;
-			q.pop();
-			if (cost > min_costs[node]) continue;
+	vector<int> dijkstra(int64_t start) {
+		priority_queue<pair<int64_t, pair<int, int>>, vector<pair<int64_t, pair<int, int>>>, greater<>> q;
+		auto push_edges = [&](int64_t cost, int64_t node) {
 			for (auto kv : edges[node]) {
-				int64_t next_node = kv.first, edge_index = kv.second;
-				int64_t next_cost = cost + edge_costs[edge_index];
+				int64_t next_node = kv.first, next_cost = cost + edge_costs[kv.second];
 				if (next_cost < min_costs[next_node]) {
 					min_costs[next_node] = next_cost;
-					q.emplace(make_pair(next_cost, next_node));
+					q.emplace(make_pair(next_cost, make_pair(int(next_node), kv.second)));
 				}
 			}
+		};
+		used_edges.clear();
+		min_costs = vector<int64_t>(size, 1LL << 60);
+		min_costs[start] = 0;
+		push_edges(0, start);
+		while (!q.empty()) {
+			int64_t cost = q.top().first, node = q.top().second.first, edge = q.top().second.second;
+			q.pop();
+			if (cost == min_costs[node]) {
+				used_edges.emplace_back(int(edge));
+				push_edges(cost, node);
+			}
 		}
+		return used_edges;
+	}
+
+	vector<int64_t>& get_min_costs(int64_t start) {
+		dijkstra(start);
 		return min_costs;
+	}
+
+	vector<int>& get_used_edges(int64_t start) {
+		dijkstra(start);
+		return used_edges;
 	}
 };
 ]]>
