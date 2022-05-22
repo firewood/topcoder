@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Popcount</Title>
+      <Shortcut>Popcount</Shortcut>
+      <Description>Popcount</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Code Language="cpp">
+        <![CDATA[#ifdef _MSC_VER
+#define popcount __popcnt
+#else
+#define popcount __builtin_popcount
+#endif
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
