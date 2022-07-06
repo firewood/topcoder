@@ -1,78 +1,137 @@
-// C.
-
+#include <algorithm>
+#include <cctype>
+#include <cmath>
+#include <cstring>
 #include <iostream>
 #include <sstream>
-#include <algorithm>
+#include <numeric>
+#include <map>
+#include <set>
+#include <queue>
 #include <vector>
 
 using namespace std;
 
-const int dx[] = { 1,0,-1,0 };
-const int dy[] = { 0,1,0,-1 };
+class BipartiteMatching {
+	int _size;
+	vector<int> _left;
+	vector<int> _right;
+	vector<vector<int>> _edges;
+	vector<int> _match;
+	vector<int> _visited;
+public:
+	BipartiteMatching(int size) : _size(size) {
+		_left.resize(size);
+		_right.resize(size);
+		_edges = vector<vector<int>>(size);
+	}
 
-int r, c;
+	void set_left(int n) { _left[n] = 1; }
 
-// From The Programming Contest Challendge Book
-vector<int> G[2000];
-int match[2000];
-bool used[2000];
+	void set_right(int n) { _right[n] = 1; }
 
-void add_edge(int u, int v) {
-	G[u].push_back(v);
-	G[v].push_back(u);
-}
+	void add_edge(int left, int right) {
+		_edges[left].emplace_back(right);
+		_edges[right].emplace_back(left);
+	}
 
-bool dfs(int v) {
-	used[v] = true;
-	int i;
-	for (i = 0; i < (int)G[v].size(); ++i) {
-		int u = G[v][i];
-		int w = match[u];
-		if (w < 0 || !used[w] && dfs(w)) {
-			match[v] = u;
-			match[u] = v;
-			return true;
+	int match() {
+		int matched = 0;
+		_match = vector<int>(_size, -1);
+		for (int i = 0; i < _size; ++i) {
+			if (_left[i] && _match[i] < 0) {
+				_visited = vector<int>(_size);
+				matched += dfs(i);
+			}
 		}
+		return matched;
 	}
-	return false;
-}
 
-int main(int argc, char *argv[]) {
-	cin >> r >> c;
-	vector<string> b(r + 2, string(c + 2, '*'));
-	for (int i = 0; i < r; ++i) {
-		string s;
-		cin >> s;
-		b[i + 1] = "*" + s + "*";
+	bool dfs(int n) {
+		_visited[n] = 1;
+		for (auto x : _edges[n]) {
+			auto& w = _match[x];
+			if (w < 0 || (!_visited[w] && dfs(w))) {
+				_match[n] = x;
+				w = n;
+				return true;
+			}
+		}
+		return false;
 	}
-	for (int y = 1; y <= r; ++y) {
-		for (int x = 1; x <= c; ++x) {
-			if (b[y][x] == '.') {
-				for (int d = 0; d < 2; ++d) {
-					int nx = x + dx[d], ny = y + dy[d];
-					if (b[ny][nx] == '.') {
-						add_edge(y * c + x, ny * c + nx);
+
+	vector<int> getMaximumIndependentSet() {
+		match();
+		vector<vector<int>> edges(_size);
+		vector<int> visited(_size);
+		vector<int> q;
+		for (int i = 0; i < _size; ++i) {
+			if (_left[i]) {
+				for (auto x : _edges[i]) {
+					if (_match[i] == x) {
+						edges[x].emplace_back(i);
+					} else {
+						edges[i].emplace_back(x);
+					}
+				}
+				if (_match[i] < 0) {
+					q.emplace_back(i);
+				}
+			}
+		}
+		while (!q.empty()) {
+			auto n = q.back();
+			q.pop_back();
+			visited[n] = 1;
+			for (auto x : edges[n]) {
+				if (!visited[x]) {
+					q.emplace_back(x);
+				}
+			}
+		}
+		vector<int> s;
+		for (int i = 0; i < _size; ++i) {
+			if ((_left[i] && visited[i]) || (_right[i] && !visited[i])) {
+				s.emplace_back(i);
+			}
+		}
+		return s;
+	}
+};
+
+const int dx[4] = { -1,1,0,0 };
+const int dy[4] = { 0,0,-1,1 };
+
+int solve(int H, int W, vector<string>& field) {
+	int total = 0;
+	auto yx = [&](int y, int x) { return y * W + x; };
+	BipartiteMatching bm(H * W);
+	for (int y = 0; y < H; ++y) {
+		for (int x = 0; x < W; ++x) {
+			if (field[y][x] == '.') {
+				++total;
+				if ((y + x) % 2 == 0) {
+					bm.set_left(yx(y, x));
+					for (int dir = 0; dir < 4; ++dir) {
+						int ny = y + dy[dir], nx = x + dx[dir];
+						if (ny >= 0 && ny < H && nx >= 0 && nx < W && field[ny][nx] == '.') {
+							bm.add_edge(yx(y, x), yx(ny, nx));
+						}
 					}
 				}
 			}
 		}
 	}
-	// max independent set = total - bipartite matching
-	int total = 0, matched = 0;
-	fill(match, match + 2000, -1);
-	for (int y = 1; y <= r; ++y) {
-		for (int x = 1; x <= c; ++x) {
-			if (b[y][x] == '.') {
-				++total;
-				int z = y * c + x;
-				if (match[z] < 0) {
-					fill(used, used + 2000, false);
-					matched += dfs(z);
-				}
-			}
-		}
+	return total - bm.match();
+}
+
+int main() {
+	int H, W, ans;
+	cin >> H >> W;
+	vector<string> field(H);
+	for (int i = 0; i < H; i++) {
+		cin >> field[i];
 	}
-	int ans = total - matched;
-	cout << ans << endl;
+	cout << solve(H, W, field) << endl;
 	return 0;
 }
