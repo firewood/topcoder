@@ -129,141 +129,91 @@ Returns: {"P.P.P.P.P", "#########", "P#P.P.P.#", ".########", "P#P.P.P##" }
 
 using namespace std;
 
-// https://github.com/atcoder/ac-library/blob/master/atcoder/maxflow.hpp
-template <class Cap> struct mf_graph {
+class BipartiteMatching {
+	int _size;
+	vector<int> _left;
+	vector<int> _right;
+	vector<vector<int>> _edges;
+	vector<int> _match;
+	vector<int> _visited;
 public:
-	mf_graph() : _n(0) {}
-	explicit mf_graph(int n) : _n(n), g(n) {}
-
-	int add_edge(int from, int to, Cap cap) {
-		assert(0 <= from && from < _n);
-		assert(0 <= to && to < _n);
-		assert(0 <= cap);
-		int m = int(pos.size());
-		pos.push_back({ from, int(g[from].size()) });
-		int from_id = int(g[from].size());
-		int to_id = int(g[to].size());
-		if (from == to) to_id++;
-		g[from].push_back(_edge{ to, to_id, cap });
-		g[to].push_back(_edge{ from, from_id, 0 });
-		return m;
+	BipartiteMatching(int size) : _size(size) {
+		_left.resize(size);
+		_right.resize(size);
+		_edges = vector<vector<int>>(size);
 	}
 
-	struct edge {
-		int from, to;
-		Cap cap, flow;
-	};
+	void set_left(int n) { _left[n] = 1; }
 
-	edge get_edge(int i) {
-		int m = int(pos.size());
-		assert(0 <= i && i < m);
-		auto _e = g[pos[i].first][pos[i].second];
-		auto _re = g[_e.to][_e.rev];
-		return edge{ pos[i].first, _e.to, _e.cap + _re.cap, _re.cap };
-	}
-	std::vector<edge> edges() {
-		int m = int(pos.size());
-		std::vector<edge> result;
-		for (int i = 0; i < m; i++) {
-			result.push_back(get_edge(i));
-		}
-		return result;
-	}
-	void change_edge(int i, Cap new_cap, Cap new_flow) {
-		int m = int(pos.size());
-		assert(0 <= i && i < m);
-		assert(0 <= new_flow && new_flow <= new_cap);
-		auto& _e = g[pos[i].first][pos[i].second];
-		auto& _re = g[_e.to][_e.rev];
-		_e.cap = new_cap - new_flow;
-		_re.cap = new_flow;
+	void set_right(int n) { _right[n] = 1; }
+
+	void add_edge(int left, int right) {
+		_edges[left].emplace_back(right);
+		_edges[right].emplace_back(left);
 	}
 
-	Cap flow(int s, int t) {
-		return flow(s, t, std::numeric_limits<Cap>::max());
-	}
-
-	void bfs(int s, int t, vector<int>& level, deque<int>& que) {
-		std::fill(level.begin(), level.end(), -1);
-		level[s] = 0;
-		que.clear();
-		que.push_back(s);
-		while (!que.empty()) {
-			int v = que.front();
-			que.pop_front();
-			for (auto e : g[v]) {
-				if (e.cap == 0 || level[e.to] >= 0) continue;
-				level[e.to] = level[v] + 1;
-				if (e.to == t) return;
-				que.push_back(e.to);
+	int match() {
+		int matched = 0;
+		_match = vector<int>(_size, -1);
+		for (int i = 0; i < _size; ++i) {
+			if (_left[i] && _match[i] < 0) {
+				_visited = vector<int>(_size);
+				matched += dfs(i);
 			}
 		}
-	};
-
-	Cap dfs(int s, vector<int> &level, vector<int>&iter, int v, Cap up) {
-		if (v == s) return up;
-		Cap res = 0;
-		int level_v = level[v];
-		for (int& i = iter[v]; i < int(g[v].size()); i++) {
-			_edge& e = g[v][i];
-			if (level_v <= level[e.to] || g[e.to][e.rev].cap == 0) continue;
-			Cap d = dfs(s, level, iter, e.to, std::min(up - res, g[e.to][e.rev].cap));
-			if (d <= 0) continue;
-			g[v][i].cap += d;
-			g[e.to][e.rev].cap -= d;
-			res += d;
-			if (res == up) return res;
-		}
-		level[v] = _n;
-		return res;
-	};
-
-	Cap flow(int s, int t, Cap flow_limit) {
-		assert(0 <= s && s < _n);
-		assert(0 <= t && t < _n);
-		assert(s != t);
-
-		std::vector<int> level(_n), iter(_n);
-		deque<int> que;
-
-		Cap flow = 0;
-		while (flow < flow_limit) {
-			bfs(s, t, level, que);
-			if (level[t] == -1) break;
-			std::fill(iter.begin(), iter.end(), 0);
-			Cap f = dfs(s, level, iter, t, flow_limit - flow);
-			if (!f) break;
-			flow += f;
-		}
-		return flow;
+		return matched;
 	}
 
-	std::vector<bool> min_cut(int s) {
-		std::vector<bool> visited(_n);
-		deque<int> que;
-		que.push_back(s);
-		while (!que.empty()) {
-			int p = que.front();
-			que.pop_front();
-			visited[p] = true;
-			for (auto e : g[p]) {
-				if (e.cap && !visited[e.to]) {
-					visited[e.to] = true;
-					que.push_back(e.to);
+	bool dfs(int n) {
+		_visited[n] = 1;
+		for (auto x : _edges[n]) {
+			auto& w = _match[x];
+			if (w < 0 || (!_visited[w] && dfs(w))) {
+				_match[n] = x;
+				w = n;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	vector<int> getMaximumIndependentSet() {
+		match();
+		vector<vector<int>> edges(_size);
+		vector<int> visited(_size);
+		vector<int> q;
+		for (int i = 0; i < _size; ++i) {
+			if (_left[i]) {
+				for (auto x : _edges[i]) {
+					if (_match[i] == x) {
+						edges[x].emplace_back(i);
+					} else {
+						edges[i].emplace_back(x);
+					}
+				}
+				if (_match[i] < 0) {
+					q.emplace_back(i);
 				}
 			}
 		}
-		return visited;
+		while (!q.empty()) {
+			auto n = q.back();
+			q.pop_back();
+			visited[n] = 1;
+			for (auto x : edges[n]) {
+				if (!visited[x]) {
+					q.emplace_back(x);
+				}
+			}
+		}
+		vector<int> s;
+		for (int i = 0; i < _size; ++i) {
+			if ((_left[i] && visited[i]) || (_right[i] && !visited[i])) {
+				s.emplace_back(i);
+			}
+		}
+		return s;
 	}
-
-private:
-	int _n;
-	struct _edge {
-		int to, rev;
-		Cap cap;
-	};
-	std::vector<std::pair<int, int>> pos;
-	std::vector<std::vector<_edge>> g;
 };
 
 const int dx[4] = { -1,1,0,0 };
@@ -273,84 +223,34 @@ class Potatoes {
 
 public:
 	vector <string> plant(vector <string> field, int N) {
-		int H = field.size(), W = field[0].length(), st = H * W * 2, ed = H * W * 2 + 1;
-
-		// フローによる二部マッチング
-		mf_graph<int> g(H * W * 2 + 2);
+		int H = field.size(), W = field[0].length();
+		auto yx = [&](int y, int x) { return y * W + x; };
+		BipartiteMatching bm(H * W);
 		for (int y = 0; y < H; ++y) {
-			for (int x = 0; N > 0 && x < W; ++x) {
+			for (int x = 0; x < W; ++x) {
 				if (field[y][x] == '.') {
-					if (((x + y) % 2) == 0) {
-						// 左側
-						g.add_edge(st, y * W + x, 1);
+					if ((y + x) % 2 == 0) {
+						bm.set_left(yx(y, x));
 						for (int dir = 0; dir < 4; ++dir) {
 							int ny = y + dy[dir], nx = x + dx[dir];
-							if (ny >= 0 && ny < H && nx >= 0 && nx < W) {
-								g.add_edge(y * W + x, ny * W + nx, 1);
+							if (ny >= 0 && ny < H && nx >= 0 && nx < W && field[ny][nx] == '.') {
+								bm.add_edge(yx(y, x), yx(ny, nx));
 							}
 						}
 					} else {
-						// 右側
-						g.add_edge(y * W + x, ed, 1);
+						bm.set_right(yx(y, x));
 					}
 				}
 			}
 		}
-		g.flow(st, ed);
-
-		// 最小点被覆を求めるための補助グラフを作る
-		vector<vector<int>> edges(H * W);
-		vector<int> visited(H * W), q;
-		for (auto edge : g.edges()) {
-			if (edge.from != st && edge.to != ed) {
-				if (edge.flow > 0) {
-					// マッチ端点は逆方向に貼る
-					edges[edge.to].emplace_back(edge.from);
-					visited[edge.from] = -1;
-				} else {
-					edges[edge.from].emplace_back(edge.to);
-				}
-			}
+		vector<int> mis = bm.getMaximumIndependentSet();
+		if (mis.size() < N) {
+			return {};
 		}
-		// 非マッチ端点を始点にする
-		for (auto edge : g.edges()) {
-			if (edge.from != st && edge.to != ed) {
-				if (!visited[edge.from]) {
-					q.emplace_back(edge.from);
-				}
-			}
+		for (int i = 0; i < N; ++i) {
+			field[mis[i] / W][mis[i] % W] = 'P';
 		}
-		// 非マッチ端点から到達可能点を求める
-		while (!q.empty()) {
-			int n = q.back();
-			q.pop_back();
-			visited[n] = 1;
-			for (auto e : edges[n]) {
-				if (visited[e] != 1) {
-					q.emplace_back(e);
-				}
-			}
-		}
-
-		// 最大独立集合(どの2頂点も辺で結ばれていない)を求める
-		auto place = [&](int y, int x) {
-			if (N > 0 && field[y][x] == '.') {
-				field[y][x] = 'P';
-				--N;
-			}
-		};
-		for (auto edge : g.edges()) {
-			if (edge.from == st && visited[edge.to] == 1) {
-				// 左側かつ到達可能点
-				place(edge.to / W, edge.to % W);
-			}
-			if (edge.to == ed && !visited[edge.from]) {
-				// 右側かつ到達不可能点
-				place(edge.from / W, edge.from % W);
-			}
-		}
-
-		return N == 0 ? field : vector<string>();
+		return field;
 	}
 
 // BEGIN CUT HERE
@@ -381,12 +281,19 @@ public:
 
 		// test_case_0
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {"........",
- "........",
- "........",
- "........"};
+			string Arr0[] = {
+				"........",
+				 "........",
+				 "........",
+				 "........"
+			};
 			int Arg1 = 3;
-			string Arr2[] = {"P.P.P...", "........", "........", "........" };
+			string Arr2[] = {
+				".P.P.P..",
+				"........",
+				"........",
+				"........"
+			};
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
 			vector <string> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -400,9 +307,15 @@ public:
 				"####.###",
 				"##.#####",
 				"######.#",
-				"###.####"};
+				"###.####"
+			};
 			int Arg1 = 3;
-			string Arr2[] = {"####P###", "##P#####", "######P#", "###.####" };
+			string Arr2[] = {
+				"####P###",
+				"##P#####",
+				"######P#",
+				"###.####"
+			};
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
 			vector <string> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -418,10 +331,8 @@ public:
 				"######.#",
 				"##..####"};
 			int Arg1 = 5;
-//			string Arr2[] = { };
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
-//			vector <string> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
 			vector <string> Arg2;
 			verify_case(n, Arg2, plant(Arg0, Arg1));
 		}
@@ -429,13 +340,21 @@ public:
 
 		// test_case_3
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {".........",
- ".........",
- ".........",
- ".........",
- "........."};
+			string Arr0[] = {
+				".........",
+				".........",
+				".........",
+				".........",
+				"........."
+			};
 			int Arg1 = 23;
-			string Arr2[] = {"P.P.P.P.P", ".P.P.P.P.", "P.P.P.P.P", ".P.P.P.P.", "P.P.P.P.P" };
+			string Arr2[] = {
+				"P.P.P.P.P",
+				".P.P.P.P.",
+				"P.P.P.P.P",
+				".P.P.P.P.",
+				"P.P.P.P.P"
+			};
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
 			vector <string> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
@@ -445,16 +364,16 @@ public:
 
 		// test_case_4
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {".........",
- ".........",
- ".........",
- ".........",
- "........."};
+			string Arr0[] = {
+				".........",
+				".........",
+				".........",
+				".........",
+				"........."
+			};
 			int Arg1 = 24;
-//			string Arr2[] = { };
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
-			//vector <string> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
 			vector <string> Arg2;
 			verify_case(n, Arg2, plant(Arg0, Arg1));
 		}
@@ -462,24 +381,27 @@ public:
 
 		// test_case_5
 		if ((Case == -1) || (Case == n)){
-			string Arr0[] = {".........",
- "#########",
- ".#......#",
- ".########",
- ".#.....##"};
+			string Arr0[] = {
+				".........",
+				"#########",
+				".#......#",
+				".########",
+				".#.....##"
+			};
 			int Arg1 = 13;
-			string Arr2[] = {"P.P.P.P.P", "#########", "P#P.P.P.#", ".########", "P#P.P.P##" };
+			string Arr2[] = {
+				"P.P.P.P.P",
+				"#########",
+				"P#.P.P.P#",
+				".########",
+				"P#P.P.P##"
+			};
 
 			vector <string> Arg0(Arr0, Arr0 + (sizeof(Arr0) / sizeof(Arr0[0])));
 			vector <string> Arg2(Arr2, Arr2 + (sizeof(Arr2) / sizeof(Arr2[0])));
 			verify_case(n, Arg2, plant(Arg0, Arg1));
 		}
 		n++;
-
-
-
-
-
 
 
 		if ((Case == -1) || (Case == n)) {
@@ -492,7 +414,6 @@ public:
 			verify_case(n, Arg2, plant(Arg0, Arg1));
 		}
 		n++;
-
 
 
 		if ((Case == -1) || (Case == n)) {
@@ -511,7 +432,6 @@ public:
 			verify_case(n, Arg2, plant(Arg0, Arg1));
 		}
 		n++;
-
 
 
 		if ((Case == -1) || (Case == n)) {
