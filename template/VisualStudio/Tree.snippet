@@ -14,10 +14,10 @@
 	vector<vector<int64_t>> _edges;
 	vector<int64_t> _vis;
 
-	Tree(int64_t size) : _size(size), _edges(size), _vis(size) { }
+	Tree(int64_t size) : _size(size + 2), _edges(size + 2), _vis(size + 2) { }
 
 	void build_edges(const vector<int64_t>& a, const vector<int64_t>& b) {
-		for (int64_t i = 0; i < a.size(); ++i) {
+		for (size_t i = 0; i < a.size(); ++i) {
 			_edges[a[i]].emplace_back(b[i]);
 			_edges[b[i]].emplace_back(a[i]);
 		}
@@ -33,6 +33,25 @@
 				dfs(next);
 			}
 		}
+	}
+
+	vector<int64_t> bfs(int64_t start_node) {
+		vector<int64_t> dists(_size, INF), q;
+		dists[start_node] = 0;
+		q.emplace_back(start_node);
+		for (int turn = 1; !q.empty(); ++turn) {
+			vector<int64_t> nq;
+			for (auto node : q) {
+				for (auto next_node : _edges[node]) {
+					if (dists[next_node] >= INF) {
+						dists[next_node] = turn;
+						nq.emplace_back(next_node);
+					}
+				}
+			}
+			q = nq;
+		}
+		return dists;
 	}
 };
 ]]>
