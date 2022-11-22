@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>AnyOf</Title>
+      <Shortcut>AnyOf</Shortcut>
+      <Description>AnyOf</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>variable</ID>
+          <ToolTip>A</ToolTip>
+          <Default>A</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="cpp">
+        <![CDATA[bool has_any = any_of($variable$.begin(), $variable$.end(), [&](auto a) { return $end$true; });
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
