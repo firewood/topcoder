@@ -44,7 +44,9 @@ mint solve({{ formal_arguments }}) {
 {% endif %}
 
 {% else %}
+//vector<int64_t> solve({{ formal_arguments }}) {
 int64_t solve({{ formal_arguments }}) {
+//	vector<int64_t> ans(N);
 	int64_t ans = 0;
 {% endif %}
 {% if hw %}
@@ -76,6 +78,7 @@ int main() {
 {% elif mod %}
 	cout << solve({{ actual_arguments }}).val() << endl;
 {% else %}
+//	vector<int64_t> ans = solve({{ actual_arguments }});
 	cout << solve({{ actual_arguments }}) << endl;
 {% endif %}
 {% else %}
