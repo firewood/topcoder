@@ -14,6 +14,7 @@ template<typename T> inline T maximum(const T & a, const T & b) { return max(a, 
 template<typename T> inline T logicalAnd(const T& a, const T& b) { return a & b; }
 template<typename T> inline T logicalOr(const T& a, const T& b) { return a | b; }
 template<typename T> inline T exclusiveOr(const T& a, const T& b) { return a ^ b; }
+template<typename T> inline T gcd(const T& a, const T& b) { return b ? gcd(b, a % b) : a; }
 
 template<typename T, int64_t SIZE, T DEF_VAL, T Compare(const T&, const T&)>
 class SegmentTree {
@@ -51,6 +52,7 @@ public:
 typedef SegmentTree<int64_t, 1 << 18, 1LL << 60, minimum<int64_t>> MinSegTree;
 typedef SegmentTree<int64_t, 1 << 18,         0, maximum<int64_t>> MaxSegTree;
 typedef SegmentTree<int64_t, 1 << 18,         0, exclusiveOr<int64_t>> XorSegTree;
+typedef SegmentTree<int64_t, 1 << 18,         0, gcd<int64_t>> GcdSegTree;
 ]]>
       </Code>
     </Snippet>
