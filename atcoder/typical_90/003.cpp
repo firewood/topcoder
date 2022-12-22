@@ -38,9 +38,10 @@ struct Tree {
 		}
 	}
 
-	int get_diameter(int& start, int& end) {
+	int get_diameter(int &start, int &end) {
 		int max_dist = 0;
 		get_distance(-1, 0, 0, start, max_dist);
+		max_dist = 0;
 		get_distance(-1, start, 0, end, max_dist);
 		if (start > end) swap(start, end);
 		return max_dist;
