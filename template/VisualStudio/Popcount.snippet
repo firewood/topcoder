@@ -10,9 +10,9 @@
     <Snippet>
       <Code Language="cpp">
         <![CDATA[#ifdef _MSC_VER
-#define popcount __popcnt
+#define popcount __popcnt64
 #else
-#define popcount __builtin_popcount
+#define popcount __builtin_popcountll
 #endif
 ]]>
       </Code>
