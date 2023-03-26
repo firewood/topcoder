@@ -13,16 +13,12 @@
 using namespace std;
 
 int64_t solve(std::string S) {
-	int64_t ans = 0;
-	map<int, int> m;
-	vector<int> cnt(10);
-	int state = 0;
-	m[0] = 1;
+	int64_t ans = 0, state = 0;
+	map<int64_t, int64_t> m;
 	for (auto c : S) {
-		int d = c - '0';
-		state ^= (1 << d);
-		ans += m[state];
 		m[state] += 1;
+		state ^= (1LL << (c - '0'));
+		ans += m[state];
 	}
 	return ans;
 }
