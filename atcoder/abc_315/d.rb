@@ -3,9 +3,9 @@
 require 'set'
 
 def collect(rows)
-  counts = rows.map do |row|
-    count = [0] * 26
-    row.each { |c| count[c] += 1 }
+  counts = rows.map do |chars|
+    count = Array.new(26, 0)
+    chars.each { |c| count[c] += 1 }
     count
   end
   kinds = counts.map do |row|
@@ -14,45 +14,39 @@ def collect(rows)
   [counts, kinds]
 end
 
-def check(kinds)
+def get_erasable_rows(kinds)
   (kinds.size).times.select { |r| kinds[r] == 1 }
 end
 
-def erase(chars, remain_rows, remain_columns, column_kinds, columns, row_index)
-  remain_rows.delete(row_index)
-  remain_columns.select do |column|
-    char = chars[row_index][column]
-    columns[column][char] -= 1
-    if columns[column][char] == 0
-      column_kinds[column] -= 1
-      column_kinds[column] == 1
+def erase(chars, remain_rows, remain_columns, column_counts, column_kinds, r)
+  remain_rows.delete(r)
+  remain_columns.select do |c|
+    if (column_counts[c][chars[r][c]] -= 1) == 0
+      (column_kinds[c] -= 1) == 1
     end
   end
 end
 
 (h, w) = gets.split(' ').map(&:to_i)
-c = []
-h.times.each { |i| c << gets.chomp }
+row_chars = h.times.map { |_| gets.chomp.bytes.map { |b| b - 'a'.ord } }
+(row_counts, row_kinds) = collect(row_chars)
+column_chars = row_chars.transpose
+(column_counts, column_kinds) = collect(column_chars)
 
-chars = c.map.each { |row| row.chars.map { |c| c.ord - 'a'.ord } }
-rotated_chars = chars.transpose
-(rows, row_kinds) = collect(chars)
-(columns, column_kinds) = collect(rotated_chars)
-
-row_q = check(row_kinds)
-col_q = check(column_kinds)
+rows_to_erase = get_erasable_rows(row_kinds)
+cols_to_erase = get_erasable_rows(column_kinds)
 remain_rows = Set.new(h.times)
 remain_columns = Set.new(w.times)
-while !row_q.empty? || !col_q.empty?
-  col_s = row_q.map { |row| erase(chars, remain_rows, remain_columns, column_kinds, columns, row) }
-  h -= row_q.size
-  row_q = []
-  col_q += col_s.flatten if h >= 2
+while !rows_to_erase.empty? || !cols_to_erase.empty?
+  next_cols_to_erase = rows_to_erase.map { |r| erase(row_chars, remain_rows, remain_columns, column_counts, column_kinds, r) }
+  h -= rows_to_erase.size
+  rows_to_erase = []
+  cols_to_erase += next_cols_to_erase.flatten if h >= 2
 
-  row_s = col_q.map { |column| erase(rotated_chars, remain_columns, remain_rows, row_kinds, rows, column) }
-  w -= col_q.size
-  col_q = []
-  row_q = row_s.flatten if w >= 2
+  next_rows_to_erase = cols_to_erase.map { |c| erase(column_chars, remain_columns, remain_rows, row_counts, row_kinds, c) }
+  w -= cols_to_erase.size
+  cols_to_erase = []
+  rows_to_erase = next_rows_to_erase.flatten if w >= 2
 end
 
 puts h * w
