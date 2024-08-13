@@ -82,18 +82,36 @@ int main() {
 	cout << solve({{ actual_arguments }}) << endl;
 {% endif %}
 {% else %}
-	int64_t N, M, ans = 0;
+	int64_t N, M, T, Q;
+	int64_t H, W;
+	int64_t ans = 0;
+	//bool ans = false;
 
 	cin >> N >> M;
+	//cin >> H >> W;
+	//cin >> T;
+	//cin >> Q;
 
-	std::vector<int64_t> X(N), Y(N);
+	vector<int64_t> A(N);
 	for (int i = 0; i < N; i++) {
-		std::cin >> X[i] >> Y[i];
+		cin >> A[i];
+	}
+
+	vector<int64_t> X(N), Y(N);
+	for (int i = 0; i < N; i++) {
+		cin >> X[i] >> Y[i];
+	}
+
+	vector<string> b(H);
+	for (int i = 0; i < H; ++i) {
+		cin >> b[i];
 	}
 
 
 
+
 	cout << ans << endl;
+	//cout << (ans ? "Yes" : "No") << endl;
 {% endif %}
 	return 0;
 }
