@@ -9,30 +9,33 @@
     </Header>
     <Snippet>
       <Code Language="cpp">
-        <![CDATA[class BIT {
-	std::vector<int64_t> bit;
-	int64_t size;
-public:
-	BIT() { }
-	BIT(int64_t sz) { init(sz); }
-	void init(int64_t sz) {
-		bit = std::vector<int64_t>((size = sz) + 1);
-	}
-	int64_t sum(int64_t i) {
-		int64_t s = 0;
-		while (i > 0) {
-			s += bit[i];
-			i -= i & -i;
+        <![CDATA[#include <atcoder/fenwicktree>
+
+template<typename T> struct BIT {
+	int _size;
+	atcoder::fenwick_tree<T> ft;
+	BIT(int size) : _size(size), ft(size) { }
+	void add(int pos, T value) { ft.add(pos, value); }
+	T range_sum(int from, int to) { return ft.sum(from, to); }
+	T sum(int pos) { return range_sum(0, pos); }
+	int lower_bound(int64_t value) {
+		int left = -1, right = _size;
+		while (right - left > 1) {
+			int mid = (left + right) / 2;
+			if (sum(mid + 1) >= value) { right = mid; } else { left = mid; }
 		}
-		return s;
-}
-	void add(int64_t i, int64_t x) {
-		while (i <= size) {
-			bit[i] += x;
-			i += i & -i;
-		}
+		return right;
 	}
+	void set_all(void) { for (int i = 0; i < _size; ++i) { insert(i); } }
+	int size(void) { return int(sum(_size)); }
+	void insert(int x) { add(x, 1); }
+	void erase(int x) { add(x, -1); }
+	int nth_smallest(int rank) { return (rank >= 1 && rank <= size()) ? lower_bound(rank) : -1; }
+	int nth_biggest(int rank) { return nth_smallest(_size + 1 - rank); }
 };
+
+//BIT<int64_t> bit(N);
+//BIT<int64_t> bit(1000002);
 ]]>
       </Code>
     </Snippet>

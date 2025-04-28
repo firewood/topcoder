@@ -13,19 +13,19 @@
 	int64_t size;
 	vector<int64_t> edge_costs;
 	vector<vector<pair<int, int>>> edges;
-	vector<int> used_edges;
+	vector<int> min_from;
 	vector<int64_t> min_costs;
 
 	Dijkstra(int64_t size_) : size(size_), edges(size) { }
 
-	void build_unidirectional_edges(std::vector<int64_t>& from, std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {
+	void build_unidirectional_edges(const std::vector<int64_t>& from, const std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {
 		edge_costs = !costs.empty() ? costs : std::vector<int64_t>(from.size(), 1);
 		for (size_t i = 0; i < from.size(); ++i) {
 			edges[from[i]].emplace_back(make_pair(int(to[i]), int(i)));
 		}
 	}
 
-	void build_bidirectional_edges(std::vector<int64_t>& from, std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {
+	void build_bidirectional_edges(const std::vector<int64_t>& from, const std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {
 		edge_costs = !costs.empty() ? costs : std::vector<int64_t>(from.size(), 1);
 		for (size_t i = 0; i < from.size(); ++i) {
 			edges[from[i]].emplace_back(make_pair(int(to[i]), int(i)));
@@ -33,18 +33,19 @@
 		}
 	}
 
-	vector<int> dijkstra(int64_t start) {
+	vector<int64_t> &dijkstra(int64_t start) {
 		priority_queue<pair<int64_t, pair<int, int>>, vector<pair<int64_t, pair<int, int>>>, greater<>> q;
 		auto push_edges = [&](int64_t cost, int64_t node) {
 			for (auto kv : edges[node]) {
 				int64_t next_node = kv.first, next_cost = cost + edge_costs[kv.second];
 				if (next_cost < min_costs[next_node]) {
+					min_from[next_node] = int(node);
 					min_costs[next_node] = next_cost;
 					q.emplace(make_pair(next_cost, make_pair(int(next_node), kv.second)));
 				}
 			}
 		};
-		used_edges.clear();
+		min_from = vector<int>(size, -1);
 		min_costs = vector<int64_t>(size, 1LL << 60);
 		min_costs[start] = 0;
 		push_edges(0, start);
@@ -52,21 +53,23 @@
 			int64_t cost = q.top().first, node = q.top().second.first, edge = q.top().second.second;
 			q.pop();
 			if (cost == min_costs[node]) {
-				used_edges.emplace_back(int(edge));
 				push_edges(cost, node);
 			}
 		}
-		return used_edges;
-	}
-
-	vector<int64_t>& get_min_costs(int64_t start) {
-		dijkstra(start);
 		return min_costs;
 	}
 
-	vector<int>& get_used_edges(int64_t start) {
-		dijkstra(start);
-		return used_edges;
+	vector<int> get_min_path(int from, int to) {
+		vector<int> path(1, to);
+		int node = to;
+		while (node != from) {
+			int from_node = min_from[node];
+			if (from_node < 0) return {};
+			path.emplace_back(from_node);
+			node = from_node;
+		}
+		reverse(path.begin(), path.end());
+		return path;
 	}
 };
 ]]>

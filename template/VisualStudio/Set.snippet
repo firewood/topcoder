@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Set</Title>
+      <Shortcut>Set</Shortcut>
+      <Description>Set</Description>
+      <Author>firewood</Author>
+    </Header>
+    <Snippet>
+      <Code Language="cpp">
+        <![CDATA[template<typename T> struct Set {
+	using Iterator = typename set<T>::iterator;
+	set<T> s;
+	Set() { }
+	void clear() { s.clear(); }
+	bool insert(T value) { return s.insert(value).second; }
+	bool erase(T value) { return s.erase(value) > 0; }
+	bool exists(T value) { return find(value) != s.end(); }
+	Iterator find(T value) { return s.find(value); }
+	Iterator lower_bound(T value) { return s.lower_bound(value); }
+	Iterator less_than_eq(T value) {
+		auto it = lower_bound(value);
+		if (it == s.end()) return s.empty() ? s.end() : --it;
+		if (*it == value) return it;
+		return it == s.begin() ? s.end() : --it;
+	}
+};
+
+//Set<int64_t> s;
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
