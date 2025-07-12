@@ -29,8 +29,8 @@ typedef pair<int64_t, int64_t> II;
 typedef pair<int64_t, II> III;
 
 static const int64_t INF = 1LL << 60;
-{% if prediction_success %}
 
+{% if prediction_success %}
 {% if yes_str %}
 bool solve({{ formal_arguments }}) {
 	bool ans = false;
@@ -68,6 +68,14 @@ int64_t solve({{ formal_arguments }}) {
 
 	return ans;
 }
+{% else %}
+int64_t solve(int N, vector<int64_t> &A) {
+	int64_t ans = 0;
+	//bool ans = false;
+
+
+	return ans;
+}
 {% endif %}
 
 int main() {
@@ -82,6 +90,47 @@ int main() {
 	cout << solve({{ actual_arguments }}) << endl;
 {% endif %}
 {% else %}
+
+/*
+	int64_t T, N, M;
+	cin >> T;
+	for (int ti = 0; ti < T; ++ti) {
+		cin >> N;
+		vector<int64_t> A(N);
+		for (int i = 0; i < N; i++) {
+			cin >> A[i];
+		}
+		int64_t ans = solve(N, A);
+		cout << ans << endl;
+		//cout << (ans ? "Yes" : "No") << endl;
+	}
+*/
+
+/*
+	int64_t N, M, Q, type, a, b, c, k, x;
+	cin >> Q;
+	for (int qi = 0; qi < Q; ++qi) {
+		cin >> type;
+		if (type == 1) {
+			cin >> x;
+
+		}
+		if (type == 2) {
+			int64_t ans = 0;
+			cin >> x;
+
+			cout << ans << endl;
+		}
+		if (type == 3) {
+			int64_t ans = 0;
+			cin >> x;
+
+			cout << ans << endl;
+		}
+	}
+*/
+
+
 	int64_t N, M, T, Q;
 	int64_t H, W;
 	int64_t ans = 0;
