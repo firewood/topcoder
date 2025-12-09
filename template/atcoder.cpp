@@ -80,15 +80,23 @@ int64_t solve(int N, vector<int64_t> &A) {
 
 int main() {
 {% if prediction_success %}
-	{{input_part}}
-{% if yes_str %}
-	cout << (solve({{ actual_arguments }}) ? "{{ yes_str }}" : "{{ no_str }}") << endl;
-{% elif mod %}
-	cout << solve({{ actual_arguments }}).val() << endl;
+{% if multi_cases %}
+	int T;
+	cin >> T;
+	for (int ti = 0; ti < T; ++ti) {
 {% else %}
-//	vector<int64_t> ans = solve({{ actual_arguments }});
-	cout << solve({{ actual_arguments }}) << endl;
+	{
 {% endif %}
+		{{input_part}}
+{% if yes_str %}
+		cout << (solve({{ actual_arguments }}) ? "{{ yes_str }}" : "{{ no_str }}") << endl;
+{% elif mod %}
+		cout << solve({{ actual_arguments }}).val() << endl;
+{% else %}
+//		vector<int64_t> ans = solve({{ actual_arguments }});
+		cout << solve({{ actual_arguments }}) << endl;
+{% endif %}
+	}
 {% else %}
 
 /*
