@@ -2,6 +2,7 @@
 /**/.vscode/launch.json
 /**/.vscode/tasks.json
 /**/metadata.json
+/**/main
 /**/in.txt
 /**/in_?.txt
 /**/out_?.txt
