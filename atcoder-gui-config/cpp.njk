@@ -1,0 +1,125 @@
+#include <algorithm>
+#include <bitset>
+#include <cassert>
+#include <cmath>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <deque>
+#include <fstream>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <utility>
+#include <vector>
+{% if mod %}
+#include <atcoder/modint>
+{% endif %}
+
+using namespace std;
+{% set cpp_return_value_type = "void" %}
+{% set cpp_output_value = "ans" %}
+{% if mod %}
+{% set cpp_return_value_type = "mint" %}
+{% set cpp_output_value = "ans.val()" %}
+const int64_t MOD = {{ mod }};
+{% if mod == 998244353 or mod == 1000000007 %}
+using mint = atcoder::modint{{ mod }};
+{% endif %}
+{% elif return_type == "bool" %}
+{% set cpp_return_value_type = "bool" %}
+{% set cpp_output_value = "(ans ? YES : NO)" %}
+const string YES = "{{ yes_str }}";
+const string NO = "{{ no_str }}";
+{% elif return_type == "int" %}
+{% if multiple_columns and multiple_rows %}
+{% set cpp_return_value_type = "pair<int64_t, int64_t>" %}
+{% set cpp_output_value = "ans.first << \" \" << ans.second" %}
+{% else %}
+{% set cpp_return_value_type = "int64_t" %}
+{% endif %}
+{% elif return_type == "float" %}
+{% set cpp_return_value_type = "LD" %}
+typedef long double LD;
+{% elif return_type == "string" %}
+{% set cpp_return_value_type = "string" %}
+{% endif %}
+{% if multiple_columns or multiple_rows %}
+{% set cpp_return_type = "std::vector<" + cpp_return_value_type + ">" %}
+{% else %}
+{% set cpp_return_type = cpp_return_value_type %}
+{% endif %}
+
+{% if prediction_success %}
+{{ cpp_return_type }} solve({{ formal_arguments }}) {
+	{{ cpp_return_type }} ans;
+{% if query_cases %}
+	for (int qi = 0 ; qi < {{ query_loop_var }}; ++qi) {
+		int type;
+		cin >> type;
+		if (type == 1) {
+
+		}
+		if (type == 2) {
+
+		}
+		if (type == 3) {
+
+		}
+	}
+{% endif %}
+	return ans;
+}
+{% endif %}
+
+{% if multiple_cases %}
+void process_case() {
+{% else %}
+int main() {
+{% endif %}
+{% if prediction_success %}
+{% if return_type == "float" %}
+	cout.precision(20);
+{% endif %}
+{{ input_part | safe }}
+{% if cpp_return_type == "void" %}
+	solve({{ actual_arguments }});
+{% elif multiple_rows %}
+	auto answers = solve({{ actual_arguments }});
+	for (const auto ans : answers) {
+		cout << {{cpp_output_value}} << endl;
+	}
+{% elif multiple_columns %}
+	auto answers = solve({{ actual_arguments }});
+{% if variable_array %}
+	cout << answers.size() << endl;
+{% endif %}
+	for (int i = 0; i < answers.size(); i++) {
+		const auto ans = answers[i];
+		cout << (i > 0 ? " " : "") << {{cpp_output_value}};
+	}
+	if (!answers.empty()) cout << endl;
+{% else %}
+	auto ans = solve({{ actual_arguments }});
+	cout << {{cpp_output_value}} << endl;
+{% endif %}
+{% else %}
+	// Failed to predict input format
+{% endif %}
+}
+{% if multiple_cases %}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		process_case();
+	}
+}
+{% endif %}
