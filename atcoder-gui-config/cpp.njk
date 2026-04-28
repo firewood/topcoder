@@ -60,7 +60,7 @@ typedef long double LD;
 {{ cpp_return_type }} solve({{ formal_arguments }}) {
 	{{ cpp_return_type }} ans;
 {% if query_cases %}
-	for (int qi = 0 ; qi < {{ query_loop_var }}; ++qi) {
+	for (int qi = 0; qi < {{ query_loop_var }}; ++qi) {
 		int type;
 		cin >> type;
 		if (type == 1) {

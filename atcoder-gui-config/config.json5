@@ -1,16 +1,28 @@
 {
-  theme: 'light',
-  defaultUrl: 'https://atcoder.jp/home',
+  theme: "light",
+  defaultUrl: "https://atcoder.jp/home",
   windowSize: {
     width: 1200,
     height: 900,
   },
-  workspaceDir: '~/topcoder/atcoder',
-  language: 'cpp',
+  workspaceDir: "~/topcoder/atcoder",
+  language: "cpp",
   createContestDirectory: true,
   buildCommand: {
-    cpp: 'g++ -O3 -std=c++23 -DNDEBUG main.cpp -o main',
+    cpp: "g++ -O3 -std=c++23 -DNDEBUG main.cpp -o main",
   },
+  runCommand: {
+    python: "uv run main.py",
+  },
+  allowedCommands: [
+    "ls",
+    "dir",
+    "pwd",
+    "code",
+    "make",
+    "git",
+    "g",
+  ],
   preProcess: {
     execOnEachProblemDir: "cp -a ~/topcoder/atcoder/.vscode .",
   },

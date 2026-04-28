@@ -13,7 +13,7 @@
   type: {
     int: "int64_t",
     float: "LD",
-    str: "std::string",
+    str: "string",
   },
   default: {
     int: "0",
@@ -23,13 +23,13 @@
   arg: {
     int: "int64_t {name}",
     float: "LD {name}",
-    str: "std::string {name}",
-    seq: "std::vector<{type}> {name}",
-    "2d_seq": "std::vector<std::vector<{type}>> {name}",
+    str: "string {name}",
+    seq: "vector<{type}> {name}",
+    "2d_seq": "vector<vector<{type}>> {name}",
   },
   actual_arg: {
-    seq: "std::move({name})",
-    "2d_seq": "std::move({name})",
+    seq: "{name}",
+    "2d_seq": "{name}",
   },
   access: {
     seq: "{name}[{index}]",
@@ -38,21 +38,21 @@
   declare: {
     int: "int64_t {name}",
     float: "LD {name}",
-    str: "std::string {name}",
-    seq: "std::vector<{type}> {name}",
-    "2d_seq": "std::vector<std::vector<{type}>> {name}",
+    str: "string {name}",
+    seq: "vector<{type}> {name}",
+    "2d_seq": "vector<vector<{type}>> {name}",
   },
   allocate: {
     seq: "{name}.assign({length}, {default});",
-    "2d_seq": "{name}.assign({length_i}, std::vector<{type}>({length_j}));",
+    "2d_seq": "{name}.assign({length_i}, vector<{type}>({length_j}));",
   },
   declare_and_allocate: {
-    seq: "std::vector<{type}> {name}({length})",
-    "2d_seq": "std::vector<std::vector<{type}>> {name}({length_i}, std::vector<{type}>({length_j}))",
+    seq: "vector<{type}> {name}({length})",
+    "2d_seq": "vector<vector<{type}>> {name}({length_i}, vector<{type}>({length_j}))",
   },
   input: {
-    int: "std::cin >> {name};",
-    float: "std::cin >> {name};",
-    str: "std::cin >> {name};",
+    int: "cin >> {name};",
+    float: "cin >> {name};",
+    str: "cin >> {name};",
   },
 }
