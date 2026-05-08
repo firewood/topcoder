@@ -49,6 +49,7 @@
   declare_and_allocate: {
     seq: "vector<{type}> {name}({length})",
     "2d_seq": "vector<vector<{type}>> {name}({length_i}, vector<{type}>({length_j}))",
+    "2d_outer_only": "vector<vector<{type}>> {name}({length})",
   },
   input: {
     int: "cin >> {name};",
