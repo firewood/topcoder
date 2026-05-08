@@ -1,35 +1,56 @@
 {
-  theme: "light",
-  defaultUrl: "https://atcoder.jp/home",
-  windowSize: {
-    width: 1200,
-    height: 900,
+  // atcoder-gui configuration
+
+  // UI Theme: 'light' or 'dark'
+  "theme": "light",
+
+  // Default URL to navigate to
+  "defaultUrl": "https://atcoder.jp/home",
+
+  // Browser window size
+  "windowSize": {
+    "width": 1200,
+    "height": 900,
   },
-  workspaceDir: "~/topcoder/atcoder",
-  language: "cpp",
-  createContestDirectory: true,
-  buildCommand: {
-    cpp: "g++ -O3 -std=c++23 -DNDEBUG main.cpp -o main",
+
+  "workspaceDir": "~/topcoder/atcoder",
+
+  // Default language for code generation (e.g., 'cpp', 'python')
+  "language": "cpp",
+
+  // Whether to create a directory for each contest
+  "createContestDirectory": true,
+
+  // Default build commands
+  "buildCommand": {
+    // Default build command for C++
+    "cpp": "g++ -O3 -std=c++23 -DNDEBUG main.cpp -o main",
   },
-  runCommand: {
-    python: "uv run main.py",
+
+  "runCommand": {
+    "python": "uv run main.py",
   },
-  allowedCommands: [
-    "ls",
-    "dir",
-    "pwd",
-    "code",
-    "make",
-    "git",
-    "g",
-  ],
-  preProcess: {
-    execOnEachProblemDir: "cp -a ~/topcoder/atcoder/.vscode .",
+
+  // Commands allowed to be executed directly from the CLI
+  "allowedCommands": [
+      "ls",
+      "dir",
+      "pwd",
+      "code",
+      "make",
+      "git",
+      "g",
+    ],
+
+  "preProcess": {
+    "execOnEachProblemDir": "cp -a ~/topcoder/atcoder/.vscode ."
   },
-  postProcess: {
-    execOnEachProblemDir: "cp in_1.txt in.txt",
+
+  "postProcess": {
+    "execOnEachProblemDir": "cp in_1.txt in.txt"
   },
-  onEnter: {
-    execOnEachProblemDir: "code -r .",
+
+  "onEnter": {
+    "execOnEachProblemDir": "code -r . && code main.cpp"
   },
 }
