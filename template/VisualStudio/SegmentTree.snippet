@@ -49,10 +49,10 @@ public:
 		return find_rightmost_index(a, b, value, l, (l + r) / 2, i * 2);
 	}
 };
-typedef SegmentTree<int64_t, 1 << 18, 1LL << 60, minimum<int64_t>> MinSegTree;
-typedef SegmentTree<int64_t, 1 << 18,         0, maximum<int64_t>> MaxSegTree;
-typedef SegmentTree<int64_t, 1 << 18,         0, exclusiveOr<int64_t>> XorSegTree;
-typedef SegmentTree<int64_t, 1 << 18,         0, gcd<int64_t>> GcdSegTree;
+typedef SegmentTree<int64_t, 1 << 18,    1LL << 60, minimum<int64_t>> MinSegTree;
+typedef SegmentTree<int64_t, 1 << 18, -(1LL << 60), maximum<int64_t>> MaxSegTree;
+typedef SegmentTree<int64_t, 1 << 18,            0, exclusiveOr<int64_t>> XorSegTree;
+typedef SegmentTree<int64_t, 1 << 18,            0, gcd<int64_t>> GcdSegTree;
 ]]>
       </Code>
     </Snippet>
