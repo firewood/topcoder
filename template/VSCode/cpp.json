@@ -1,0 +1,413 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	//
+	// You can also restrict snippets to specific files using include/exclude patterns:
+	// "Test snippet": {
+	// 	"prefix": "test",
+	// 	"body": "test('$1', () => {\n\t$0\n});",
+	// 	"include": ["**/*.test.ts", "*.spec.ts"],
+	// 	"exclude": ["**/temp/*.ts"],
+	// 	"description": "Insert test block"
+	// }
+  "for loop: i": {
+    "prefix": ["fori", "forn"],
+    "body": ["for (int64_t i = 0; i < N; ++i) {", "\t", "}"],
+    "description": "for loop i"
+  },
+  "for loop: j": {
+    "prefix": ["forj"],
+    "body": ["for (int64_t j = 0; j < N; ++j) {", "\t", "}"],
+    "description": "for loop j"
+  },
+  "for loop: k": {
+    "prefix": ["fork"],
+    "body": ["for (int64_t k = 0; k < N; ++k) {", "\t", "}"],
+    "description": "for loop k"
+  },
+	"AnyOf": {
+		"prefix": "AnyOf",
+		"body": [
+			"bool has_any = any_of(${1:A}.begin(), ${1:A}.end(), [&](auto a) { return $0true; });"
+		],
+		"description": "AnyOf"
+	},
+	"BIT": {
+		"prefix": "BIT",
+		"body": [
+			"#include <atcoder/fenwicktree>",
+			"",
+			"template<typename T> struct BIT {",
+			"\tint _size;",
+			"\tatcoder::fenwick_tree<T> ft;",
+			"\tBIT(int size) : _size(size), ft(size) { }",
+			"\tvoid add(int pos, T value) { ft.add(pos, value); }",
+			"\tT range_sum(int from, int to) { return ft.sum(from, to); }",
+			"\tT sum(int pos) { return range_sum(0, pos); }",
+			"\tint lower_bound(int64_t value) {",
+			"\t\tint left = -1, right = _size;",
+			"\t\twhile (right - left > 1) {",
+			"\t\t\tint mid = (left + right) / 2;",
+			"\t\t\tif (sum(mid + 1) >= value) { right = mid; } else { left = mid; }",
+			"\t\t}",
+			"\t\treturn right;",
+			"\t}",
+			"\tvoid set_all(void) { for (int i = 0; i < _size; ++i) { insert(i); } }",
+			"\tint size(void) { return int(sum(_size)); }",
+			"\tvoid insert(int x) { add(x, 1); }",
+			"\tvoid erase(int x) { add(x, -1); }",
+			"\tint nth_smallest(int rank) { return (rank >= 1 && rank <= size()) ? lower_bound(rank) : -1; }",
+			"\tint nth_biggest(int rank) { return nth_smallest(_size + 1 - rank); }",
+			"};",
+			"",
+			"//BIT<int64_t> bit(N);",
+			"//BIT<int64_t> bit(1000002);"
+		],
+		"description": "BIT"
+	},
+	"BinarySearch": {
+		"prefix": "BinarySearch",
+		"body": [
+			"int64_t left = -1, right = 1LL << 60;",
+			"auto possible = [&](int64_t t) -> bool {",
+			"\tint64_t sum = 0;",
+			"\tfor (int i = 0; i < N; i++) {",
+			"",
+			"\t}",
+			"\treturn sum >= X;",
+			"};",
+			"while (right - left > 1) {",
+			"\tint64_t mid = (left + right) / 2;",
+			"\tif (possible(mid)) {",
+			"\t\tright = mid;",
+			"\t} else {",
+			"\t\tleft = mid;",
+			"\t}",
+			"}"
+		],
+		"description": "BinarySearch"
+	},
+	"Dijkstra": {
+		"prefix": "Dijkstra",
+		"body": [
+			"struct Dijkstra {",
+			"\tint64_t size;",
+			"\tvector<int64_t> edge_costs;",
+			"\tvector<vector<pair<int, int>>> edges;",
+			"\tvector<int> min_from;",
+			"\tvector<int64_t> min_costs;",
+			"",
+			"\tDijkstra(int64_t size_) : size(size_), edges(size) { }",
+			"",
+			"\tvoid build_unidirectional_edges(const std::vector<int64_t>& from, const std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {",
+			"\t\tedge_costs = !costs.empty() ? costs : std::vector<int64_t>(from.size(), 1);",
+			"\t\tfor (size_t i = 0; i < from.size(); ++i) {",
+			"\t\t\tedges[from[i]].emplace_back(make_pair(int(to[i]), int(i)));",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tvoid build_bidirectional_edges(const std::vector<int64_t>& from, const std::vector<int64_t>& to, std::vector<int64_t> costs = {}) {",
+			"\t\tedge_costs = !costs.empty() ? costs : std::vector<int64_t>(from.size(), 1);",
+			"\t\tfor (size_t i = 0; i < from.size(); ++i) {",
+			"\t\t\tedges[from[i]].emplace_back(make_pair(int(to[i]), int(i)));",
+			"\t\t\tedges[to[i]].emplace_back(make_pair(int(from[i]), int(i)));",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tvector<int64_t> &dijkstra(int64_t start) {",
+			"\t\tpriority_queue<pair<int64_t, pair<int, int>>, vector<pair<int64_t, pair<int, int>>>, greater<>> q;",
+			"\t\tauto push_edges = [&](int64_t cost, int64_t node) {",
+			"\t\t\tfor (auto kv : edges[node]) {",
+			"\t\t\t\tint64_t next_node = kv.first, next_cost = cost + edge_costs[kv.second];",
+			"\t\t\t\tif (next_cost < min_costs[next_node]) {",
+			"\t\t\t\t\tmin_from[next_node] = int(node);",
+			"\t\t\t\t\tmin_costs[next_node] = next_cost;",
+			"\t\t\t\t\tq.emplace(make_pair(next_cost, make_pair(int(next_node), kv.second)));",
+			"\t\t\t\t}",
+			"\t\t\t}",
+			"\t\t};",
+			"\t\tmin_from = vector<int>(size, -1);",
+			"\t\tmin_costs = vector<int64_t>(size, 1LL << 60);",
+			"\t\tmin_costs[start] = 0;",
+			"\t\tpush_edges(0, start);",
+			"\t\twhile (!q.empty()) {",
+			"\t\t\tint64_t cost = q.top().first, node = q.top().second.first, edge = q.top().second.second;",
+			"\t\t\tq.pop();",
+			"\t\t\tif (cost == min_costs[node]) {",
+			"\t\t\t\tpush_edges(cost, node);",
+			"\t\t\t}",
+			"\t\t}",
+			"\t\treturn min_costs;",
+			"\t}",
+			"",
+			"\tvector<int> get_min_path(int from, int to) {",
+			"\t\tvector<int> path(1, to);",
+			"\t\tint node = to;",
+			"\t\twhile (node != from) {",
+			"\t\t\tint from_node = min_from[node];",
+			"\t\t\tif (from_node < 0) return {};",
+			"\t\t\tpath.emplace_back(from_node);",
+			"\t\t\tnode = from_node;",
+			"\t\t}",
+			"\t\treverse(path.begin(), path.end());",
+			"\t\treturn path;",
+			"\t}",
+			"};"
+		],
+		"description": "Dijkstra"
+	},
+	"DxDy": {
+		"prefix": "DxDy",
+		"body": [
+			"const int dy[4] = { 0, 1, 0, -1 };",
+			"const int dx[4] = { 1, 0, -1, 0 };",
+			"for (int dir = 0; dir < 4; ++dir) {",
+			"\tint ny = y + dy[dir], nx = x + dx[dir];",
+			"\tif (ny < 0 || ny >= H || nx < 0 || nx >= W) continue;",
+			"",
+			"",
+			"}"
+		],
+		"description": "DxDy"
+	},
+	"GCD": {
+		"prefix": "GCD",
+		"body": [
+			"int64_t gcd(int64_t a, int64_t b) { return b ? gcd(b, a % b) : a; }",
+			"int64_t lcm(int64_t a, int64_t b) { return (a / gcd(a, b)) * b; }"
+		],
+		"description": "GCD"
+	},
+	"NextPermutation": {
+		"prefix": "NextPermutation",
+		"body": [
+			"vector<int> seq(9);",
+			"iota(seq.begin(), seq.end(), 0);",
+			"do {",
+			"\t$0",
+			"} while (next_permutation(seq.begin(), seq.end()));"
+		],
+		"description": "NextPermutation"
+	},
+	"OutputAns": {
+		"prefix": "OutputAns",
+		"body": [
+			"cout << ans.size() << endl;",
+			"if (!ans.empty()) {",
+			"\tfor (size_t i = 0; i < ans.size(); ++i) {",
+			"\t\tif (i) cout << \" \";",
+			"\t\tcout << ans[i];",
+			"\t}",
+			"\tcout << endl;",
+			"}"
+		],
+		"description": "OutputAns"
+	},
+	"Popcount": {
+		"prefix": "Popcount",
+		"body": [
+			"#ifdef _MSC_VER",
+			"#define popcount __popcnt64",
+			"#else",
+			"#define popcount __builtin_popcountll",
+			"#endif"
+		],
+		"description": "Popcount"
+	},
+	"Prime": {
+		"prefix": "Prime",
+		"body": [
+			"vector<int64_t> primes = { 2 };",
+			"for (int i = 3; i <= 1000003; i += 2) {",
+			"\tfor (int prime : primes) {",
+			"\t\tif (i < prime * prime) {",
+			"\t\t\tprimes.push_back(i);",
+			"\t\t\tbreak;",
+			"\t\t}",
+			"\t\tif ((i % prime) == 0) {",
+			"\t\t\tbreak;",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "Prime"
+	},
+	"PriorityQueue": {
+		"prefix": "PriorityQueue",
+		"body": [
+			"priority_queue<II, vector<II>, greater<>> q;"
+		],
+		"description": "PriorityQueue"
+	},
+	"SegmentTree": {
+		"prefix": "SegmentTree",
+		"body": [
+			"template<typename T> inline T minimum(const T & a, const T & b) { return min(a, b); }",
+			"template<typename T> inline T maximum(const T & a, const T & b) { return max(a, b); }",
+			"template<typename T> inline T logicalAnd(const T& a, const T& b) { return a & b; }",
+			"template<typename T> inline T logicalOr(const T& a, const T& b) { return a | b; }",
+			"template<typename T> inline T exclusiveOr(const T& a, const T& b) { return a ^ b; }",
+			"template<typename T> inline T gcd(const T& a, const T& b) { return b ? gcd(b, a % b) : a; }",
+			"",
+			"template<typename T, int64_t SIZE, T DEF_VAL, T Compare(const T&, const T&)>",
+			"class SegmentTree {",
+			"\tvector<T> val;",
+			"public:",
+			"\tSegmentTree() : val(SIZE * 2, DEF_VAL) { }",
+			"\tvoid update(int64_t i, const T &value) {",
+			"\t\ti += SIZE;",
+			"\t\t// val[i] = Compare(val[i], value);",
+			"\t\tval[i] = value;",
+			"\t\twhile (i > 1) i >>= 1, val[i] = Compare(val[i * 2], val[i * 2 + 1]);",
+			"\t}",
+			"\tT get(int64_t a, int64_t b, int64_t l = 0, int64_t r = SIZE, int64_t i = 1) {",
+			"\t\tif (r <= a || b <= l) return DEF_VAL;",
+			"\t\tif (a <= l && r <= b) return val[i];",
+			"\t\treturn Compare(get(a, b, l, (l + r) / 2, i * 2), get(a, b, (l + r) / 2, r, i * 2 + 1));",
+			"\t}",
+			"\tint64_t find_leftmost_index(int64_t a, int64_t b, const T &value, int64_t l = 0, int64_t r = SIZE, int64_t i = 1) {",
+			"\t\tif (Compare(val[i], value) != val[i]) return -1;",
+			"\t\tif (r <= a || b <= l) return -1;",
+			"\t\tif (i >= SIZE) return i - SIZE;",
+			"\t\tint64_t leftmost_index = find_leftmost_index(a, b, value, l, (l + r) / 2, i * 2);",
+			"\t\tif (leftmost_index >= 0) return leftmost_index;",
+			"\t\treturn find_leftmost_index(a, b, value, (l + r) / 2, r, i * 2 + 1);",
+			"\t}",
+			"\tint64_t find_rightmost_index(int64_t a, int64_t b, const T &value, int64_t l = 0, int64_t r = SIZE, int64_t i = 1) {",
+			"\t\tif (Compare(val[i], value) != val[i]) return -1;",
+			"\t\tif (r <= a || b <= l) return -1;",
+			"\t\tif (i >= SIZE) return i - SIZE;",
+			"\t\tint64_t rightmost_index = find_rightmost_index(a, b, value, (l + r) / 2, r, i * 2 + 1);",
+			"\t\tif (rightmost_index >= 0) return rightmost_index;",
+			"\t\treturn find_rightmost_index(a, b, value, l, (l + r) / 2, i * 2);",
+			"\t}",
+			"};",
+			"typedef SegmentTree<int64_t, 1 << 18, 1LL << 60, minimum<int64_t>> MinSegTree;",
+			"typedef SegmentTree<int64_t, 1 << 18,         0, maximum<int64_t>> MaxSegTree;",
+			"typedef SegmentTree<int64_t, 1 << 18,         0, exclusiveOr<int64_t>> XorSegTree;",
+			"typedef SegmentTree<int64_t, 1 << 18,         0, gcd<int64_t>> GcdSegTree;"
+		],
+		"description": "SegmentTree"
+	},
+	"Set": {
+		"prefix": "Set",
+		"body": [
+			"template<typename T> struct Set {",
+			"\tusing Iterator = typename set<T>::iterator;",
+			"\tset<T> s;",
+			"\tSet() { }",
+			"\tvoid clear() { s.clear(); }",
+			"\tbool insert(T value) { return s.insert(value).second; }",
+			"\tbool erase(T value) { return s.erase(value) > 0; }",
+			"\tbool exists(T value) { return find(value) != s.end(); }",
+			"\tIterator find(T value) { return s.find(value); }",
+			"\tIterator lower_bound(T value) { return s.lower_bound(value); }",
+			"\tIterator less_than_eq(T value) {",
+			"\t\tauto it = lower_bound(value);",
+			"\t\tif (it == s.end()) return s.empty() ? s.end() : --it;",
+			"\t\tif (*it == value) return it;",
+			"\t\treturn it == s.begin() ? s.end() : --it;",
+			"\t}",
+			"};",
+			"",
+			"//Set<int64_t> s;"
+		],
+		"description": "Set"
+	},
+	"SortArrays": {
+		"prefix": "SortArrays",
+		"body": [
+			"vector<int> seq(N);",
+			"iota(seq.begin(), seq.end(), 0);",
+			"sort(seq.begin(), seq.end(), [&](int lhs, int rhs) {",
+			"\treturn make_pair(A[lhs], B[lhs]) < make_pair(A[rhs], B[rhs]);",
+			"});"
+		],
+		"description": "generate sequence"
+	},
+	"Tree": {
+		"prefix": "Tree",
+		"body": [
+			"struct Tree {",
+			"\tint64_t _size;",
+			"\tvector<vector<int64_t>> _edges;",
+			"\tvector<int64_t> _vis;",
+			"",
+			"\tTree(int64_t size) : _size(size + 2), _edges(size + 2), _vis(size + 2) { }",
+			"",
+			"\tvoid build_edges(const vector<int64_t>& a, const vector<int64_t>& b) {",
+			"\t\tfor (size_t i = 0; i < a.size(); ++i) {",
+			"\t\t\t_edges[a[i]].emplace_back(b[i]);",
+			"\t\t\t_edges[b[i]].emplace_back(a[i]);",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tvoid dfs(int64_t n) {",
+			"\t\t_vis[n] += 1;",
+			"",
+			"\t\t$0",
+			"",
+			"\t\tfor (auto next : _edges[n]) {",
+			"\t\t\tif (_vis[next] <= 0) {",
+			"\t\t\t\tdfs(next);",
+			"\t\t\t}",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tvector<int64_t> bfs(int64_t start_node) {",
+			"\t\tvector<int64_t> dists(_size, INF), q;",
+			"\t\tdists[start_node] = 0;",
+			"\t\tq.emplace_back(start_node);",
+			"\t\tfor (int turn = 1; !q.empty(); ++turn) {",
+			"\t\t\tvector<int64_t> nq;",
+			"\t\t\tfor (auto node : q) {",
+			"\t\t\t\tfor (auto next_node : _edges[node]) {",
+			"\t\t\t\t\tif (dists[next_node] >= INF) {",
+			"\t\t\t\t\t\tdists[next_node] = turn;",
+			"\t\t\t\t\t\tnq.emplace_back(next_node);",
+			"\t\t\t\t\t}",
+			"\t\t\t\t}",
+			"\t\t\t}",
+			"\t\t\tq = nq;",
+			"\t\t}",
+			"\t\treturn dists;",
+			"\t}",
+			"};"
+		],
+		"description": "Tree"
+	},
+	"UnionFind": {
+		"prefix": "UnionFind",
+		"body": [
+			"struct UnionFind {",
+			"\tstd::vector<int> _parent;",
+			"\tstd::vector<int> _size;",
+			"\tUnionFind(int size) : _parent(size, -1), _size(size, 1) { }",
+			"\tvoid unite(int a, int b) {",
+			"\t\tint ra = root(a), rb = root(b); if (ra == rb) { return; }",
+			"\t\tif (_size[ra] < _size[rb]) swap(ra, rb);",
+			"\t\t_parent[rb] = ra, _size[ra] += _size[rb];",
+			"\t}",
+			"\tint root(int a) {",
+			"\t\tint p = _parent[a];",
+			"\t\tif (p < 0) { return a; }",
+			"\t\twhile (_parent[p] >= 0) { p = _parent[p]; }",
+			"\t\treturn _parent[a] = p;",
+			"\t}",
+			"\tint size(int a) { return _size[root(a)]; }",
+			"};"
+		],
+		"description": "UnionFind"
+	}
+}
