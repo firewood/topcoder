@@ -22,14 +22,10 @@
 using namespace std;
 
 int64_t solve(int64_t N, string S, vector<int64_t> X, vector<int64_t> Y) {
-	vector<int64_t> dp(2);
-	if (S[0] == 'S') {
-		dp[0] = 0;
-		dp[1] = -X[0];
-	} else {
-		dp[0] = -X[0];
-		dp[1] = 0;
-	}
+	vector<int64_t> dp = {
+		-X[0] * (S[0] == 'R'),
+		-X[0] * (S[0] == 'S')
+	};
 	for (int64_t i = 1; i < N; ++i) {
 		dp = {
 			max(dp[0], dp[1] + Y[i - 1]) - X[i] * (S[i] == 'R'),
