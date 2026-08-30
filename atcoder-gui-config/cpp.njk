@@ -32,6 +32,32 @@ const int64_t MOD = {{ mod }};
 {% if mod == 998244353 or mod == 1000000007 %}
 using mint = atcoder::modint{{ mod }};
 {% endif %}
+static const size_t TABLE_SIZE = 1000000;		// 1e6
+
+static vector<mint> fact(TABLE_SIZE + 1, 0), inv(TABLE_SIZE + 1, 0);
+
+static void build_fact_table() {
+	fact[0] = 1;
+	for (int i = 1; i <= TABLE_SIZE; ++i) {
+		fact[i] = fact[i - 1] * i;
+	}
+	inv[TABLE_SIZE] = fact[TABLE_SIZE].inv();
+	for (int i = TABLE_SIZE; i >= 1; --i) {
+		inv[i - 1] = inv[i] * i;
+	}
+}
+
+inline mint permutation(int n, int r) {
+	return r > n ? 0 : fact[n] * inv[n - r];
+}
+
+inline mint combination(int n, int r) {
+	return r > n ? 0 : (fact[n] * inv[r]) * inv[n - r];
+}
+
+inline mint nHr(int n, int r) {
+	return combination(n + r - 1, r);
+}
 {% elif return_type == "bool" %}
 {% set cpp_return_value_type = "bool" %}
 {% set cpp_output_value = "(ans ? YES : NO)" %}
@@ -39,19 +65,17 @@ const string YES = "{{ yes_str }}";
 const string NO = "{{ no_str }}";
 {% elif return_type == "int" %}
 {% if multiple_columns and multiple_rows %}
-{% set cpp_return_value_type = "pair<int64_t, int64_t>" %}
-{% set cpp_output_value = "ans.first << \" \" << ans.second" %}
+{% set cpp_return_value_type = "vector<int64_t>" %}
 {% else %}
 {% set cpp_return_value_type = "int64_t" %}
 {% endif %}
 {% elif return_type == "float" %}
 {% set cpp_return_value_type = "LD" %}
-typedef long double LD;
 {% elif return_type == "string" %}
 {% set cpp_return_value_type = "string" %}
 {% endif %}
 {% if multiple_columns or multiple_rows %}
-{% set cpp_return_type = "std::vector<" + cpp_return_value_type + ">" %}
+{% set cpp_return_type = "vector<" + cpp_return_value_type + ">" %}
 {% else %}
 {% set cpp_return_type = cpp_return_value_type %}
 {% endif %}
@@ -93,7 +117,14 @@ int main() {
 {% elif multiple_rows %}
 	auto answers = solve({{ actual_arguments }});
 	for (const auto ans : answers) {
+{% if multiple_columns %}
+		for (size_t i = 0; i < ans.size(); i++) {
+			cout << (i > 0 ? " " : "") << ans[i];
+		}
+		cout << endl;
+{% else %}
 		cout << {{cpp_output_value}} << endl;
+{% endif %}
 	}
 {% elif multiple_columns %}
 	auto answers = solve({{ actual_arguments }});
