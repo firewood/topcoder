@@ -30,15 +30,12 @@ struct Point {
 	bool is_first_half() const {
 		return y > 0 || (y == 0 && x > 0);
 	}
-	int64_t cross_product(const Point &p) const {
-		return x * p.y - p.x * y;
+	__int128 cross_product(const Point &p) const {
+		return __int128(x) * p.y - __int128(y) * p.x;
 	}
 	bool operator < (const Point &p) const {
-		int h1 = is_first_half(), h2 = p.is_first_half();
-		if (h1 != h2) {
-			return h1 > h2;
-		}
-		return cross_product(p) > 0;
+		bool h1 = is_first_half(), h2 = p.is_first_half();
+		return (h1 != h2) ? h1 : cross_product(p) > 0;
 	}
 	void normalize() {
 		int64_t xs = x > 0 ? 1 : -1, ys = y > 0 ? 1 : -1;
